@@ -8,7 +8,7 @@ const Preview = ({ storyInfo, text, setSelectedIdx, stageRef }) => {
   const [storyImage, setStoryImage] = useState(storyImage);
   const [image] = useImage(storyImage);
   useEffect(() => {
-    console.log(storyInfo.image);
+    console.log(storyInfo.image, 'qwe');
     setStoryImage(storyInfo.image);
   }, [storyInfo]);
 
