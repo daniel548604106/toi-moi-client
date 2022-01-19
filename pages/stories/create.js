@@ -9,9 +9,9 @@ import router from 'next/router';
 import { backgroundSelections } from '../../utils/storyOptions';
 import { apiUploadStoryImage } from '../../api';
 
-const Preview = dynamic(() => import('../../components/Stories/Preview'), {
-  ssr: false
-});
+// const Preview = dynamic(() => import('../../components/Stories/Preview'), {
+//   ssr: false
+// });
 
 const Create = () => {
   const stageRef = useRef(null);
@@ -151,7 +151,7 @@ const Create = () => {
           </button>
         </div>
       </div>
-      <div className="flex-1 bg-gray-100 flex items-center justify-center">
+      {/* <div className="flex-1 bg-gray-100 flex items-center justify-center">
         {storyInfo.type ? (
           <Preview
             text={text}
@@ -191,7 +191,7 @@ const Create = () => {
           onChange={(e) => handleImageSelected(e.target.files[0])}
           hidden
         />
-      </div>
+      </div> */}
     </div>
   );
 };

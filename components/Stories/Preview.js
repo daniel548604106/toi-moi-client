@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { backgroundSelections } from '../../utils/storyOptions';
-import { Stage, Layer, Rect, Text, Transformer, Image } from 'react-konva';
 import useImage from 'use-image';
 import useClickOutside from '../../hooks/useClickOutside';
-import Konva from 'konva';
 
 const Preview = ({ storyInfo, text, setSelectedIdx, stageRef }) => {
   // Image
