@@ -30,7 +30,7 @@ const ChatBox = dynamic(() => import('../components/Home/Contacts/ChatBox'));
 const PostNotification = dynamic(() =>
   import('../components/Home/PostNotification')
 );
-export default function Home({ posts, friends, stories }) {
+export default function Home({ posts, friends, stories, notFound }) {
   const dispatch = useDispatch();
   const [hasMore, setHasMore] = useState(true);
   const { userInfo } = useSelector((state) => state.user);
@@ -70,6 +70,10 @@ export default function Home({ posts, friends, stories }) {
       setHasMore(false);
     }
   }, [posts]);
+
+  useEffect(() => {
+    console.log(posts, friends, stories);
+  }, [posts, friends, stories]);
 
   useEffect(() => {
     console.log(newMessageReceived);
@@ -158,25 +162,33 @@ export default function Home({ posts, friends, stories }) {
           <Stories stories={stories} />
           <InputBox />
           <Room roomList={roomList} />
-          {currentPosts && (
-            <InfiniteScroll
-              dataLength={currentPosts.length} //This is important field to render the next data, only when the length is changed then will trigger next function
-              next={getMorePosts}
-              hasMore={hasMore}
-              loader={<LoaderSpinner />}
-              endMessage={<EndMessage />}
-              className="scrollbar-hide"
-            >
-              {currentPosts.map((post) => (
-                <div key={post._id} className="mb-[15px] ">
-                  <Post deletePost={deletePost} post={post} socket={socket} />
+          {!notFound && (
+            <div>
+              {currentPosts?.length && (
+                <InfiniteScroll
+                  dataLength={currentPosts.length} //This is important field to render the next data, only when the length is changed then will trigger next function
+                  next={getMorePosts}
+                  hasMore={hasMore}
+                  loader={<LoaderSpinner />}
+                  endMessage={<EndMessage />}
+                  className="scrollbar-hide"
+                >
+                  {currentPosts?.map((post) => (
+                    <div key={post._id} className="mb-[15px] ">
+                      <Post
+                        deletePost={deletePost}
+                        post={post}
+                        socket={socket}
+                      />
+                    </div>
+                  ))}
+                </InfiniteScroll>
+              )}
+              {currentPosts && currentPosts.length < 10 && (
+                <div className="mt-5">
+                  <NoPost />
                 </div>
-              ))}
-            </InfiniteScroll>
-          )}
-          {currentPosts && currentPosts.length < 10 && (
-            <div className="mt-5">
-              <NoPost />
+              )}
             </div>
           )}
         </div>
@@ -208,17 +220,17 @@ export async function getServerSideProps({ req, res }) {
     const token = req.cookies.token;
     let posts, chats, friends, stories;
     if (token) {
-      friends = await axios.get(`${process.env.BASE_URL}/api/friends`, {
+      friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      posts = await axios.get(`${process.env.BASE_URL}/api/posts?page=1`, {
+      posts = await axios.get(`${process.env.API_BASE_URL}/api/posts?page=1`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      stories = await axios.get(`${process.env.BASE_URL}/api/stories`, {
+      stories = await axios.get(`${process.env.API_BASE_URL}/api/stories`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
