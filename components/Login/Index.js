@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { apiPostLogin } from '../../api/index';
+import { apiPostLogin } from '@/Api/index';
 import { useDispatch } from 'react-redux';
 import { setUserLogin } from '@/Redux/slices/userSlice';
 import { useRouter } from 'next/router';

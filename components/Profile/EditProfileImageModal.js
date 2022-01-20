@@ -6,7 +6,7 @@ import Loader from '../Global/Loader';
 import Image from 'next/dist/client/image';
 import { getProfileData } from '@/Redux/slices/profileSlice.js';
 import { useRouter } from 'next/router';
-import { apiPatchProfileImage, apiPostNewPost } from '../../api/index';
+import { apiPatchProfileImage, apiPostNewPost } from '@/Api/index';
 const EditProfileImageModal = () => {
   const dispatch = useDispatch();
   const router = useRouter();

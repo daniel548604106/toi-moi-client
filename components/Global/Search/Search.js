@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeftIcon, SearchIcon } from '@heroicons/react/outline';
-import {
-  apiPostKeywordSearch,
-  apiGetRecentSearch,
-  apiSearchRequest
-} from '../../../api/index';
+import { apiPostKeywordSearch, apiGetRecentSearch, apiSearchRequest } from '@/Api/index';
 import SearchListItem from './SearchListItem';
 import SearchHistoryItem from './SearchHistoryItem';
 import router from 'next/router';
@@ -47,7 +43,7 @@ const Search = ({ t }) => {
       action: 'search',
       category: 'search',
       label: 'keywords',
-      value: searchText
+      value: searchText,
     });
     try {
       const res = await apiPostKeywordSearch(searchText);

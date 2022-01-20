@@ -1,31 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import request from '../../lib/axiosConfig';
-import { apiGetSavedPosts } from '../../api';
-export const apiGetLikesList = createAsyncThunk(
-  'post/getLikesList',
-  async (id, thunkAPI) => {
-    const response = await request.get(`/posts/like/${id}`);
-    console.log(response.data);
-    return response.data;
-  }
-);
+import request from '@/Lib/axiosConfig';
+import { apiGetSavedPosts } from '@/Api/index';
+export const apiGetLikesList = createAsyncThunk('post/getLikesList', async (id, thunkAPI) => {
+  const response = await request.get(`/posts/like/${id}`);
+  console.log(response.data);
+  return response.data;
+});
 
-export const apiGetCurrentPost = createAsyncThunk(
-  'post/getCurrentPost',
-  async (id, thunkAPI) => {
-    const response = await request.get(`/posts/${id}`);
-    console.log(response);
-    return response.data;
-  }
-);
-export const getSavedPosts = createAsyncThunk(
-  'post/getSavedPost',
-  async (id, thunkAPI) => {
-    const response = await apiGetSavedPosts();
-    console.log(response, 'saved');
-    return response.data.posts;
-  }
-);
+export const apiGetCurrentPost = createAsyncThunk('post/getCurrentPost', async (id, thunkAPI) => {
+  const response = await request.get(`/posts/${id}`);
+  console.log(response);
+  return response.data;
+});
+export const getSavedPosts = createAsyncThunk('post/getSavedPost', async (id, thunkAPI) => {
+  const response = await apiGetSavedPosts();
+  console.log(response, 'saved');
+  return response.data.posts;
+});
 
 export const postSlice = createSlice({
   name: 'post',
@@ -36,7 +27,7 @@ export const postSlice = createSlice({
     currentPost: null,
     isPostInputBoxOpen: false,
     isViewPostModalOpen: false,
-    imageToPost: ''
+    imageToPost: '',
   },
   reducers: {
     setLikesListOpen: (state, { payload }) => {
@@ -56,7 +47,7 @@ export const postSlice = createSlice({
         setImageToPost('');
       }
       state.isViewPostModalOpen = payload;
-    }
+    },
   },
   extraReducers: {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -70,16 +61,12 @@ export const postSlice = createSlice({
     },
     [getSavedPosts.fulfilled]: (state, action) => {
       state.savedPosts = action.payload;
-    }
-  }
+    },
+  },
 });
 
 // Action creators are generated for each case reducer function
-export const {
-  setLikesListOpen,
-  setPostInputBoxOpen,
-  setViewPostModalOpen,
-  setImageToPost
-} = postSlice.actions;
+export const { setLikesListOpen, setPostInputBoxOpen, setViewPostModalOpen, setImageToPost } =
+  postSlice.actions;
 
 export default postSlice.reducer;

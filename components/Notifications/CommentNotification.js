@@ -1,9 +1,9 @@
 import React from 'react';
-import { timeDiff } from '../../lib/dayjs';
+import { timeDiff } from 'Lib/dayjs';
 import { DotsHorizontalIcon, ChatAlt2Icon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { apiPostReadSingleNotification } from '../../api';
+import { apiPostReadSingleNotification } from '@/Api/index';
 import useTranslation from 'next-translate/useTranslation';
 import Avatar from '../Global/Avatar';
 const CommentNotification = ({ notification }) => {
@@ -11,9 +11,7 @@ const CommentNotification = ({ notification }) => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const router = useRouter();
   const handleReadNotification = async (notificationId) => {
-    router.push(
-      `/${userInfo.username}/posts/${notification.post._id}?comment_id=`
-    );
+    router.push(`/${userInfo.username}/posts/${notification.post._id}?comment_id=`);
     try {
       const res = await apiPostReadSingleNotification(notificationId);
       console.log('res,', res);
@@ -44,11 +42,7 @@ const CommentNotification = ({ notification }) => {
             <span className=" font-semibold">{notification.user.name}</span>{' '}
             {t('commentedOnYourPost')}
           </p>
-          <p
-            className={`text-xs ${
-              !notification.isNotificationRead && 'text-main'
-            }  `}
-          >
+          <p className={`text-xs ${!notification.isNotificationRead && 'text-main'}  `}>
             {timeDiff(notification.date)}
           </p>{' '}
         </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import router from 'next/router';
 import Image from 'next/image';
 import catchError from '../../lib/catchError';
-import { apiPostPasswordReset } from '../../api/index';
+import { apiPostPasswordReset } from '@/Api/index';
 const password = () => {
   const token = router.query.token;
   const [error, setError] = useState('');
@@ -10,8 +10,7 @@ const password = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [newPasswordSuccess, setNewPasswordSuccess] = useState(false);
   const handleResetPassword = async () => {
-    if (!password || !passwordConfirm)
-      return setError('Missing required field');
+    if (!password || !passwordConfirm) return setError('Missing required field');
     if (password !== passwordConfirm)
       return setError("Password and password confirm doesn't match");
     try {
@@ -37,13 +36,9 @@ const password = () => {
         />
         <div className="rounded-lg bg-white text-center  space-y-3 border w-full max-w-[600px]  shadow-xl p-5 bg-secondary text-secondary">
           {newPasswordSuccess ? (
-            <h2 className="text-lg sm:text-xl font-semibold mb-3">
-              Changed Successfully
-            </h2>
+            <h2 className="text-lg sm:text-xl font-semibold mb-3">Changed Successfully</h2>
           ) : (
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-              Password Reset
-            </h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3">Password Reset</h2>
           )}
           {newPasswordSuccess ? (
             <Image src="/images/password-success.svg" width={60} height={60} />
@@ -52,9 +47,7 @@ const password = () => {
           )}
           {!newPasswordSuccess && (
             <>
-              <div
-                className={`p-3 rounded-lg border ${error && 'border-red-600'}`}
-              >
+              <div className={`p-3 rounded-lg border ${error && 'border-red-600'}`}>
                 <input
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -63,9 +56,7 @@ const password = () => {
                   className="focus:outline-none w-full"
                 />
               </div>
-              <div
-                className={`p-3 rounded-lg border ${error && 'border-red-600'}`}
-              >
+              <div className={`p-3 rounded-lg border ${error && 'border-red-600'}`}>
                 <input
                   value={passwordConfirm}
                   onChange={(e) => setPasswordConfirm(e.target.value)}

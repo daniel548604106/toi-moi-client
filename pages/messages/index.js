@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import { apiGetChatUserInfo, apiSearchRequest } from '../../api/index';
+import { apiGetChatUserInfo, apiSearchRequest } from '@/Api/index';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { ChatAlt2Icon } from '@heroicons/react/outline';

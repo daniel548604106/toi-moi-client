@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import router from 'next/router';
 // import Preview from '../../components/Stories/Preview';
 import { backgroundSelections } from '../../utils/storyOptions';
-import { apiUploadStoryImage } from '../../api';
+import { apiUploadStoryImage } from '@/Api';
 
 // const Preview = dynamic(() => import('../../components/Stories/Preview'), {
 //   ssr: false
@@ -22,7 +22,7 @@ const Create = () => {
 
   const [storyInfo, setStoryInfo] = useState({
     type: '',
-    image: ''
+    image: '',
   });
   const [selectedBg, setSelectedBg] = useState(1);
   const [selectedIdx, setSelectedIdx] = useState(0);
@@ -38,7 +38,7 @@ const Create = () => {
       setStoryInfo((storyInfo) => ({
         ...storyInfo,
         type: 'image',
-        image: readerEvent.target.result
+        image: readerEvent.target.result,
       }));
     };
   };
@@ -46,7 +46,7 @@ const Create = () => {
   const handleReset = () => {
     setStoryInfo({
       type: '',
-      image: ''
+      image: '',
     });
   };
 
@@ -61,7 +61,7 @@ const Create = () => {
       const { data } = await apiUploadStoryImage({
         image: canvasImage,
         type: storyInfo.type,
-        taggedUsers: []
+        taggedUsers: [],
       });
       setLoading(false);
       router.push('/');
@@ -112,11 +112,7 @@ const Create = () => {
             <p className="p-2">{backgroundSelections[selectedIdx].title}</p>
             <div className="hidden z-40 text-left bg-secondary  left-0  rounded-lg group-focus:block absolute bottom-0 transform translate-y-full w-full border p-2">
               {backgroundSelections.map((selection, idx) => (
-                <p
-                  onClick={() => setSelectedIdx(idx)}
-                  className="p-2"
-                  key={selection.id}
-                >
+                <p onClick={() => setSelectedIdx(idx)} className="p-2" key={selection.id}>
                   {selection.title}
                 </p>
               ))}
@@ -126,12 +122,7 @@ const Create = () => {
             <h2>背景</h2>
             <div className="space-x-3 flex items-center">
               {backgroundSelections[selectedIdx].selections.map((selection) => (
-                <Image
-                  className="rounded-full mr-2"
-                  src={selection.src}
-                  width={30}
-                  height={30}
-                />
+                <Image className="rounded-full mr-2" src={selection.src} width={30} height={30} />
               ))}
             </div>
           </div>

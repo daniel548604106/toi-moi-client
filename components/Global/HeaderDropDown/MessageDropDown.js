@@ -3,10 +3,10 @@ import {
   PencilAltIcon,
   VideoCameraIcon,
   DotsHorizontalIcon,
-  SearchIcon
+  SearchIcon,
 } from '@heroicons/react/solid';
 import ToolTips from '../ToolTips';
-import { apiGetChats } from '../../../api';
+import { apiGetChats } from '@/Api/index';
 import EmptyChat from '../../Messages/EmptyChat';
 import { useRouter } from 'next/router';
 import MessageDropDownList from './MesseageDropDownList';

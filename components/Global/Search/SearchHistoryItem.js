@@ -1,15 +1,10 @@
 import React from 'react';
 import { SearchIcon, XIcon } from '@heroicons/react/outline';
-import { apiDeleteHistory } from '../../../api';
+import { apiDeleteHistory } from '@/Api/index';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import genderAvatar from '../../../utils/genderAvatar';
-const SearchHistoryItem = ({
-  setSearchResultShow,
-  history,
-  searchHistory,
-  setSearchHistory
-}) => {
+import genderAvatar from '@/Utils/genderAvatar';
+const SearchHistoryItem = ({ setSearchResultShow, history, searchHistory, setSearchHistory }) => {
   const router = useRouter();
   const handleDirectToHistory = () => {
     if (history.type === 'keyword') {
@@ -24,9 +19,7 @@ const SearchHistoryItem = ({
     e.stopPropagation();
 
     try {
-      const updatedHistory = searchHistory.filter(
-        (search) => search._id !== history._id
-      );
+      const updatedHistory = searchHistory.filter((search) => search._id !== history._id);
       setSearchHistory(updatedHistory);
       console.log(history._id);
       const res = await apiDeleteHistory(history._id);
@@ -58,10 +51,7 @@ const SearchHistoryItem = ({
           {history.type === 'user' ? history.user.name : history.keyword}
         </span>
       </div>
-      <span
-        onClick={(e) => handleDelete(e)}
-        className="p-2 rounded-full hover:bg-gray-200"
-      >
+      <span onClick={(e) => handleDelete(e)} className="p-2 rounded-full hover:bg-gray-200">
         <XIcon className="h-6" />
       </span>
     </div>

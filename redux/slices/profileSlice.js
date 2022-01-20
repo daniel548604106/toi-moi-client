@@ -1,20 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { apiGetProfile } from '../../api';
-export const getProfileData = createAsyncThunk(
-  'post/getProfile',
-  async (username, thunkAPI) => {
-    const response = await apiGetProfile(username);
-    console.log(response, 'from redux');
-    return response.data;
-  }
-);
+import { apiGetProfile } from '@/Api/index';
+export const getProfileData = createAsyncThunk('post/getProfile', async (username, thunkAPI) => {
+  const response = await apiGetProfile(username);
+  return response.data;
+});
 
 export const profileSlice = createSlice({
   name: 'post',
   initialState: {
     profileData: null,
     isEditSummaryModalOpen: false,
-    summaryData: null
+    summaryData: null,
   },
   reducers: {
     setSummaryModalShow: (state, { payload }) => {
@@ -25,7 +21,7 @@ export const profileSlice = createSlice({
     },
     setSummaryData: (state, { payload }) => {
       state.summaryData = payload;
-    }
+    },
   },
   extraReducers: {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -33,12 +29,11 @@ export const profileSlice = createSlice({
       // Add likes to the state array
       console.log('dispatch from redux', payload);
       state.profileData = payload;
-    }
-  }
+    },
+  },
 });
 
 // Action creators are generated for each case reducer function
-export const { setSummaryModalShow, setProfileData, setSummaryData } =
-  profileSlice.actions;
+export const { setSummaryModalShow, setProfileData, setSummaryData } = profileSlice.actions;
 
 export default profileSlice.reducer;

@@ -9,7 +9,9 @@
       "@/Pages/*": ["pages/*"],
       "@/Redux/*": ["redux/*"],
       "@/Styles/*": ["styles/*"],
-      "@/Utils/*": ["utils/*"]
+      "@/Utils/*": ["utils/*"],
+      "@/Api/*": ["api/*"],
+      "@/Lib/*": ["lib/*"]
     }
   }
 }

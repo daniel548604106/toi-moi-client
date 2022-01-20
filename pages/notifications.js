@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
-import { apiPostReadNotifications } from '../api';
+import { apiPostReadNotifications } from '@/Api';
 import LikeNotification from '../components/Notifications/LikeNotification';
 import CommentNotification from '../components/Notifications/CommentNotification';
 import FriendNotification from '../components/Notifications/FriendNotification';
@@ -61,27 +61,26 @@ export async function getServerSideProps({ req, res }) {
     const token = req.cookies.token;
     const res = await axios.get(`${process.env.BASE_URL}/api/notifications`, {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
     if (!res.data) {
       return {
-        notFound: true
+        notFound: true,
       };
     }
     return {
       props: {
-        notifications: res.data
-      }
+        notifications: res.data,
+      },
     };
   } catch (error) {
     console.log(error);
     return {
       props: {
         ok: false,
-        reason:
-          'some error description for your own consumption, not for client side'
-      }
+        reason: 'some error description for your own consumption, not for client side',
+      },
     };
   }
 }

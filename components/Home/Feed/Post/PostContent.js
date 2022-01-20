@@ -5,8 +5,8 @@ import { setViewPostModalOpen, apiGetCurrentPost } from '@/Redux/slices/postSlic
 import useTranslation from 'next-translate/useTranslation';
 import Loader from '../../../Global/Loader';
 import { setNotification } from '@/Redux/slices/globalSlice';
-import { apiUpdatePost } from '../../../../api';
-import * as ga from '../../../../lib/gtag';
+import { apiUpdatePost } from '@/Api/index';
+import * as ga from '@/Lib/gtag';
 const PostContent = ({ post, isEditable, setEditable }) => {
   const [showMore, setShowMore] = useState(post.text?.length > 150);
   const [latestText, setLatestText] = useState(post.text || '');

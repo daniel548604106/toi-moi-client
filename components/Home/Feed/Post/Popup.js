@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { TrashIcon, BookmarkIcon, PencilAltIcon } from '@heroicons/react/outline';
 import { BookmarkIcon as SolidBookmarkIcon } from '@heroicons/react/solid';
-import { apiDeletePost } from '../../../../api/index';
+import { apiDeletePost } from '@/Api/index';
 import { useSelector, useDispatch } from 'react-redux';
-import { apiPostNewSavedPost, apiDeleteSavedPost } from '../../../../api/index';
+import { apiPostNewSavedPost, apiDeleteSavedPost } from '@/Api/index';
 import { setNotification } from '@/Redux/slices/globalSlice';
 import { getSavedPosts } from '@/Redux/slices/postSlice';
 const Popup = ({ setPopupShow, setEditable, postId, user, deletePost }) => {
