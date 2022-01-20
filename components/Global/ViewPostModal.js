@@ -2,7 +2,7 @@ import React from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import Post from '../Home/Feed/Post/Post';
 import { useDispatch, useSelector } from 'react-redux';
-import { setViewPostModalOpen } from '../../redux/slices/postSlice';
+import { setViewPostModalOpen } from '@/Redux/slices/postSlice';
 import Image from 'next/image';
 const ViewPostModal = () => {
   const dispatch = useDispatch();

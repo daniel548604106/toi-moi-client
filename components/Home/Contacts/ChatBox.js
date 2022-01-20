@@ -4,13 +4,8 @@ import { ThumbUpIcon } from '@heroicons/react/solid';
 import { apiGetChat } from '../../../api/index';
 import { useSelector, useDispatch } from 'react-redux';
 import Avatar from '../../Global/Avatar';
-import { removeFromChatBoxList } from '../../../redux/slices/messageSlice';
-const ChatBox = ({
-  handleSubmitMessage,
-  newMessageReceived,
-  connectedUsers,
-  user
-}) => {
+import { removeFromChatBoxList } from '@/Redux/slices/messageSlice';
+const ChatBox = ({ handleSubmitMessage, newMessageReceived, connectedUsers, user }) => {
   const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -19,8 +14,7 @@ const ChatBox = ({
   const scrollToRef = useRef();
 
   const scrollToBottom = () => {
-    scrollToRef.current !== null &&
-      scrollToRef.current.scrollIntoView({ behavior: 'smooth' });
+    scrollToRef.current !== null && scrollToRef.current.scrollIntoView({ behavior: 'smooth' });
   };
   const handleRemoveChatBox = () => {
     dispatch(removeFromChatBoxList(user));
@@ -34,8 +28,8 @@ const ChatBox = ({
         date: Date.now(),
         msg: newMessage,
         receiver: user._id,
-        sender: userInfo._id
-      }
+        sender: userInfo._id,
+      },
     ]);
     handleSubmitMessage(user._id, newMessage);
     setNewMessage('');
@@ -86,11 +80,7 @@ const ChatBox = ({
                 <div key={message.date}>
                   {userInfo._id !== message.sender ? (
                     <div className="flex items-center flex-wrap mb-2 ">
-                      <Avatar
-                        profileImage={user.profileImage}
-                        width={30}
-                        height={30}
-                      />
+                      <Avatar profileImage={user.profileImage} width={30} height={30} />
                       <p
                         ref={scrollToRef}
                         className="ml-2 max-w-[200px] text-sm sm:text-md p-2 border rounded-lg"

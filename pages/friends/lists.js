@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../../components/Friends/Sidebar';
-import useAxios from '../../hooks/useAxios';
+import useAxios from '@/Hooks/useAxios';
 import { SearchIcon } from '@heroicons/react/outline';
 import LoaderSpinner from '../../components/Global/LoaderSpinner';
 import EmptyFriendList from '../../components/Friends/EmptyFriendList';
@@ -15,10 +15,10 @@ const lists = () => {
   const {
     response: friends,
     isLoading: isFriendListLoading,
-    error: friendListError
+    error: friendListError,
   } = useAxios({
     method: 'get',
-    url: '/friends'
+    url: '/friends',
   });
   const getSearchedName = async () => {
     const token = Cookies.get('token');
@@ -27,9 +27,9 @@ const lists = () => {
         `${process.env.BASE_URL}/api/friends/search/${searchedName}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
       console.log(data);
     } catch (error) {

@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react';
-import {
-  XIcon,
-  ThumbUpIcon,
-  UserAddIcon,
-  UserIcon
-} from '@heroicons/react/solid';
+import { XIcon, ThumbUpIcon, UserAddIcon, UserIcon } from '@heroicons/react/solid';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLikesListOpen } from '../../../redux/slices/postSlice';
+import { setLikesListOpen } from '@/Redux/slices/postSlice';
 import { useRouter } from 'next/router';
 import Avatar from '../../Global/Avatar';
 import LoaderSpinner from '../../Global/LoaderSpinner';
@@ -30,9 +25,7 @@ const LikesListModal = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <ThumbUpIcon className="h-6 text-main cursor-pointer" />
-          <span className="ml-[5px] text-sm text-gray-600">
-            {likesList.length}
-          </span>
+          <span className="ml-[5px] text-sm text-gray-600">{likesList.length}</span>
         </div>
         <span
           onClick={() => dispatch(setLikesListOpen(false))}
@@ -45,14 +38,8 @@ const LikesListModal = () => {
       <div className="h-full max-h-[50vh] overflow-y-auto">
         {likesList.length > 0 ? (
           likesList.map((like) => (
-            <div
-              key={like._id}
-              className="flex items-center justify-between p-2"
-            >
-              <div
-                onClick={() => handleDirectToProfile(like)}
-                className="flex items-center"
-              >
+            <div key={like._id} className="flex items-center justify-between p-2">
+              <div onClick={() => handleDirectToProfile(like)} className="flex items-center">
                 <span className="relative">
                   <Avatar
                     profileImage={like.user.profileImage}
@@ -70,14 +57,10 @@ const LikesListModal = () => {
                 </span>
               </div>
               {like.user._id !== userInfo._id &&
-                !friendsList
-                  .map((user) => user._id)
-                  .includes(like.user._id) && (
+                !friendsList.map((user) => user._id).includes(like.user._id) && (
                   <button className="rounded-md p-2 px-3 flex items-center bg-gray-200">
                     <UserAddIcon className="h-6" />
-                    <span className="ml-[5px] text-xs sm:text-md">
-                      Add friend
-                    </span>
+                    <span className="ml-[5px] text-xs sm:text-md">Add friend</span>
                   </button>
                 )}
               {friendsList.map((user) => user._id).includes(like.user._id) && (

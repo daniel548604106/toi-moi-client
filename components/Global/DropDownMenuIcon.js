@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { apiPostReadNotifications } from '../../api/index';
 import { useDispatch } from 'react-redux';
-import { getMyInfo } from '../../redux/slices/userSlice';
+import { getMyInfo } from '@/Redux/slices/userSlice';
 const DropDownMenuIcon = ({ Icon, children, title }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [unreadNotification, setUnreadNotification] = useState(
-    userInfo.unreadNotification
-  );
+  const [unreadNotification, setUnreadNotification] = useState(userInfo.unreadNotification);
 
   useEffect(() => {
     setUnreadNotification(userInfo.unreadNotification);

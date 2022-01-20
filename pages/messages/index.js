@@ -15,7 +15,7 @@ import EmptyChat from '../../components/Messages/EmptyChat';
 import messageNotificationSound from '../../utils/messageNotificationSound';
 import genderAvatar from '../../utils/genderAvatar';
 import useTranslation from 'next-translate/useTranslation';
-import { toggleListOpen } from '../../redux/slices/messageSlice';
+import { toggleListOpen } from '@/Redux/slices/messageSlice';
 import Avatar from '../../components/Global/Avatar';
 
 const io = require('socket.io-client');
@@ -34,13 +34,12 @@ const Index = (props) => {
   const [connectedUsers, setConnectedUsers] = useState([]);
   const [openChatUser, setOpenChatUser] = useState({
     name: '',
-    profileImage: ''
+    profileImage: '',
   });
 
   const divRef = useRef(null);
   const scrollToBottom = (divRef) => {
-    divRef.current !== null &&
-      divRef.current.scrollIntoView({ behavior: 'smooth' });
+    divRef.current !== null && divRef.current.scrollIntoView({ behavior: 'smooth' });
   };
   useEffect(() => {
     console.log(chats, 'chats');
@@ -68,7 +67,7 @@ const Index = (props) => {
       socket.current.emit('sendMessage', {
         userId: userInfo._id,
         messageSentTo: openChatId.current,
-        msg
+        msg,
       });
     }
   };
@@ -76,8 +75,7 @@ const Index = (props) => {
   const addChat = (e, result) => {
     e.stopPropagation();
     const alreadyInChat =
-      chats.length > 0 &&
-      chats.filter((chat) => chat.messagesWith === result._id).length > 0;
+      chats.length > 0 && chats.filter((chat) => chat.messagesWith === result._id).length > 0;
 
     console.log(alreadyInChat, '?');
     if (alreadyInChat) {
@@ -88,7 +86,7 @@ const Index = (props) => {
         name: result.name,
         profileImage: result.profileImage || genderAvatar(result.gender),
         lastMessage: '',
-        date: Date.now()
+        date: Date.now(),
       };
 
       console.log(openChatId);
@@ -98,7 +96,7 @@ const Index = (props) => {
       setChats((chats) => [newChat, ...chats]);
       return;
       router.push(`/messages?message=${result._id}`, undefined, {
-        shallow: true
+        shallow: true,
       });
     }
     // Clean search result
@@ -107,7 +105,7 @@ const Index = (props) => {
     // Open current chat
     setOpenChatUser({
       name: result.name,
-      profileImage: result.profileImage || genderAvatar(result.gender)
+      profileImage: result.profileImage || genderAvatar(result.gender),
     });
   };
 
@@ -141,7 +139,7 @@ const Index = (props) => {
     console.log('open');
     if (chats.length > 0 && !router.query.message) {
       router.push(`/messages?message=${chats[0].messagesWith}`, undefined, {
-        shallow: true
+        shallow: true,
       });
     }
   }, []);
@@ -152,7 +150,7 @@ const Index = (props) => {
     const loadMessages = () => {
       socket.current.emit('loadMessages', {
         userId: userInfo._id,
-        messagesWith: router.query.message
+        messagesWith: router.query.message,
       });
 
       socket.current.on('noChatFound', async () => {
@@ -163,7 +161,7 @@ const Index = (props) => {
         setMessages(chat.messages);
         setOpenChatUser({
           name: chat.messagesWith.name,
-          profileImage: chat.messagesWith.profileImage
+          profileImage: chat.messagesWith.profileImage,
         });
         // tracking the query string in the url
         openChatId.current = chat.messagesWith._id;
@@ -200,9 +198,7 @@ const Index = (props) => {
         if (newMessage.sender === openChatId.current) {
           setMessages((prev) => [...prev, newMessage]);
           setChats((prev) => {
-            const previousChat = prev.find(
-              (chat) => chat.messagesWith === newMessage.sender
-            );
+            const previousChat = prev.find((chat) => chat.messagesWith === newMessage.sender);
             previousChat.lastMessage = newMessage.msg;
             previousChat.data = newMessage.date;
             senderName = previousChat.name;
@@ -210,14 +206,11 @@ const Index = (props) => {
           });
         } else {
           const ifPreviouslyMessaged =
-            chats.filter((chat) => chat.messagesWith === newMessage.sender)
-              .length > 0;
+            chats.filter((chat) => chat.messagesWith === newMessage.sender).length > 0;
 
           if (ifPreviouslyMessaged) {
             setChats((prev) => {
-              const previousChat = prev.find(
-                (chat) => chat.messagesWith === newMessage.sender
-              );
+              const previousChat = prev.find((chat) => chat.messagesWith === newMessage.sender);
               previousChat.lastMessage = newMessage.msg;
               previousChat.date = newMessage.date;
               senderName = previousChat.name;
@@ -225,7 +218,7 @@ const Index = (props) => {
             });
           } else {
             const {
-              data: { name, profileImage, gender }
+              data: { name, profileImage, gender },
             } = await apiGetChatUserInfo(newMessage.sender);
             senderName = name;
             console.log(',hi', name, profileImage);
@@ -233,7 +226,7 @@ const Index = (props) => {
               messagesWith: newMessage.sender,
               name,
               profileImage: profileImage || genderAvatar(gender),
-              lastMessage: newMessage.msg
+              lastMessage: newMessage.msg,
             };
             setChats((prev) => [newChat, ...prev]);
           }
@@ -256,9 +249,7 @@ const Index = (props) => {
       </span>
       <div
         className={`${
-          isListOpen
-            ? 'translate-x-0 '
-            : ' -translate-x-full transform sm:transform-none'
+          isListOpen ? 'translate-x-0 ' : ' -translate-x-full transform sm:transform-none'
         } transform transition-transform duration-100 ease-in-out w-full bg-secondary fixed z-40 h-screen overflow-y-scroll sm:flex  sm:max-w-[300px] lg:max-w-[500px] border-r-2  flex-col `}
       >
         <ChatroomSidebarHeader
@@ -299,10 +290,7 @@ const Index = (props) => {
       </div>
       {chats.length > 0 ? (
         <div className="pt-[53px] sm:pt-[0px] flex flex-col flex-1 sm:ml-[300px] lg:ml-[500px] top-0 fixed right-0 left-0 sm:top-[60px] bottom-0  ">
-          <ChatroomMainHeader
-            connectedUsers={connectedUsers}
-            openChatUser={openChatUser}
-          />
+          <ChatroomMainHeader connectedUsers={connectedUsers} openChatUser={openChatUser} />
           <ChatroomMainRoom
             divRef={divRef}
             socket={socket.current}
@@ -328,27 +316,26 @@ export async function getServerSideProps({ req, res }) {
     const token = req.cookies.token;
     let chats = await axios.get(`${process.env.BASE_URL}/api/chats`, {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
     if (!chats.data) {
       return {
-        notFound: true
+        notFound: true,
       };
     }
     return {
       props: {
-        chats: chats.data
-      }
+        chats: chats.data,
+      },
     };
   } catch (error) {
     console.log(error);
     return {
       props: {
         ok: false,
-        reason:
-          'some error description for your own consumption, not for client side'
-      }
+        reason: 'some error description for your own consumption, not for client side',
+      },
     };
   }
 }

@@ -2,16 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { XIcon, PhotographIcon } from '@heroicons/react/outline';
 import { useSelector, useDispatch } from 'react-redux';
 import Image from 'next/image';
-import {
-  setImageToPost,
-  setPostInputBoxOpen
-} from '../../../redux/slices/postSlice';
+import { setImageToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
 import { EmojiHappyIcon } from '@heroicons/react/outline';
 import { apiPostNewPost } from '../../../api/index';
 import Avatar from '../../Global/Avatar';
 import Loader from '../../Global/Loader';
-import useNotify from '../../../hooks/useNotify';
-import { setNotification } from '../../../redux/slices/globalSlice';
+import useNotify from '@/Hooks/useNotify';
+import { setNotification } from '@/Redux/slices/globalSlice';
 const InputBoxModal = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const imageToPost = useSelector((state) => state.post.imageToPost);

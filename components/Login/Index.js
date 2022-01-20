@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiPostLogin } from '../../api/index';
 import { useDispatch } from 'react-redux';
-import { setUserLogin } from '../../redux/slices/userSlice';
+import { setUserLogin } from '@/Redux/slices/userSlice';
 import { useRouter } from 'next/router';
 import catchError from '../../lib/catchError';
 import Cookie from 'js-cookie';
@@ -20,7 +20,7 @@ const Login = () => {
   const [isForgotPasswordOpen, setForgotPasswordOpen] = useState(false);
   const [loginInput, setLoginInput] = useState({
     email: 'interviewer@gmail.com',
-    password: 'dearinterviewer'
+    password: 'dearinterviewer',
   });
   const handleLoginInput = (e) => {
     setError('');
@@ -113,8 +113,7 @@ const Login = () => {
           <div className="dialogue absolute  bg-white border p-2 rounded-lg">
             <span className="ball"></span>
             <p className="whitespace-nowrap">
-              <span className="shakeHand">👋</span>{' '}
-              <span className="ml-[5px]">Hi there!</span>
+              <span className="shakeHand">👋</span> <span className="ml-[5px]">Hi there!</span>
             </p>
           </div>
         </div>
@@ -142,9 +141,7 @@ const Login = () => {
             />
           </div>
           {error !== '' && (
-            <div className="text-sm sm:text-md text-red-500 my-3 relative ">
-              {error}
-            </div>
+            <div className="text-sm sm:text-md text-red-500 my-3 relative ">{error}</div>
           )}
           <button
             onClick={(e) => handleLogin(e)}

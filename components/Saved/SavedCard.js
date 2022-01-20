@@ -4,7 +4,7 @@ import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { TrashIcon } from '@heroicons/react/outline';
 import router from 'next/router';
-import useClickOutside from '../../hooks/useClickOutside';
+import useClickOutside from '@/Hooks/useClickOutside';
 import { apiDeleteSavedPost } from '../../api';
 const SavedCard = ({ post, publisher, type, handleRemoveSavedPost }) => {
   const [isDropdownShow, setDropdownShow] = useState(false);
@@ -31,11 +31,7 @@ const SavedCard = ({ post, publisher, type, handleRemoveSavedPost }) => {
       <div className="flex items-center">
         <img
           className="w-[60px] h-[60px] sm:w-[100px] object-cover sm:h-[100px] rounded-lg"
-          src={
-            post.picUrl ||
-            publisher.profileImage ||
-            genderAvatar(publisher.gender)
-          }
+          src={post.picUrl || publisher.profileImage || genderAvatar(publisher.gender)}
         />
         <div className="flex-1 ml-[10px] truncate space-y-2">
           <p className="truncate overflow-hidden text-xs sm:text-sm w-[200px] sm:w-[300px]">

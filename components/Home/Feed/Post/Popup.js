@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import {
-  TrashIcon,
-  BookmarkIcon,
-  PencilAltIcon
-} from '@heroicons/react/outline';
+import { TrashIcon, BookmarkIcon, PencilAltIcon } from '@heroicons/react/outline';
 import { BookmarkIcon as SolidBookmarkIcon } from '@heroicons/react/solid';
 import { apiDeletePost } from '../../../../api/index';
 import { useSelector, useDispatch } from 'react-redux';
 import { apiPostNewSavedPost, apiDeleteSavedPost } from '../../../../api/index';
-import { setNotification } from '../../../../redux/slices/globalSlice';
-import { getSavedPosts } from '../../../../redux/slices/postSlice';
+import { setNotification } from '@/Redux/slices/globalSlice';
+import { getSavedPosts } from '@/Redux/slices/postSlice';
 const Popup = ({ setPopupShow, setEditable, postId, user, deletePost }) => {
   const dispatch = useDispatch();
   const { savedPosts } = useSelector((state) => state.post);
   const userInfo = useSelector((state) => state.user.userInfo);
-  const [isSaved, setSaved] = useState(
-    savedPosts.map((saved) => saved.post._id).includes(postId)
-  );
+  const [isSaved, setSaved] = useState(savedPosts.map((saved) => saved.post._id).includes(postId));
 
   const handleDeletePost = async () => {
     try {
@@ -45,7 +39,7 @@ const Popup = ({ setPopupShow, setEditable, postId, user, deletePost }) => {
         const { data } = await apiPostNewSavedPost({
           type: 'post',
           postId,
-          publisherId: user._id
+          publisherId: user._id,
         });
         dispatch(setNotification('Post saved'));
         console.log(data);
@@ -66,18 +60,14 @@ const Popup = ({ setPopupShow, setEditable, postId, user, deletePost }) => {
             className="cursor-pointer rounded-md flex items-center hover:bg-gray-100 py-2 px-3"
           >
             <PencilAltIcon className="h-5" />
-            <span className="ml-[10px] text-sm whitespace-nowrap">
-              Edit Post
-            </span>
+            <span className="ml-[10px] text-sm whitespace-nowrap">Edit Post</span>
           </li>
           <li
             onClick={() => handleDeletePost()}
             className="cursor-pointer rounded-md flex items-center hover:bg-gray-100 py-2 px-3"
           >
             <TrashIcon className="h-5" />
-            <span className="ml-[10px] text-sm whitespace-nowrap">
-              Move to trash can
-            </span>
+            <span className="ml-[10px] text-sm whitespace-nowrap">Move to trash can</span>
           </li>
         </>
       )}
@@ -87,11 +77,7 @@ const Popup = ({ setPopupShow, setEditable, postId, user, deletePost }) => {
           isSaved && 'text-main'
         }`}
       >
-        {isSaved ? (
-          <SolidBookmarkIcon className="h-5" />
-        ) : (
-          <BookmarkIcon className="h-5" />
-        )}
+        {isSaved ? <SolidBookmarkIcon className="h-5" /> : <BookmarkIcon className="h-5" />}
         <span className={`ml-[10px] text-sm whitespace-nowrap`}>
           {isSaved ? 'Saved' : 'Save post'}
         </span>

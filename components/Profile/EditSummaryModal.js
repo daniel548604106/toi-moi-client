@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AddNewButton from './EditSummary/AddNewButton';
 import { XIcon } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSummaryModalShow } from '../../redux/slices/profileSlice';
+import { setSummaryModalShow } from '@/Redux/slices/profileSlice';
 import HomeTownInputBox from './EditSummary/HomeTownInputBox';
 import RelationshipStatusInputBox from './EditSummary/RelationshipStatusInputBox';
 import WorkExperienceInputBox from './EditSummary/WorkExperienceInputBox';
@@ -36,24 +36,20 @@ const EditSummaryModal = () => {
           </p>
         </div>
         <div className="my-2">
-          <h2 className="my-1 space-y-2 text-xl font-semibold">
-            Work Experience
-          </h2>
+          <h2 className="my-1 space-y-2 text-xl font-semibold">Work Experience</h2>
 
           {activeBox === 1 ? (
             <WorkExperienceInputBox setActiveBox={setActiveBox} />
           ) : (
             <div>
-              {summaryData.work_experience.map(
-                ({ _id, job_title, company_name }) => (
-                  <SummaryListItem
-                    key={_id}
-                    Icon={BriefcaseIcon}
-                    job_title={job_title}
-                    company_name={company_name}
-                  />
-                )
-              )}
+              {summaryData.work_experience.map(({ _id, job_title, company_name }) => (
+                <SummaryListItem
+                  key={_id}
+                  Icon={BriefcaseIcon}
+                  job_title={job_title}
+                  company_name={company_name}
+                />
+              ))}
               <div onClick={() => handleSetActive(1)}>
                 <AddNewButton title="Add New Work Location" />
               </div>

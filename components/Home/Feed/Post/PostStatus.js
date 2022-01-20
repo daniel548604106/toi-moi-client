@@ -1,19 +1,10 @@
 import React from 'react';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
 import { useDispatch } from 'react-redux';
-import {
-  setLikesListOpen,
-  apiGetLikesList
-} from '../../../../redux/slices/postSlice';
-import { getFriendList } from '../../../../redux/slices/userSlice';
+import { setLikesListOpen, apiGetLikesList } from '@/Redux/slices/postSlice';
+import { getFriendList } from '@/Redux/slices/userSlice';
 import useTranslation from 'next-translate/useTranslation';
-const PostStatus = ({
-  likes,
-  comments,
-  post,
-  setCommentShow,
-  isCommentShow
-}) => {
+const PostStatus = ({ likes, comments, post, setCommentShow, isCommentShow }) => {
   const { t } = useTranslation('common');
   const dispatch = useDispatch();
   const handleLikesListOpen = (postId) => {
@@ -41,9 +32,7 @@ const PostStatus = ({
         {comments.length > 0 && (
           <span className="text-gray-600 lowercase cursor-pointer hover:underline">
             {comments.length}
-            {comments.length === 1
-              ? t('post.commentTotal')
-              : t('post.commentTotal')}
+            {comments.length === 1 ? t('post.commentTotal') : t('post.commentTotal')}
           </span>
         )}
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import { useDispatch } from 'react-redux';
-import { toggleLanguageOpen } from '../../redux/slices/globalSlice';
+import { toggleLanguageOpen } from '@/Redux/slices/globalSlice';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import router from 'next/router';
@@ -12,12 +12,12 @@ const LanguageSettingModal = () => {
   const languages = [
     {
       name: 'English',
-      id: 'en-US'
+      id: 'en-US',
     },
     {
       name: '繁體中文',
-      id: 'zh-tw'
-    }
+      id: 'zh-tw',
+    },
   ];
   return (
     <div className="relative w-full max-w-[400px] rounded-lg p-5 bg-secondary text-secondary">

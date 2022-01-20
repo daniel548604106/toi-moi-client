@@ -1,7 +1,7 @@
 import React from 'react';
 import { VideoCameraIcon } from '@heroicons/react/outline';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleCreateRoomOpen } from '../../../../redux/slices/globalSlice';
+import { toggleCreateRoomOpen } from '@/Redux/slices/globalSlice';
 const CreateRoomCard = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.user);

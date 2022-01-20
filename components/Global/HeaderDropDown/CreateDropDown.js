@@ -3,7 +3,7 @@ import CreateListItem from './CreateListItem';
 import { PencilAltIcon, BookOpenIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-import { setPostInputBoxOpen } from '../../../redux/slices/postSlice';
+import { setPostInputBoxOpen } from '@/Redux/slices/postSlice';
 const CreateDropDown = ({ t }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -14,11 +14,7 @@ const CreateDropDown = ({ t }) => {
       </div>
       <div>
         <div onClick={() => dispatch(setPostInputBoxOpen(true))}>
-          <CreateListItem
-            Icon={PencilAltIcon}
-            title={t('post')}
-            description={t('sharePost')}
-          />
+          <CreateListItem Icon={PencilAltIcon} title={t('post')} description={t('sharePost')} />
         </div>
         <div onClick={() => router.push('/stories/create')}>
           <CreateListItem

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { backgroundSelections } from '../../utils/storyOptions';
 import useImage from 'use-image';
-import useClickOutside from '../../hooks/useClickOutside';
+import useClickOutside from '@/Hooks/useClickOutside';
 
 const Preview = ({ storyInfo, text, setSelectedIdx, stageRef }) => {
   // Image
@@ -16,7 +16,7 @@ const Preview = ({ storyInfo, text, setSelectedIdx, stageRef }) => {
   const [textPosition, setTextPosition] = useState({
     isDragging: false,
     x: 220,
-    y: 330
+    y: 330,
   });
   const shapeRef = useRef();
   const trRef = useRef();
@@ -26,7 +26,7 @@ const Preview = ({ storyInfo, text, setSelectedIdx, stageRef }) => {
     width: 100,
     height: 100,
     fill: 'green',
-    id: 'rect2'
+    id: 'rect2',
   });
   const [isSelected, setSelected] = useState(false);
 
@@ -66,14 +66,14 @@ const Preview = ({ storyInfo, text, setSelectedIdx, stageRef }) => {
                   onDragStart={() => {
                     setTextPosition((textPosition) => ({
                       ...textPosition,
-                      isDragging: true
+                      isDragging: true,
                     }));
                   }}
                   onDragEnd={(e) => {
                     setTextPosition({
                       isDragging: false,
                       x: e.target.x(),
-                      y: e.target.y()
+                      y: e.target.y(),
                     });
                     console.log(e.target.x(), e.target.y());
                   }}
@@ -94,7 +94,7 @@ const Preview = ({ storyInfo, text, setSelectedIdx, stageRef }) => {
                       y: node.y(),
                       // set minimal value
                       width: Math.max(5, node.width() * scaleX),
-                      height: Math.max(node.height() * scaleY)
+                      height: Math.max(node.height() * scaleY),
                     });
                   }}
                 />
@@ -126,14 +126,14 @@ const Preview = ({ storyInfo, text, setSelectedIdx, stageRef }) => {
                     onDragStart={() => {
                       setTextPosition((textPosition) => ({
                         ...textPosition,
-                        isDragging: true
+                        isDragging: true,
                       }));
                     }}
                     onDragEnd={(e) => {
                       setTextPosition({
                         isDragging: false,
                         x: e.target.x(),
-                        y: e.target.y()
+                        y: e.target.y(),
                       });
                       console.log(e.target.x(), e.target.y());
                     }}
@@ -154,7 +154,7 @@ const Preview = ({ storyInfo, text, setSelectedIdx, stageRef }) => {
                         y: node.y(),
                         // set minimal value
                         width: Math.max(5, node.width() * scaleX),
-                        height: Math.max(node.height() * scaleY)
+                        height: Math.max(node.height() * scaleY),
                       });
                     }}
                   />

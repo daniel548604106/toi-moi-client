@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  setViewPostModalOpen,
-  apiGetCurrentPost
-} from '../../../../redux/slices/postSlice';
+import { setViewPostModalOpen, apiGetCurrentPost } from '@/Redux/slices/postSlice';
 import useTranslation from 'next-translate/useTranslation';
 import Loader from '../../../Global/Loader';
-import { setNotification } from '../../../../redux/slices/globalSlice';
+import { setNotification } from '@/Redux/slices/globalSlice';
 import { apiUpdatePost } from '../../../../api';
 import * as ga from '../../../../lib/gtag';
 const PostContent = ({ post, isEditable, setEditable }) => {
@@ -19,15 +16,13 @@ const PostContent = ({ post, isEditable, setEditable }) => {
 
   const { t } = useTranslation('common');
   const dispatch = useDispatch();
-  const isViewPostModalOpen = useSelector(
-    (state) => state.post.isViewPostModalOpen
-  );
+  const isViewPostModalOpen = useSelector((state) => state.post.isViewPostModalOpen);
   const handleViewPost = async (postId) => {
     ga.event({
       action: 'click',
       category: 'post',
       label: 'post',
-      value: postId
+      value: postId,
     });
     await dispatch(apiGetCurrentPost(postId));
     dispatch(setViewPostModalOpen(true));
@@ -85,9 +80,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
         </div>
       ) : (
         <div>
-          <p className={`${showMore && 'line-clamp-3'} text-sm mb-2`}>
-            {latestText}
-          </p>
+          <p className={`${showMore && 'line-clamp-3'} text-sm mb-2`}>{latestText}</p>
           {showMore && (
             <span
               onClick={() => setShowMore(false)}
@@ -99,15 +92,8 @@ const PostContent = ({ post, isEditable, setEditable }) => {
         </div>
       )}
       {!isViewPostModalOpen && post.picUrl && (
-        <div
-          onClick={() => handleViewPost(post._id)}
-          className="imageContainer cursor-pointer"
-        >
-          <Image
-            src={post.picUrl}
-            layout="fill"
-            className="image rounded-lg "
-          />
+        <div onClick={() => handleViewPost(post._id)} className="imageContainer cursor-pointer">
+          <Image src={post.picUrl} layout="fill" className="image rounded-lg " />
         </div>
       )}
     </div>

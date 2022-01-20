@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 import Loader from '../Global/Loader';
 import range from 'lodash/range';
@@ -6,16 +6,13 @@ import { apiPostSignup } from '../../api';
 import catchError from '../../lib/catchError';
 import Cookie from 'js-cookie';
 import { useDispatch } from 'react-redux';
-import { setUserLogin } from '../../redux/slices/userSlice';
+import { setUserLogin } from '@/Redux/slices/userSlice';
 import { Formik, Form, Field } from 'formik';
 import router from 'next/router';
 import * as Yup from 'yup';
 
 const SignupSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Please use your real name')
-    .max(50, 'Too Long!')
-    .required('Required'),
+  name: Yup.string().min(2, 'Please use your real name').max(50, 'Too Long!').required('Required'),
   account: Yup.string()
     .min(2, 'account must be at least 2 characters')
     .max(50, 'Too Long!')
@@ -24,7 +21,7 @@ const SignupSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, 'Password must be at least 6 characters')
     .max(20, 'Too Long!')
-    .required('Required')
+    .required('Required'),
 });
 const Index = ({ setSignupOpen }) => {
   const dispatch = useDispatch();
@@ -39,8 +36,7 @@ const Index = ({ setSignupOpen }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const { name, account, email, gender, password, year, month, date } =
-      formRef.current.values;
+    const { name, account, email, gender, password, year, month, date } = formRef.current.values;
 
     if (!year || !month || !date) {
       return setBirthdayError('Please fill in your correct birthday');
@@ -53,7 +49,7 @@ const Index = ({ setSignupOpen }) => {
       email,
       password,
       birthday,
-      gender
+      gender,
     };
     try {
       setLoading(true);
@@ -96,27 +92,21 @@ const Index = ({ setSignupOpen }) => {
             gender: 'male',
             year: '',
             month: '',
-            date: ''
+            date: '',
           }}
           validationSchema={SignupSchema}
         >
           {({ errors, touched, isValid, dirty }) => (
             <Form className="space-y-3">
               {errorMsg && (
-                <div className="w-full p-3 rounded-md bg-red-600 text-white">
-                  {errorMsg}
-                </div>
+                <div className="w-full p-3 rounded-md bg-red-600 text-white">{errorMsg}</div>
               )}
               <div
                 className={`border p-3 rounded-md flex items-center w-full ${
                   errors.name && touched.name && 'border-red-600'
                 }`}
               >
-                <Field
-                  placeholder="Name"
-                  className="w-full outline-none"
-                  name="name"
-                />
+                <Field placeholder="Name" className="w-full outline-none" name="name" />
                 {errors.name && touched.name && (
                   <ExclamationCircleIcon className="h-6 text-red-600" />
                 )}
@@ -129,19 +119,13 @@ const Index = ({ setSignupOpen }) => {
                   errors.account && touched.account && 'border-red-600'
                 }`}
               >
-                <Field
-                  placeholder="Account"
-                  className="w-full outline-none"
-                  name="account"
-                />
+                <Field placeholder="Account" className="w-full outline-none" name="account" />
                 {errors.account && touched.account && (
                   <ExclamationCircleIcon className="h-6 text-red-600" />
                 )}
               </div>
               <div className="text-red-600 text-sm">
-                {errors.account && touched.account ? (
-                  <div>{errors.account}</div>
-                ) : null}
+                {errors.account && touched.account ? <div>{errors.account}</div> : null}
               </div>
               <div
                 className={`border p-3 rounded-md flex items-center w-full ${
@@ -159,9 +143,7 @@ const Index = ({ setSignupOpen }) => {
                 )}
               </div>
               <div className="text-red-600 text-sm">
-                {errors.email && touched.email ? (
-                  <div>{errors.email}</div>
-                ) : null}
+                {errors.email && touched.email ? <div>{errors.email}</div> : null}
               </div>
               <div
                 className={`border p-3 rounded-md flex items-center w-full ${
@@ -179,16 +161,12 @@ const Index = ({ setSignupOpen }) => {
                 )}
               </div>
               <div className="text-red-600 text-sm">
-                {errors.password && touched.password ? (
-                  <div>{errors.password}</div>
-                ) : null}
+                {errors.password && touched.password ? <div>{errors.password}</div> : null}
               </div>
               <div>
                 <div className="flex items-center justify-between">
                   <div id="Birthday">Birthday</div>
-                  {birthdayError && (
-                    <div className="text-red-600 text-xs">{birthdayError}</div>
-                  )}
+                  {birthdayError && <div className="text-red-600 text-xs">{birthdayError}</div>}
                 </div>
                 <div className="flex items-center mt-1">
                   <Field
@@ -228,11 +206,7 @@ const Index = ({ setSignupOpen }) => {
               </div>
               <div>
                 <div id="gender-group">Gender</div>
-                <div
-                  className="flex items-center mt-1"
-                  role="group"
-                  aria-labelledby="gender-group"
-                >
+                <div className="flex items-center mt-1" role="group" aria-labelledby="gender-group">
                   <div className="flex border p-2 rounded-md w-full items-center justify-between">
                     <label> Male</label>
                     <Field type="radio" name="gender" value="male" />
@@ -249,10 +223,8 @@ const Index = ({ setSignupOpen }) => {
               </div>
 
               <p className="my-[20px] text-xs sm:text-sm text-gray-600">
-                By clicking <span className="underline">Signup</span> means
-                you've agreed to our{' '}
-                <span className="text-main cursor-pointer">Service policy</span>{' '}
-                and{' '}
+                By clicking <span className="underline">Signup</span> means you've agreed to our{' '}
+                <span className="text-main cursor-pointer">Service policy</span> and{' '}
                 <span className="text-main cursor-pointer">Cookie policy</span>
               </p>
               <div className="flex items-center justify-center">

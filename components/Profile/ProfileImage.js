@@ -2,14 +2,8 @@ import React, { useRef } from 'react';
 import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setEditProfileImageOpen,
-  setProfileImageToUpdate
-} from '../../redux/slices/userSlice';
-import {
-  apiGetCurrentPost,
-  setViewPostModalOpen
-} from '../../redux/slices/postSlice';
+import { setEditProfileImageOpen, setProfileImageToUpdate } from '@/Redux/slices/userSlice';
+import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
 import router from 'next/router';
 import genderAvatar from '../../utils/genderAvatar';
 const ProfileImage = ({ postId, user, profileImage }) => {

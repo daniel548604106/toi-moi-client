@@ -8,39 +8,29 @@ import router from 'next/router';
 import io from 'socket.io-client';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {
-  setProfileData,
-  setSummaryData
-} from '../../redux/slices/profileSlice';
-import {
-  apiGetProfilePosts,
-  apiGetProfileFriends,
-  apiGetProfileSummary
-} from '../../api/index';
+import { setProfileData, setSummaryData } from '@/Redux/slices/profileSlice';
+import { apiGetProfilePosts, apiGetProfileFriends, apiGetProfileSummary } from '../../api/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 // Dynamic Imports
 const Friends = dynamic(() => import('../../components/Profile/Friends'), {
-  loading: () => <LoaderSpinner />
+  loading: () => <LoaderSpinner />,
 });
 const Summary = dynamic(() => import('../../components/Profile/Summary'), {
-  loading: () => <LoaderSpinner />
+  loading: () => <LoaderSpinner />,
 });
 const Post = dynamic(() => import('../../components/Home/Feed/Post/Post'), {
-  loading: () => <LoaderSpinner />
+  loading: () => <LoaderSpinner />,
 });
 const Photos = dynamic(() => import('../../components/Profile/Photos'), {
-  loading: () => <LoaderSpinner />
+  loading: () => <LoaderSpinner />,
 });
 const InputBox = dynamic(() => import('../../components/Home/Feed/InputBox'), {
-  loading: () => <LoaderSpinner />
+  loading: () => <LoaderSpinner />,
 });
-const EndMessage = dynamic(
-  () => import('../../components/Home/Feed/EndMessage'),
-  {
-    loading: () => <LoaderSpinner />
-  }
-);
+const EndMessage = dynamic(() => import('../../components/Home/Feed/EndMessage'), {
+  loading: () => <LoaderSpinner />,
+});
 
 const Index = ({ profileData }) => {
   const dispatch = useDispatch();
@@ -67,10 +57,7 @@ const Index = ({ profileData }) => {
   }, [profileData]);
   const getMorePosts = async () => {
     try {
-      const { data } = await apiGetProfilePosts(
-        profile.user.username,
-        currentPage
-      );
+      const { data } = await apiGetProfilePosts(profile.user.username, currentPage);
       console.log(data, 'posts');
       setPosts((prev) => [...prev, ...data]);
       if (data.length === 0) setHasMore(false);
@@ -160,34 +147,31 @@ export async function getServerSideProps({ req, params, res }) {
   try {
     const username = params.id;
     const token = req.cookies.token;
-    const profile = await axios.get(
-      `${process.env.BASE_URL}/api/profile/${username}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
+    const profile = await axios.get(`${process.env.BASE_URL}/api/profile/${username}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const friends = await axios.get(
       `${process.env.BASE_URL}/api/profile/friends_preview/${username}`,
       {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
+          Authorization: `Bearer ${token}`,
+        },
+      },
     );
     return {
       props: {
         profileData: profile.data,
-        friends: friends.data
-      }
+        friends: friends.data,
+      },
     };
   } catch (error) {
     console.log(error);
     return {
       props: {
-        error: 'Error'
-      }
+        error: 'Error',
+      },
     };
   }
 }

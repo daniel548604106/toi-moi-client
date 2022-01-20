@@ -3,10 +3,7 @@ import { VideoCameraIcon, CameraIcon } from '@heroicons/react/solid';
 import { EmojiHappyIcon } from '@heroicons/react/outline';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import {
-  setPostInputBoxOpen,
-  setImageToPost
-} from '../../../redux/slices/postSlice';
+import { setPostInputBoxOpen, setImageToPost } from '@/Redux/slices/postSlice';
 import genderAvatar from '../../../utils/genderAvatar';
 import useTranslation from 'next-translate/useTranslation';
 const InputBox = () => {
@@ -47,30 +44,16 @@ const InputBox = () => {
       <div className="flex justify-evenly p-1 ">
         <div className="inputIcon">
           <VideoCameraIcon className="h-5 mb-2 sm:mb-0  sm:h-6 text-red-500" />
-          <p className="text-xs sm:text-sm xl:text-md whitespace-nowrap">
-            {t('post.liveStream')}
-          </p>
+          <p className="text-xs sm:text-sm xl:text-md whitespace-nowrap">{t('post.liveStream')}</p>
         </div>
-        <div
-          onClick={() => filePickerRef.current.click()}
-          className="inputIcon"
-        >
+        <div onClick={() => filePickerRef.current.click()} className="inputIcon">
           <CameraIcon className="h-5 mb-2 sm:mb-0 sm:h-6 text-green-300 " />
-          <p className="text-xs sm:text-sm xl:text-md">
-            {t('post.photo/video')}
-          </p>
-          <input
-            ref={filePickerRef}
-            hidden
-            type="file"
-            onChange={(e) => handleUploadImage(e)}
-          />
+          <p className="text-xs sm:text-sm xl:text-md">{t('post.photo/video')}</p>
+          <input ref={filePickerRef} hidden type="file" onChange={(e) => handleUploadImage(e)} />
         </div>
         <div className="inputIcon">
           <EmojiHappyIcon className="h-5 mb-2 sm:mb-0 sm:h-6 text-yellow-300" />
-          <p className="text-xs sm:text-sm xl:text-md">
-            {t('post.feeling/activity')}
-          </p>
+          <p className="text-xs sm:text-sm xl:text-md">{t('post.feeling/activity')}</p>
         </div>
       </div>
     </div>

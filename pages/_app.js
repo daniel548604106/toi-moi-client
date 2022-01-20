@@ -1,10 +1,10 @@
-import '../styles/globals.css';
-import '../styles/LoaderSpinner.css';
-import '../styles/LoaderBounce.css';
+import '@/Styles/globals.css';
+import '@/Styles/LoaderSpinner.css';
+import '@/Styles/LoaderBounce.css';
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { store } from '../redux/store';
+import { store } from '@/Redux/store';
 import { Provider } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -12,62 +12,44 @@ import * as ga from '../lib/gtag';
 
 // Components
 
-import Login from '../components/Login/Index';
-import Header from '../components/Global/Header';
-import PostSkeletonLoader from '../components/Global/Loader/PostSkeletonLoader';
-import LoaderSpinner from '../components/Global/LoaderSpinner';
-import Notification from '../components/Global/Notification';
-import { setNotification } from '../redux/slices/globalSlice';
-const Overlay = dynamic(() => import('../components/Global/Overlay'), {
-  loading: () => <LoaderSpinner />
+import Login from '@/Components/Login/Index';
+import Header from '@/Components/Global/Header';
+import PostSkeletonLoader from '@/Components/Global/Loader/PostSkeletonLoader';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import Notification from '@/Components/Global/Notification';
+import { setNotification } from '@/Redux/slices/globalSlice';
+const Overlay = dynamic(() => import('@/Components/Global/Overlay'), {
+  loading: () => <LoaderSpinner />,
 });
 
 // Modals
-const ViewPostModal = dynamic(
-  () => import('../components/Global/ViewPostModal'),
-  {
-    loading: () => <LoaderSpinner />
-  }
-);
-const EditSummaryModal = dynamic(
-  () => import('../components/Profile/EditSummaryModal'),
-  {
-    loading: () => <LoaderSpinner />
-  }
-);
-const LikesListModal = dynamic(
-  () => import('../components/Home/Feed/LikesListModal'),
-  {
-    loading: () => <LoaderSpinner />
-  }
-);
-const CreateRoomModal = dynamic(
-  () => import('../components/Home/Feed/Room/CreateRoomModal/Index'),
-  {
-    loading: () => <LoaderSpinner />
-  }
-);
-const EditProfileImageModal = dynamic(
-  () => import('../components/Profile/EditProfileImageModal'),
-  {
-    loading: () => <LoaderSpinner />
-  }
-);
-const LanguageSettingModal = dynamic(
-  () => import('../components/Global/LanguageSettingModal'),
-  {
-    loading: () => <LoaderSpinner />
-  }
-);
+const ViewPostModal = dynamic(() => import('@/Components/Global/ViewPostModal'), {
+  loading: () => <LoaderSpinner />,
+});
+const EditSummaryModal = dynamic(() => import('@/Components/Profile/EditSummaryModal'), {
+  loading: () => <LoaderSpinner />,
+});
+const LikesListModal = dynamic(() => import('@/Components/Home/Feed/LikesListModal'), {
+  loading: () => <LoaderSpinner />,
+});
+const CreateRoomModal = dynamic(() => import('@/Components/Home/Feed/Room/CreateRoomModal/Index'), {
+  loading: () => <LoaderSpinner />,
+});
+const EditProfileImageModal = dynamic(() => import('@/Components/Profile/EditProfileImageModal'), {
+  loading: () => <LoaderSpinner />,
+});
+const LanguageSettingModal = dynamic(() => import('@/Components/Global/LanguageSettingModal'), {
+  loading: () => <LoaderSpinner />,
+});
 
-import InputBoxModal from '../components/Home/Feed/InputBoxModal';
+import InputBoxModal from '@/Components/Home/Feed/InputBoxModal';
 import Cookies from 'js-cookie';
 
 // Redux Persist
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 
-import { setUserLogout } from '../redux/slices/userSlice';
+import { setUserLogout } from '@/Redux/slices/userSlice';
 
 let persistor = persistStore(store);
 
@@ -81,21 +63,11 @@ const App = ({ Component, pageProps }) => {
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const { isLikesListOpen } = useSelector((state) => state.post);
   const { isLanguageOpen, notification } = useSelector((state) => state.global);
-  const isEditProfileImageOpen = useSelector(
-    (state) => state.user.isEditProfileImageOpen
-  );
-  const isCreateRoomOpen = useSelector(
-    (state) => state.global.isCreateRoomOpen
-  );
-  const isEditSummaryModalOpen = useSelector(
-    (state) => state.profile.isEditSummaryModalOpen
-  );
-  const isViewPostModalOpen = useSelector(
-    (state) => state.post.isViewPostModalOpen
-  );
-  const isPostInputBoxOpen = useSelector(
-    (state) => state.post.isPostInputBoxOpen
-  );
+  const isEditProfileImageOpen = useSelector((state) => state.user.isEditProfileImageOpen);
+  const isCreateRoomOpen = useSelector((state) => state.global.isCreateRoomOpen);
+  const isEditSummaryModalOpen = useSelector((state) => state.profile.isEditSummaryModalOpen);
+  const isViewPostModalOpen = useSelector((state) => state.post.isViewPostModalOpen);
+  const isPostInputBoxOpen = useSelector((state) => state.post.isPostInputBoxOpen);
 
   // Log user out if no token is found
   const token = Cookies.get('token');
@@ -137,7 +109,7 @@ const App = ({ Component, pageProps }) => {
         action: 'send',
         category: 'geolocation',
         label: 'geolocation',
-        value: [latitude, longitude]
+        value: [latitude, longitude],
       });
     };
 
@@ -174,15 +146,9 @@ const App = ({ Component, pageProps }) => {
         />
         <meta name="theme-color" content="#eb7f82" />
         <meta property="fb:app_id" content="4937468222991458" />
-        <meta
-          property="og:title"
-          content="Toi & Moi | Brand New Social Media Platform"
-        />
+        <meta property="og:title" content="Toi & Moi | Brand New Social Media Platform" />
         <meta property="og:url" content="https://toi-moi.herokuapp.com" />
-        <meta
-          property="og:image"
-          content="https://cdn01.pinkoi.com/product/ZD5QQsTg/0/800x0.jpg"
-        />
+        <meta property="og:image" content="https://cdn01.pinkoi.com/product/ZD5QQsTg/0/800x0.jpg" />
         <link rel="apple-touch-icon" href="../public/favicon.ico" />
         <link rel="icon" href="../public/favicon.ico" />
       </Head>

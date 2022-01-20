@@ -4,9 +4,9 @@ import router from 'next/router';
 import { timeDiff } from '../../../../lib/dayjs';
 import { DotsHorizontalIcon } from '@heroicons/react/solid';
 import { useDispatch } from 'react-redux';
-import { getSavedPosts } from '../../../../redux/slices/postSlice';
+import { getSavedPosts } from '@/Redux/slices/postSlice';
 import useTranslation from 'next-translate/useTranslation';
-import useClickOutside from '../../../../hooks/useClickOutside';
+import useClickOutside from '@/Hooks/useClickOutside';
 import Popup from './Popup';
 const PostHeader = ({ post, setEditable, deletePost }) => {
   const { t } = useTranslation('common');
@@ -33,13 +33,8 @@ const PostHeader = ({ post, setEditable, deletePost }) => {
             />
           </span>
           <div className="ml-[10px]">
-            <p
-              onClick={() => router.push(`/${post.user.username}`)}
-              className="flex items-center "
-            >
-              <span className="font-semibold hover:underline cursor-pointer">
-                {post.user.name}
-              </span>
+            <p onClick={() => router.push(`/${post.user.username}`)} className="flex items-center ">
+              <span className="font-semibold hover:underline cursor-pointer">{post.user.name}</span>
               {post.type === 'profileCover' && (
                 <span className=" ml-[5px] text-xs text-gray-600">
                   {t('post.changedProfileCover')}
