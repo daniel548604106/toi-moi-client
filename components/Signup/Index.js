@@ -3,7 +3,7 @@ import { ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 import Loader from '../Global/Loader';
 import range from 'lodash/range';
 import { apiPostSignup } from '@/Api/index';
-import catchError from 'Lib/catchError';
+import catchError from '@/Lib/catchError';
 import Cookie from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { setUserLogin } from '@/Redux/slices/userSlice';

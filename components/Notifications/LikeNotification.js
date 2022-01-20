@@ -1,6 +1,6 @@
 import React from 'react';
 import router from 'next/router';
-import { timeDiff } from 'Lib/dayjs';
+import { timeDiff } from '@/Lib/dayjs';
 import { DotsHorizontalIcon, ThumbUpIcon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
 import { apiPostReadSingleNotification } from '@/Api/index';

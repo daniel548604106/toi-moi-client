@@ -1,5 +1,5 @@
 import React from 'react';
-import { timeDiff } from 'Lib/dayjs';
+import { timeDiff } from '@/Lib/dayjs';
 import { DotsHorizontalIcon, ChatAlt2Icon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';

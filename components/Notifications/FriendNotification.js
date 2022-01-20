@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { timeDiff } from 'Lib/dayjs';
+import { timeDiff } from '@/Lib/dayjs';
 import { UsersIcon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
