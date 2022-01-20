@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
-import { apiPostReadNotifications } from '@/Api';
+import { apiPostReadNotifications } from '@/Api/index';
 import LikeNotification from '../components/Notifications/LikeNotification';
 import CommentNotification from '../components/Notifications/CommentNotification';
 import FriendNotification from '../components/Notifications/FriendNotification';

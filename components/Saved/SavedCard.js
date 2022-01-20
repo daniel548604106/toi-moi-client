@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { TrashIcon } from '@heroicons/react/outline';
 import router from 'next/router';
 import useClickOutside from '@/Hooks/useClickOutside';
-import { apiDeleteSavedPost } from '@/Api';
+import { apiDeleteSavedPost } from '@/Api/index';
 const SavedCard = ({ post, publisher, type, handleRemoveSavedPost }) => {
   const [isDropdownShow, setDropdownShow] = useState(false);
   const elRef = useRef();

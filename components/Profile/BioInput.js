@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { apiPatchProfileBio } from '@/Api';
+import { apiPatchProfileBio } from '@/Api/index';
 import { useSelector } from 'react-redux';
 const BioInput = ({ isEditable, bio, originalBio, setBio }) => {
   const [bioInputOpen, setBioInputOpen] = useState(false);

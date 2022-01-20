@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import BioInput from './BioInput';
 import ProfileImage from './ProfileImage';
-import { apiPatchProfile, apiPostNewPost } from '@/Api';
+import { apiPatchProfile, apiPostNewPost } from '@/Api/index';
 import { setViewPostModalOpen, apiGetCurrentPost } from '@/Redux/slices/postSlice';
 import Loader from '../Global/Loader';
 
