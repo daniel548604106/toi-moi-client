@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CreateRoomCard from './CreateRoomCard';
 import RoomCard from './RoomCard';
 import { VideoCameraIcon } from '@heroicons/react/outline';
-import genderAvatar from '../../../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import Avatar from '../../../Global/Avatar';
 const Index = ({ roomList }) => {
   const [isRoomShow, setRoomShow] = useState(false);
@@ -11,8 +11,7 @@ const Index = ({ roomList }) => {
       {isRoomShow ? (
         <div className="scrollbar-hide flex space-x-2 overflow-x-auto">
           <CreateRoomCard />
-          {roomList &&
-            roomList.map(({ user }) => <RoomCard key={user._id} user={user} />)}
+          {roomList && roomList.map(({ user }) => <RoomCard key={user._id} user={user} />)}
         </div>
       ) : (
         <div className="scrollbar-hide flex p-3 space-x-2 w-full items-center overflow-x-auto bg-secondary text-secondary rounded-lg shadow-lg">
@@ -21,9 +20,7 @@ const Index = ({ roomList }) => {
             className="rounded-full cursor-pointer border bg-secondary border-main text-main p-2 flex items-center"
           >
             <VideoCameraIcon className="h-6" />
-            <span className="text-xs sm:text-sm whitespace-nowrap ml-[5px]">
-              Create Room
-            </span>
+            <span className="text-xs sm:text-sm whitespace-nowrap ml-[5px]">Create Room</span>
           </div>
           <div
             onClick={() => setRoomShow(true)}

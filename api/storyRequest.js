@@ -1,10 +1,10 @@
-import request from '../lib/axiosConfig';
+import request from '@/Lib/axiosConfig';
 
 export const uploadStory = (data) => {
   return request.post('/stories/upload', data, {
     headers: {
-      'content-type': 'multipart/form-data'
-    }
+      'content-type': 'multipart/form-data',
+    },
   });
 };
 

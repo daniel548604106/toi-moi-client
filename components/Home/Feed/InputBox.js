@@ -4,7 +4,7 @@ import { EmojiHappyIcon } from '@heroicons/react/outline';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { setPostInputBoxOpen, setImageToPost } from '@/Redux/slices/postSlice';
-import genderAvatar from '../../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import useTranslation from 'next-translate/useTranslation';
 const InputBox = () => {
   const { t } = useTranslation('common');

@@ -10,7 +10,7 @@ import {
 } from '@heroicons/react/solid';
 import useClickOutside from '@/Hooks/useClickOutside';
 import HeaderIcon from './HeaderIcon';
-import genderAvatar from '../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import AccountDropDown from './HeaderDropDown/AccountDropDown';

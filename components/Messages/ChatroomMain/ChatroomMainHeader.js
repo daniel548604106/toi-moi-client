@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react';
-import {
-  PhoneIcon,
-  InformationCircleIcon,
-  VideoCameraIcon
-} from '@heroicons/react/solid';
+import { PhoneIcon, InformationCircleIcon, VideoCameraIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
-import genderAvatar from '../../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import router from 'next/router';
 const Header = ({ openChatUser, connectedUsers }) => {
   const isOnline =
     connectedUsers.length > 0 &&
-    connectedUsers.filter((user) => user.userId === router.query.message)
-      .length > 0;
+    connectedUsers.filter((user) => user.userId === router.query.message).length > 0;
   return (
     <div className=" border-b-2 flex items-center justify-between p-2 sm:p-3">
       <div className="flex items-center">
@@ -27,9 +22,7 @@ const Header = ({ openChatUser, connectedUsers }) => {
           <p className="text-sm truncate sm:text-lg font-medium cursor-pointer hover:underline">
             {openChatUser.name}
           </p>
-          {isOnline && (
-            <p className="text-xs sm:text-sm text-gray-500">目前在線上</p>
-          )}
+          {isOnline && <p className="text-xs sm:text-sm text-gray-500">目前在線上</p>}
         </div>
       </div>
       <div className="flex items-center space-x-3">

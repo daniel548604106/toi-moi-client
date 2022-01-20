@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import genderAvatar from '../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import Image from 'next/image';
 import router from 'next/router';
 import { CheckIcon } from '@heroicons/react/solid';

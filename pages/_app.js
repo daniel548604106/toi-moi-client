@@ -8,7 +8,7 @@ import { store } from '@/Redux/store';
 import { Provider } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import * as ga from '../lib/gtag';
+import * as ga from '@/Lib/gtag';
 
 // Components
 

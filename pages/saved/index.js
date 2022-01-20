@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { apiGetSavedPosts } from '@/Api';
-import SavedCard from '../../components/Saved/SavedCard';
+import SavedCard from '@/Components/Saved/SavedCard';
 import Image from 'next/image';
 const Index = () => {
   const [savedPosts, setSavedPosts] = useState(null);

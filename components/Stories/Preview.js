@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { backgroundSelections } from '../../utils/storyOptions';
+import { backgroundSelections } from '@/Utils/storyOptions';
 import useImage from 'use-image';
 import useClickOutside from '@/Hooks/useClickOutside';
 

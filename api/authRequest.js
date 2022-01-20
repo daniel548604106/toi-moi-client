@@ -1,4 +1,4 @@
-import request from '../lib/axiosConfig';
+import request from '@/Lib/axiosConfig';
 
 export const postLogin = (data) => {
   return request.post(`/login`, data);

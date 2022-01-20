@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setEditProfileImageOpen, setProfileImageToUpdate } from '@/Redux/slices/userSlice';
 import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
 import router from 'next/router';
-import genderAvatar from '../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 const ProfileImage = ({ postId, user, profileImage }) => {
   const dispatch = useDispatch();
   const profileImageRef = useRef(null);

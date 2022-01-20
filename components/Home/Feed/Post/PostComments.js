@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import router from 'next/router';
-import { timeDiff } from '../../../../lib/dayjs';
+import { timeDiff } from '@/Lib/dayjs';
 import { apiLikeComment, apiUnlikeComment, apiDeleteComment } from '@/Api/index';
 import { useSelector } from 'react-redux';
 import { ThumbUpIcon, TrashIcon } from '@heroicons/react/solid';

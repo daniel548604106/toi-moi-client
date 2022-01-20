@@ -4,7 +4,7 @@ import { apiPostKeywordSearch, apiGetRecentSearch, apiSearchRequest } from '@/Ap
 import SearchListItem from './SearchListItem';
 import SearchHistoryItem from './SearchHistoryItem';
 import router from 'next/router';
-import * as ga from '../../../lib/gtag';
+import * as ga from '@/Lib/gtag';
 const Search = ({ t }) => {
   const [searchText, setSearchText] = useState('');
   const [searchResult, setSearchResult] = useState(null);

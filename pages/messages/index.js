@@ -6,17 +6,17 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { ChatAlt2Icon } from '@heroicons/react/outline';
 import axios from 'axios';
-import ChatroomSidebarHeader from '../../components/Messages/ChatroomSidebar/ChatroomSidebarHeader';
-import ChatroomList from '../../components/Messages/ChatroomSidebar/ChatroomList';
-import ChatroomMainHeader from '../../components/Messages/ChatroomMain/ChatroomMainHeader';
-import ChatroomMainRoom from '../../components/Messages/ChatroomMain/ChatroomMainRoom';
-import ChatroomMainInputBox from '../../components/Messages/ChatroomMain/ChatroomMainInputBox';
-import EmptyChat from '../../components/Messages/EmptyChat';
-import messageNotificationSound from '../../utils/messageNotificationSound';
-import genderAvatar from '../../utils/genderAvatar';
+import ChatroomSidebarHeader from '@/Components/Messages/ChatroomSidebar/ChatroomSidebarHeader';
+import ChatroomList from '@/Components/Messages/ChatroomSidebar/ChatroomList';
+import ChatroomMainHeader from '@/Components/Messages/ChatroomMain/ChatroomMainHeader';
+import ChatroomMainRoom from '@/Components/Messages/ChatroomMain/ChatroomMainRoom';
+import ChatroomMainInputBox from '@/Components/Messages/ChatroomMain/ChatroomMainInputBox';
+import EmptyChat from '@/Components/Messages/EmptyChat';
+import messageNotificationSound from '@/Utils/messageNotificationSound';
+import genderAvatar from '@/Utils/genderAvatar';
 import useTranslation from 'next-translate/useTranslation';
 import { toggleListOpen } from '@/Redux/slices/messageSlice';
-import Avatar from '../../components/Global/Avatar';
+import Avatar from '@/Components/Global/Avatar';
 
 const io = require('socket.io-client');
 

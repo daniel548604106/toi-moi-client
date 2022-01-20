@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import axios from 'axios';
-import ProfileCover from '../../components/Profile/ProfileCover';
-import TabsList from '../../components/Profile/TabsList';
-import LoaderSpinner from '../../components/Global/LoaderSpinner';
+import ProfileCover from '@/Components/Profile/ProfileCover';
+import TabsList from '@/Components/Profile/TabsList';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import router from 'next/router';
 import io from 'socket.io-client';
 
@@ -13,22 +13,22 @@ import { apiGetProfilePosts, apiGetProfileFriends, apiGetProfileSummary } from '
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 // Dynamic Imports
-const Friends = dynamic(() => import('../../components/Profile/Friends'), {
+const Friends = dynamic(() => import('@/Components/Profile/Friends'), {
   loading: () => <LoaderSpinner />,
 });
-const Summary = dynamic(() => import('../../components/Profile/Summary'), {
+const Summary = dynamic(() => import('@/Components/Profile/Summary'), {
   loading: () => <LoaderSpinner />,
 });
-const Post = dynamic(() => import('../../components/Home/Feed/Post/Post'), {
+const Post = dynamic(() => import('@/Components/Home/Feed/Post/Post'), {
   loading: () => <LoaderSpinner />,
 });
-const Photos = dynamic(() => import('../../components/Profile/Photos'), {
+const Photos = dynamic(() => import('@/Components/Profile/Photos'), {
   loading: () => <LoaderSpinner />,
 });
-const InputBox = dynamic(() => import('../../components/Home/Feed/InputBox'), {
+const InputBox = dynamic(() => import('@/Components/Home/Feed/InputBox'), {
   loading: () => <LoaderSpinner />,
 });
-const EndMessage = dynamic(() => import('../../components/Home/Feed/EndMessage'), {
+const EndMessage = dynamic(() => import('@/Components/Home/Feed/EndMessage'), {
   loading: () => <LoaderSpinner />,
 });
 

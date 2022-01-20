@@ -3,7 +3,7 @@ import { apiPostLogin } from '@/Api/index';
 import { useDispatch } from 'react-redux';
 import { setUserLogin } from '@/Redux/slices/userSlice';
 import { useRouter } from 'next/router';
-import catchError from '../../lib/catchError';
+import catchError from '@/Lib/catchError';
 import Cookie from 'js-cookie';
 import Signup from '../Signup/Index';
 import { XIcon, ClipboardIcon } from '@heroicons/react/outline';

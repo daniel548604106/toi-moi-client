@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import genderAvatar from '../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { TrashIcon } from '@heroicons/react/outline';

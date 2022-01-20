@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { timeDiff } from '../../../lib/dayjs';
-import genderAvatar from '../../../utils/genderAvatar';
+import { timeDiff } from '@/Lib/dayjs';
+import genderAvatar from '@/Utils/genderAvatar';
 import { useDispatch } from 'react-redux';
 import { toggleListOpen } from '@/Redux/slices/messageSlice';
 const List = ({ chat, connectedUsers, setOpenChatUser }) => {

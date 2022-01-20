@@ -1,15 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { XIcon, TranslateIcon, PhotographIcon } from '@heroicons/react/outline';
 import Image from 'next/dist/client/image';
-import Avatar from '../../components/Global/Avatar';
+import Avatar from '@/Components/Global/Avatar';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import router from 'next/router';
-// import Preview from '../../components/Stories/Preview';
-import { backgroundSelections } from '../../utils/storyOptions';
+// import Preview from '@/Components/Stories/Preview';
+import { backgroundSelections } from '@/Utils/storyOptions';
 import { apiUploadStoryImage } from '@/Api';
 
-// const Preview = dynamic(() => import('../../components/Stories/Preview'), {
+// const Preview = dynamic(() => import('@/Components/Stories/Preview'), {
 //   ssr: false
 // });
 

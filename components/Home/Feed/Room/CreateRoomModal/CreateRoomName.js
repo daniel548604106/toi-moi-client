@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import {
-  UserIcon,
-  ChevronLeftIcon,
-  XIcon,
-  PlusIcon
-} from '@heroicons/react/outline';
-import { newIcons, roomNames } from '../../../../../utils/roomEmoji';
+import { UserIcon, ChevronLeftIcon, XIcon, PlusIcon } from '@heroicons/react/outline';
+import { newIcons, roomNames } from '@/Utils/roomEmoji';
 const CreateRoomName = ({ setRoomInfo, roomInfo, setCreateNameOpen }) => {
   const [newNameOpen, setNewNameOpen] = useState(false);
   const [currentRoomInfo, setCurrentRoomInfo] = useState({
     name: roomInfo.name,
-    icon: roomInfo.icon
+    icon: roomInfo.icon,
   });
   const handleSelectName = (room) => {
     setRoomInfo({ ...roomInfo, name: room.name, icon: room.icon });
@@ -26,7 +21,7 @@ const CreateRoomName = ({ setRoomInfo, roomInfo, setCreateNameOpen }) => {
     setRoomInfo({
       ...roomInfo,
       name: currentRoomInfo.name,
-      icon: currentRoomInfo.icon
+      icon: currentRoomInfo.icon,
     });
     setCreateNameOpen(false);
   };
@@ -49,9 +44,7 @@ const CreateRoomName = ({ setRoomInfo, roomInfo, setCreateNameOpen }) => {
           <div>
             <div className="border flex items-center rounded-lg w-full p-3">
               <span className="bg-secondary mr-4 rounded-full w-[50px] h-[50px] flex items-center justify-center">
-                <span className="text-lg sm:text-2xl">
-                  {currentRoomInfo.icon}
-                </span>
+                <span className="text-lg sm:text-2xl">{currentRoomInfo.icon}</span>
               </span>
               <div>
                 <p className="text-xs text-main">Room Name</p>
@@ -65,9 +58,7 @@ const CreateRoomName = ({ setRoomInfo, roomInfo, setCreateNameOpen }) => {
               </div>
             </div>
             <div className="space-y-3 mt-4">
-              <h2 className="text-secondary text-lg sm:text-xl font-semibold">
-                Choose Emoji
-              </h2>
+              <h2 className="text-secondary text-lg sm:text-xl font-semibold">Choose Emoji</h2>
               <div className="grid grid-cols-8">
                 {newIcons.map((icon) => (
                   <div

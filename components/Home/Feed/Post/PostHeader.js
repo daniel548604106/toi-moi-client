@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Avatar from '../../../Global/Avatar';
 import router from 'next/router';
-import { timeDiff } from '../../../../lib/dayjs';
+import { timeDiff } from '@/Lib/dayjs';
 import { DotsHorizontalIcon } from '@heroicons/react/solid';
 import { useDispatch } from 'react-redux';
 import { getSavedPosts } from '@/Redux/slices/postSlice';
