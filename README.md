@@ -51,6 +51,7 @@ Toi&Moi is a fullstack social platform designated to connect people from distanc
 
 Live Demo
 https://toi-moi.herokuapp.com/
+https://master.d1qbxrer92lk46.amplifyapp.com
 
 ## Problems Ecountered
 
