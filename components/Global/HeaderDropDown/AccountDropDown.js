@@ -2,10 +2,10 @@ import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { LogoutIcon, MoonIcon, SunIcon } from '@heroicons/react/solid';
 import { GlobeIcon } from '@heroicons/react/outline';
-import { setUserLogout } from '../../../redux/slices/userSlice';
-import { toggleLanguageOpen } from '../../../redux/slices/globalSlice';
+import { setUserLogout } from '@/Redux/slices/userSlice';
+import { toggleLanguageOpen } from '@/Redux/slices/globalSlice';
 import { useRouter } from 'next/router';
-import useDarkMode from '../../../hooks/useDarkMode';
+import useDarkMode from '@/Hooks/useDarkMode';
 import Avatar from '../Avatar';
 import Cookies from 'js-cookie';
 

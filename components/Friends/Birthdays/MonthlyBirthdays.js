@@ -1,15 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
-import genderAvatar from '../../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import router from 'next/router';
 import ToolTips from '../../Global/ToolTips';
 import dayjs from 'dayjs';
 const MonthlyBirthdays = ({ birthdays, month }) => {
   return (
     <div className="bg-secondary text-secondary p-5 rounded-lg">
-      <h2 className="text-md sm:text-lg font-semibold mb-2 sm:mb-3">
-        {month}月
-      </h2>
+      <h2 className="text-md sm:text-lg font-semibold mb-2 sm:mb-3">{month}月</h2>
       <p className="text-sm sm:text-md font-semibold my-3">
         {birthdays[0].name} {birthdays.length > 2 ? '& others' : ''}
       </p>

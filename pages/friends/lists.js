@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from '../../components/Friends/Sidebar';
-import useAxios from '../../hooks/useAxios';
+import Sidebar from '@/Components/Friends/Sidebar';
+import useAxios from '@/Hooks/useAxios';
 import { SearchIcon } from '@heroicons/react/outline';
-import LoaderSpinner from '../../components/Global/LoaderSpinner';
-import EmptyFriendList from '../../components/Friends/EmptyFriendList';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import EmptyFriendList from '@/Components/Friends/EmptyFriendList';
 import router from 'next/router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import Avatar from '../../components/Global/Avatar';
+import Avatar from '@/Components/Global/Avatar';
 const lists = () => {
   const [friendsList, setFriendsList] = useState(null);
   const [searchedResult, setSearchedResult] = useState(null);
@@ -15,10 +15,10 @@ const lists = () => {
   const {
     response: friends,
     isLoading: isFriendListLoading,
-    error: friendListError
+    error: friendListError,
   } = useAxios({
     method: 'get',
-    url: '/friends'
+    url: '/friends',
   });
   const getSearchedName = async () => {
     const token = Cookies.get('token');
@@ -27,9 +27,9 @@ const lists = () => {
         `${process.env.BASE_URL}/api/friends/search/${searchedName}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
       console.log(data);
     } catch (error) {

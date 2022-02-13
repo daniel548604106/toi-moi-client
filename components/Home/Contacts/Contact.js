@@ -1,7 +1,7 @@
 import React from 'react';
-import genderAvatar from '../../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import { useDispatch } from 'react-redux';
-import { addToChatBoxList } from '../../../redux/slices/messageSlice';
+import { addToChatBoxList } from '@/Redux/slices/messageSlice';
 const Contact = ({ user, connectedUsers }) => {
   const dispatch = useDispatch();
   const handleOpenChatBox = () => {

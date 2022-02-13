@@ -1,4 +1,4 @@
-import request from '../lib/axiosConfig';
+import request from '@/Lib/axiosConfig';
 
 export const getProfile = (username) => {
   return request.get(`/profile/${username}`);
@@ -13,13 +13,13 @@ export const patchProfile = ({
   bio,
   profileCoverPostId,
   profileCoverDescription,
-  profileCoverImage
+  profileCoverImage,
 }) => {
   return request.patch(`/profile/${username}`, {
     bio,
     profileCoverPostId,
     profileCoverDescription,
-    profileCoverImage
+    profileCoverImage,
   });
 };
 
@@ -50,12 +50,12 @@ export const patchProfileImage = ({
   username,
   profileImageDescription,
   profileImagePostId,
-  profileImage
+  profileImage,
 }) => {
   return request.patch(`/profile/${username}/profile_image`, {
     profileImageDescription,
     profileImagePostId,
-    profileImage
+    profileImage,
   });
 };
 

@@ -5,40 +5,40 @@ import {
   PencilAltIcon,
   UserAddIcon,
   ChatAlt2Icon,
-  UsersIcon
+  UsersIcon,
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { apiPostFriendRequest, apiRemoveFriendRequest } from '../../api/index';
+import { apiPostFriendRequest, apiRemoveFriendRequest } from '@/Api/index';
 let tabs = [
   {
     title: 'posts',
-    link: '/'
+    link: '/',
   },
   {
     title: 'friends',
-    link: 'friends'
+    link: 'friends',
   },
   {
     title: 'photos',
-    link: 'photos'
+    link: 'photos',
   },
   {
     title: 'about',
-    link: 'about'
+    link: 'about',
   },
   {
     title: 'stories',
-    link: 'stories'
-  }
+    link: 'stories',
+  },
 ];
 
 const hiddenTabs = [
   {
     title: 'saved',
-    link: 'saved'
-  }
+    link: 'saved',
+  },
 ];
 
 const TabsList = ({ user, friends_total, friend_status }) => {
@@ -88,8 +88,7 @@ const TabsList = ({ user, friends_total, friend_status }) => {
           <span
             key={tab.title}
             className={`p-3 text-xs sm:text-sm   cursor-pointer  rounded-lg hover:bg-gray-100 ${
-              (activeTab === tab.title ||
-                (tab.title === 'posts' && !router.query.tab)) &&
+              (activeTab === tab.title || (tab.title === 'posts' && !router.query.tab)) &&
               'text-main border-b hover:bg-opacity-0 rounded-none border-main'
             }`}
             onClick={() => router.push(`/${router.query.id}/${tab.link}`)}

@@ -1,32 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import LoaderSpinner from '../../../components/Global/LoaderSpinner';
-import Loader from '../../../components/Global/Loader';
-import ProfileCover from '../../../components/Post/ProfileCover';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import Loader from '@/Components/Global/Loader';
+import ProfileCover from '@/Components/Post/ProfileCover';
 
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
 // Dynamic import
-const Post = dynamic(() => import('../../../components/Home/Feed/Post/Post'), {
-  loading: () => <LoaderSpinner />
+const Post = dynamic(() => import('@/Components/Home/Feed/Post/Post'), {
+  loading: () => <LoaderSpinner />,
 });
-const NotificationItem = dynamic(
-  () => import('../../../components/Post/NotificationItem'),
-  {
-    loading: () => <Loader />
-  }
-);
+const NotificationItem = dynamic(() => import('@/Components/Post/NotificationItem'), {
+  loading: () => <Loader />,
+});
 const PostLayout = ({ post, profile, notifications }) => {
   const router = useRouter();
   useEffect(() => {
     console.log(post, 'post', profile, notifications);
   }, []);
   const userInfo = useSelector((state) => state.user.userInfo);
-  const isViewPostModalOpen = useSelector(
-    (state) => state.post.isViewPostModalOpen
-  );
+  const isViewPostModalOpen = useSelector((state) => state.post.isViewPostModalOpen);
 
   return (
     <div className=" sm:mt-0  ">
@@ -46,10 +41,7 @@ const PostLayout = ({ post, profile, notifications }) => {
         </div>
         <div className="overflow-y-auto flex-1">
           {notifications.map((notification) => (
-            <NotificationItem
-              key={notification._id}
-              notification={notification}
-            />
+            <NotificationItem key={notification._id} notification={notification} />
           ))}
         </div>
       </div>
@@ -67,48 +59,39 @@ export async function getServerSideProps({ req, params, res }) {
     const postId = params.postId;
 
     // Get Post
-    const { data } = await axios.get(
-      `${process.env.BASE_URL}/api/posts/${postId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
+    const { data } = await axios.get(`${process.env.BASE_URL}/api/posts/${postId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     // Get Profile
-    const profile = await axios.get(
-      `${process.env.BASE_URL}/api/profile/${username}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
+    const profile = await axios.get(`${process.env.BASE_URL}/api/profile/${username}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     // Get Notifications
-    const notifications = await axios.get(
-      `${process.env.BASE_URL}/api/notifications`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
+    const notifications = await axios.get(`${process.env.BASE_URL}/api/notifications`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return {
       props: {
         post: data,
         notifications: notifications.data,
-        profile: profile.data
-      }
+        profile: profile.data,
+      },
     };
   } catch (error) {
     console.log(error);
     return {
       props: {
-        errorLoading: true
-      }
+        errorLoading: true,
+      },
     };
   }
 }

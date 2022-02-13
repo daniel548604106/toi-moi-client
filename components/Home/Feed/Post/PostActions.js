@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import {
   AnnotationIcon,
   ThumbUpIcon as OutlineThumbUpIcon,
-  ShareIcon
+  ShareIcon,
 } from '@heroicons/react/outline';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
 import { useSelector, useDispatch } from 'react-redux';
-import { apiLikePost, apiUnlikePost } from '../../../../api/index';
+import { apiLikePost, apiUnlikePost } from '@/Api/index';
 import useTranslation from 'next-translate/useTranslation';
 
 const PostActions = ({ socket, likes, setCommentShow, post, setLikes }) => {
@@ -14,8 +14,7 @@ const PostActions = ({ socket, likes, setCommentShow, post, setLikes }) => {
   const { userInfo } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [isLiked, setLiked] = useState(
-    likes.length > 0 &&
-      likes.filter((like) => like.user === userInfo._id).length > 0
+    likes.length > 0 && likes.filter((like) => like.user === userInfo._id).length > 0,
   );
   const handleLikePost = async (id) => {
     if (socket.current) {
@@ -85,9 +84,7 @@ const PostActions = ({ socket, likes, setCommentShow, post, setLikes }) => {
         className="rounded-md  flex items-center justify-center p-2  hover:bg-gray-100 flex-1  cursor-pointer text-gray-400"
       >
         <AnnotationIcon className="h-4  " />
-        <span className="text-sm sm:text-md ml-[10px]">
-          {t('post.comment')}
-        </span>
+        <span className="text-sm sm:text-md ml-[10px]">{t('post.comment')}</span>
       </div>
       <div className="rounded-md flex items-center justify-center  p-2 hover:bg-gray-100 flex-1  cursor-pointer text-gray-400">
         <ShareIcon className="h-4 " />

@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import router from 'next/router';
-import { timeDiff } from '../../../../lib/dayjs';
-import {
-  apiLikeComment,
-  apiUnlikeComment,
-  apiDeleteComment
-} from '../../../../api/index';
+import { timeDiff } from '@/Lib/dayjs';
+import { apiLikeComment, apiUnlikeComment, apiDeleteComment } from '@/Api/index';
 import { useSelector } from 'react-redux';
 import { ThumbUpIcon, TrashIcon } from '@heroicons/react/solid';
 import Avatar from '../../../Global/Avatar';
@@ -13,7 +9,7 @@ const Comment = ({ setComments, comments, postId, comment, t }) => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const [isCommentLiked, setCommentLiked] = useState(
     comment.likes.length > 0 &&
-      comment.likes.filter((like) => like.user === userInfo._id).length > 0
+      comment.likes.filter((like) => like.user === userInfo._id).length > 0,
   );
   const handleLikeComment = async (commentId) => {
     setCommentLiked(true);
@@ -37,9 +33,7 @@ const Comment = ({ setComments, comments, postId, comment, t }) => {
   const handleDeleteComment = async (commentId) => {
     try {
       const { data } = await apiDeleteComment(postId, commentId);
-      let remainedComments = comments.filter(
-        (comment) => comment._id !== commentId
-      );
+      let remainedComments = comments.filter((comment) => comment._id !== commentId);
       setComments(remainedComments);
       console.log(data);
     } catch (error) {
@@ -92,17 +86,12 @@ const Comment = ({ setComments, comments, postId, comment, t }) => {
               {t('post.like')}
             </span>
           ) : (
-            <span
-              onClick={() => handleLikeComment(comment._id)}
-              className="cursor-pointer"
-            >
+            <span onClick={() => handleLikeComment(comment._id)} className="cursor-pointer">
               {t('post.like')}
             </span>
           )}
           <span className="cursor-pointer ml-[5px]">{t('post.reply')}</span>
-          <span className="text-xs text-gray-600 ml-[5px]">
-            {timeDiff(comment.date)}
-          </span>
+          <span className="text-xs text-gray-600 ml-[5px]">{timeDiff(comment.date)}</span>
         </div>
       </div>
     </div>

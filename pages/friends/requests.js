@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Sidebar from '../../components/Friends/Sidebar';
-import EmptyRequest from '../../components/Friends/EmptyRequest';
+import Sidebar from '@/Components/Friends/Sidebar';
+import EmptyRequest from '@/Components/Friends/EmptyRequest';
 import useTranslation from 'next-translate/useTranslation';
 
-import RequestCard from '../../components/Friends/Requests/RequestCard';
+import RequestCard from '@/Components/Friends/Requests/RequestCard';
 const requests = ({ requestsReceived }) => {
   const { t } = useTranslation('header');
   const [received, setReceived] = useState(requestsReceived);
@@ -38,18 +38,15 @@ export default requests;
 export async function getServerSideProps({ req }) {
   try {
     const token = req.cookies.token;
-    const { data } = await axios.get(
-      `${process.env.BASE_URL}/api/friends/received`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
+    const { data } = await axios.get(`${process.env.BASE_URL}/api/friends/received`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return {
       props: {
-        requestsReceived: data
-      }
+        requestsReceived: data,
+      },
     };
   } catch (error) {
     console.log(error);

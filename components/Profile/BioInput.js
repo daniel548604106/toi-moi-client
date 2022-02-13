@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { apiPatchProfileBio } from '../../api';
+import { apiPatchProfileBio } from '@/Api/index';
 import { useSelector } from 'react-redux';
 const BioInput = ({ isEditable, bio, originalBio, setBio }) => {
   const [bioInputOpen, setBioInputOpen] = useState(false);
@@ -45,9 +45,7 @@ const BioInput = ({ isEditable, bio, originalBio, setBio }) => {
             type="text"
           />
           <div className="flex items-center justify-between">
-            <span className="text-xs tex-gray-400">
-              {bioLengthLeft} text left{' '}
-            </span>
+            <span className="text-xs tex-gray-400">{bioLengthLeft} text left </span>
             <div className="flex items-center ">
               <button
                 onClick={() => handleCancelChanges()}
@@ -70,10 +68,7 @@ const BioInput = ({ isEditable, bio, originalBio, setBio }) => {
         <div className="w-[300px] flex flex-col items-center justify-center">
           <span>{bio}</span>
           {isEditable && (
-            <span
-              onClick={() => setBioInputOpen(true)}
-              className="text-main cursor-pointer"
-            >
+            <span onClick={() => setBioInputOpen(true)} className="text-main cursor-pointer">
               Edit
             </span>
           )}

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { SearchIcon, XIcon } from '@heroicons/react/outline';
 import LoaderSpinner from '../../Global/LoaderSpinner';
-import { apiGetSearchedChats } from '../../../api';
+import { apiGetSearchedChats } from '@/Api/index';
 import { useDispatch } from 'react-redux';
 import Avatar from '../../Global/Avatar';
-import { addToChatBoxList } from '../../../redux/slices/messageSlice';
+import { addToChatBoxList } from '@/Redux/slices/messageSlice';
 const SearchBox = ({ setSearchOpen }) => {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState('');
@@ -54,11 +54,7 @@ const SearchBox = ({ setSearchOpen }) => {
                     key={user._id}
                     className="flex cursor-pointer p-2 items-center space-x-2"
                   >
-                    <Avatar
-                      width={30}
-                      height={30}
-                      profileImage={user.profileImage}
-                    />
+                    <Avatar width={30} height={30} profileImage={user.profileImage} />
                     <span className="ml-3">{user.name}</span>
                   </div>
                 ))}
@@ -68,9 +64,7 @@ const SearchBox = ({ setSearchOpen }) => {
               {searchResult.length === 0 ? (
                 <div>
                   <div className="p-3 text-center">No Search Result</div>
-                  <div className="text-center text-xs sm:text-sm">
-                    Try Another Name
-                  </div>
+                  <div className="text-center text-xs sm:text-sm">Try Another Name</div>
                 </div>
               ) : (
                 <div className="flex p-3 items-center justify-center">

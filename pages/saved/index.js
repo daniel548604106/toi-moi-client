@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { apiGetSavedPosts } from '../../api';
-import SavedCard from '../../components/Saved/SavedCard';
+import { apiGetSavedPosts } from '@/Api/index';
+import SavedCard from '@/Components/Saved/SavedCard';
 import Image from 'next/image';
 const Index = () => {
   const [savedPosts, setSavedPosts] = useState(null);
@@ -42,10 +42,7 @@ const Index = () => {
       ) : (
         <div className="mt-[60px] w-full flex  flex-col items-center justify-center">
           <Image src="/images/empty-bookmark.svg" width="100" height="100" />
-          <h2 className="text-lg sm:text-2xl font-semibold mt-5">
-            {' '}
-            No Saved Post
-          </h2>
+          <h2 className="text-lg sm:text-2xl font-semibold mt-5"> No Saved Post</h2>
         </div>
       )}
     </div>

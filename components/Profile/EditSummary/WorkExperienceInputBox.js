@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PeriodSelector from './PreriodSelector';
-import { apiPostWorkExperienceSummary } from '../../../api/index';
+import { apiPostWorkExperienceSummary } from '@/Api/index';
 import Loader from '../../Global/Loader';
 import router from 'next/router';
 const WorkExperienceInputBox = ({ setActiveBox }) => {
@@ -19,9 +19,9 @@ const WorkExperienceInputBox = ({ setActiveBox }) => {
       start_year: '',
       start_month: '',
       end_year: '',
-      end_month: ''
+      end_month: '',
     },
-    set_public: true
+    set_public: true,
   });
   const handleInputChange = (e) => {
     setNewExperience({ ...newExperience, [e.target.name]: e.target.value });
@@ -32,10 +32,7 @@ const WorkExperienceInputBox = ({ setActiveBox }) => {
     if (!available) return;
     try {
       setLoading(true);
-      const res = await apiPostWorkExperienceSummary(
-        router.query.id,
-        newExperience
-      );
+      const res = await apiPostWorkExperienceSummary(router.query.id, newExperience);
       setLoading(false);
       setActiveBox(0);
       console.log('send', res);
@@ -47,7 +44,7 @@ const WorkExperienceInputBox = ({ setActiveBox }) => {
     const {
       period: { start_year, start_month, end_year, end_month },
       still_working,
-      company_name
+      company_name,
     } = newExperience;
 
     if (!company_name) return setAvailable(false);

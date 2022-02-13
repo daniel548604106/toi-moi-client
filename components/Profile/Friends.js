@@ -2,14 +2,10 @@ import React from 'react';
 import CardLayout from './CardLayout';
 import Image from 'next/image';
 import router from 'next/router';
-import genderAvatar from '../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 const Friends = ({ friends }) => {
   return (
-    <CardLayout
-      title="Friends"
-      buttonName="See All Friends"
-      buttonLink="friends"
-    >
+    <CardLayout title="Friends" buttonName="See All Friends" buttonLink="friends">
       <h2 className="text-lg mb-3 text-gray-400">{`${friends.friends_total} ${
         friends.friends_total > 1 ? 'friends' : 'friend'
       }`}</h2>

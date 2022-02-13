@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import useTranslation from 'next-translate/useTranslation';
 import SidebarListItem from './SidebarListItem';
-import genderAvatar from '../../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import { useSelector } from 'react-redux';
 import router from 'next/router';
 
@@ -28,31 +28,15 @@ const Sidebar = () => {
         <p className=" sm:inline-flex font-medium ml-3">{userInfo.name}</p>
       </div>
       <hr className="sm:hidden" />
-      <SidebarListItem
-        link="friends"
-        src="/icons/friend.png"
-        title={t('sidebar.friends')}
-      />
+      <SidebarListItem link="friends" src="/icons/friend.png" title={t('sidebar.friends')} />
       <SidebarListItem
         src="/icons/marketplace.png"
         link="marketplace/browse/all"
         title={t('sidebar.marketPlace')}
       />
-      <SidebarListItem
-        link="groups"
-        src="/icons/group.png"
-        title={t('sidebar.groups')}
-      />
-      <SidebarListItem
-        link="saved"
-        src="/icons/bookmark.png"
-        title={t('sidebar.saved')}
-      />
-      <SidebarListItem
-        link="fanpage"
-        src="/icons/page.png"
-        title={t('sidebar.fanPage')}
-      />
+      <SidebarListItem link="groups" src="/icons/group.png" title={t('sidebar.groups')} />
+      <SidebarListItem link="saved" src="/icons/bookmark.png" title={t('sidebar.saved')} />
+      <SidebarListItem link="fanpage" src="/icons/page.png" title={t('sidebar.fanPage')} />
       {isSeeMoreOpen ? (
         <>
           <SidebarListItem
@@ -60,18 +44,11 @@ const Sidebar = () => {
             src="/icons/favorite.png"
             title={t('sidebar.favorite')}
           />
-          <SidebarListItem
-            link="events"
-            src="/icons/event.png"
-            title={t('sidebar.events')}
-          />
+          <SidebarListItem link="events" src="/icons/event.png" title={t('sidebar.events')} />
         </>
       ) : (
         <div onClick={(e) => handleSeeMore(e)}>
-          <SidebarListItem
-            Icon={ChevronDownIcon}
-            title={t('sidebar.seeMore')}
-          />
+          <SidebarListItem Icon={ChevronDownIcon} title={t('sidebar.seeMore')} />
         </div>
       )}
     </div>

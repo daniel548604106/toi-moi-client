@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Sidebar from '../../components/Friends/Sidebar';
-import RecentBirthdays from '../../components/Friends/Birthdays/RecentBirthdays';
-import MonthlyBirthdays from '../../components/Friends/Birthdays/MonthlyBirthdays';
-import EmptyBirthday from '../../components/Friends/Birthdays/EmptyBirthday';
+import Sidebar from '@/Components/Friends/Sidebar';
+import RecentBirthdays from '@/Components/Friends/Birthdays/RecentBirthdays';
+import MonthlyBirthdays from '@/Components/Friends/Birthdays/MonthlyBirthdays';
+import EmptyBirthday from '@/Components/Friends/Birthdays/EmptyBirthday';
 import dayjs from 'dayjs';
 const birthdays = ({ friends }) => {
   const [recentBirthdays, setRecentBirthdays] = useState([]);
@@ -12,7 +12,7 @@ const birthdays = ({ friends }) => {
 
   const getRecentBirthdays = () => {
     const recent = friends.filter(
-      (friend) => dayjs(friend.birthday).get('month') === now.get('month')
+      (friend) => dayjs(friend.birthday).get('month') === now.get('month'),
     );
     setRecentBirthdays(recent);
     console.log(recent);
@@ -25,9 +25,7 @@ const birthdays = ({ friends }) => {
     for (let i = nextMonth; i < deadline; i++) {
       list.push({
         month: i + 1,
-        birthdays: friends.filter(
-          (friend) => dayjs(friend.birthday).get('month') === i
-        )
+        birthdays: friends.filter((friend) => dayjs(friend.birthday).get('month') === i),
       });
       // reset to 0
       if (i === 12) {
@@ -50,9 +48,7 @@ const birthdays = ({ friends }) => {
       <div className="lg:ml-[350px] flex-1 bg-primary p-5 ">
         {friends.length > 0 ? (
           <div className="mx-auto w-full max-w-[600px] space-y-4">
-            {recentBirthdays.length > 0 && (
-              <RecentBirthdays recentBirthdays={recentBirthdays} />
-            )}
+            {recentBirthdays.length > 0 && <RecentBirthdays recentBirthdays={recentBirthdays} />}
             {monthlyBirthdays.map(
               (month) =>
                 month.birthdays.length > 0 && (
@@ -61,7 +57,7 @@ const birthdays = ({ friends }) => {
                     month={month.month}
                     birthdays={month.birthdays}
                   />
-                )
+                ),
             )}
           </div>
         ) : (
@@ -79,18 +75,15 @@ export default birthdays;
 export async function getServerSideProps({ req }) {
   try {
     const token = req.cookies.token;
-    const res = await axios.get(
-      `${process.env.BASE_URL}/api/friends/birthdays`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
+    const res = await axios.get(`${process.env.BASE_URL}/api/friends/birthdays`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return {
       props: {
-        friends: res.data
-      }
+        friends: res.data,
+      },
     };
   } catch (error) {
     console.log(error);

@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  XIcon,
-  VideoCameraIcon,
-  ChatAlt2Icon,
-  SearchIcon
-} from '@heroicons/react/solid';
+import { XIcon, VideoCameraIcon, ChatAlt2Icon, SearchIcon } from '@heroicons/react/solid';
 import Avatar from '../../Global/Avatar';
-import { toggleListOpen } from '../../../redux/slices/messageSlice';
-import genderAvatar from '../../../utils/genderAvatar';
+import { toggleListOpen } from '@/Redux/slices/messageSlice';
+import genderAvatar from '@/Utils/genderAvatar';
 import { useSelector, useDispatch } from 'react-redux';
 const Header = ({ searchText, t, setSearchText }) => {
   const userInfo = useSelector((state) => state.user.userInfo);

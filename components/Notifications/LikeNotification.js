@@ -1,9 +1,9 @@
 import React from 'react';
 import router from 'next/router';
-import { timeDiff } from '../../lib/dayjs';
+import { timeDiff } from '@/Lib/dayjs';
 import { DotsHorizontalIcon, ThumbUpIcon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
-import { apiPostReadSingleNotification } from '../../api';
+import { apiPostReadSingleNotification } from '@/Api/index';
 import useTranslation from 'next-translate/useTranslation';
 import Avatar from '../Global/Avatar';
 const LikeNotification = ({ notification }) => {
@@ -38,14 +38,9 @@ const LikeNotification = ({ notification }) => {
         </span>
         <div className=" ml-[10px]">
           <p className="text-sm">
-            <span className="font-semibold">{notification.user.name}</span>{' '}
-            {t('likedYourPost')}
+            <span className="font-semibold">{notification.user.name}</span> {t('likedYourPost')}
           </p>
-          <p
-            className={`text-xs  ${
-              !notification.isNotificationRead && 'text-main'
-            }`}
-          >
+          <p className={`text-xs  ${!notification.isNotificationRead && 'text-main'}`}>
             {timeDiff(notification.date)}
           </p>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { apiGetNotifications } from '../../../api/index';
+import { apiGetNotifications } from '@/Api/index';
 import CommentNotification from '../../Notifications/CommentNotification';
 import FriendNotification from '../../Notifications/FriendNotification';
 import LikeNotification from '../../Notifications/LikeNotification';
@@ -21,9 +21,7 @@ const NotificationDropDown = ({ t }) => {
     getNotifications();
   }, []);
   const removeNotification = (id) => {
-    setNotifications(
-      notifications.filter((notification) => notification._id !== id)
-    );
+    setNotifications(notifications.filter((notification) => notification._id !== id));
   };
   return (
     <div>

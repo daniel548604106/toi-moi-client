@@ -3,33 +3,31 @@ import dynamic from 'next/dynamic';
 import axios from 'axios';
 import io from 'socket.io-client';
 import Head from 'next/head';
-import messageNotificationSound from '../utils/messageNotificationSound';
-import Sidebar from '../components/Home/Sidebar/Sidebar';
-import Contacts from '../components/Home/Contacts/Index';
+import messageNotificationSound from '@/Utils/messageNotificationSound';
+import Sidebar from '@/Components/Home/Sidebar/Sidebar';
+import Contacts from '@/Components/Home/Contacts/Index';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import InputBox from '../components/Home/Feed/InputBox';
-import Post from '../components/Home/Feed/Post/Post';
-import LoaderSpinner from '../components/Global/LoaderSpinner';
-import Room from '../components/Home/Feed/Room/Index';
-import Stories from '../components/Home/Feed/Story/Stories';
-import { setUnreadNotification } from '../redux/slices/userSlice';
-import { apiGetChatUserInfo, apiGetAllPosts } from '../api';
+import InputBox from '@/Components/Home/Feed/InputBox';
+import Post from '@/Components/Home/Feed/Post/Post';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import Room from '@/Components/Home/Feed/Room/Index';
+import Stories from '@/Components/Home/Feed/Story/Stories';
+import { setUnreadNotification } from '@/Redux/slices/userSlice';
+import { apiGetChatUserInfo, apiGetAllPosts } from '@/Api/index';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToChatBoxList } from '../redux/slices/messageSlice';
+import { addToChatBoxList } from '@/Redux/slices/messageSlice';
 
 // Dynamic Import
-const EndMessage = dynamic(() => import('../components/Home/Feed/EndMessage'), {
-  loading: () => <LoaderSpinner />
+const EndMessage = dynamic(() => import('@/Components/Home/Feed/EndMessage'), {
+  loading: () => <LoaderSpinner />,
 });
 
-const NoPost = dynamic(() => import('../components/Home/Feed/NoPost'), {
-  loading: () => <LoaderSpinner />
+const NoPost = dynamic(() => import('@/Components/Home/Feed/NoPost'), {
+  loading: () => <LoaderSpinner />,
 });
 
-const ChatBox = dynamic(() => import('../components/Home/Contacts/ChatBox'));
-const PostNotification = dynamic(() =>
-  import('../components/Home/PostNotification')
-);
+const ChatBox = dynamic(() => import('@/Components/Home/Contacts/ChatBox'));
+const PostNotification = dynamic(() => import('@/Components/Home/PostNotification'));
 export default function Home({ posts, friends, stories, notFound }) {
   const dispatch = useDispatch();
   const [hasMore, setHasMore] = useState(true);
@@ -87,7 +85,7 @@ export default function Home({ posts, friends, stories, notFound }) {
       socket.current.emit('sendMessage', {
         userId: userInfo._id,
         messageSentTo: sender,
-        msg
+        msg,
       });
     }
   };
@@ -115,17 +113,14 @@ export default function Home({ posts, friends, stories, notFound }) {
           }
         });
 
-        socket.current.on(
-          'newNotificationReceived',
-          ({ profileImage, postId, username, name }) => {
-            // update notification
-            dispatch(setUnreadNotification(true));
-            setNewNotification({ profileImage, postId, username, name });
-            setTimeout(() => {
-              setNewNotification(null);
-            }, 5000);
-          }
-        );
+        socket.current.on('newNotificationReceived', ({ profileImage, postId, username, name }) => {
+          // update notification
+          dispatch(setUnreadNotification(true));
+          setNewNotification({ profileImage, postId, username, name });
+          setTimeout(() => {
+            setNewNotification(null);
+          }, 5000);
+        });
       }
     }
     return () => {
@@ -175,11 +170,7 @@ export default function Home({ posts, friends, stories, notFound }) {
                 >
                   {currentPosts?.map((post) => (
                     <div key={post._id} className="mb-[15px] ">
-                      <Post
-                        deletePost={deletePost}
-                        post={post}
-                        socket={socket}
-                      />
+                      <Post deletePost={deletePost} post={post} socket={socket} />
                     </div>
                   ))}
                 </InfiniteScroll>
@@ -222,41 +213,40 @@ export async function getServerSideProps({ req, res }) {
     if (token) {
       friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       posts = await axios.get(`${process.env.API_BASE_URL}/api/posts?page=1`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       stories = await axios.get(`${process.env.API_BASE_URL}/api/stories`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
     }
 
     if (!posts.data) {
       return {
-        notFound: true
+        notFound: true,
       };
     }
     return {
       props: {
         posts: posts.data,
         friends: friends.data,
-        stories: stories.data
-      }
+        stories: stories.data,
+      },
     };
   } catch (error) {
     console.log(error);
     return {
       props: {
         ok: false,
-        reason:
-          'some error description for your own consumption, not for client side'
-      }
+        reason: 'some error description for your own consumption, not for client side',
+      },
     };
   }
 }

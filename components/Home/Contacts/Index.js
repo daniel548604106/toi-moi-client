@@ -5,7 +5,7 @@ import Contact from './Contact';
 import SearchBox from './SearchBox';
 import useTranslation from 'next-translate/useTranslation';
 import SettingsPopup from './SettingsPopup';
-import useClickOutside from '../../../hooks/useClickOutside';
+import useClickOutside from '@/Hooks/useClickOutside';
 const Index = ({ friends, connectedUsers }) => {
   const { t } = useTranslation('common');
   const [isSearchOpen, setSearchOpen] = useState(false);
@@ -19,9 +19,7 @@ const Index = ({ friends, connectedUsers }) => {
   const sortedContacts = useMemo(() => {
     console.log('memo');
     return friends?.sort((a, b) => {
-      return connectedUsers.map((users) => users.userId).includes(a.user._id)
-        ? -1
-        : 1;
+      return connectedUsers.map((users) => users.userId).includes(a.user._id) ? -1 : 1;
     });
   }, [connectedUsers]);
   return (

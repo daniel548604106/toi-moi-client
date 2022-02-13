@@ -4,13 +4,13 @@ import {
   ChevronRightIcon,
   HandIcon,
   ClockIcon,
-  UsersIcon
+  UsersIcon,
 } from '@heroicons/react/outline';
 import CreateRoomListItem from './CreateRoomListItem';
 import CreateRoomName from './CreateRoomName';
 import Loader from '../../../../Global/Loader';
 import { useSelector } from 'react-redux';
-import { apiPostNewRoom } from '../../../../../api/index';
+import { apiPostNewRoom } from '@/Api/index';
 const CreateRoom = ({ setRoomCreated, setRoomCode }) => {
   const { userInfo } = useSelector((state) => state.user);
   const [createNameOpen, setCreateNameOpen] = useState(false);
@@ -19,7 +19,7 @@ const CreateRoom = ({ setRoomCreated, setRoomCode }) => {
     name: `${userInfo.name}'s room`,
     icon: '😊',
     starting_time: undefined,
-    public: false
+    public: false,
   });
   const handleCreateRoom = async () => {
     setLoading(true);

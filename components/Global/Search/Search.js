@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeftIcon, SearchIcon } from '@heroicons/react/outline';
-import {
-  apiPostKeywordSearch,
-  apiGetRecentSearch,
-  apiSearchRequest
-} from '../../../api/index';
+import { apiPostKeywordSearch, apiGetRecentSearch, apiSearchRequest } from '@/Api/index';
 import SearchListItem from './SearchListItem';
 import SearchHistoryItem from './SearchHistoryItem';
 import router from 'next/router';
-import * as ga from '../../../lib/gtag';
+import * as ga from '@/Lib/gtag';
 const Search = ({ t }) => {
   const [searchText, setSearchText] = useState('');
   const [searchResult, setSearchResult] = useState(null);
@@ -47,7 +43,7 @@ const Search = ({ t }) => {
       action: 'search',
       category: 'search',
       label: 'keywords',
-      value: searchText
+      value: searchText,
     });
     try {
       const res = await apiPostKeywordSearch(searchText);

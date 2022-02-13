@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PeriodSelector from './PreriodSelector';
 import { useSelector } from 'react-redux';
-import { apiPostEducationSummary } from '../../../api';
+import { apiPostEducationSummary } from '@/Api/index';
 const EducationInputBox = ({ setActiveBox }) => {
   const { username } = useSelector((state) => state.user.userInfo);
   const [available, setAvailable] = useState(false);
@@ -17,9 +17,9 @@ const EducationInputBox = ({ setActiveBox }) => {
       start_year: '',
       start_month: '',
       end_year: '',
-      end_month: ''
+      end_month: '',
     },
-    set_public: true
+    set_public: true,
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,12 +44,8 @@ const EducationInputBox = ({ setActiveBox }) => {
       ...rest
     } = newExperience;
     if (!school_name || !major) return setAvailable(false);
-    if (still_studying && (!start_year || !start_month))
-      return setAvailable(false);
-    if (
-      !still_studying &&
-      (!start_year || !start_month || !end_year || !end_month)
-    )
+    if (still_studying && (!start_year || !start_month)) return setAvailable(false);
+    if (!still_studying && (!start_year || !start_month || !end_year || !end_month))
       return setAvailable(false);
     setAvailable(true);
   }, [{ ...newExperience }]);
@@ -95,10 +91,7 @@ const EducationInputBox = ({ setActiveBox }) => {
         >
           Save
         </button>
-        <button
-          onClick={() => setActiveBox(0)}
-          className="rounded-lg p-2 px-3 border "
-        >
+        <button onClick={() => setActiveBox(0)} className="rounded-lg p-2 px-3 border ">
           Cancel
         </button>
       </div>

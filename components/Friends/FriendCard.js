@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import genderAvatar from '../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import Image from 'next/image';
 import router from 'next/router';
 import { CheckIcon } from '@heroicons/react/solid';
-import { apiPostFriendRequest } from '../../api/index';
+import { apiPostFriendRequest } from '@/Api/index';
 const FriendCard = ({ user, removeRecommendation, idx }) => {
   const [added, setAdded] = useState(false);
   const handleAddFriend = async () => {
@@ -23,9 +23,7 @@ const FriendCard = ({ user, removeRecommendation, idx }) => {
       } transition-opacity duration-500  p-3 bg-secondary shadow-lg rounded-lg text-secondary`}
     >
       <div
-        onClick={() =>
-          router.push(`/friends/suggestions?profile_id=${user._id}`)
-        }
+        onClick={() => router.push(`/friends/suggestions?profile_id=${user._id}`)}
         className="relative h-[150px] sm:h-[200px]"
       >
         <Image

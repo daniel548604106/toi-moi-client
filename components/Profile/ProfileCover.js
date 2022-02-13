@@ -5,25 +5,20 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import BioInput from './BioInput';
 import ProfileImage from './ProfileImage';
-import { apiPatchProfile, apiPostNewPost } from '../../api';
-import {
-  setViewPostModalOpen,
-  apiGetCurrentPost
-} from '../../redux/slices/postSlice';
+import { apiPatchProfile, apiPostNewPost } from '@/Api/index';
+import { setViewPostModalOpen, apiGetCurrentPost } from '@/Redux/slices/postSlice';
 import Loader from '../Global/Loader';
 
 const ProfileCover = ({ user, profile }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const latestProfileImage = useSelector(
-    (state) => state.profile?.profileData?.profile.profileImage
+    (state) => state.profile?.profileData?.profile.profileImage,
   );
   const [isLoading, setLoading] = useState(false);
   const [isCoverImageEditable, setCoverImageEditable] = useState(false);
   const [coverImage, setCoverImage] = useState(profile.profileCoverImage);
-  const [coverDescription, setCoverDescription] = useState(
-    profile.profileCoverDescription
-  );
+  const [coverDescription, setCoverDescription] = useState(profile.profileCoverDescription);
   const [bio, setBio] = useState(profile.bio);
 
   const inputRef = useRef(null);
@@ -60,18 +55,14 @@ const ProfileCover = ({ user, profile }) => {
 
   const isEditable = userInfo.username === router.query.id;
 
-  const sendUpdates = async (
-    bio,
-    profileCoverDescription,
-    profileCoverImage
-  ) => {
+  const sendUpdates = async (bio, profileCoverDescription, profileCoverImage) => {
     setLoading(true);
     try {
       const { data } = await apiPostNewPost({
         image: profileCoverImage,
         text: profileCoverDescription,
         location: '',
-        type: 'profileCover'
+        type: 'profileCover',
       });
       console.log('post created', data);
       const res = await apiPatchProfile({
@@ -79,7 +70,7 @@ const ProfileCover = ({ user, profile }) => {
         bio,
         profileCoverPostId: data,
         profileCoverDescription,
-        profileCoverImage
+        profileCoverImage,
       });
       setLoading(false);
       console.log('profile cover changed', res);
@@ -106,9 +97,7 @@ const ProfileCover = ({ user, profile }) => {
           <div className="absolute top-0 w-full left-0 z-30 flex items-center justify-between p-3 bg-black bg-opacity-10">
             <div className="flex items-center text-secondary">
               <GlobeIcon className="h-6" />
-              <p className="text-sm ml-[5px]">
-                Your Cover Photo Will Be Visible To Everyone
-              </p>
+              <p className="text-sm ml-[5px]">Your Cover Photo Will Be Visible To Everyone</p>
             </div>
             <div>
               <button
@@ -145,20 +134,13 @@ const ProfileCover = ({ user, profile }) => {
               className="px-4 py-2 absolute bottom-5 hover:shadow-xl cursor-pointer rounded-md right-5 bg-secondary text-secondary"
             >
               <CameraIcon className="h-6 " />
-              <input
-                onChange={(e) => addImageToPost(e)}
-                ref={inputRef}
-                type="file"
-                hidden
-              />
+              <input onChange={(e) => addImageToPost(e)} ref={inputRef} type="file" hidden />
             </span>
           )}
           <div className="absolute translate-y-[10px] bottom-0 transform left-1/2 -translate-x-1/2">
             <ProfileImage
               user={profile.user}
-              postId={
-                latestProfileImage?.postId || profile.profileImage.postId || ''
-              }
+              postId={latestProfileImage?.postId || profile.profileImage.postId || ''}
               profileImage={latestProfileImage?.picUrl || user.profileImage}
             />
           </div>
@@ -166,12 +148,7 @@ const ProfileCover = ({ user, profile }) => {
 
         <div className=" p-5 space-x-2  flex flex-col items-center justify-center">
           <h2 className="text-xl sm:text-2xl font-semibold">{user.name}</h2>
-          <BioInput
-            isEditable={isEditable}
-            originalBio={profile.bio}
-            bio={bio}
-            setBio={setBio}
-          />
+          <BioInput isEditable={isEditable} originalBio={profile.bio} bio={bio} setBio={setBio} />
           <hr className="my-2" />
         </div>
       </div>

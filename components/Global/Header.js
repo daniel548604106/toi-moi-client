@@ -1,21 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  PlayIcon,
-  ShoppingCartIcon,
-  MenuIcon,
-  BookmarkAltIcon
-} from '@heroicons/react/outline';
+import { PlayIcon, ShoppingCartIcon, MenuIcon, BookmarkAltIcon } from '@heroicons/react/outline';
 import {
   BellIcon,
   ChatIcon,
   ChevronDownIcon,
   HomeIcon,
   UserGroupIcon,
-  PlusIcon
+  PlusIcon,
 } from '@heroicons/react/solid';
-import useClickOutside from '../../hooks/useClickOutside';
+import useClickOutside from '@/Hooks/useClickOutside';
 import HeaderIcon from './HeaderIcon';
-import genderAvatar from '../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import AccountDropDown from './HeaderDropDown/AccountDropDown';
@@ -26,33 +21,33 @@ import Search from './Search/Search';
 import NotificationDropDown from './HeaderDropDown/NotificationDropDown';
 import useTranslation from 'next-translate/useTranslation';
 import Sidebar from '../Home/Sidebar/Sidebar';
-import { setUnreadNotification } from '../../redux/slices/userSlice';
+import { setUnreadNotification } from '@/Redux/slices/userSlice';
 const menuTabs = [
   {
     title: 'home',
     href: '/',
-    Icon: HomeIcon
+    Icon: HomeIcon,
   },
   {
     title: 'saved',
     href: '/saved',
-    Icon: BookmarkAltIcon
+    Icon: BookmarkAltIcon,
   },
   {
     title: 'watch',
     href: '/watch/view/all',
-    Icon: PlayIcon
+    Icon: PlayIcon,
   },
   {
     title: 'marketplace',
     href: '/marketplace/browse/all',
-    Icon: ShoppingCartIcon
+    Icon: ShoppingCartIcon,
   },
   {
     title: 'groups',
     href: '/groups/feed',
-    Icon: UserGroupIcon
-  }
+    Icon: UserGroupIcon,
+  },
 ];
 const Header = () => {
   const router = useRouter();
@@ -102,9 +97,7 @@ const Header = () => {
             className="min-w-[35px] h-[35px] cursor-pointer object-cover  rounded-full"
             src={userInfo.profileImage || genderAvatar(userInfo.gender)}
           />
-          <p className="pr-2 text-sm ml-2 whitespace-nowrap hidden xl:block">
-            {userInfo.name}
-          </p>
+          <p className="pr-2 text-sm ml-2 whitespace-nowrap hidden xl:block">{userInfo.name}</p>
         </div>
         <div className="hidden md:flex items-center">
           <DropDownMenuIcon title="Create" Icon={PlusIcon}>
@@ -122,10 +115,7 @@ const Header = () => {
         </div>
         <div className="flex items-center space-x-3 md:hidden">
           <span className="relative">
-            <BellIcon
-              onClick={() => router.push('/notifications')}
-              className="h-6"
-            />
+            <BellIcon onClick={() => router.push('/notifications')} className="h-6" />
             {userInfo.unreadNotification && (
               <div
                 onClick={() => dispatch(setUnreadNotification(false))}

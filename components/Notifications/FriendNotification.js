@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { timeDiff } from '../../lib/dayjs';
+import { timeDiff } from '@/Lib/dayjs';
 import { UsersIcon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import {
   apiPostReadSingleNotification,
   apiPostFriendRequest,
-  apiRejectFriendRequest
-} from '../../api';
+  apiRejectFriendRequest,
+} from '@/Api/index';
 import Avatar from '../Global/Avatar';
 import useTranslation from 'next-translate/useTranslation';
 
@@ -77,30 +77,21 @@ const FriendNotification = ({ notification, removeNotification }) => {
             {notification.type === 'newFriendInvitation' && !isAccepted && (
               <span>sent you a friend request</span>
             )}
-            {notification.type === 'newFriendAccepted' &&
-              t('acceptedYourFriendRequest')}
+            {notification.type === 'newFriendAccepted' && t('acceptedYourFriendRequest')}
           </p>
-          <p
-            className={`text-xs text-gray-500 ${
-              !notification.isNotificationRead && 'text-main'
-            }`}
-          >
+          <p className={`text-xs text-gray-500 ${!notification.isNotificationRead && 'text-main'}`}>
             {timeDiff(notification.date)}
           </p>{' '}
           {notification.type === 'newFriendInvitation' && !isAccepted && (
             <div className="mt-[5px] w-full flex flex-1 items-center">
               <div
-                onClick={(e) =>
-                  handleAcceptFriendRequest(e, notification.user.username)
-                }
+                onClick={(e) => handleAcceptFriendRequest(e, notification.user.username)}
                 className={`flex items-center justify-center w-full text-xs cursor-pointer   rounded-md p-2 px-4 bg-main text-white `}
               >
                 {t('confirm')}
               </div>
               <div
-                onClick={(e) =>
-                  handleRejectRequest(e, notification.user.username)
-                }
+                onClick={(e) => handleRejectRequest(e, notification.user.username)}
                 className=" flex items-center justify-center w-full text-xs ml-[10px] cursor-pointer rounded-md p-2 px-4 border"
               >
                 {t('cancel')}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Avatar from '../../../Global/Avatar';
-import { apiCommentPost } from '../../../../api';
+import { apiCommentPost } from '@/Api/index';
 import { useSelector, useDispatch } from 'react-redux';
 import useTranslation from 'next-translate/useTranslation';
-import { setNotification } from '../../../../redux/slices/globalSlice';
+import { setNotification } from '@/Redux/slices/globalSlice';
 
 const PostCommentInput = () => {
   const { t } = useTranslation('common');

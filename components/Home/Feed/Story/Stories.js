@@ -5,7 +5,7 @@ import axios from 'axios';
 import router from 'next/router';
 import { PlusIcon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
-import genderAvatar from '../../../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 const Stories = ({ stories }) => {
   const [videoFile, setVideoFile] = useState('');
 
@@ -19,16 +19,16 @@ const Stories = ({ stories }) => {
         {
           upload: {
             approach: 'tus',
-            size: videoFile.size
-          }
+            size: videoFile.size,
+          },
         },
         {
           headers: {
             authorization: `bearer ${process.env.VIMEO_ACCESS_TOKEN}`,
             'content-type': 'application/json',
-            accept: 'application/vnd.vimeo.*+json;version=3.4'
-          }
-        }
+            accept: 'application/vnd.vimeo.*+json;version=3.4',
+          },
+        },
       );
       console.log(res);
       // await apiUploadStory(formData);

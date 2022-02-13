@@ -1,23 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { XIcon } from '@heroicons/react/outline';
-import {
-  setEditProfileImageOpen,
-  getMyInfo
-} from '../../redux/slices/userSlice';
+import { setEditProfileImageOpen, getMyInfo } from '@/Redux/slices/userSlice';
 import Loader from '../Global/Loader';
 import Image from 'next/dist/client/image';
-import { getProfileData } from '../../redux/slices/profileSlice.js';
+import { getProfileData } from '@/Redux/slices/profileSlice.js';
 import { useRouter } from 'next/router';
-import { apiPatchProfileImage, apiPostNewPost } from '../../api/index';
+import { apiPatchProfileImage, apiPostNewPost } from '@/Api/index';
 const EditProfileImageModal = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [text, setText] = useState('');
   const [isLoading, setLoading] = useState(false);
-  const profileImageToUpdate = useSelector(
-    (state) => state.user.profileImageToUpdate
-  );
+  const profileImageToUpdate = useSelector((state) => state.user.profileImageToUpdate);
   const userInfo = useSelector((state) => state.user.userInfo);
 
   const sendUpdates = async (profileImageToUpdate) => {
@@ -26,13 +21,13 @@ const EditProfileImageModal = () => {
         image: profileImageToUpdate,
         text,
         location: '',
-        type: 'profileImage'
+        type: 'profileImage',
       });
       const res = await apiPatchProfileImage({
         username: router.query.id,
         profileImageDescription: text,
         profileImagePostId: data,
-        profileImage: profileImageToUpdate
+        profileImage: profileImageToUpdate,
       });
 
       console.log('profile cover changed', res);
@@ -74,11 +69,7 @@ const EditProfileImageModal = () => {
         ></textarea>
         <div className="p-3 relative   mx-auto w-[300px] min-h-[300px] sm:h-[500px] sm:w-[500px] ">
           {profileImageToUpdate && (
-            <Image
-              layout="fill"
-              className=" object-cover rounded-md"
-              src={profileImageToUpdate}
-            />
+            <Image layout="fill" className=" object-cover rounded-md" src={profileImageToUpdate} />
           )}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/dist/client/image';
-import genderAvatar from '../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 import router from 'next/router';
 const Avatar = ({
   width = 60,
@@ -8,7 +8,7 @@ const Avatar = ({
   profileImage,
   layout = 'intrinsic',
   username,
-  gender = 'other'
+  gender = 'other',
 }) => {
   return (
     <Image

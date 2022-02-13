@@ -1,21 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { apiGetMyInfo, apiGetFriendList } from '../../api/index';
-export const getMyInfo = createAsyncThunk(
-  'get/getMyInfo',
-  async (id, thunkAPI) => {
-    const response = await apiGetMyInfo();
-    console.log(response);
-    return response.data;
-  }
-);
-export const getFriendList = createAsyncThunk(
-  'get/getFriendList',
-  async (id, thunkAPI) => {
-    const response = await apiGetFriendList();
-    console.log(response, 'friendlist');
-    return response.data;
-  }
-);
+import { apiGetMyInfo, apiGetFriendList } from '@/Api/index';
+export const getMyInfo = createAsyncThunk('get/getMyInfo', async (id, thunkAPI) => {
+  const response = await apiGetMyInfo();
+  console.log(response);
+  return response.data;
+});
+export const getFriendList = createAsyncThunk('get/getFriendList', async (id, thunkAPI) => {
+  const response = await apiGetFriendList();
+  console.log(response, 'friendlist');
+  return response.data;
+});
 
 export const userSlice = createSlice({
   name: 'user',
@@ -25,7 +19,7 @@ export const userSlice = createSlice({
     notifications: [],
     friendsList: [],
     isEditProfileImageOpen: false,
-    profileImageToUpdate: ''
+    profileImageToUpdate: '',
   },
 
   reducers: {
@@ -50,7 +44,7 @@ export const userSlice = createSlice({
         state.profileImageToUpdate = '';
       }
       state.profileImageToUpdate = payload;
-    }
+    },
   },
   extraReducers: {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -62,8 +56,8 @@ export const userSlice = createSlice({
       console.log(action.payload, 'extra');
       // Add likes to the state array
       state.friendsList = action.payload.map((item) => item.user);
-    }
-  }
+    },
+  },
 });
 
 // Action creators are generated for each case reducer function
@@ -72,7 +66,7 @@ export const {
   setUserLogout,
   setEditProfileImageOpen,
   setProfileImageToUpdate,
-  setUnreadNotification
+  setUnreadNotification,
 } = userSlice.actions;
 
 export default userSlice.reducer;

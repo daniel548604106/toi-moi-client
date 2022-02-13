@@ -3,7 +3,7 @@ import { XIcon } from '@heroicons/react/outline';
 import CreateRoom from './CreateRoom';
 import InviteRoom from './InviteRoom';
 import { useDispatch } from 'react-redux';
-import { toggleCreateRoomOpen } from '../../../../../redux/slices/globalSlice';
+import { toggleCreateRoomOpen } from '@/Redux/slices/globalSlice';
 const CreateRoomModal = () => {
   const dispatch = useDispatch();
   const [roomCode, setRoomCode] = useState('');

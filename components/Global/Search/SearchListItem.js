@@ -1,9 +1,9 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
-import { apiPostUserSearch } from '../../../api';
+import { apiPostUserSearch } from '@/Api/index';
 import Image from 'next/image';
-import genderAvatar from '../../../utils/genderAvatar';
+import genderAvatar from '@/Utils/genderAvatar';
 const SearchListItem = ({
   username,
   name,
@@ -11,7 +11,7 @@ const SearchListItem = ({
   gender,
   searchText,
   Icon,
-  setSearchResultShow
+  setSearchResultShow,
 }) => {
   const router = useRouter();
   const handleDirectToProfile = async () => {

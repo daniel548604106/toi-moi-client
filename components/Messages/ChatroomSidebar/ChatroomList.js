@@ -1,35 +1,32 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { timeDiff } from '../../../lib/dayjs';
-import genderAvatar from '../../../utils/genderAvatar';
+import { timeDiff } from '@/Lib/dayjs';
+import genderAvatar from '@/Utils/genderAvatar';
 import { useDispatch } from 'react-redux';
-import { toggleListOpen } from '../../../redux/slices/messageSlice';
+import { toggleListOpen } from '@/Redux/slices/messageSlice';
 const List = ({ chat, connectedUsers, setOpenChatUser }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const isOnline =
     connectedUsers.length > 0 &&
-    connectedUsers.filter((user) => user.userId === chat.messagesWith).length >
-      0;
+    connectedUsers.filter((user) => user.userId === chat.messagesWith).length > 0;
 
   const startChat = () => {
     router.push(`/messages?message=${chat.messagesWith}`, undefined, {
-      shallow: true
+      shallow: true,
     });
     dispatch(toggleListOpen());
     setOpenChatUser({
       name: chat.name,
-      profileImage: chat.profileImage || genderAvatar()
+      profileImage: chat.profileImage || genderAvatar(),
     });
   };
   return (
     <div
       onClick={() => startChat()}
       className={`flex items-center p-2  hover:bg-gray-100 cursor-pointer ${
-        router.query.message === chat.messagesWith
-          ? 'bg-blue-100 hover:bg-blue-100'
-          : ''
+        router.query.message === chat.messagesWith ? 'bg-blue-100 hover:bg-blue-100' : ''
       }`}
     >
       <div className="relative h-[40px] w-[40px] flex items-center ">
