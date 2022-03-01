@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { InboxIcon } from '@heroicons/react/outline';
-import { apiPostForgotPassword } from '@/Api/index';
+import { apiPostForgotPassword } from '@/Axios/index';
 import Loader from '../Global/Loader';
 const Index = () => {
   const [email, setEmail] = useState('');

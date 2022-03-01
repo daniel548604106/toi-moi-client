@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeftIcon, SearchIcon } from '@heroicons/react/outline';
-import { apiPostKeywordSearch, apiGetRecentSearch, apiSearchRequest } from '@/Api/index';
+import { apiPostKeywordSearch, apiGetRecentSearch, apiSearchRequest } from '@/Axios/index';
 import SearchListItem from './SearchListItem';
 import SearchHistoryItem from './SearchHistoryItem';
 import router from 'next/router';

@@ -3,7 +3,7 @@ import genderAvatar from '@/Utils/genderAvatar';
 import Image from 'next/image';
 import router from 'next/router';
 import { CheckIcon } from '@heroicons/react/solid';
-import { apiPostFriendRequest } from '@/Api/index';
+import { apiPostFriendRequest } from '@/Axios/index';
 const FriendCard = ({ user, removeRecommendation, idx }) => {
   const [added, setAdded] = useState(false);
   const handleAddFriend = async () => {

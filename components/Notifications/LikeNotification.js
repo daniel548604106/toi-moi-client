@@ -3,7 +3,7 @@ import router from 'next/router';
 import { timeDiff } from '@/Lib/dayjs';
 import { DotsHorizontalIcon, ThumbUpIcon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
-import { apiPostReadSingleNotification } from '@/Api/index';
+import { apiPostReadSingleNotification } from '@/Axios/index';
 import useTranslation from 'next-translate/useTranslation';
 import Avatar from '../Global/Avatar';
 const LikeNotification = ({ notification }) => {

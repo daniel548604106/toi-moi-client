@@ -1,7 +1,7 @@
 import React from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
-import { apiPostUserSearch } from '@/Api/index';
+import { apiPostUserSearch } from '@/Axios/index';
 import Image from 'next/image';
 import genderAvatar from '@/Utils/genderAvatar';
 const SearchListItem = ({

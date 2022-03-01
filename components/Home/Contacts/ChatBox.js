@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import { ThumbUpIcon } from '@heroicons/react/solid';
-import { apiGetChat } from '@/Api/index';
+import { apiGetChat } from '@/Axios/index';
 import { useSelector, useDispatch } from 'react-redux';
 import Avatar from '../../Global/Avatar';
 import { removeFromChatBoxList } from '@/Redux/slices/messageSlice';

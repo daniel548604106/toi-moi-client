@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PeriodSelector from './PreriodSelector';
-import { apiPostWorkExperienceSummary } from '@/Api/index';
+import { apiPostWorkExperienceSummary } from '@/Axios/index';
 import Loader from '../../Global/Loader';
 import router from 'next/router';
 const WorkExperienceInputBox = ({ setActiveBox }) => {

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import router from 'next/router';
 // import Preview from '@/Components/Stories/Preview';
 import { backgroundSelections } from '@/Utils/storyOptions';
-import { apiUploadStoryImage } from '@/Api/index';
+import { apiUploadStoryImage } from '@/Axios/index';
 
 // const Preview = dynamic(() => import('@/Components/Stories/Preview'), {
 //   ssr: false

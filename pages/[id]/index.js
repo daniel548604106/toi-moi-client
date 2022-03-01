@@ -9,7 +9,7 @@ import io from 'socket.io-client';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { setProfileData, setSummaryData } from '@/Redux/slices/profileSlice';
-import { apiGetProfilePosts, apiGetProfileFriends, apiGetProfileSummary } from '@/Api/index';
+import { apiGetProfilePosts, apiGetProfileFriends, apiGetProfileSummary } from '@/Axios/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 // Dynamic Imports

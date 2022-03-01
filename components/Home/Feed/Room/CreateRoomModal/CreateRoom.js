@@ -10,7 +10,7 @@ import CreateRoomListItem from './CreateRoomListItem';
 import CreateRoomName from './CreateRoomName';
 import Loader from '../../../../Global/Loader';
 import { useSelector } from 'react-redux';
-import { apiPostNewRoom } from '@/Api/index';
+import { apiPostNewRoom } from '@/Axios/index';
 const CreateRoom = ({ setRoomCreated, setRoomCode }) => {
   const { userInfo } = useSelector((state) => state.user);
   const [createNameOpen, setCreateNameOpen] = useState(false);

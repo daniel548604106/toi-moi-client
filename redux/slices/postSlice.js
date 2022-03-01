@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import request from '@/Lib/axiosConfig';
-import { apiGetSavedPosts } from '@/Api/index';
+import { apiGetSavedPosts } from '@/Axios/index';
 export const apiGetLikesList = createAsyncThunk('post/getLikesList', async (id, thunkAPI) => {
   const response = await request.get(`/posts/like/${id}`);
   console.log(response.data);

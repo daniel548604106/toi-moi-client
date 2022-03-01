@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Image from 'next/image';
 import { setImageToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
 import { EmojiHappyIcon } from '@heroicons/react/outline';
-import { apiPostNewPost } from '@/Api/index';
+import { apiPostNewPost } from '@/Axios/index';
 import Avatar from '../../Global/Avatar';
 import Loader from '../../Global/Loader';
 import useNotify from '@/Hooks/useNotify';
