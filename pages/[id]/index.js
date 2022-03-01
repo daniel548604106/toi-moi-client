@@ -35,10 +35,10 @@ const EndMessage = dynamic(() => import('@/Components/Home/Feed/EndMessage'), {
 const Index = ({ profileData }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const summaryData = useSelector((state) => state.profile.summaryData);
+  const summaryData = useSelector((state) => state?.profile?.summaryData);
   const [friends, setFriends] = useState(null);
-  const [profile, setProfile] = useState(profileData.profile);
-  const [user, setUser] = useState(profileData.profile.user);
+  const [profile, setProfile] = useState(profileData?.profile);
+  const [user, setUser] = useState(profileData?.profile?.user);
   const [summary, setSummary] = useState(summaryData);
   const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
@@ -57,7 +57,7 @@ const Index = ({ profileData }) => {
   }, [profileData]);
   const getMorePosts = async () => {
     try {
-      const { data } = await apiGetProfilePosts(profile.user.username, currentPage);
+      const { data } = await apiGetProfilePosts(profile?.user?.username, currentPage);
       console.log(data, 'posts');
       setPosts((prev) => [...prev, ...data]);
       if (data.length === 0) setHasMore(false);
@@ -72,7 +72,7 @@ const Index = ({ profileData }) => {
   };
   const getProfileFriends = async () => {
     try {
-      const { data } = await apiGetProfileFriends(router.query.id);
+      const { data } = await apiGetProfileFriends(router?.query?.id);
       setFriends(data);
     } catch (error) {
       console.log(error);
@@ -80,7 +80,7 @@ const Index = ({ profileData }) => {
   };
   const getProfileSummary = async () => {
     try {
-      const { data } = await apiGetProfileSummary(router.query.id);
+      const { data } = await apiGetProfileSummary(router?.query?.id);
       dispatch(setSummaryData(data));
     } catch (error) {
       console.log(error);
@@ -104,8 +104,8 @@ const Index = ({ profileData }) => {
         <div className="bg-secondary text-secondary sm:sticky sm:top-[56px] border-b z-30">
           <div className=" max-w-7xl mx-auto bg-secondary text-secondary self-start ">
             <TabsList
-              friend_status={friends.friend_status}
-              friends_total={friends.friends_total}
+              friend_status={friends?.friend_status}
+              friends_total={friends?.friends_total}
               user={user}
             />
           </div>
@@ -162,8 +162,8 @@ export async function getServerSideProps({ req, params, res }) {
     );
     return {
       props: {
-        profileData: profile.data,
-        friends: friends.data,
+        profileData: profile?.data,
+        friends: friends?.data,
       },
     };
   } catch (error) {
