@@ -1,3 +1,6 @@
+AWS BASE_URL = 'https://master.dnyititrtbx22.amplifyapp.com'
+Vercel BASE_URL = https://toi-moi-client-danielyeh548604106-gmailcom.vercel.app/
+
 ![Logo](https://ik.imagekit.io/4liibdxmxfn/images/users/user-peter548604106-cover-1624546491192_fBp5lDxtY)
 
 # Toi & Moi (You & Me)
