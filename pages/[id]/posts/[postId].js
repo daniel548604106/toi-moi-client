@@ -59,21 +59,21 @@ export async function getServerSideProps({ req, params, res }) {
     const postId = params.postId;
 
     // Get Post
-    const { data } = await axios.get(`${process.env.BASE_URL}/api/posts/${postId}`, {
+    const { data } = await axios.get(`${process.env.API_BASE_URL}/api/posts/${postId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
     // Get Profile
-    const profile = await axios.get(`${process.env.BASE_URL}/api/profile/${username}`, {
+    const profile = await axios.get(`${process.env.API_BASE_URL}/api/profile/${username}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
     // Get Notifications
-    const notifications = await axios.get(`${process.env.BASE_URL}/api/notifications`, {
+    const notifications = await axios.get(`${process.env.API_BASE_URL}/api/notifications`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

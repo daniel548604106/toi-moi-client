@@ -59,7 +59,7 @@ export async function getServerSideProps({ req, res }) {
   try {
     // get server side cookies
     const token = req.cookies.token;
-    const res = await axios.get(`${process.env.BASE_URL}/api/notifications`, {
+    const res = await axios.get(`${process.env.API_BASE_URL}/api/notifications`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

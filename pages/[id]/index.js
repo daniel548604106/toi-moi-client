@@ -44,6 +44,8 @@ const Index = ({ profileData }) => {
   const [hasMore, setHasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(2);
   const socket = useRef();
+
+  console.log(profile, 'profile', profileData);
   useEffect(() => {
     if (!socket.current) {
       // connect to socket
@@ -147,13 +149,14 @@ export async function getServerSideProps({ req, params, res }) {
   try {
     const username = params.id;
     const token = req.cookies.token;
-    const profile = await axios.get(`${process.env.BASE_URL}/api/profile/${username}`, {
+    const profile = await axios.get(`${process.env.API_BASE_URL}/api/profile/${username}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
     const friends = await axios.get(
-      `${process.env.BASE_URL}/api/profile/friends_preview/${username}`,
+      `${process.env.API_BASE_URL}/api/profile/friends_preview/${username}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -167,7 +170,7 @@ export async function getServerSideProps({ req, params, res }) {
       },
     };
   } catch (error) {
-    console.log(error);
+    console.log(error, 'server errors');
     return {
       props: {
         error: 'Error',

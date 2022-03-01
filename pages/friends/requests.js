@@ -38,7 +38,7 @@ export default requests;
 export async function getServerSideProps({ req }) {
   try {
     const token = req.cookies.token;
-    const { data } = await axios.get(`${process.env.BASE_URL}/api/friends/received`, {
+    const { data } = await axios.get(`${process.env.API_BASE_URL}/api/friends/received`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

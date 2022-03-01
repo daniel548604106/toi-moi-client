@@ -112,7 +112,7 @@ const Index = (props) => {
   // Connection
   useEffect(() => {
     if (!socket.current) {
-      socket.current = io(process.env.BASE_URL);
+      socket.current = io(process.env.API_BASE_URL);
     }
 
     if (socket.current) {
@@ -314,7 +314,7 @@ export async function getServerSideProps({ req, res }) {
   try {
     // get server side cookies
     const token = req.cookies.token;
-    let chats = await axios.get(`${process.env.BASE_URL}/api/chats`, {
+    let chats = await axios.get(`${process.env.API_BASE_URL}/api/chats`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

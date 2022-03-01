@@ -28,7 +28,7 @@ export async function getServerSideProps({ req, params, res }) {
   try {
     const username = params.id;
     const token = req.cookies.token;
-    const res = await axios.get(`${process.env.BASE_URL}/api/profile/${username}`, {
+    const res = await axios.get(`${process.env.API_BASE_URL}/api/profile/${username}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

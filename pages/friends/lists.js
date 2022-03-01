@@ -24,7 +24,7 @@ const lists = () => {
     const token = Cookies.get('token');
     try {
       const { data } = await axios.get(
-        `${process.env.BASE_URL}/api/friends/search/${searchedName}`,
+        `${process.env.API_BASE_URL}/api/friends/search/${searchedName}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

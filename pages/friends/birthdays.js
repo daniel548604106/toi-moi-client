@@ -75,7 +75,7 @@ export default birthdays;
 export async function getServerSideProps({ req }) {
   try {
     const token = req.cookies.token;
-    const res = await axios.get(`${process.env.BASE_URL}/api/friends/birthdays`, {
+    const res = await axios.get(`${process.env.API_BASE_URL}/api/friends/birthdays`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

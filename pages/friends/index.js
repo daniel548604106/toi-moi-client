@@ -56,12 +56,12 @@ export default Index;
 export async function getServerSideProps({ req }) {
   try {
     const token = req.cookies.token;
-    const res = await axios.get(`${process.env.BASE_URL}/api/friends/recommendations`, {
+    const res = await axios.get(`${process.env.API_BASE_URL}/api/friends/recommendations`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    const received = await axios.get(`${process.env.BASE_URL}/api/friends/received`, {
+    const received = await axios.get(`${process.env.API_BASE_URL}/api/friends/received`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

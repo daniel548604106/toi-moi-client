@@ -13,20 +13,20 @@ const ProfileCover = ({ user, profile }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const latestProfileImage = useSelector(
-    (state) => state.profile?.profileData?.profile.profileImage,
+    (state) => state.profile?.profileData?.profile?.profileImage,
   );
   const [isLoading, setLoading] = useState(false);
   const [isCoverImageEditable, setCoverImageEditable] = useState(false);
-  const [coverImage, setCoverImage] = useState(profile.profileCoverImage);
-  const [coverDescription, setCoverDescription] = useState(profile.profileCoverDescription);
-  const [bio, setBio] = useState(profile.bio);
+  const [coverImage, setCoverImage] = useState(profile?.profileCoverImage);
+  const [coverDescription, setCoverDescription] = useState(profile?.profileCoverDescription);
+  const [bio, setBio] = useState(profile?.bio);
 
   const inputRef = useRef(null);
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const userInfo = useSelector((state) => state?.user?.userInfo);
 
   const handleCancelImageUpdate = () => {
     setCoverImageEditable(false);
-    setCoverImage(profile.profileCoverImage || '');
+    setCoverImage(profile?.profileCoverImage || '');
   };
 
   const addImageToPost = (e) => {
