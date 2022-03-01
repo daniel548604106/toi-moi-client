@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SearchIcon } from '@heroicons/react/outline';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleCreateRoomOpen } from '@/Redux/slices/globalSlice';
-import { apiGetFriendList } from '@/Api/index';
+import { apiGetFriendList } from '@/Axios/index';
 import LoaderSpinner from '../../../../Global/LoaderSpinner';
 import router from 'next/router';
 import Avatar from '../../../../Global/Avatar';

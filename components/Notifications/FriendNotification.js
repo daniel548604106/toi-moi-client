@@ -7,7 +7,7 @@ import {
   apiPostReadSingleNotification,
   apiPostFriendRequest,
   apiRejectFriendRequest,
-} from '@/Api/index';
+} from '@/Axios/index';
 import Avatar from '../Global/Avatar';
 import useTranslation from 'next-translate/useTranslation';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SearchIcon, XIcon } from '@heroicons/react/outline';
-import { apiDeleteHistory } from '@/Api/index';
+import { apiDeleteHistory } from '@/Axios/index';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import genderAvatar from '@/Utils/genderAvatar';

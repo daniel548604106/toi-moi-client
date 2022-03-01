@@ -10,7 +10,7 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { apiPostFriendRequest, apiRemoveFriendRequest } from '@/Api/index';
+import { apiPostFriendRequest, apiRemoveFriendRequest } from '@/Axios/index';
 let tabs = [
   {
     title: 'posts',

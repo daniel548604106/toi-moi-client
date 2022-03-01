@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 import Loader from '../Global/Loader';
 import range from 'lodash/range';
-import { apiPostSignup } from '@/Api/index';
+import { apiPostSignup } from '@/Axios/index';
 import catchError from '@/Lib/catchError';
 import Cookie from 'js-cookie';
 import { useDispatch } from 'react-redux';

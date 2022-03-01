@@ -6,7 +6,7 @@ import {
   SearchIcon,
 } from '@heroicons/react/solid';
 import ToolTips from '../ToolTips';
-import { apiGetChats } from '@/Api/index';
+import { apiGetChats } from '@/Axios/index';
 import EmptyChat from '../../Messages/EmptyChat';
 import { useRouter } from 'next/router';
 import MessageDropDownList from './MesseageDropDownList';

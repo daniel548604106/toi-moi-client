@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import router from 'next/router';
 import { timeDiff } from '@/Lib/dayjs';
-import { apiLikeComment, apiUnlikeComment, apiDeleteComment } from '@/Api/index';
+import { apiLikeComment, apiUnlikeComment, apiDeleteComment } from '@/Axios/index';
 import { useSelector } from 'react-redux';
 import { ThumbUpIcon, TrashIcon } from '@heroicons/react/solid';
 import Avatar from '../../../Global/Avatar';

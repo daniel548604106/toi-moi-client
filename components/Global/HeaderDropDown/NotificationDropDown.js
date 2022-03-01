@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { apiGetNotifications } from '@/Api/index';
+import { apiGetNotifications } from '@/Axios/index';
 import CommentNotification from '../../Notifications/CommentNotification';
 import FriendNotification from '../../Notifications/FriendNotification';
 import LikeNotification from '../../Notifications/LikeNotification';

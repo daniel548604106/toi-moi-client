@@ -3,7 +3,7 @@ import { timeDiff } from '@/Lib/dayjs';
 import { DotsHorizontalIcon, ChatAlt2Icon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { apiPostReadSingleNotification } from '@/Api/index';
+import { apiPostReadSingleNotification } from '@/Axios/index';
 import useTranslation from 'next-translate/useTranslation';
 import Avatar from '../Global/Avatar';
 const CommentNotification = ({ notification }) => {

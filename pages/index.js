@@ -13,7 +13,7 @@ import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Room from '@/Components/Home/Feed/Room/Index';
 import Stories from '@/Components/Home/Feed/Story/Stories';
 import { setUnreadNotification } from '@/Redux/slices/userSlice';
-import { apiGetChatUserInfo, apiGetAllPosts } from '@/Api/index';
+import { apiGetChatUserInfo, apiGetAllPosts } from '@/Axios/index';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToChatBoxList } from '@/Redux/slices/messageSlice';
 

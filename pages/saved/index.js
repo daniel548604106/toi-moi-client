@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { apiGetSavedPosts } from '@/Api/index';
+import { apiGetSavedPosts } from '@/Axios/index';
 import SavedCard from '@/Components/Saved/SavedCard';
 import Image from 'next/image';
 const Index = () => {

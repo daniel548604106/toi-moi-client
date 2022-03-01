@@ -10,7 +10,7 @@
       "@/Redux/*": ["redux/*"],
       "@/Styles/*": ["styles/*"],
       "@/Utils/*": ["utils/*"],
-      "@/Api/*": ["api/*"],
+      "@/Axios/*": ["axios/*"],
       "@/Lib/*": ["lib/*"]
     }
   }

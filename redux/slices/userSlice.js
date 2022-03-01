@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { apiGetMyInfo, apiGetFriendList } from '@/Api/index';
+import { apiGetMyInfo, apiGetFriendList } from '@/Axios/index';
 export const getMyInfo = createAsyncThunk('get/getMyInfo', async (id, thunkAPI) => {
   const response = await apiGetMyInfo();
   console.log(response);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SearchIcon, XIcon } from '@heroicons/react/outline';
 import LoaderSpinner from '../../Global/LoaderSpinner';
-import { apiGetSearchedChats } from '@/Api/index';
+import { apiGetSearchedChats } from '@/Axios/index';
 import { useDispatch } from 'react-redux';
 import Avatar from '../../Global/Avatar';
 import { addToChatBoxList } from '@/Redux/slices/messageSlice';
