@@ -18,6 +18,7 @@ import PostSkeletonLoader from '@/Components/Global/Loader/PostSkeletonLoader';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Notification from '@/Components/Global/Notification';
 import { setNotification } from '@/Redux/slices/globalSlice';
+
 const Overlay = dynamic(() => import('@/Components/Global/Overlay'), {
   loading: () => <LoaderSpinner />,
 });
@@ -128,7 +129,32 @@ const App = ({ Component, pageProps }) => {
     isCreateRoomOpen ||
     isLanguageOpen;
 
-  if (!isUserLoggedIn && !allowedRoutes) return <Login />;
+  if (!isUserLoggedIn && !allowedRoutes) return;
+
+  <>
+    <Head>
+      <title>Toi & Moi</title>
+      <meta
+        name="description"
+        content="Toi&Moi is a fullstack social platform designated to connect people from distances away, users are able to build their own profile and connect with people from around the world with realtime messaging and friend system. "
+      />
+
+      <meta name="keywords" content="Toi&Moi social-media friend post" />
+      <meta property="og:type" content="website" />
+      <meta
+        property="og:description"
+        content="Toi&Moi is a fullstack social platform designated to connect people from distances away, users are able to build their own profile and connect with people from around the world with realtime messaging and friend system."
+      />
+      <meta name="theme-color" content="#eb7f82" />
+      <meta property="fb:app_id" content="4937468222991458" />
+      <meta property="og:title" content="Toi & Moi | Brand New Social Media Platform" />
+      <meta property="og:url" content="https://toi-moi.herokuapp.com" />
+      <meta property="og:image" content="https://cdn01.pinkoi.com/product/ZD5QQsTg/0/800x0.jpg" />
+      <link rel="apple-touch-icon" href="../public/favicon.ico" />
+      <link rel="icon" href="../public/favicon.ico" />
+    </Head>
+    <Login />
+  </>;
   return (
     <>
       <Head>
