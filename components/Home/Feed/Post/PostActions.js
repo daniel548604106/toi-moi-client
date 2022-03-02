@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   AnnotationIcon,
   ThumbUpIcon as OutlineThumbUpIcon,
   ShareIcon,
 } from '@heroicons/react/outline';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { apiLikePost, apiUnlikePost } from '@/Axios/index';
 import useTranslation from 'next-translate/useTranslation';
 
 const PostActions = ({ socket, likes, setCommentShow, post, setLikes }) => {
   const { t } = useTranslation('common');
   const { userInfo } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
   const [isLiked, setLiked] = useState(
     likes.length > 0 && likes.filter((like) => like.user === userInfo._id).length > 0,
   );
@@ -52,20 +51,6 @@ const PostActions = ({ socket, likes, setCommentShow, post, setLikes }) => {
     }
   };
 
-  useEffect(() => {
-    console.log('likes', likes);
-  }, [likes]);
-
-
-
-  const handleSharePost= async() =>{
-    console.log(post,'post')
-    try{
-      await navigator.share()
-    }catch(error){
-      console.log(error)
-    }
-  }
   const handleUnlikePost = async (id) => {
     if (socket.current) {
       socket.current.emit('unlikePost', { postId: id, userId: userInfo._id });
@@ -112,14 +97,10 @@ const PostActions = ({ socket, likes, setCommentShow, post, setLikes }) => {
         <AnnotationIcon className="h-4  " />
         <span className="text-sm sm:text-md ml-[10px]">{t('post.comment')}</span>
       </div>
-<<<<<<< HEAD
       <div
         onClick={() => handleSharePost()}
         className="rounded-md flex items-center justify-center  p-2 hover:bg-gray-100 flex-1  cursor-pointer text-gray-400"
       >
-=======
-      <div onClick={() => handleSharePost()} className="rounded-md flex items-center justify-center  p-2 hover:bg-gray-100 flex-1  cursor-pointer text-gray-400">
->>>>>>> master
         <ShareIcon className="h-4 " />
         <span className="text-sm sm:text-md ml-[10px]">{t('post.share')}</span>
       </div>
