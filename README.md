@@ -1,13 +1,10 @@
-AWS BASE_URL = 'https://master.dnyititrtbx22.amplifyapp.com'
-Vercel BASE_URL = https://toi-moi-client-danielyeh548604106-gmailcom.vercel.app/
-
 ![Logo](https://ik.imagekit.io/4liibdxmxfn/images/users/user-peter548604106-cover-1624546491192_fBp5lDxtY)
 
 # Toi & Moi (You & Me)
 
 Toi&Moi is a fullstack social platform designated to connect people from distances away, users are able to build their own profile and connect with people from around the world with realtime messaging and friend system. (Idea originated from starting a Facebook clone)
 
-⭐ Live Demo (https://master.d1qbxrer92lk46.amplifyapp.com)
+⭐ Live Demo (https://toi-moi-client-danielyeh548604106-gmailcom.vercel.app/)
 
 ## Screenshots
 
@@ -90,3 +87,6 @@ https://master.d1qbxrer92lk46.amplifyapp.com
      jobs:
 
      build:
+
+AWS BASE_URL = 'https://master.dnyititrtbx22.amplifyapp.com'
+Vercel BASE_URL = https://toi-moi-client-danielyeh548604106-gmailcom.vercel.app/
