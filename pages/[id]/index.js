@@ -47,9 +47,12 @@ const Index = ({ profileData }) => {
 
   console.log(profile, 'profile', profileData);
   useEffect(() => {
+    console.log('bas URL', process.env.BASE_URL);
+
     if (!socket.current) {
       // connect to socket
-      socket.current = io(process.env.BASE_URL);
+
+      socket.current = io(process.env.API_BASE_URL);
     }
   }, []);
   useEffect(() => {
