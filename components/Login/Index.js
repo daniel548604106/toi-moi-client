@@ -10,6 +10,7 @@ import { XIcon, ClipboardIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import ForgotPassword from '../ForgotPassword/Index';
 import Loader from '../Global/Loader';
+
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
