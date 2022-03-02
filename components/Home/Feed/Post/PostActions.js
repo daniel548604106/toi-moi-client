@@ -40,6 +40,16 @@ const PostActions = ({ socket, likes, setCommentShow, post, setLikes }) => {
     console.log('likes', likes);
   }, [likes]);
 
+
+
+  const handleSharePost= async() =>{
+    console.log(post,'post')
+    try{
+      await navigator.share()
+    }catch(error){
+      console.log(error)
+    }
+  }
   const handleUnlikePost = async (id) => {
     if (socket.current) {
       socket.current.emit('unlikePost', { postId: id, userId: userInfo._id });
@@ -86,7 +96,7 @@ const PostActions = ({ socket, likes, setCommentShow, post, setLikes }) => {
         <AnnotationIcon className="h-4  " />
         <span className="text-sm sm:text-md ml-[10px]">{t('post.comment')}</span>
       </div>
-      <div className="rounded-md flex items-center justify-center  p-2 hover:bg-gray-100 flex-1  cursor-pointer text-gray-400">
+      <div onClick={() => handleSharePost()} className="rounded-md flex items-center justify-center  p-2 hover:bg-gray-100 flex-1  cursor-pointer text-gray-400">
         <ShareIcon className="h-4 " />
         <span className="text-sm sm:text-md ml-[10px]">{t('post.share')}</span>
       </div>
