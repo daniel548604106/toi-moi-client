@@ -10,7 +10,8 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { apiPostFriendRequest, apiRemoveFriendRequest } from '@/Axios/index';
+import { apiRemoveFriendRequest } from '@/Axios/index';
+import { postFriendRequestAPI } from '@/Axios/friendRequest';
 let tabs = [
   {
     title: 'posts',
@@ -52,7 +53,7 @@ const TabsList = ({ user, friends_total, friend_status }) => {
   const handleSendFriendRequest = async () => {
     try {
       setFriendStatus('friendRequested');
-      const { data } = await apiPostFriendRequest(router.query.id);
+      const { data } = await postFriendRequestAPI(router.query.id);
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -71,7 +72,7 @@ const TabsList = ({ user, friends_total, friend_status }) => {
   const handleAcceptInvitation = async () => {
     try {
       setFriendStatus('friend');
-      const { data } = await apiPostFriendRequest(router.query.id);
+      const { data } = await postFriendRequestAPI(router.query.id);
       console.log(data);
     } catch (error) {
       console.log(error);

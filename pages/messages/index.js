@@ -112,7 +112,7 @@ const Index = (props) => {
   // Connection
   useEffect(() => {
     if (!socket.current) {
-      socket.current = io(process.env.API_BASE_URL);
+      socket.current = io(process.env.API_BASE_URL, { transports: ['websocket'] });
     }
 
     if (socket.current) {

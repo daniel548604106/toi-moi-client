@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import { ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 import Loader from '../Global/Loader';
 import range from 'lodash/range';
-import { apiPostSignup } from '@/Axios/index';
 import catchError from '@/Lib/catchError';
 import Cookie from 'js-cookie';
 import { useDispatch } from 'react-redux';
@@ -10,6 +9,7 @@ import { setUserLogin } from '@/Redux/slices/userSlice';
 import { Formik, Form, Field } from 'formik';
 import router from 'next/router';
 import * as Yup from 'yup';
+import { postSignupAPI } from '@/Axios/authRequest';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().min(2, 'Please use your real name').max(50, 'Too Long!').required('Required'),
@@ -53,7 +53,7 @@ const Index = ({ setSignupOpen }) => {
     };
     try {
       setLoading(true);
-      const { data } = await apiPostSignup(signupInfo);
+      const { data } = await postSignupAPI(signupInfo);
       Cookie.set('token', data.token);
       dispatch(setUserLogin(data.user));
       setLoading(false);

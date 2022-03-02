@@ -1,9 +1,9 @@
 import request from '@/Lib/axiosConfig';
 
-export const postLogin = (data) => {
+export const postLoginAPI = (data) => {
   return request.post(`/login`, data);
 };
 
-export const postSignup = (data) => {
+export const postSignupAPI = (data) => {
   return request.post(`/signup`, data);
 };
