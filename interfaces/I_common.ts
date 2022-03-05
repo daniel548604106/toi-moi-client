@@ -3,7 +3,7 @@ interface UserInfo {
   createdAt: Date;
   email: string;
   expireToken: Date;
-  gender: string;
+  gender: 'male' | 'female' | 'other';
   name: string;
   newMessagePopup: true;
   profileImage: string;

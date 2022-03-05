@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-import { apiPostReadNotifications } from '@/Axios/index';
+import { postReadNotificationsAPI } from '@/Axios/notificationRequest';
 import CommentNotification from '@/Components/Notifications/CommentNotification';
 import EmptyNotification from '@/Components/Notifications/EmptyNotification';
 import FriendNotification from '@/Components/Notifications/FriendNotification';
@@ -13,7 +13,7 @@ const Index = ({ notifications }) => {
   useEffect(() => {
     const readNotifications = async () => {
       try {
-        await apiPostReadNotifications();
+        await postReadNotificationsAPI();
       } catch (error) {
         console.log(error);
       }

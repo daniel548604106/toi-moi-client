@@ -2,7 +2,7 @@ import Image from 'next/image';
 import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { apiPostPasswordReset } from '@/Axios/index';
+import { postPasswordResetAPI } from '@/Axios/resetRequest';
 import catchError from '@/Lib/catchError';
 
 const password = () => {
@@ -17,7 +17,7 @@ const password = () => {
     if (password !== passwordConfirm)
       return setError("Password and password confirm doesn't match");
     try {
-      await apiPostPasswordReset(token, password);
+      await postPasswordResetAPI(token, password);
       setNewPasswordSuccess(true);
     } catch (error) {
       console.log(error);

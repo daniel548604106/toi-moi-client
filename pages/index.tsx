@@ -6,7 +6,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch } from 'react-redux';
 import io, { Socket } from 'socket.io-client';
 
-import { apiGetAllPosts, apiGetChatUserInfo } from '@/Axios/index';
+import { getChatUserInfoAPI } from '@/Axios/chatRequest';
+import { getAllPostsAPI } from '@/Axios/postRequest';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Contacts from '@/Components/Home/Contacts/Index';
 import InputBox from '@/Components/Home/Feed/InputBox';
@@ -31,6 +32,7 @@ const NoPost = dynamic(() => import('@/Components/Home/Feed/NoPost'), {
 
 const ChatBox = dynamic(() => import('@/Components/Home/Contacts/ChatBox'));
 const PostNotification = dynamic(() => import('@/Components/Home/PostNotification'));
+
 export default function Home({ posts, friends, stories, notFound }) {
   const dispatch = useDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
@@ -53,7 +55,7 @@ export default function Home({ posts, friends, stories, notFound }) {
 
   const handleGetMorePosts = async () => {
     try {
-      const posts = await apiGetAllPosts(currentPage);
+      const posts = await getAllPostsAPI(currentPage);
       setCurrentPosts((prev) => [...prev, ...posts.data]);
       if (posts.data.length === 0) setHasMore(false);
       setCurrentPage((currentPage) => currentPage + 1);
@@ -102,7 +104,7 @@ export default function Home({ posts, friends, stories, notFound }) {
         });
         socket.current.on('newMsgReceived', async ({ newMessage }) => {
           console.log('received new message', newMessage);
-          const { data } = await apiGetChatUserInfo(newMessage.sender);
+          const { data } = await getChatUserInfoAPI(newMessage.sender);
           console.log(data, 'data');
           // Add To ChatBox
           dispatch(addToChatBoxList(data));
@@ -208,7 +210,7 @@ export async function getServerSideProps({ req, res }) {
   try {
     // get server side cookies
     const token = req.cookies.token;
-    let posts, chats, friends, stories;
+    let posts, friends, stories;
     if (token) {
       friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {
         headers: {

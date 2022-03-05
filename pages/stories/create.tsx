@@ -3,17 +3,11 @@ import dynamic from 'next/dynamic';
 import router from 'next/router';
 import React, { useRef, useState } from 'react';
 
-import { apiUploadStoryImage } from '@/Axios/index';
+import { uploadStoryImageAPI } from '@/Axios/storyRequest';
 import Avatar from '@/Components/Global/Avatar';
 import { useAppSelector } from '@/Hooks/useAppRedux';
-// import Preview from '@/Components/Stories/Preview';
 import { backgroundSelections } from '@/Utils/storyOptions';
 import { PhotographIcon, TranslateIcon, XIcon } from '@heroicons/react/outline';
-
-// const Preview = dynamic(() => import('@/Components/Stories/Preview'), {
-//   ssr: falseimport { useAppSelector } from '@/Hooks/useAppRedux';
-
-// });
 
 const Create = () => {
   const stageRef = useRef(null);
@@ -60,7 +54,7 @@ const Create = () => {
     const canvasImage = stageRef.current.toDataURL();
     setLoading(true);
     try {
-      const { data } = await apiUploadStoryImage({
+      const { data } = await uploadStoryImageAPI({
         image: canvasImage,
         type: storyInfo.type,
         taggedUsers: [],
