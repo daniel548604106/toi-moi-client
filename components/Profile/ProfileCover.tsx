@@ -2,7 +2,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { apiPatchProfile, apiPostNewPost } from '@/Axios/index';
+import { postNewPostAPI } from '@/Axios/postRequest';
+import { patchProfileAPI } from '@/Axios/profileRequest';
 import Loader from '@/Components/Global/Loader';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { UserInfo } from '@/Interfaces/I_common';
@@ -68,24 +69,23 @@ const ProfileCover = (props: ProfileCoverProps) => {
   const sendUpdates = async (bio, profileCoverDescription, profileCoverImage) => {
     setLoading(true);
     try {
-      const { data } = await apiPostNewPost({
+      const { data } = await postNewPostAPI({
         image: profileCoverImage,
         text: profileCoverDescription,
         location: '',
         type: 'profileCover',
       });
-      console.log('post created', data);
-      const res = await apiPatchProfile({
+      const res = await patchProfileAPI({
         username: router.query.id,
         bio,
         profileCoverPostId: data,
         profileCoverDescription,
         profileCoverImage,
       });
-      setLoading(false);
-      console.log('profile cover changed', res);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 

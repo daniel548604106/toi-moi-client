@@ -5,7 +5,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import io, { Socket } from 'socket.io-client';
 
-import { apiGetProfileFriends, apiGetProfilePosts, apiGetProfileSummary } from '@/Axios/index';
+import {
+    getProfileFriendsAPI, getProfilePostsAPI, getProfileSummaryAPI
+} from '@/Axios/profileRequest';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import ProfileCover from '@/Components/Profile/ProfileCover';
 import TabsList from '@/Components/Profile/TabsList';
@@ -49,7 +51,7 @@ const Index = ({ profileData }) => {
 
   const handleGetMorePosts = async () => {
     try {
-      const { data } = await apiGetProfilePosts(profile?.user?.username, currentPage);
+      const { data } = await getProfilePostsAPI(profile?.user?.username, currentPage);
       setPosts((prev) => [...prev, ...data]);
       if (data.length === 0) setHasMore(false);
       setCurrentPage((currentPage) => currentPage + 1);
@@ -64,7 +66,7 @@ const Index = ({ profileData }) => {
 
   const getProfileFriends = async () => {
     try {
-      const { data } = await apiGetProfileFriends(router?.query?.id);
+      const { data } = await getProfileFriendsAPI(router?.query?.id);
       setFriends(data);
     } catch (error) {
       console.log(error);
@@ -72,7 +74,7 @@ const Index = ({ profileData }) => {
   };
   const getProfileSummary = async () => {
     try {
-      const { data } = await apiGetProfileSummary(router?.query?.id);
+      const { data } = await getProfileSummaryAPI(router?.query?.id);
       dispatch(setSummaryData(data));
     } catch (error) {
       console.log(error);

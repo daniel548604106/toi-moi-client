@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { apiPostEducationSummary } from '@/Axios/index';
+import { postEducationSummaryAPI } from '@/Axios/profileRequest';
 import { useAppSelector } from '@/Hooks/useAppRedux';
 
 import PeriodSelector from './PreriodSelector';
@@ -35,7 +35,7 @@ const EducationInputBox = ({ setActiveBox }: EducationInputBoxProps) => {
   const handleSubmit = async () => {
     if (!available) return;
     try {
-      const { data } = await apiPostEducationSummary(username, newExperience);
+      const { data } = await postEducationSummaryAPI(username, newExperience);
       console.log(data);
       setActiveBox(0);
     } catch (error) {

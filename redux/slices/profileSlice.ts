@@ -1,8 +1,8 @@
-import { apiGetProfile } from '@/Axios/index';
+import { getProfileAPI } from '@/Axios/profileRequest';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const getProfileData = createAsyncThunk<any, string>('post/getProfile', async (username) => {
-  const response = await apiGetProfile(username);
+  const response = await getProfileAPI(username);
   return response.data;
 });
 

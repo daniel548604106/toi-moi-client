@@ -1,17 +1,17 @@
 import request from '@/Lib/axiosConfig';
 
-export const getChats = () => {
+export const getAllChatsAPI = () => {
   return request.get('/chats');
 };
 
-export const getChat = (id) => {
+export const getChatAPI = (id) => {
   return request.get(`/chats/chat/${id}`);
 };
 
-export const getChatUserInfo = (senderId) => {
+export const getChatUserInfoAPI = (senderId) => {
   return request.get(`/chats/userInfo/${senderId}`);
 };
 
-export const getSearchedChats = (searchText) => {
+export const getSearchedChatsAPI = (searchText) => {
   return request.get(`/chats/search/${searchText}`);
 };

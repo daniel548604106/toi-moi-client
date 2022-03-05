@@ -1,7 +1,7 @@
 import useTranslation from 'next-translate/useTranslation';
 import React, { useState } from 'react';
 
-import { apiLikePost, apiUnlikePost } from '@/Axios/index';
+import { likePostAPI, unlikePostAPI } from '@/Axios/postRequest';
 import { useAppSelector } from '@/Hooks/useAppRedux';
 import {
     AnnotationIcon, ShareIcon, ThumbUpIcon as OutlineThumbUpIcon
@@ -34,7 +34,7 @@ const PostActions = (props: PostActionsProps) => {
     } else {
       try {
         // Still call the api if socket fails
-        const { data } = await apiLikePost(id);
+        const { data } = await likePostAPI(id);
         setLikes([...likes, { user: id }]);
         setLiked(true);
       } catch (error) {
@@ -70,7 +70,7 @@ const PostActions = (props: PostActionsProps) => {
     } else {
       try {
         // Still call the api if socket fails
-        const { data } = await apiUnlikePost(id);
+        await unlikePostAPI(id);
         setLikes(likes.filter((like) => like.user !== id));
         setLiked(false);
       } catch (error) {

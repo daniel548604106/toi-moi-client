@@ -2,7 +2,7 @@ import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-import { apiUpdatePost } from '@/Axios/index';
+import { updatePostAPI } from '@/Axios/postRequest';
 import Loader from '@/Components/Global/Loader';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import * as ga from '@/Lib/gtag';
@@ -41,7 +41,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
     setLoading(true);
     console.log('co');
     try {
-      const { data } = await apiUpdatePost(post._id, editedText);
+      const { data } = await updatePostAPI(post._id, editedText);
       console.log(data);
       setLatestText(editedText);
       setLoading(false);

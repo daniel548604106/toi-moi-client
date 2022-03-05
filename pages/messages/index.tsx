@@ -5,7 +5,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import io, { Socket } from 'socket.io-client';
 
-import { apiGetChatUserInfo, apiSearchRequest } from '@/Axios/index';
+import { getChatUserInfoAPI } from '@/Axios/chatRequest';
+import { apiSearchRequest } from '@/Axios/index';
 import Avatar from '@/Components/Global/Avatar';
 import ChatroomMainHeader from '@/Components/Messages/ChatroomMain/ChatroomMainHeader';
 import ChatroomMainInputBox from '@/Components/Messages/ChatroomMain/ChatroomMainInputBox';
@@ -217,7 +218,7 @@ const Index = (props) => {
           } else {
             const {
               data: { name, profileImage, gender },
-            } = await apiGetChatUserInfo(newMessage.sender);
+            } = await getChatUserInfoAPI(newMessage.sender);
             senderName = name;
             console.log(',hi', name, profileImage);
             const newChat = {

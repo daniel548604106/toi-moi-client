@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useEffect, useState } from 'react';
 
 axios.defaults.baseURL = `${process.env.API_BASE_URL}/api`;
 

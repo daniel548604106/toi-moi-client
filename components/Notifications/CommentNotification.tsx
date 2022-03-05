@@ -2,7 +2,7 @@ import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { apiPostReadSingleNotification } from '@/Axios/index';
+import { postReadSingleNotificationAPI } from '@/Axios/notificationRequest';
 import Avatar from '@/Components/Global/Avatar';
 import { useAppSelector } from '@/Hooks/useAppRedux';
 import { timeDiff } from '@/Lib/dayjs';
@@ -19,7 +19,7 @@ const CommentNotification = ({ notification }: CommentNotificationProps) => {
   const handleReadNotification = async (notificationId) => {
     router.push(`/${userInfo.username}/posts/${notification.post._id}?comment_id=`);
     try {
-      const res = await apiPostReadSingleNotification(notificationId);
+      const res = await postReadSingleNotificationAPI(notificationId);
       console.log('res,', res);
     } catch (error) {
       console.log(error);

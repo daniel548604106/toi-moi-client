@@ -2,8 +2,8 @@ import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { postFriendRequestAPI } from '@/Axios/friendRequest';
-import { apiPostReadSingleNotification, apiRejectFriendRequest } from '@/Axios/index';
+import { postFriendRequestAPI, rejectFriendRequestAPI } from '@/Axios/friendRequest';
+import { postReadSingleNotificationAPI } from '@/Axios/notificationRequest';
 import Avatar from '@/Components/Global/Avatar';
 import { timeDiff } from '@/Lib/dayjs';
 import { UsersIcon } from '@heroicons/react/outline';
@@ -21,7 +21,7 @@ const FriendNotification = (props: FriendNotificationProps) => {
   const handleReadNotification = async (notificationId) => {
     router.push(`/${notification.user.username}`);
     try {
-      await apiPostReadSingleNotification(notificationId);
+      await postReadSingleNotificationAPI(notificationId);
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +42,7 @@ const FriendNotification = (props: FriendNotificationProps) => {
     e.stopPropagation();
     removeNotification(notification._id);
     try {
-      await apiRejectFriendRequest(username);
+      await rejectFriendRequestAPI(username);
     } catch (error) {
       console.log(error);
     }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { apiPatchProfileBio } from '@/Axios/index';
+import { patchProfileBioAPI } from '@/Axios/profileRequest';
 import { useAppSelector } from '@/Hooks/useAppRedux';
 
 interface BioInputProps {
@@ -22,7 +22,7 @@ const BioInput = (props: BioInputProps) => {
     if (disable) return;
     setBioInputOpen(false);
     try {
-      const { data } = await apiPatchProfileBio({ username, bio });
+      const { data } = await patchProfileBioAPI({ username, bio });
       console.log(data);
     } catch (error) {
       console.log(error);

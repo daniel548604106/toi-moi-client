@@ -1,7 +1,7 @@
 import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { apiPostWorkExperienceSummary } from '@/Axios/index';
+import { postWorkExperienceSummaryAPI } from '@/Axios/profileRequest';
 import Loader from '@/Components/Global/Loader';
 
 import PeriodSelector from './PreriodSelector';
@@ -41,7 +41,7 @@ const WorkExperienceInputBox = ({ setActiveBox }: WorkExperienceInputBoxProps) =
     if (!available) return;
     try {
       setLoading(true);
-      const res = await apiPostWorkExperienceSummary(router.query.id, newExperience);
+      const res = await postWorkExperienceSummaryAPI(router.query.id, newExperience);
       setLoading(false);
       setActiveBox(0);
       console.log('send', res);

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { apiPostNewPost } from '@/Axios/index';
+import { postNewPostAPI } from '@/Axios/postRequest';
 import Avatar from '@/Components/Global/Avatar';
 import Loader from '@/Components/Global/Loader';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
@@ -43,7 +43,7 @@ const InputBoxModal = () => {
       e.preventDefault();
       if (text === '') return;
       setLoading(true);
-      await apiPostNewPost({ image, text, location, type: 'post' });
+      await postNewPostAPI({ image, text, location, type: 'post' });
       setText('');
       setLoading(false);
       setImage(null);

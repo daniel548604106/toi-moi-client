@@ -4,14 +4,14 @@ export const postFriendRequestAPI = (username) => {
   return request.post(`/profile/friend/${username}`);
 };
 
-export const removeFriendRequest = (username) => {
+export const removeFriendRequestAPI = (username) => {
   return request.post(`/profile/unfriend/${username}`);
 };
 
-export const rejectFriendRequest = (username) => {
+export const rejectFriendRequestAPI = (username) => {
   return request.post(`/profile/reject/${username}`);
 };
 
-export const getFriendList = () => {
+export const getFriendsListAPI = () => {
   return request.get(`/friends`);
 };

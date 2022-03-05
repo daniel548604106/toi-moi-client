@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { apiGetChat } from '@/Axios/index';
+import { getChatAPI } from '@/Axios/chatRequest';
 import Avatar from '@/Components/Global/Avatar';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { UserInfo } from '@/Interfaces/I_common';
@@ -50,7 +50,7 @@ const ChatBox = (props: ChatBoxProps) => {
   };
   const getChat = async () => {
     try {
-      const { data } = await apiGetChat(user._id);
+      const { data } = await getChatAPI(user._id);
       console.log(data);
       setMessages(data);
     } catch (error) {

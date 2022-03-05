@@ -2,7 +2,7 @@ import useTranslation from 'next-translate/useTranslation';
 import router from 'next/router';
 import React from 'react';
 
-import { apiPostReadSingleNotification } from '@/Axios/index';
+import { postReadSingleNotificationAPI } from '@/Axios/notificationRequest';
 import Avatar from '@/Components/Global/Avatar';
 import { useAppSelector } from '@/Hooks/useAppRedux';
 import { timeDiff } from '@/Lib/dayjs';
@@ -18,7 +18,7 @@ const LikeNotification = ({ notification }: LikeNotificationProps) => {
   const handleReadNotification = async (notificationId) => {
     router.push(`/${userInfo.username}/posts/${notification.post._id}`);
     try {
-      const res = await apiPostReadSingleNotification(notificationId);
+      const res = await postReadSingleNotificationAPI(notificationId);
       console.log('res,', res);
     } catch (error) {
       console.log(error);

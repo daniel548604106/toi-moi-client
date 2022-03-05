@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useRef } from 'react';
 
-import { apiDeletePost } from '@/Axios/index';
+import { deletePostAPI } from '@/Axios/postRequest';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { setNotification } from '@/Redux/slices/globalSlice';
 import { setViewPostModalOpen } from '@/Redux/slices/postSlice';
@@ -16,7 +16,7 @@ const ViewPostModal = () => {
 
   const handleDeletePost = async () => {
     try {
-      const { data } = await apiDeletePost(post?._id);
+      const { data } = await deletePostAPI(post?._id);
       // dispatch(getSavedPosts())
       console.log(data);
       dispatch(setNotification('Post deleted'));

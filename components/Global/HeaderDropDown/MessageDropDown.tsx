@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import { apiGetChats } from '@/Axios/index';
+import { getAllChatsAPI } from '@/Axios/chatRequest';
 import {
     DotsHorizontalIcon, PencilAltIcon, SearchIcon, VideoCameraIcon
 } from '@heroicons/react/solid';
@@ -20,7 +20,7 @@ const MessageDropDown = ({ t }: MessageDropDownProps) => {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await apiGetChats();
+        const res = await getAllChatsAPI();
         setMessages(res.data);
       } catch (error) {
         console.log(error);

@@ -2,7 +2,8 @@ import Image from 'next/dist/client/image';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { apiPatchProfileImage, apiPostNewPost } from '@/Axios/index';
+import { postNewPostAPI } from '@/Axios/postRequest';
+import { patchProfileImageAPI } from '@/Axios/profileRequest';
 import Loader from '@/Components/Global/Loader';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { getProfileData } from '@/Redux/slices/profileSlice';
@@ -20,13 +21,13 @@ const EditProfileImageModal = () => {
 
   const sendUpdates = async (profileImageToUpdate) => {
     try {
-      const { data } = await apiPostNewPost({
+      const { data } = await postNewPostAPI({
         image: profileImageToUpdate,
         text,
         location: '',
         type: 'profileImage',
       });
-      const res = await apiPatchProfileImage({
+      const res = await patchProfileImageAPI({
         username: router.query.id,
         profileImageDescription: text,
         profileImagePostId: data,

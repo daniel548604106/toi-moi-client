@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { apiGetSearchedChats } from '@/Axios/index';
+import { getSearchedChatsAPI } from '@/Axios/chatRequest';
 import Avatar from '@/Components/Global/Avatar';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import { addToChatBoxList } from '@/Redux/slices/messageSlice';
@@ -24,7 +24,7 @@ const SearchBox = ({ setSearchOpen }: SearchBoxProps) => {
   useEffect(() => {
     const getSearchedContact = async () => {
       try {
-        const { data } = await apiGetSearchedChats(searchText);
+        const { data } = await getSearchedChatsAPI(searchText);
         setSearchResult(data);
       } catch (error) {
         console.log(error);

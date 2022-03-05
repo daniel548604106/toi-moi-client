@@ -1,7 +1,7 @@
 import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { apiGetFriendList } from '@/Axios/index';
+import { getFriendsListAPI } from '@/Axios/friendRequest';
 import Avatar from '@/Components/Global/Avatar';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
@@ -16,7 +16,7 @@ const InviteRoom = ({ roomCode }) => {
   const getFriendList = async () => {
     setLoading(true);
     try {
-      const { data } = await apiGetFriendList();
+      const { data } = await getFriendsListAPI();
       setFriendList(data);
       setLoading(false);
     } catch (error) {

@@ -1,7 +1,7 @@
 import router from 'next/router';
 import React, { useState } from 'react';
 
-import { apiDeleteComment, apiLikeComment, apiUnlikeComment } from '@/Axios/index';
+import { deleteCommentAPI, likeCommentAPI, unlikeCommentAPI } from '@/Axios/postRequest';
 import Avatar from '@/Components/Global/Avatar';
 import { useAppSelector } from '@/Hooks/useAppRedux';
 import { timeDiff } from '@/Lib/dayjs';
@@ -25,7 +25,7 @@ const Comment = (props: CommentProps) => {
   const handleLikeComment = async (commentId) => {
     setCommentLiked(true);
     try {
-      const { data } = await apiLikeComment(postId, commentId);
+      const { data } = await likeCommentAPI(postId, commentId);
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -34,7 +34,7 @@ const Comment = (props: CommentProps) => {
   const handleUnlikeComment = async (commentId) => {
     setCommentLiked(false);
     try {
-      const { data } = await apiUnlikeComment(postId, commentId);
+      const { data } = await unlikeCommentAPI(postId, commentId);
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -43,7 +43,7 @@ const Comment = (props: CommentProps) => {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      const { data } = await apiDeleteComment(postId, commentId);
+      const { data } = await deleteCommentAPI(postId, commentId);
       let remainedComments = comments.filter((comment) => comment._id !== commentId);
       setComments(remainedComments);
       console.log(data);

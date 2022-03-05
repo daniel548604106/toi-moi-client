@@ -1,7 +1,7 @@
 import useTranslation from 'next-translate/useTranslation';
 import React, { useState } from 'react';
 
-import { apiCommentPost } from '@/Axios/index';
+import { commentPostAPI } from '@/Axios/postRequest';
 import Avatar from '@/Components/Global/Avatar';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { setNotification } from '@/Redux/slices/globalSlice';
@@ -22,7 +22,7 @@ const PostCommentInput = (props: PostCommentInputProps) => {
     e.preventDefault();
     if (text === '') return;
     try {
-      const { data } = await apiCommentPost(post?._id, text);
+      const { data } = await commentPostAPI(post?._id, text);
       const newComment = data;
       setComments((comments) => [newComment, ...comments]);
       setText('');

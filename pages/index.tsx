@@ -6,7 +6,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch } from 'react-redux';
 import io, { Socket } from 'socket.io-client';
 
-import { apiGetAllPosts, apiGetChatUserInfo } from '@/Axios/index';
+import { getChatUserInfoAPI } from '@/Axios/chatRequest';
+import { getAllPostsAPI } from '@/Axios/postRequest';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Contacts from '@/Components/Home/Contacts/Index';
 import InputBox from '@/Components/Home/Feed/InputBox';
@@ -53,7 +54,7 @@ export default function Home({ posts, friends, stories, notFound }) {
 
   const handleGetMorePosts = async () => {
     try {
-      const posts = await apiGetAllPosts(currentPage);
+      const posts = await getAllPostsAPI(currentPage);
       setCurrentPosts((prev) => [...prev, ...posts.data]);
       if (posts.data.length === 0) setHasMore(false);
       setCurrentPage((currentPage) => currentPage + 1);
@@ -102,7 +103,7 @@ export default function Home({ posts, friends, stories, notFound }) {
         });
         socket.current.on('newMsgReceived', async ({ newMessage }) => {
           console.log('received new message', newMessage);
-          const { data } = await apiGetChatUserInfo(newMessage.sender);
+          const { data } = await getChatUserInfoAPI(newMessage.sender);
           console.log(data, 'data');
           // Add To ChatBox
           dispatch(addToChatBoxList(data));

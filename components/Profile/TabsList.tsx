@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { postFriendRequestAPI } from '@/Axios/friendRequest';
-import { apiRemoveFriendRequest } from '@/Axios/index';
+import { postFriendRequestAPI, removeFriendRequestAPI } from '@/Axios/friendRequest';
 import { useAppSelector } from '@/Hooks/useAppRedux';
 import {
     ChatAlt2Icon, DotsHorizontalIcon, PencilAltIcon, UserAddIcon, UsersIcon
@@ -62,7 +61,7 @@ const TabsList = ({ user, friends_total, friend_status }) => {
   const handleRemoveRequest = async () => {
     try {
       setFriendStatus('unfriend');
-      const { data } = await apiRemoveFriendRequest(router.query.id);
+      const { data } = await removeFriendRequestAPI(router.query.id);
       console.log(data);
     } catch (error) {
       console.log(error);

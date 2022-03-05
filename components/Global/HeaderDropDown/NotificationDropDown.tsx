@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { apiGetNotifications } from '@/Axios/index';
+import { getNotificationsAPI } from '@/Axios/notificationRequest';
 import CommentNotification from '@/Components/Notifications/CommentNotification';
 import EmptyNotification from '@/Components/Notifications/EmptyNotification';
 import FriendNotification from '@/Components/Notifications/FriendNotification';
@@ -18,7 +18,7 @@ const NotificationDropDown = (props: NotificationDropDownProps) => {
   useEffect(() => {
     const getNotifications = async () => {
       try {
-        const { data } = await apiGetNotifications();
+        const { data } = await getNotificationsAPI();
         console.log(data, 'notification');
         setNotifications(data);
       } catch (error) {

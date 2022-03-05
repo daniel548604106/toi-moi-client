@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { apiDeletePost, apiDeleteSavedPost, apiPostNewSavedPost } from '@/Axios/index';
+import { apiDeleteSavedPost, apiPostNewSavedPost } from '@/Axios/index';
+import { deletePostAPI } from '@/Axios/postRequest';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { UserInfo } from '@/Interfaces/I_common';
 import { setNotification } from '@/Redux/slices/globalSlice';
@@ -25,7 +26,7 @@ const Popup = (props: PopupProps) => {
 
   const handleDeletePost = async () => {
     try {
-      const { data } = await apiDeletePost(postId);
+      const { data } = await deletePostAPI(postId);
       console.log(data);
       deletePost(postId);
       dispatch(setNotification('Post deleted'));

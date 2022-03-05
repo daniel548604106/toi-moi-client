@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { apiPostReadNotifications } from '@/Axios/index';
+import { postReadNotificationsAPI } from '@/Axios/notificationRequest';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { getMyInfo } from '@/Redux/slices/userSlice';
 
@@ -15,7 +15,7 @@ const DropDownMenuIcon = ({ Icon, children, title }) => {
       setMenuOpen(!isMenuOpen);
       if (title === 'Notification') {
         setUnreadNotification(false);
-        const { data } = await apiPostReadNotifications();
+        const { data } = await postReadNotificationsAPI();
         // Update userInfo
         dispatch(getMyInfo());
         console.log(data);

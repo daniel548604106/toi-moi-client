@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 const useNotify = (text) => {
   const [isShow, setShow] = useState(false);
 

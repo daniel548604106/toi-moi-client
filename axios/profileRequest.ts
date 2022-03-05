@@ -1,14 +1,14 @@
 import request from '@/Lib/axiosConfig';
 
-export const getProfile = (username) => {
+export const getProfileAPI = (username) => {
   return request.get(`/profile/${username}`);
 };
 
-export const getProfilePosts = (username, currentPage) => {
+export const getProfilePostsAPI = (username, currentPage) => {
   return request.get(`/profile/posts/${username}?page=${currentPage}`);
 };
 
-export const patchProfile = ({
+export const patchProfileAPI = ({
   username,
   bio,
   profileCoverPostId,
@@ -23,30 +23,30 @@ export const patchProfile = ({
   });
 };
 
-export const patchProfileBio = ({ username, bio }) => {
+export const patchProfileBioAPI = ({ username, bio }) => {
   return request.patch(`/profile/${username}`, { bio });
 };
 
-export const patchProfileSummary = (username) => {
+export const patchProfileSummaryAPI = (username) => {
   return request.patch(`/profile/${username}/summary`);
 };
 
 // Add Work Experience
-export const postWorkExperienceSummary = (username, experience) => {
+export const postWorkExperienceSummaryAPI = (username, experience) => {
   return request.post(`/profile/${username}/work_experience`, { experience });
 };
 
 // Add Education
-export const postEducationSummary = (username, experience) => {
+export const postEducationSummaryAPI = (username, experience) => {
   return request.post(`/profile/${username}/education`, { experience });
 };
 
-export const getProfileFriends = (username) => {
+export const getProfileFriendsAPI = (username) => {
   return request.get(`/profile/friends_preview/${username}`);
 };
 
 // update profile image
-export const patchProfileImage = ({
+export const patchProfileImageAPI = ({
   username,
   profileImageDescription,
   profileImagePostId,
@@ -60,6 +60,6 @@ export const patchProfileImage = ({
 };
 
 // Get Profile Summary
-export const getProfileSummary = (username) => {
+export const getProfileSummaryAPI = (username) => {
   return request.get(`/profile/summary/${username}`);
 };
