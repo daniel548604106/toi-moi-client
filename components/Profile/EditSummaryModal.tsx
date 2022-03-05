@@ -1,22 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import AddNewButton from './EditSummary/AddNewButton';
-import { XIcon } from '@heroicons/react/solid';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { setSummaryModalShow } from '@/Redux/slices/profileSlice';
-import HomeTownInputBox from './EditSummary/HomeTownInputBox';
-import RelationshipStatusInputBox from './EditSummary/RelationshipStatusInputBox';
-import WorkExperienceInputBox from './EditSummary/WorkExperienceInputBox';
+import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline';
+import { XIcon } from '@heroicons/react/solid';
+
+import AddNewButton from './EditSummary/AddNewButton';
 import CurrentCityInputBox from './EditSummary/CurrentCityInputBox';
 import EducationInputBox from './EditSummary/EducationInputBox';
+import HomeTownInputBox from './EditSummary/HomeTownInputBox';
+import RelationshipStatusInputBox from './EditSummary/RelationshipStatusInputBox';
 import SummaryListItem from './EditSummary/SummaryListItem';
-import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline';
+import WorkExperienceInputBox from './EditSummary/WorkExperienceInputBox';
+
 const EditSummaryModal = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const { summaryData } = useAppSelector((state) => state.profile);
+
   const [activeBox, setActiveBox] = useState(0);
+
   const handleSetActive = (idx) => {
     setActiveBox(idx);
   };
-  const { summaryData } = useSelector((state) => state.profile);
 
   return (
     <div className=" relative bg-secondary text-secondary rounded-md flex flex-col  w-full max-w-[600px] max-h-screen  sm:max-h-[70vh] h-full">

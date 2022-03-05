@@ -1,12 +1,15 @@
-import React from 'react';
-import CardLayout from './CardLayout';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSummaryModalShow } from '@/Redux/slices/profileSlice';
 import router from 'next/router';
-import { BriefcaseIcon, AcademicCapIcon } from '@heroicons/react/outline';
+import React from 'react';
+
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { setSummaryModalShow } from '@/Redux/slices/profileSlice';
+import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline';
+
+import CardLayout from './CardLayout';
+
 const Summary = ({ summary }) => {
-  const dispatch = useDispatch();
-  const { userInfo } = useSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelector((state) => state.user);
 
   return (
     <CardLayout title="Summary">

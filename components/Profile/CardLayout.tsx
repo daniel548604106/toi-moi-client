@@ -1,6 +1,14 @@
-import React from 'react';
 import { useRouter } from 'next/router';
-const CardLayout = ({ title, buttonName, buttonLink, children }) => {
+import React from 'react';
+
+interface CardLayoutProps {
+  title: string;
+  buttonName?: string;
+  buttonLink: string;
+  children: React.ReactChild;
+}
+const CardLayout = (props: CardLayoutProps) => {
+  const { title, buttonName, buttonLink, children } = props;
   const router = useRouter();
   const username = router.query.id;
   return (

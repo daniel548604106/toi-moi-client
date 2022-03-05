@@ -1,15 +1,16 @@
-import React, { useState, useRef } from 'react';
-import { ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
-import Loader from '../Global/Loader';
-import range from 'lodash/range';
-import catchError from '@/Lib/catchError';
+import { Field, Form, Formik } from 'formik';
 import Cookie from 'js-cookie';
-import { useDispatch } from 'react-redux';
-import { setUserLogin } from '@/Redux/slices/userSlice';
-import { Formik, Form, Field } from 'formik';
+import range from 'lodash/range';
 import router from 'next/router';
+import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+
 import { postSignupAPI } from '@/Axios/authRequest';
+import Loader from '@/Components/Global/Loader';
+import catchError from '@/Lib/catchError';
+import { setUserLogin } from '@/Redux/slices/userSlice';
+import { ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().min(2, 'Please use your real name').max(50, 'Too Long!').required('Required'),
@@ -25,18 +26,20 @@ const SignupSchema = Yup.object().shape({
 });
 const Index = ({ setSignupOpen }) => {
   const dispatch = useDispatch();
-  const currentYear = new Date().getFullYear();
+  const formRef = useRef();
+
   const [isLoading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [birthdayError, setBirthdayError] = useState('');
+
+  const currentYear = new Date().getFullYear();
   const yearRange = range(currentYear, 1930);
   const monthRange = range(1, 13);
   const dateRange = range(1, 32);
-  const [errorMsg, setErrorMsg] = useState('');
-  const [birthdayError, setBirthdayError] = useState('');
-  const formRef = useRef();
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const { name, account, email, gender, password, year, month, date } = formRef.current.values;
+    const { name, account, email, gender, password, year, month, date } = formRef?.current.values;
 
     if (!year || !month || !date) {
       return setBirthdayError('Please fill in your correct birthday');

@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import PeriodSelector from './PreriodSelector';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+
 import { apiPostEducationSummary } from '@/Axios/index';
-const EducationInputBox = ({ setActiveBox }) => {
-  const { username } = useSelector((state) => state.user.userInfo);
+import { useAppSelector } from '@/Hooks/useAppRedux';
+
+import PeriodSelector from './PreriodSelector';
+
+interface EducationInputBoxProps {
+  setActiveBox: (boolean) => void;
+}
+
+const EducationInputBox = ({ setActiveBox }: EducationInputBoxProps) => {
+  const { username } = useAppSelector((state) => state.user.userInfo);
   const [available, setAvailable] = useState(false);
   const [newExperience, setNewExperience] = useState({
     school_name: '',

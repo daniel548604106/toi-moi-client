@@ -1,22 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
 import range from 'lodash/range';
+import React, { useEffect, useState } from 'react';
+
+import { ChevronDownIcon } from '@heroicons/react/solid';
+
 const yearRange = range(2021, 1960);
 const monthRange = range(1, 12);
-const PeriodSelector = ({ newExperience, setNewExperience, status }) => {
+
+interface PeriodSelectorProps {
+  newExperience: any;
+  setNewExperience: (any) => void;
+  status: string;
+}
+const PeriodSelector = (props: PeriodSelectorProps) => {
+  const { newExperience, setNewExperience, status } = props;
   const [checked, setChecked] = useState(true);
 
   // Start
-  const [startYear, setStartYear] = useState('');
-  const [endYear, setEndYear] = useState('');
+  const [startYear, setStartYear] = useState(0);
+  const [endYear, setEndYear] = useState(0);
 
   // End
-  const [startMonth, setStartMonth] = useState('');
-  const [endMonth, setEndMonth] = useState('');
+  const [startMonth, setStartMonth] = useState(0);
+  const [endMonth, setEndMonth] = useState(0);
 
   useEffect(() => {
     setNewExperience({ ...newExperience, [`still_${status}`]: checked });
   }, [checked]);
+
   useEffect(() => {
     setNewExperience({
       ...newExperience,
@@ -24,8 +34,8 @@ const PeriodSelector = ({ newExperience, setNewExperience, status }) => {
         start_year: startYear,
         end_year: endYear,
         start_month: startMonth,
-        end_month: endMonth
-      }
+        end_month: endMonth,
+      },
     });
   }, [startYear, endYear, startMonth, endMonth]);
 
@@ -40,9 +50,7 @@ const PeriodSelector = ({ newExperience, setNewExperience, status }) => {
             checked={checked}
             className="w-[20px] h-[20px]"
           />
-          <p className="ml-[10px] font-semibold text-sm">
-            Currently {status} here
-          </p>
+          <p className="ml-[10px] font-semibold text-sm">Currently {status} here</p>
         </div>
       </div>
       <div className="flex items-center justify-between">

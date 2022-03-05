@@ -1,15 +1,24 @@
-import React, { useRef } from 'react';
-import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
-import { useDispatch, useSelector } from 'react-redux';
-import { setEditProfileImageOpen, setProfileImageToUpdate } from '@/Redux/slices/userSlice';
-import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
 import router from 'next/router';
+import React, { useRef } from 'react';
+
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { UserInfo } from '@/Interfaces/I_common';
+import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
+import { setEditProfileImageOpen, setProfileImageToUpdate } from '@/Redux/slices/userSlice';
 import genderAvatar from '@/Utils/genderAvatar';
-const ProfileImage = ({ postId, user, profileImage }) => {
-  const dispatch = useDispatch();
+import { CameraIcon } from '@heroicons/react/outline';
+
+interface ProfileImageProps {
+  postId: string;
+  user: UserInfo;
+  profileImage: string;
+}
+const ProfileImage = (props: ProfileImageProps) => {
+  const { postId, user, profileImage } = props;
+  const dispatch = useAppDispatch();
+  const userInfo = useAppSelector((state) => state.user.userInfo);
   const profileImageRef = useRef(null);
-  const userInfo = useSelector((state) => state.user.userInfo);
 
   const handleNewProfileImagePreview = (e) => {
     e.stopPropagation();
@@ -35,6 +44,7 @@ const ProfileImage = ({ postId, user, profileImage }) => {
     };
     dispatch(setEditProfileImageOpen(true));
   };
+
   return (
     <div
       onClick={(e) => e.stopPropagation()}
@@ -49,7 +59,6 @@ const ProfileImage = ({ postId, user, profileImage }) => {
       />
       {router.query.id === userInfo.username && (
         <span
-          name="profile"
           onClick={(e) => handleNewProfileImagePreview(e)}
           className="cursor-pointer absolute bottom-0 border-2 right-0 p-2 rounded-full bg-secondary text-secondary shadow-md hover:shadow-xl"
         >

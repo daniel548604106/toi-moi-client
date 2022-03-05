@@ -1,12 +1,20 @@
-import React, { useState, useRef } from 'react';
-import genderAvatar from '@/Utils/genderAvatar';
-import { DotsHorizontalIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
-import { TrashIcon } from '@heroicons/react/outline';
 import router from 'next/router';
-import useClickOutside from '@/Hooks/useClickOutside';
+import React, { useRef, useState } from 'react';
+
 import { apiDeleteSavedPost } from '@/Axios/index';
-const SavedCard = ({ post, publisher, type, handleRemoveSavedPost }) => {
+import useClickOutside from '@/Hooks/useClickOutside';
+import genderAvatar from '@/Utils/genderAvatar';
+import { DotsHorizontalIcon, TrashIcon } from '@heroicons/react/outline';
+
+interface SavedCardProps {
+  post: any;
+  publisher: any;
+  type: string;
+  handleRemoveSavedPost: (string) => void;
+}
+const SavedCard = (props: SavedCardProps) => {
+  const { post, publisher, type, handleRemoveSavedPost } = props;
   const [isDropdownShow, setDropdownShow] = useState(false);
   const elRef = useRef();
   useClickOutside(elRef, () => setDropdownShow(false));

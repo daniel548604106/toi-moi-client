@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { XIcon } from '@heroicons/react/outline';
-import { setEditProfileImageOpen, getMyInfo } from '@/Redux/slices/userSlice';
-import Loader from '../Global/Loader';
 import Image from 'next/dist/client/image';
-import { getProfileData } from '@/Redux/slices/profileSlice';
 import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+
 import { apiPatchProfileImage, apiPostNewPost } from '@/Axios/index';
+import Loader from '@/Components/Global/Loader';
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { getProfileData } from '@/Redux/slices/profileSlice';
+import { getMyInfo, setEditProfileImageOpen } from '@/Redux/slices/userSlice';
+import { XIcon } from '@heroicons/react/outline';
 
 const EditProfileImageModal = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const profileImageToUpdate = useAppSelector((state) => state.user.profileImageToUpdate);
+  const userInfo = useAppSelector((state) => state.user.userInfo);
+
   const [text, setText] = useState('');
   const [isLoading, setLoading] = useState(false);
-  const profileImageToUpdate = useSelector((state) => state.user.profileImageToUpdate);
-  const userInfo = useSelector((state) => state.user.userInfo);
 
   const sendUpdates = async (profileImageToUpdate) => {
     try {
@@ -43,11 +45,13 @@ const EditProfileImageModal = () => {
       // Get updated user info
       await dispatch(getMyInfo());
       // Get updated user profile
-      await dispatch(getProfileData(userInfo.username));
+      await dispatch(getProfileData(userInfo?.username));
       setLoading(false);
       dispatch(setEditProfileImageOpen(false));
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (

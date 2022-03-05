@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import PeriodSelector from './PreriodSelector';
-import { apiPostWorkExperienceSummary } from '@/Axios/index';
-import Loader from '../../Global/Loader';
 import router from 'next/router';
-const WorkExperienceInputBox = ({ setActiveBox }) => {
-  const handleCancel = () => {
-    setActiveBox(0);
-  };
+import React, { useEffect, useState } from 'react';
+
+import { apiPostWorkExperienceSummary } from '@/Axios/index';
+import Loader from '@/Components/Global/Loader';
+
+import PeriodSelector from './PreriodSelector';
+
+interface WorkExperienceInputBoxProps {
+  setActiveBox: (number) => void;
+}
+
+const WorkExperienceInputBox = ({ setActiveBox }: WorkExperienceInputBoxProps) => {
   const [available, setAvailable] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [newExperience, setNewExperience] = useState({
@@ -23,6 +27,11 @@ const WorkExperienceInputBox = ({ setActiveBox }) => {
     },
     set_public: true,
   });
+
+  const handleCancel = () => {
+    setActiveBox(0);
+  };
+
   const handleInputChange = (e) => {
     setNewExperience({ ...newExperience, [e.target.name]: e.target.value });
     console.log(newExperience);
@@ -38,6 +47,8 @@ const WorkExperienceInputBox = ({ setActiveBox }) => {
       console.log('send', res);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {

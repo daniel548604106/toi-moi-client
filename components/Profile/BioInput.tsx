@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { apiPatchProfileBio } from '@/Axios/index';
-import { useSelector } from 'react-redux';
-const BioInput = ({ isEditable, bio, originalBio, setBio }) => {
+import { useAppSelector } from '@/Hooks/useAppRedux';
+
+interface BioInputProps {
+  isEditable: boolean;
+  bio: string;
+  originalBio: string;
+  setBio: (string) => void;
+}
+
+const BioInput = (props: BioInputProps) => {
+  const { isEditable, bio, originalBio, setBio } = props;
   const [bioInputOpen, setBioInputOpen] = useState(false);
   const [bioLengthLeft, setBioLengthLeft] = useState(80);
-  const { username } = useSelector((state) => state.user.userInfo);
+  const { username } = useAppSelector((state) => state.user.userInfo);
 
   const [disable, setDisable] = useState(false);
 
@@ -42,7 +52,6 @@ const BioInput = ({ isEditable, bio, originalBio, setBio }) => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             className="h-[120px] focus:outline-none p-2 bg-gray-100 rounded-xl  w-[300px] overflow-y-scroll"
-            type="text"
           />
           <div className="flex items-center justify-between">
             <span className="text-xs tex-gray-400">{bioLengthLeft} text left </span>

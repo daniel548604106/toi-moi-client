@@ -1,8 +1,13 @@
-import React from 'react';
 import { useRouter } from 'next/router';
+import React from 'react';
+
 import SidebarListItem from '../Activity/SidebarListItem';
 
-const SidebarLIst = ({ filterList }) => {
+interface SidebarListProps {
+  filterList: any;
+}
+
+const SidebarLIst = ({ filterList }: SidebarListProps) => {
   const router = useRouter();
   return (
     <div className="bg-secondary text-secondary p-5 h-full border-r">

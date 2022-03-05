@@ -1,28 +1,38 @@
-import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { CameraIcon, GlobeIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
+
+import { apiPatchProfile, apiPostNewPost } from '@/Axios/index';
+import Loader from '@/Components/Global/Loader';
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { UserInfo } from '@/Interfaces/I_common';
+import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
+import { CameraIcon, GlobeIcon } from '@heroicons/react/outline';
+
 import BioInput from './BioInput';
 import ProfileImage from './ProfileImage';
-import { apiPatchProfile, apiPostNewPost } from '@/Axios/index';
-import { setViewPostModalOpen, apiGetCurrentPost } from '@/Redux/slices/postSlice';
-import Loader from '../Global/Loader';
 
-const ProfileCover = ({ user, profile }) => {
+interface ProfileCoverProps {
+  user: UserInfo;
+  profile: any;
+}
+
+const ProfileCover = (props: ProfileCoverProps) => {
+  const { user, profile } = props;
   const router = useRouter();
-  const dispatch = useDispatch();
-  const latestProfileImage = useSelector(
+  const dispatch = useAppDispatch();
+
+  const userInfo = useAppSelector((state) => state?.user?.userInfo);
+  const latestProfileImage = useAppSelector(
     (state) => state.profile?.profileData?.profile?.profileImage,
   );
+
+  const inputRef = useRef(null);
   const [isLoading, setLoading] = useState(false);
   const [isCoverImageEditable, setCoverImageEditable] = useState(false);
   const [coverImage, setCoverImage] = useState(profile?.profileCoverImage);
   const [coverDescription, setCoverDescription] = useState(profile?.profileCoverDescription);
   const [bio, setBio] = useState(profile?.bio);
-
-  const inputRef = useRef(null);
-  const userInfo = useSelector((state) => state?.user?.userInfo);
 
   const handleCancelImageUpdate = () => {
     setCoverImageEditable(false);

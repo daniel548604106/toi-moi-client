@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { CheckIcon, PlusCircleIcon } from '@heroicons/react/solid';
-import {
-  DotsHorizontalIcon,
-  PencilAltIcon,
-  UserAddIcon,
-  ChatAlt2Icon,
-  UsersIcon,
-} from '@heroicons/react/outline';
-import { ChevronDownIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import { apiRemoveFriendRequest } from '@/Axios/index';
+import React, { useEffect, useState } from 'react';
+
 import { postFriendRequestAPI } from '@/Axios/friendRequest';
-let tabs = [
+import { apiRemoveFriendRequest } from '@/Axios/index';
+import { useAppSelector } from '@/Hooks/useAppRedux';
+import {
+    ChatAlt2Icon, DotsHorizontalIcon, PencilAltIcon, UserAddIcon, UsersIcon
+} from '@heroicons/react/outline';
+import { CheckIcon, ChevronDownIcon, PlusCircleIcon } from '@heroicons/react/solid';
+
+const tabs = [
   {
     title: 'posts',
     link: '/',
@@ -44,12 +41,15 @@ const hiddenTabs = [
 
 const TabsList = ({ user, friends_total, friend_status }) => {
   const router = useRouter();
+
+  const userInfo = useAppSelector((state) => state.user.userInfo);
+
   const [activeTab, setActiveTab] = useState(router.query.tab);
   const [visibleTabs, setVisibleTabs] = useState(tabs);
   const [moreTabs, setMoreTabs] = useState(hiddenTabs);
   const [friendStatus, setFriendStatus] = useState(friend_status);
-  const userInfo = useSelector((state) => state.user.userInfo);
   const isLoggedInUser = router.query.id === userInfo.username;
+
   const handleSendFriendRequest = async () => {
     try {
       setFriendStatus('friendRequested');

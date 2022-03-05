@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-const CurrentCityInputBox = ({ setActiveBox }) => {
+interface CurrentCityInputBoxProps {
+  setActiveBox: Dispatch<SetStateAction<number>>;
+}
+
+const CurrentCityInputBox = ({ setActiveBox }: CurrentCityInputBoxProps) => {
   const [available, setAvailable] = useState(false);
   const [currentCity, setCurrentCity] = useState('');
   const handleSubmit = async () => {
@@ -35,10 +39,7 @@ const CurrentCityInputBox = ({ setActiveBox }) => {
         >
           Save
         </button>
-        <button
-          onClick={() => setActiveBox(0)}
-          className="rounded-lg p-2 px-3 border "
-        >
+        <button onClick={() => setActiveBox(0)} className="rounded-lg p-2 px-3 border ">
           Cancel
         </button>
       </div>
