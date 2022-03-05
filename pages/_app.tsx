@@ -6,9 +6,11 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { store } from '@/Redux/store';
 import { Provider } from 'react-redux';
-import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import * as ga from '@/Lib/gtag';
+import { setNotification } from '@/Redux/slices/globalSlice';
+
+import Cookies from 'js-cookie';
 
 // Components
 
@@ -17,7 +19,14 @@ import Header from '@/Components/Global/Header';
 import PostSkeletonLoader from '@/Components/Global/Loader/PostSkeletonLoader';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Notification from '@/Components/Global/Notification';
-import { setNotification } from '@/Redux/slices/globalSlice';
+import InputBoxModal from '@/Components/Home/Feed/InputBoxModal';
+
+// Redux Persist
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+
+import { setUserLogout } from '@/Redux/slices/userSlice';
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 
 const Overlay = dynamic(() => import('@/Components/Global/Overlay'), {
   loading: () => <LoaderSpinner />,
@@ -43,37 +52,28 @@ const LanguageSettingModal = dynamic(() => import('@/Components/Global/LanguageS
   loading: () => <LoaderSpinner />,
 });
 
-import InputBoxModal from '@/Components/Home/Feed/InputBoxModal';
-import Cookies from 'js-cookie';
-
-// Redux Persist
-import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist';
-
-import { setUserLogout } from '@/Redux/slices/userSlice';
-
 let persistor = persistStore(store);
 
 // Disable Console.logs
 if (process.env.NODE_ENV !== 'development') console.log = () => {};
 
 const App = ({ Component, pageProps }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
-  const { isLikesListOpen } = useSelector((state) => state.post);
-  const { isLanguageOpen, notification } = useSelector((state) => state.global);
-  const isEditProfileImageOpen = useSelector((state) => state.user.isEditProfileImageOpen);
-  const isCreateRoomOpen = useSelector((state) => state.global.isCreateRoomOpen);
-  const isEditSummaryModalOpen = useSelector((state) => state.profile.isEditSummaryModalOpen);
-  const isViewPostModalOpen = useSelector((state) => state.post.isViewPostModalOpen);
-  const isPostInputBoxOpen = useSelector((state) => state.post.isPostInputBoxOpen);
+  const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedIn);
+  const { isLikesListOpen } = useAppSelector((state) => state.post);
+  const { isLanguageOpen, notification } = useAppSelector((state) => state.global);
+  const isEditProfileImageOpen = useAppSelector((state) => state.user.isEditProfileImageOpen);
+  const isCreateRoomOpen = useAppSelector((state) => state.global.isCreateRoomOpen);
+  const isEditSummaryModalOpen = useAppSelector((state) => state.profile.isEditSummaryModalOpen);
+  const isViewPostModalOpen = useAppSelector((state) => state.post.isViewPostModalOpen);
+  const isPostInputBoxOpen = useAppSelector((state) => state.post.isPostInputBoxOpen);
 
   // Log user out if no token is found
   const token = Cookies.get('token');
   if (!token) {
-    dispatch(setUserLogout());
+    dispatch(setUserLogout({}));
   }
 
   const handleRouteChange = (url, { shallow }) => {
