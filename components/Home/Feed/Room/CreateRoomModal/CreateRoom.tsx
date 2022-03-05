@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 
-import { apiPostNewRoom } from '@/Axios/index';
+import { postNewRoomAPI } from '@/Axios/roomRequest';
 import Loader from '@/Components/Global/Loader';
 import { useAppSelector } from '@/Hooks/useAppRedux';
-import {
-    ChevronRightIcon, ClockIcon, HandIcon, UsersIcon, VideoCameraIcon
-} from '@heroicons/react/outline';
+import { ChevronRightIcon, ClockIcon, UsersIcon, VideoCameraIcon } from '@heroicons/react/outline';
 
 import CreateRoomListItem from './CreateRoomListItem';
 import CreateRoomName from './CreateRoomName';
@@ -24,7 +22,7 @@ const CreateRoom = ({ setRoomCreated, setRoomCode }) => {
   const handleCreateRoom = async () => {
     setLoading(true);
     try {
-      const { data } = await apiPostNewRoom(roomInfo);
+      const { data } = await postNewRoomAPI(roomInfo);
       setRoomCode(data.room_code);
       setLoading(false);
       setRoomCreated(true);

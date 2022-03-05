@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import io, { Socket } from 'socket.io-client';
 
 import { getChatUserInfoAPI } from '@/Axios/chatRequest';
-import { apiSearchRequest } from '@/Axios/index';
+import { searchRequestAPI } from '@/Axios/searchRequest';
 import Avatar from '@/Components/Global/Avatar';
 import ChatroomMainHeader from '@/Components/Messages/ChatroomMain/ChatroomMainHeader';
 import ChatroomMainInputBox from '@/Components/Messages/ChatroomMain/ChatroomMainInputBox';
@@ -50,7 +50,7 @@ const Index = (props) => {
 
   const searchChat = async () => {
     try {
-      const { data } = await apiSearchRequest(searchText);
+      const { data } = await searchRequestAPI(searchText);
       setSearchResult(data);
     } catch (error) {
       console.log(error);

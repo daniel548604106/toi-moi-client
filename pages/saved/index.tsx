@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-import { apiGetSavedPosts } from '@/Axios/index';
+import { getSavedPostsAPI } from '@/Axios/savedRequest';
 import SavedCard from '@/Components/Saved/SavedCard';
 
 const Saved = () => {
@@ -9,7 +9,7 @@ const Saved = () => {
 
   const handleGetSavedPosts = async () => {
     try {
-      const { data } = await apiGetSavedPosts();
+      const { data } = await getSavedPostsAPI();
       setSavedPosts(data.posts);
     } catch (error) {
       console.log(error);

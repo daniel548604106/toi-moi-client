@@ -1,24 +1,24 @@
-import request from '@/Lib/axiosConfig';
+import request from './index';
 
-export const searchRequest = (searchText) => {
+export const searchRequestAPI = (searchText) => {
   return request.get(`/search/${searchText}`);
 };
 
-export const getRecentSearch = () => {
+export const getRecentSearchAPI = () => {
   return request.get('/search/history/recent');
 };
 
-export const getAllSearch = () => {
+export const getAllSearchAPI = () => {
   return request.get(`/search/history/all`);
 };
 
-export const postUserSearch = (username) => {
+export const postUserSearchAPI = (username) => {
   return request.post('/search/user', { username });
 };
-export const postKeywordSearch = (keyword) => {
+export const postKeywordSearchAPI = (keyword) => {
   return request.post('/search/keyword', { keyword });
 };
 
-export const deleteHistory = (historyId) => {
+export const deleteHistoryAPI = (historyId) => {
   return request.post('/search/history', { historyId });
 };

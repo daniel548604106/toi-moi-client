@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { apiPostUserSearch } from '@/Axios/index';
+import { postUserSearchAPI } from '@/Axios/searchRequest';
 import genderAvatar from '@/Utils/genderAvatar';
 
 interface SearchListItemProps {
@@ -20,7 +20,7 @@ const SearchListItem = (props: SearchListItemProps) => {
     router.push(`/${username}`);
     try {
       setSearchResultShow(false);
-      const res = await apiPostUserSearch(username);
+      const res = await postUserSearchAPI(username);
     } catch (error) {
       console.log(error);
     }

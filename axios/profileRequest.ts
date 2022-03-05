@@ -1,4 +1,4 @@
-import request from '@/Lib/axiosConfig';
+import request from './index';
 
 export const getProfileAPI = (username) => {
   return request.get(`/profile/${username}`);

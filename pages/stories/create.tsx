@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import router from 'next/router';
 import React, { useRef, useState } from 'react';
 
-import { apiUploadStoryImage } from '@/Axios/index';
+import { uploadStoryImageAPI } from '@/Axios/storyRequest';
 import Avatar from '@/Components/Global/Avatar';
 import { useAppSelector } from '@/Hooks/useAppRedux';
 import { backgroundSelections } from '@/Utils/storyOptions';
@@ -54,7 +54,7 @@ const Create = () => {
     const canvasImage = stageRef.current.toDataURL();
     setLoading(true);
     try {
-      const { data } = await apiUploadStoryImage({
+      const { data } = await uploadStoryImageAPI({
         image: canvasImage,
         type: storyInfo.type,
         taggedUsers: [],

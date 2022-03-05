@@ -1,4 +1,4 @@
-import request from '@/Lib/axiosConfig';
+import request from './index';
 
 export const getAllChatsAPI = () => {
   return request.get('/chats');

@@ -1,5 +1,5 @@
-import { apiGetSavedPosts } from '@/Axios/index';
-import request from '@/Lib/axiosConfig';
+import request from '@/Axios/index';
+import { getSavedPostsAPI } from '@/Axios/savedRequest';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 // `createAsyncThunk` is a generic function.
@@ -20,7 +20,7 @@ export const apiGetCurrentPost = createAsyncThunk<any, string>(
   },
 );
 export const getSavedPosts = createAsyncThunk<any>('post/getSavedPost', async () => {
-  const response = await apiGetSavedPosts();
+  const response = await getSavedPostsAPI();
   console.log(response, 'saved');
   return response.data.posts;
 });

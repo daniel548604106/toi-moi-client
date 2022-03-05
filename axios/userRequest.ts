@@ -1,4 +1,4 @@
-import request from '@/Lib/axiosConfig';
+import request from './index';
 
 export const getMyInfoAPI = () => {
   return request.get('/me');

@@ -5,7 +5,7 @@ const request = axios.create({
   baseURL:
     process.env.NODE_ENV === 'development'
       ? `http://localhost:3001/api`
-      : 'https://subtle-odyssey-341215.de.r.appspot.com/api',
+      : 'https://subtle-odyssey-341215.de.r.appspot.com/api', // Server API Endpoint
 });
 
 // Add a request interceptor

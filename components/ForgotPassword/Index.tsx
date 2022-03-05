@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-import { apiPostForgotPassword } from '@/Axios/index';
+import { postForgotPasswordAPI } from '@/Axios/resetRequest';
 import { InboxIcon } from '@heroicons/react/outline';
 
 const ForgotPassword = () => {
@@ -13,7 +13,7 @@ const ForgotPassword = () => {
     // Send again
     if (emailSent) setLoading(true);
     try {
-      const res = await apiPostForgotPassword(email);
+      const res = await postForgotPasswordAPI(email);
       console.log(res);
       setEmailSent(true);
       setLoading(false);

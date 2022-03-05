@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { apiDeleteSavedPost, apiPostNewSavedPost } from '@/Axios/index';
 import { deletePostAPI } from '@/Axios/postRequest';
+import { deleteSavedPostAPI, postNewSavedPostAPI } from '@/Axios/savedRequest';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { UserInfo } from '@/Interfaces/I_common';
 import { setNotification } from '@/Redux/slices/globalSlice';
@@ -44,10 +44,10 @@ const Popup = (props: PopupProps) => {
   const handleSavePost = async () => {
     try {
       if (isSaved) {
-        await apiDeleteSavedPost(postId);
+        await deleteSavedPostAPI(postId);
         dispatch(setNotification('Remove saved post'));
       } else {
-        await apiPostNewSavedPost({
+        await postNewSavedPostAPI({
           type: 'post',
           postId,
           publisherId: user._id,

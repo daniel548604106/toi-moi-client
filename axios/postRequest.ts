@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 
-import request from '@/Lib/axiosConfig';
+import request from './index';
 
 const token = Cookie.get('token');
 

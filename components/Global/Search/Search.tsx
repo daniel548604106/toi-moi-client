@@ -1,7 +1,7 @@
 import router from 'next/router';
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { apiGetRecentSearch, apiPostKeywordSearch, apiSearchRequest } from '@/Axios/index';
+import { getRecentSearchAPI, postKeywordSearchAPI, searchRequestAPI } from '@/Axios/searchRequest';
 import * as ga from '@/Lib/gtag';
 import { ChevronLeftIcon, SearchIcon } from '@heroicons/react/outline';
 
@@ -25,7 +25,7 @@ const Search = ({ t }: SearchProps) => {
 
   const search = async () => {
     try {
-      const res = await apiSearchRequest(searchText);
+      const res = await searchRequestAPI(searchText);
       setSearchResult(res.data);
     } catch (error) {
       console.log(error);
@@ -34,7 +34,7 @@ const Search = ({ t }: SearchProps) => {
 
   const getSearchHistory = async () => {
     try {
-      const res = await apiGetRecentSearch();
+      const res = await getRecentSearchAPI();
       setSearchHistory(res.data);
     } catch (error) {
       console.log(error);
@@ -53,7 +53,7 @@ const Search = ({ t }: SearchProps) => {
       value: searchText,
     });
     try {
-      const res = await apiPostKeywordSearch(searchText);
+      const res = await postKeywordSearchAPI(searchText);
       await getSearchHistory();
       console.log(res);
     } catch (error) {

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 async function connectDB() {
   try {
@@ -8,7 +8,7 @@ async function connectDB() {
       useUnifiedTopology: true,
       useFindAndModify: true,
     });
-    console.log("DB Connected");
+    console.log('DB Connected');
   } catch (error) {
     console.log(error);
   }

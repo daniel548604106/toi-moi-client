@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { apiDeleteHistory } from '@/Axios/index';
+import { deleteHistoryAPI } from '@/Axios/searchRequest';
 import genderAvatar from '@/Utils/genderAvatar';
 import { SearchIcon, XIcon } from '@heroicons/react/outline';
 
@@ -32,7 +32,7 @@ const SearchHistoryItem = (props: SearchHistoryItemProps) => {
       const updatedHistory = searchHistory.filter((search) => search._id !== history._id);
       setSearchHistory(updatedHistory);
       console.log(history._id);
-      const res = await apiDeleteHistory(history._id);
+      const res = await deleteHistoryAPI(history._id);
       console.log(res);
     } catch (error) {
       console.log(error);

@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import router from 'next/router';
 import React, { useRef, useState } from 'react';
 
-import { apiDeleteSavedPost } from '@/Axios/index';
+import { deleteSavedPostAPI } from '@/Axios/savedRequest';
 import useClickOutside from '@/Hooks/useClickOutside';
 import genderAvatar from '@/Utils/genderAvatar';
 import { DotsHorizontalIcon, TrashIcon } from '@heroicons/react/outline';
@@ -25,7 +24,7 @@ const SavedCard = (props: SavedCardProps) => {
   const handleDeletePost = async (id) => {
     handleRemoveSavedPost(id);
     try {
-      const { data } = await apiDeleteSavedPost(id);
+      const { data } = await deleteSavedPostAPI(id);
       console.log(data);
     } catch (error) {
       console.log(error);
