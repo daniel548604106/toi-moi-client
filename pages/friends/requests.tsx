@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Sidebar from '@/Components/Friends/Sidebar';
-import EmptyRequest from '@/Components/Friends/EmptyRequest';
 import useTranslation from 'next-translate/useTranslation';
+import React, { useState } from 'react';
 
+import EmptyRequest from '@/Components/Friends/EmptyRequest';
 import RequestCard from '@/Components/Friends/Requests/RequestCard';
-const requests = ({ requestsReceived }) => {
+import Sidebar from '@/Components/Friends/Sidebar';
+
+const Requests = ({ requestsReceived }) => {
   const { t } = useTranslation('header');
   const [received, setReceived] = useState(requestsReceived);
-  useEffect(() => {
-    console.log(requestsReceived, 'requestsReceived');
-  }, [requestsReceived]);
+
   return (
     <div className="flex  flex-col  lg:flex-row">
       <div className="">
@@ -33,7 +32,7 @@ const requests = ({ requestsReceived }) => {
   );
 };
 
-export default requests;
+export default Requests;
 
 export async function getServerSideProps({ req }) {
   try {

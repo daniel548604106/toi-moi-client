@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
+
 import FriendCard from '@/Components/Friends/FriendCard';
 import Sidebar from '@/Components/Friends/Sidebar';
-import axios from 'axios';
-const Index = ({ recommendations }) => {
+
+const Suggestions = ({ recommendations }) => {
   const [currentRecommendations, setCurrentRecommendations] = useState(recommendations);
-  useEffect(() => {
-    console.log(recommendations, 'recommendations');
-  }, [recommendations]);
-  const removeRecommendation = (id) => {
+
+  const removeRecommendation = (id: string) => {
     let update = currentRecommendations.filter((recommendation) => recommendation._id !== id);
     setCurrentRecommendations(update);
   };
@@ -32,7 +32,7 @@ const Index = ({ recommendations }) => {
   );
 };
 
-export default Index;
+export default Suggestions;
 
 export async function getServerSideProps({ req }) {
   try {

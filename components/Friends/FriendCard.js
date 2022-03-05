@@ -5,7 +5,7 @@ import router from 'next/router';
 import { CheckIcon } from '@heroicons/react/solid';
 import { apiPostFriendRequest } from '@/Axios/index';
 import { postFriendRequestAPI } from '@/Axios/friendRequest';
-const FriendCard = ({ user, removeRecommendation, idx }) => {
+const FriendCard = ({ user, removeRecommendation }) => {
   const [added, setAdded] = useState(false);
   const handleAddFriend = async () => {
     try {
