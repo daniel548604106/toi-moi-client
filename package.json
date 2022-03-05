@@ -19,6 +19,7 @@
     "axios": "^0.21.1",
     "dayjs": "^1.10.5",
     "formik": "^2.2.9",
+    "framer-motion": "4.1.17",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.21",
     "next": "10.2.3",
