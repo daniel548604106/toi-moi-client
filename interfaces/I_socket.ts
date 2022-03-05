@@ -28,6 +28,9 @@ interface ServerToClientEvents {
   basicEmit: (a: number, b: string, c: Buffer) => void;
   withAck: (d: string, callback: (e: number) => void) => void;
   connectedUsers: ({ users }: { users: User[] }) => void;
+  noChatFound: () => void;
+  messageSent: ({ newMessage }: { newMessage: Message }) => void;
+  messagesLoaded: ({ chat }: { chat: any }) => void;
   newMsgReceived: ({ newMessage }: { newMessage: Message }) => void;
   newNotificationReceived: ({ profileImage, postId, username, name }: NotificationReceived) => void;
 }
@@ -37,6 +40,13 @@ interface ClientToServerEvents {
   join: ({ userId }: { userId: string }) => void;
   disconnected: () => void;
   sendMessage: ({ userId, messageSentTo, msg }: SendMessage) => void;
+  loadMessages: ({
+    userId,
+    messagesWith,
+  }: {
+    userId: string;
+    messagesWith: string | string[];
+  }) => void;
 }
 
 interface InterServerEvents {

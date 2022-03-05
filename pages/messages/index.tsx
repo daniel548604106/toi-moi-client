@@ -1,32 +1,35 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import { apiGetChatUserInfo, apiSearchRequest } from '@/Axios/index';
-import { useRouter } from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
-import { ChatAlt2Icon } from '@heroicons/react/outline';
 import axios from 'axios';
-import ChatroomSidebarHeader from '@/Components/Messages/ChatroomSidebar/ChatroomSidebarHeader';
-import ChatroomList from '@/Components/Messages/ChatroomSidebar/ChatroomList';
-import ChatroomMainHeader from '@/Components/Messages/ChatroomMain/ChatroomMainHeader';
-import ChatroomMainRoom from '@/Components/Messages/ChatroomMain/ChatroomMainRoom';
-import ChatroomMainInputBox from '@/Components/Messages/ChatroomMain/ChatroomMainInputBox';
-import EmptyChat from '@/Components/Messages/EmptyChat';
-import messageNotificationSound from '@/Utils/messageNotificationSound';
-import genderAvatar from '@/Utils/genderAvatar';
 import useTranslation from 'next-translate/useTranslation';
-import { toggleListOpen } from '@/Redux/slices/messageSlice';
-import Avatar from '@/Components/Global/Avatar';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import React, { useEffect, useRef, useState } from 'react';
+import io, { Socket } from 'socket.io-client';
 
-const io = require('socket.io-client');
+import { apiGetChatUserInfo, apiSearchRequest } from '@/Axios/index';
+import Avatar from '@/Components/Global/Avatar';
+import ChatroomMainHeader from '@/Components/Messages/ChatroomMain/ChatroomMainHeader';
+import ChatroomMainInputBox from '@/Components/Messages/ChatroomMain/ChatroomMainInputBox';
+import ChatroomMainRoom from '@/Components/Messages/ChatroomMain/ChatroomMainRoom';
+import ChatroomList from '@/Components/Messages/ChatroomSidebar/ChatroomList';
+import ChatroomSidebarHeader from '@/Components/Messages/ChatroomSidebar/ChatroomSidebarHeader';
+import EmptyChat from '@/Components/Messages/EmptyChat';
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { ClientToServerEvents, ServerToClientEvents } from '@/Interfaces/I_socket';
+import { toggleListOpen } from '@/Redux/slices/messageSlice';
+import genderAvatar from '@/Utils/genderAvatar';
+import messageNotificationSound from '@/Utils/messageNotificationSound';
+import { ChatAlt2Icon } from '@heroicons/react/outline';
 
 const Index = (props) => {
   const { t } = useTranslation('messages');
-  const dispatch = useDispatch();
-  const { isListOpen } = useSelector((state) => state.message);
   const router = useRouter();
-  const socket = useRef();
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const dispatch = useAppDispatch();
+  const { isListOpen } = useAppSelector((state) => state.message);
+  const { userInfo } = useAppSelector((state) => state.user);
+  const socket = useRef<Socket<ServerToClientEvents, ClientToServerEvents>>();
+  const divRef = useRef<HTMLDivElement>(null);
+  const openChatId = useRef();
+
   const [chats, setChats] = useState(props.chats || []);
   const [searchText, setSearchText] = useState('');
   const [searchResult, setSearchResult] = useState([]);
@@ -37,17 +40,12 @@ const Index = (props) => {
     profileImage: '',
   });
 
-  const divRef = useRef(null);
   const scrollToBottom = (divRef) => {
     divRef.current !== null && divRef.current.scrollIntoView({ behavior: 'smooth' });
   };
-  useEffect(() => {
-    console.log(chats, 'chats');
-  }, [chats]);
 
   // This ref is for persisting the state of query string in url through re-renders because on each re-render of component , the querystring will automatically reset
   // useRef 可以在不 re-render 的狀態下更新值
-  const openChatId = useRef();
 
   const searchChat = async () => {
     try {
@@ -57,10 +55,6 @@ const Index = (props) => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    if (!searchText) return;
-    searchChat();
-  }, [searchText]);
 
   const sendMsg = (msg) => {
     if (socket.current) {
@@ -94,7 +88,6 @@ const Index = (props) => {
       setSearchText('');
       setSearchResult([]);
       setChats((chats) => [newChat, ...chats]);
-      return;
       router.push(`/messages?message=${result._id}`, undefined, {
         shallow: true,
       });
@@ -109,9 +102,14 @@ const Index = (props) => {
     });
   };
 
+  useEffect(() => {
+    if (!searchText) return;
+    searchChat();
+  }, [searchText]);
+
   // Connection
   useEffect(() => {
-    if (!socket.current) {
+    if (!socket?.current) {
       socket.current = io(process.env.API_BASE_URL, { transports: ['websocket'] });
     }
 
@@ -252,13 +250,7 @@ const Index = (props) => {
           isListOpen ? 'translate-x-0 ' : ' -translate-x-full transform sm:transform-none'
         } transform transition-transform duration-100 ease-in-out w-full bg-secondary fixed z-40 h-screen overflow-y-scroll sm:flex  sm:max-w-[300px] lg:max-w-[500px] border-r-2  flex-col `}
       >
-        <ChatroomSidebarHeader
-          t={t}
-          setSearchText={setSearchText}
-          searchText={searchText}
-          addChat={addChat}
-        />
-
+        <ChatroomSidebarHeader t={t} setSearchText={setSearchText} searchText={searchText} />
         <div className="flex-1 overflow-y-auto ">
           {searchResult.length > 0
             ? searchResult.map((result) => (
@@ -268,8 +260,8 @@ const Index = (props) => {
                   className="flex p-2 rounded-lg hover:bg-gray-100 cursor-pointer items-center"
                 >
                   <Avatar
-                    width="30"
-                    height="30"
+                    width={30}
+                    height={30}
                     profileImage={result.profileImage}
                     gender={result.gender}
                   />
@@ -296,7 +288,6 @@ const Index = (props) => {
             socket={socket.current}
             user={userInfo}
             receiverProfileImage={openChatUser.profileImage}
-            messagesWith={openChatId.current}
             messages={messages}
           />
           <ChatroomMainInputBox t={t} sendMsg={sendMsg} />

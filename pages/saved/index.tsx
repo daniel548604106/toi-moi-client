@@ -1,9 +1,12 @@
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+
 import { apiGetSavedPosts } from '@/Axios/index';
 import SavedCard from '@/Components/Saved/SavedCard';
-import Image from 'next/image';
-const Index = () => {
+
+const Saved = () => {
   const [savedPosts, setSavedPosts] = useState(null);
+
   const handleGetSavedPosts = async () => {
     try {
       const { data } = await apiGetSavedPosts();
@@ -12,16 +15,15 @@ const Index = () => {
       console.log(error);
     }
   };
-  const handleRemoveSavedPost = (id) => {
+  const handleRemoveSavedPost = (id: string) => {
     console.log(id, savedPosts);
     setSavedPosts(savedPosts.filter((post) => post.post._id !== id));
   };
+
   useEffect(() => {
     handleGetSavedPosts();
   }, []);
-  useEffect(() => {
-    console.log(savedPosts);
-  }, [savedPosts]);
+
   return (
     <div className="w-full p-2 max-w-[600px] mx-auto py-3 sm:py-10 ">
       {savedPosts?.length > 0 ? (
@@ -49,4 +51,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Saved;
