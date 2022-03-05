@@ -1,8 +1,17 @@
 import React from 'react';
-import genderAvatar from '@/Utils/genderAvatar';
 import { useDispatch } from 'react-redux';
+
+import { UserInfo } from '@/Interfaces/I_common';
+import { User } from '@/Interfaces/I_socket';
 import { addToChatBoxList } from '@/Redux/slices/messageSlice';
-const Contact = ({ user, connectedUsers }) => {
+import genderAvatar from '@/Utils/genderAvatar';
+
+interface ContactProps {
+  user: UserInfo;
+  connectedUsers: User[];
+}
+const Contact = (props: ContactProps) => {
+  const { user, connectedUsers } = props;
   const dispatch = useDispatch();
   const handleOpenChatBox = () => {
     dispatch(addToChatBoxList(user));
@@ -15,13 +24,13 @@ const Contact = ({ user, connectedUsers }) => {
       <span className="relative flex items-center">
         <img
           className="w-[40px] object-cover h-[40px] rounded-full"
-          src={user.profileImage || genderAvatar(user.gender)}
+          src={user?.profileImage || genderAvatar(user?.gender)}
         />
-        {connectedUsers.map((users) => users.userId).includes(user._id) && (
+        {connectedUsers.map((connectedUser) => connectedUser.userId).includes(user._id) && (
           <div className="absolute bottom-[5px] right-0 bg-green-400 w-2 h-2 rounded-full z-40"></div>
         )}
       </span>
-      <p>{user.name}</p>
+      <p>{user?.name}</p>
     </div>
   );
 };

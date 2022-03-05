@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
 import axios from 'axios';
-import Image from 'next/image';
-import { DotsHorizontalIcon } from '@heroicons/react/outline';
-import { apiPostReadNotifications } from '@/Axios/index';
-import LikeNotification from '../components/Notifications/LikeNotification';
-import CommentNotification from '../components/Notifications/CommentNotification';
-import FriendNotification from '../components/Notifications/FriendNotification';
-import EmptyNotification from '../components/Notifications/EmptyNotification';
-const Index = ({ notifications }) => {
-  useEffect(() => {
-    console.log(notifications);
+import React, { useEffect, useState } from 'react';
 
-    const readNotifications = async (req, res) => {
+import { apiPostReadNotifications } from '@/Axios/index';
+import CommentNotification from '@/Components/Notifications/CommentNotification';
+import EmptyNotification from '@/Components/Notifications/EmptyNotification';
+import FriendNotification from '@/Components/Notifications/FriendNotification';
+import LikeNotification from '@/Components/Notifications/LikeNotification';
+import { DotsHorizontalIcon } from '@heroicons/react/outline';
+
+const Index = ({ notifications }) => {
+  const [currentNotifications, setCurrentNotifications] = useState(notifications);
+  useEffect(() => {
+    const readNotifications = async () => {
       try {
         await apiPostReadNotifications();
       } catch (error) {
@@ -20,6 +20,11 @@ const Index = ({ notifications }) => {
     };
     readNotifications();
   }, []);
+
+  const removeNotification = (id) => {
+    setCurrentNotifications(notifications.filter((notification) => notification._id !== id));
+  };
+
   return (
     <div className=" overflow-y-auto  sm:py-[80px] ">
       <div className="p-3 rounded-xl w-full max-w-[600px]  mx-auto bg-secondary text-secondary shadow-lg">
@@ -27,9 +32,9 @@ const Index = ({ notifications }) => {
           <h2 className="font-semibold text-2xl">Notification</h2>
           <DotsHorizontalIcon className="h-6 cursor-pointer" />
         </div>
-        {notifications.length > 0 ? (
+        {currentNotifications.length > 0 ? (
           <div>
-            {notifications.map((notification) => (
+            {currentNotifications.map((notification) => (
               <div key={notification._id}>
                 {notification.type === 'newLike' && (
                   <LikeNotification notification={notification} />
@@ -40,7 +45,10 @@ const Index = ({ notifications }) => {
                 {(notification.type === 'newFriendAccepted' ||
                   notification.type === 'newFriendInvitation' ||
                   notification.type === 'newFriendAdded') && (
-                  <FriendNotification notification={notification} />
+                  <FriendNotification
+                    removeNotification={removeNotification}
+                    notification={notification}
+                  />
                 )}
               </div>
             ))}
