@@ -5,8 +5,8 @@ import React from 'react';
 import genderAvatar from '@/Utils/genderAvatar';
 
 interface AvatarProps {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   profileImage: string;
   layout?: 'intrinsic' | 'fixed' | 'responsive';
   username?: string;

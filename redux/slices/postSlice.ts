@@ -19,7 +19,7 @@ export const apiGetCurrentPost = createAsyncThunk<any, string>(
     return response.data;
   },
 );
-export const getSavedPosts = createAsyncThunk<any, string>('post/getSavedPost', async (id) => {
+export const getSavedPosts = createAsyncThunk<any>('post/getSavedPost', async () => {
   const response = await apiGetSavedPosts();
   console.log(response, 'saved');
   return response.data.posts;
@@ -29,7 +29,7 @@ interface PostState {
   isLikesListOpen: boolean;
   likesList: any;
   savedPosts: any;
-  currentPost: null;
+  currentPost: any | null;
   isPostInputBoxOpen: boolean;
   isViewPostModalOpen: boolean;
   imageToPost: string;

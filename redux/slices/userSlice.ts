@@ -15,7 +15,7 @@ export const getFriendList = createAsyncThunk('get/getFriendList', async (id, th
 
 interface UserState {
   isUserLoggedIn: boolean;
-  userInfo: UserInfo | {};
+  userInfo: UserInfo | null;
   notifications: any;
   friendsList: any;
   isEditProfileImageOpen: boolean;
@@ -40,8 +40,8 @@ export const userSlice = createSlice({
     setUserLogin: (state, { payload }) => {
       (state.isUserLoggedIn = true), (state.userInfo = payload);
     },
-    setUserLogout: (state, { payload }) => {
-      (state.isUserLoggedIn = false), (state.userInfo = {});
+    setUserLogout: (state) => {
+      (state.isUserLoggedIn = false), (state.userInfo = null);
     },
     setEditProfileImageOpen: (state, { payload }) => {
       state.isEditProfileImageOpen = payload;

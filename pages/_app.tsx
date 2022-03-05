@@ -65,14 +65,12 @@ const App = ({ Component, pageProps }) => {
   const isEditProfileImageOpen = useAppSelector((state) => state.user.isEditProfileImageOpen);
   const isEditSummaryModalOpen = useAppSelector((state) => state.profile.isEditSummaryModalOpen);
 
-
   const [loading, setLoading] = useState(false);
 
-  
   // Log user out if no token is found
   const token = Cookies.get('token');
   if (!token) {
-    dispatch(setUserLogout({}));
+    dispatch(setUserLogout());
   }
 
   const handleRouteChange = (url, { shallow }) => {
