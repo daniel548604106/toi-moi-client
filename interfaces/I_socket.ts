@@ -11,16 +11,16 @@ interface NotificationReceived {
   name: string;
 }
 
-interface User {
+export interface User {
   userId: string;
   socketId: string;
 }
 
-interface Message {
+export interface Message {
   sender: string;
   receiver: string;
   msg: string;
-  date: Date;
+  date: string;
 }
 
 interface ServerToClientEvents {
