@@ -24,4 +24,13 @@ const PostSkeletonLoader = () => {
   );
 };
 
-export default PostSkeletonLoader;
+const GlobalLoader = () => (
+  <div className="fixed z-50 inset-0 bg-gray-700 bg-opacity-30 flex items-center justify-center">
+    <div className=" flex-1 text-gray-600 text-center">
+      <PostSkeletonLoader />
+      <span className="bg-white py-2 px-4 text-xs rounded-full">載入中...</span>
+    </div>
+  </div>
+);
+
+export default GlobalLoader;

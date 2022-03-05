@@ -32,6 +32,7 @@ const NoPost = dynamic(() => import('@/Components/Home/Feed/NoPost'), {
 
 const ChatBox = dynamic(() => import('@/Components/Home/Contacts/ChatBox'));
 const PostNotification = dynamic(() => import('@/Components/Home/PostNotification'));
+
 export default function Home({ posts, friends, stories, notFound }) {
   const dispatch = useDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
@@ -209,7 +210,7 @@ export async function getServerSideProps({ req, res }) {
   try {
     // get server side cookies
     const token = req.cookies.token;
-    let posts, chats, friends, stories;
+    let posts, friends, stories;
     if (token) {
       friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {
         headers: {

@@ -1,15 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface GlobalState {
   isSearchBarOpen: boolean;
   isLanguageOpen: boolean;
   isCreateRoomOpen: boolean;
+  isCommonLoading: boolean;
   notification: '';
 }
 
 export const globalSlice = createSlice({
   name: 'global',
   initialState: {
+    isCommonLoading: false,
     isSearchBarOpen: false,
     isLanguageOpen: false,
     isCreateRoomOpen: false,
@@ -29,6 +31,10 @@ export const globalSlice = createSlice({
     toggleCreateRoomOpen: (state) => {
       state.isCreateRoomOpen = !state.isCreateRoomOpen;
     },
+    setIsCommonLoading: (state, action: PayloadAction<boolean>) => {
+      const isLoading = action.payload;
+      state.isCommonLoading = isLoading;
+    },
     setNotification: (state, { payload }) => {
       state.notification = payload;
     },
@@ -36,8 +42,13 @@ export const globalSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { toggleSearchBar, toggleCreateRoomOpen, toggleLanguageOpen, setNotification } =
-  globalSlice.actions;
+export const {
+  toggleSearchBar,
+  toggleCreateRoomOpen,
+  setIsCommonLoading,
+  toggleLanguageOpen,
+  setNotification,
+} = globalSlice.actions;
 
 export default globalSlice.reducer;
 export type { GlobalState };

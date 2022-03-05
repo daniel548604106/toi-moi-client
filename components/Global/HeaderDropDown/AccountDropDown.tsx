@@ -90,7 +90,7 @@ const AccountPopup = ({ t }) => {
             type="checkbox"
             hidden
             ref={inputRef}
-            checked={darkModeChecked}
+            defaultChecked={darkModeChecked}
             onClick={() => {
               setIsDark(!isDark);
               setDarkModeChecked(!darkModeChecked);

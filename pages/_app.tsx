@@ -12,7 +12,7 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import Header from '@/Components/Global/Header';
-import PostSkeletonLoader from '@/Components/Global/Loader/PostSkeletonLoader';
+import GlobalLoader from '@/Components/Global/Loader/PostSkeletonLoader';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Notification from '@/Components/Global/Notification';
 import ViewPostModal from '@/Components/Global/ViewPostModal';
@@ -20,7 +20,7 @@ import InputBoxModal from '@/Components/Home/Feed/InputBoxModal';
 import Login from '@/Components/Login/Index';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import * as ga from '@/Lib/gtag';
-import { setNotification } from '@/Redux/slices/globalSlice';
+import { setIsCommonLoading, setNotification } from '@/Redux/slices/globalSlice';
 import { setUserLogout } from '@/Redux/slices/userSlice';
 import { store } from '@/Redux/store';
 
@@ -58,14 +58,12 @@ const App = ({ Component, pageProps }) => {
   const { isLikesListOpen, isPostInputBoxOpen, isViewPostModalOpen } = useAppSelector(
     (state) => state.post,
   );
-  const { isLanguageOpen, notification, isCreateRoomOpen } = useAppSelector(
+  const { isLanguageOpen, notification, isCreateRoomOpen, isCommonLoading } = useAppSelector(
     (state) => state.global,
   );
   const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedIn);
   const isEditProfileImageOpen = useAppSelector((state) => state.user.isEditProfileImageOpen);
   const isEditSummaryModalOpen = useAppSelector((state) => state.profile.isEditSummaryModalOpen);
-
-  const [loading, setLoading] = useState(false);
 
   // Log user out if no token is found
   const token = Cookies.get('token');
@@ -75,10 +73,10 @@ const App = ({ Component, pageProps }) => {
 
   const handleRouteChange = (url, { shallow }) => {
     ga.pageView(url);
-    setLoading(true);
+    dispatch(setIsCommonLoading(true));
   };
   const handleRouteChangeComplete = () => {
-    setLoading(false);
+    dispatch(setIsCommonLoading(false));
   };
 
   useEffect(() => {
@@ -195,20 +193,14 @@ const App = ({ Component, pageProps }) => {
       )}
       {!allowedRoutes && <Header />}
       {notification && <Notification notification={notification} />}
-      {loading ? (
-        <div className="pt-[100px] text-gray-600 text-center">
-          <PostSkeletonLoader />
-          <span className="">載入中...</span>
-        </div>
-      ) : (
-        <main
-          className={`${
-            router.pathname.includes('messages') ? 'pt-56px' : 'pt-[110px]'
-          }  md:pt-[56px] h-screen primary dark:bg-primary`}
-        >
-          <Component {...pageProps} />
-        </main>
-      )}
+      {isCommonLoading && <GlobalLoader />}
+      <main
+        className={`${
+          router.pathname.includes('messages') ? 'pt-56px' : 'pt-[110px]'
+        }  md:pt-[56px] h-screen primary dark:bg-primary`}
+      >
+        <Component {...pageProps} />
+      </main>
     </>
   );
 };
