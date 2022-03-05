@@ -1,41 +1,35 @@
 import '@/Styles/globals.css';
 import '@/Styles/LoaderSpinner.css';
 import '@/Styles/LoaderBounce.css';
-import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-import Head from 'next/head';
-import { store } from '@/Redux/store';
-import { Provider } from 'react-redux';
-import { useRouter } from 'next/router';
-import * as ga from '@/Lib/gtag';
-import { setNotification } from '@/Redux/slices/globalSlice';
 
 import Cookies from 'js-cookie';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { Provider } from 'react-redux';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
-// Components
-
-import Login from '@/Components/Login/Index';
 import Header from '@/Components/Global/Header';
 import PostSkeletonLoader from '@/Components/Global/Loader/PostSkeletonLoader';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Notification from '@/Components/Global/Notification';
+import ViewPostModal from '@/Components/Global/ViewPostModal';
 import InputBoxModal from '@/Components/Home/Feed/InputBoxModal';
-
-// Redux Persist
-import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist';
-
-import { setUserLogout } from '@/Redux/slices/userSlice';
+import Login from '@/Components/Login/Index';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import * as ga from '@/Lib/gtag';
+import { setNotification } from '@/Redux/slices/globalSlice';
+import { setUserLogout } from '@/Redux/slices/userSlice';
+import { store } from '@/Redux/store';
 
 const Overlay = dynamic(() => import('@/Components/Global/Overlay'), {
   loading: () => <LoaderSpinner />,
 });
 
 // Modals
-const ViewPostModal = dynamic(() => import('@/Components/Global/ViewPostModal'), {
-  loading: () => <LoaderSpinner />,
-});
+
 const EditSummaryModal = dynamic(() => import('@/Components/Profile/EditSummaryModal'), {
   loading: () => <LoaderSpinner />,
 });
@@ -60,16 +54,21 @@ if (process.env.NODE_ENV !== 'development') console.log = () => {};
 const App = ({ Component, pageProps }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedIn);
-  const { isLikesListOpen } = useAppSelector((state) => state.post);
-  const { isLanguageOpen, notification } = useAppSelector((state) => state.global);
-  const isEditProfileImageOpen = useAppSelector((state) => state.user.isEditProfileImageOpen);
-  const isCreateRoomOpen = useAppSelector((state) => state.global.isCreateRoomOpen);
-  const isEditSummaryModalOpen = useAppSelector((state) => state.profile.isEditSummaryModalOpen);
-  const isViewPostModalOpen = useAppSelector((state) => state.post.isViewPostModalOpen);
-  const isPostInputBoxOpen = useAppSelector((state) => state.post.isPostInputBoxOpen);
 
+  const { isLikesListOpen, isPostInputBoxOpen, isViewPostModalOpen } = useAppSelector(
+    (state) => state.post,
+  );
+  const { isLanguageOpen, notification, isCreateRoomOpen } = useAppSelector(
+    (state) => state.global,
+  );
+  const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedIn);
+  const isEditProfileImageOpen = useAppSelector((state) => state.user.isEditProfileImageOpen);
+  const isEditSummaryModalOpen = useAppSelector((state) => state.profile.isEditSummaryModalOpen);
+
+
+  const [loading, setLoading] = useState(false);
+
+  
   // Log user out if no token is found
   const token = Cookies.get('token');
   if (!token) {

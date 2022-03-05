@@ -1,21 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import axios from 'axios';
-import io from 'socket.io-client';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import messageNotificationSound from '@/Utils/messageNotificationSound';
-import Sidebar from '@/Components/Home/Sidebar/Sidebar';
-import Contacts from '@/Components/Home/Contacts/Index';
+import { useEffect, useRef, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useDispatch } from 'react-redux';
+import io, { Socket } from 'socket.io-client';
+
+import { apiGetAllPosts, apiGetChatUserInfo } from '@/Axios/index';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import Contacts from '@/Components/Home/Contacts/Index';
 import InputBox from '@/Components/Home/Feed/InputBox';
 import Post from '@/Components/Home/Feed/Post/Post';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Room from '@/Components/Home/Feed/Room/Index';
 import Stories from '@/Components/Home/Feed/Story/Stories';
-import { setUnreadNotification } from '@/Redux/slices/userSlice';
-import { apiGetChatUserInfo, apiGetAllPosts } from '@/Axios/index';
-import { useSelector, useDispatch } from 'react-redux';
+import Sidebar from '@/Components/Home/Sidebar/Sidebar';
+import { useAppSelector } from '@/Hooks/useAppRedux';
+import { ClientToServerEvents, ServerToClientEvents } from '@/Interfaces/I_socket';
 import { addToChatBoxList } from '@/Redux/slices/messageSlice';
+import { setUnreadNotification } from '@/Redux/slices/userSlice';
+import messageNotificationSound from '@/Utils/messageNotificationSound';
 
 // Dynamic Import
 const EndMessage = dynamic(() => import('@/Components/Home/Feed/EndMessage'), {
@@ -30,12 +33,12 @@ const ChatBox = dynamic(() => import('@/Components/Home/Contacts/ChatBox'));
 const PostNotification = dynamic(() => import('@/Components/Home/PostNotification'));
 export default function Home({ posts, friends, stories, notFound }) {
   const dispatch = useDispatch();
-  const [hasMore, setHasMore] = useState(true);
-  const { userInfo } = useSelector((state) => state.user);
-  const socket = useRef();
+  const { userInfo } = useAppSelector((state) => state.user);
+  const { openChatBoxList } = useAppSelector((state) => state.message);
+  const socket = useRef<Socket<ServerToClientEvents, ClientToServerEvents>>();
 
-  const { openChatBoxList } = useSelector((state) => state.message);
   // const [currentStories, setCurrentStories] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
   const [newNotification, setNewNotification] = useState(null);
   const [connectedUsers, setConnectedUsers] = useState([]);
   const [currentPosts, setCurrentPosts] = useState(posts || []);
