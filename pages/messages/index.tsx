@@ -285,7 +285,6 @@ const Index = (props) => {
           <ChatroomMainHeader connectedUsers={connectedUsers} openChatUser={openChatUser} />
           <ChatroomMainRoom
             divRef={divRef}
-            socket={socket.current}
             user={userInfo}
             receiverProfileImage={openChatUser.profileImage}
             messages={messages}

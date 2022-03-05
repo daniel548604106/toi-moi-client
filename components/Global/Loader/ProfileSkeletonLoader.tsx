@@ -3,10 +3,10 @@ import React from 'react';
 const ProfileSkeletonLoader = () => {
   return (
     <div id="card">
-      <div class="card-image">
-        <div class="block pulsate"></div>
+      <div className="card-image">
+        <div className="block pulsate"></div>
         <svg
-          class="fpo "
+          className="fpo "
           width="84px"
           height="63px"
           x="50%"
@@ -43,11 +43,10 @@ const ProfileSkeletonLoader = () => {
           </g>
         </svg>
       </div>
-      <div class="card-content">
-        <div class="block2 pulsate"></div>
-        <div class="block3 pulsate"></div>
-        <div class="circle pulsate"></div>
-        <div style="clear: both;"></div>
+      <div className="card-content">
+        <div className="block2 pulsate"></div>
+        <div className="block3 pulsate"></div>
+        <div className="circle pulsate"></div>
       </div>
     </div>
   );

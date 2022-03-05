@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setPostInputBoxOpen } from '@/Redux/slices/postSlice';
@@ -8,7 +8,7 @@ import { BookOpenIcon, PencilAltIcon } from '@heroicons/react/solid';
 import CreateListItem from './CreateListItem';
 
 interface CreateDropDownProps {
-  t: (text: string) => ReactNode;
+  t: (text: string) => string;
 }
 
 const CreateDropDown = ({ t }: CreateDropDownProps) => {

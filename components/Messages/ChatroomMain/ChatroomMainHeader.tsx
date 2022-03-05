@@ -1,13 +1,15 @@
 import Image from 'next/image';
 import router from 'next/router';
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { UserInfo } from '@/Interfaces/I_common';
 import { User } from '@/Interfaces/I_socket';
 import { InformationCircleIcon, PhoneIcon, VideoCameraIcon } from '@heroicons/react/solid';
 
 interface ChatroomMainHeaderProps {
-  openChatUser: UserInfo;
+  openChatUser: {
+    name: string;
+    profileImage: string;
+  };
   connectedUsers: User[];
 }
 const ChatroomMainHeader = (props: ChatroomMainHeaderProps) => {

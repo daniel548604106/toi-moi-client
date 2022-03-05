@@ -6,14 +6,8 @@ import React, { useRef, useState } from 'react';
 import { apiUploadStoryImage } from '@/Axios/index';
 import Avatar from '@/Components/Global/Avatar';
 import { useAppSelector } from '@/Hooks/useAppRedux';
-// import Preview from '@/Components/Stories/Preview';
 import { backgroundSelections } from '@/Utils/storyOptions';
 import { PhotographIcon, TranslateIcon, XIcon } from '@heroicons/react/outline';
-
-// const Preview = dynamic(() => import('@/Components/Stories/Preview'), {
-//   ssr: falseimport { useAppSelector } from '@/Hooks/useAppRedux';
-
-// });
 
 const Create = () => {
   const stageRef = useRef(null);

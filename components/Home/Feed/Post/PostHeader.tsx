@@ -1,6 +1,6 @@
 import useTranslation from 'next-translate/useTranslation';
 import router from 'next/router';
-import React, { useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Avatar from '@/Components/Global/Avatar';
@@ -13,7 +13,7 @@ import Popup from './Popup';
 
 interface PostHeaderProps {
   post: any;
-  setEditable: () => void;
+  setEditable: Dispatch<SetStateAction<boolean>>;
   deletePost: (string) => void;
 }
 

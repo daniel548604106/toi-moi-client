@@ -182,13 +182,15 @@ const App = ({ Component, pageProps }) => {
       </Head>
       {isModalOpen && (
         <Overlay>
-          {isLikesListOpen && <LikesListModal />}
-          {isPostInputBoxOpen && <InputBoxModal />}
-          {isViewPostModalOpen && <ViewPostModal />}
-          {isEditProfileImageOpen && <EditProfileImageModal />}
-          {isEditSummaryModalOpen && <EditSummaryModal />}
-          {isLanguageOpen && <LanguageSettingModal />}
-          {isCreateRoomOpen && <CreateRoomModal />}
+          <>
+            {isLikesListOpen && <LikesListModal />}
+            {isPostInputBoxOpen && <InputBoxModal />}
+            {isViewPostModalOpen && <ViewPostModal />}
+            {isEditProfileImageOpen && <EditProfileImageModal />}
+            {isEditSummaryModalOpen && <EditSummaryModal />}
+            {isLanguageOpen && <LanguageSettingModal />}
+            {isCreateRoomOpen && <CreateRoomModal />}
+          </>
         </Overlay>
       )}
       {!allowedRoutes && <Header />}

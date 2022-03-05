@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, FormikProps, FormikValues } from 'formik';
 import Cookie from 'js-cookie';
 import range from 'lodash/range';
 import router from 'next/router';
@@ -26,7 +26,7 @@ const SignupSchema = Yup.object().shape({
 });
 const Index = ({ setSignupOpen }) => {
   const dispatch = useDispatch();
-  const formRef = useRef();
+  const formRef = useRef<FormikProps<FormikValues>>(null);
 
   const [isLoading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -39,7 +39,7 @@ const Index = ({ setSignupOpen }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const { name, account, email, gender, password, year, month, date } = formRef?.current.values;
+    const { name, account, email, gender, password, year, month, date } = formRef?.current?.values;
 
     if (!year || !month || !date) {
       return setBirthdayError('Please fill in your correct birthday');
@@ -59,12 +59,12 @@ const Index = ({ setSignupOpen }) => {
       const { data } = await postSignupAPI(signupInfo);
       Cookie.set('token', data.token);
       dispatch(setUserLogin(data.user));
-      setLoading(false);
       setSignupOpen(false);
       router.push('/');
     } catch (error) {
-      setLoading(false);
       setErrorMsg(catchError(error));
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -97,6 +97,7 @@ const Index = ({ setSignupOpen }) => {
             month: '',
             date: '',
           }}
+          onSubmit={handleSignup}
           validationSchema={SignupSchema}
         >
           {({ errors, touched, isValid, dirty }) => (
@@ -232,8 +233,8 @@ const Index = ({ setSignupOpen }) => {
               </p>
               <div className="flex items-center justify-center">
                 <button
+                  type="submit"
                   disabled={!(isValid && dirty)}
-                  onClick={(e) => handleSignup(e)}
                   className={`text-md mb-20 flex items-center justify-center sm:text-lg font-semibold  text-white text-secondary rounded-md w-[200px] p-2 mx-auto ${
                     !(isValid && dirty)
                       ? 'bg-gray-100 text-black cursor-not-allowed'

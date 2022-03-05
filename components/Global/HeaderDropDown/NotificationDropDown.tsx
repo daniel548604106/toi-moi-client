@@ -1,6 +1,5 @@
-import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { apiGetNotifications } from '@/Axios/index';
 import CommentNotification from '@/Components/Notifications/CommentNotification';
@@ -8,10 +7,12 @@ import EmptyNotification from '@/Components/Notifications/EmptyNotification';
 import FriendNotification from '@/Components/Notifications/FriendNotification';
 import LikeNotification from '@/Components/Notifications/LikeNotification';
 
-interface NotificationDropDownProps {}
+interface NotificationDropDownProps {
+  t: (text: string) => string;
+}
 
 const NotificationDropDown = (props: NotificationDropDownProps) => {
-  const { t } = useTranslation();
+  const { t } = props;
   const router = useRouter();
   const [notifications, setNotifications] = useState([]);
   useEffect(() => {

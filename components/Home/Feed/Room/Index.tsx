@@ -39,7 +39,6 @@ const Room = ({ roomList }: RoomProps) => {
                   key={user._id}
                   width={40}
                   height={40}
-                  className="w-[30px] h-[30px] sm:w-[50px] sm:h-[50px] rounded-full cursor-pointer"
                   profileImage={user.profileImage || genderAvatar(user.gender)}
                 />
               </span>

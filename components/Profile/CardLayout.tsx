@@ -4,7 +4,7 @@ import React from 'react';
 interface CardLayoutProps {
   title: string;
   buttonName?: string;
-  buttonLink: string;
+  buttonLink?: string;
   children: React.ReactChild;
 }
 const CardLayout = (props: CardLayoutProps) => {

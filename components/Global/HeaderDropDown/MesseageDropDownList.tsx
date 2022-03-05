@@ -5,18 +5,18 @@ import React from 'react';
 import { DotsHorizontalIcon } from '@heroicons/react/solid';
 
 interface MessageDropDownListProps {
-  message: string;
+  message: any;
 }
 const MessageDropDownList = ({ message }: MessageDropDownListProps) => {
   const router = useRouter();
   return (
     <div
-      onClick={() => router.push(`/messages?message=${message.messagesWith}`)}
+      onClick={() => router.push(`/messages?message=${message?.messagesWith}`)}
       className="relative group cursor-pointer  flex items-center p-2 mb-3 rounded-lg hover:bg-gray-100"
     >
       <Image
         className="rounded-full cursor-pointer"
-        src={message.profileImage}
+        src={message?.profileImage}
         width={60}
         layout="fixed"
         height={60}
