@@ -3,13 +3,10 @@ import { timeDiff } from '@/Lib/dayjs';
 import { UsersIcon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import {
-  apiPostReadSingleNotification,
-  apiPostFriendRequest,
-  apiRejectFriendRequest,
-} from '@/Axios/index';
+import { apiPostReadSingleNotification, apiRejectFriendRequest } from '@/Axios/index';
 import Avatar from '../Global/Avatar';
 import useTranslation from 'next-translate/useTranslation';
+import { postFriendRequestAPI } from '@/Axios/friendRequest';
 
 const FriendNotification = ({ notification, removeNotification }) => {
   const { t } = useTranslation('header');
@@ -28,7 +25,7 @@ const FriendNotification = ({ notification, removeNotification }) => {
     e.stopPropagation();
     setAccepted(true);
     try {
-      const res = await apiPostFriendRequest(username);
+      const res = await postFriendRequestAPI(username);
       console.log(res);
     } catch (error) {
       console.log(error);

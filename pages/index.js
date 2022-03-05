@@ -94,7 +94,8 @@ export default function Home({ posts, friends, stories, notFound }) {
     console.log('base URL ', process.env.BASE_URL);
     if (!socket.current) {
       // connect to socket
-      socket.current = io(process.env.API_BASE_URL); // this io has to point to where the server io is
+      socket.current = io(process.env.API_BASE_URL, { transports: ['websocket'] });
+      // this io has to point to where the server io is
       if (socket.current) {
         // keep track of users online
         socket.current.emit('join', { userId: userInfo._id });

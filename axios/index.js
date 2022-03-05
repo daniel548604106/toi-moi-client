@@ -15,7 +15,7 @@ import {
   getAllSearch,
   postKeywordSearch,
   postUserSearch,
-  deleteHistory
+  deleteHistory,
 } from './searchRequest';
 
 export const apiSearchRequest = searchRequest;
@@ -25,19 +25,8 @@ export const apiPostKeywordSearch = postKeywordSearch;
 export const apiPostUserSearch = postUserSearch;
 export const apiDeleteHistory = deleteHistory;
 
-// Auth
-import { postSignup, postLogin } from './authRequest';
-
-export const apiPostSignup = postSignup;
-export const apiPostLogin = postLogin;
-
 // Chats
-import {
-  getChats,
-  getChat,
-  getChatUserInfo,
-  getSearchedChats
-} from './chatRequest';
+import { getChats, getChat, getChatUserInfo, getSearchedChats } from './chatRequest';
 
 export const apiGetChats = getChats;
 export const apiGetChat = getChat;
@@ -56,7 +45,7 @@ import {
   unlikePost,
   likeComment,
   unlikeComment,
-  deleteComment
+  deleteComment,
 } from './postRequest';
 
 export const apiPostNewPost = postNewPost;
@@ -74,7 +63,7 @@ export const apiUpdatePost = updatePost;
 import {
   getNotifications,
   postReadNotifications,
-  postReadSingleNotification
+  postReadSingleNotification,
 } from './notificationRequest';
 export const apiGetNotifications = getNotifications;
 export const apiPostReadNotifications = postReadNotifications;
@@ -90,7 +79,7 @@ import {
   patchProfileSummary,
   postWorkExperienceSummary,
   postEducationSummary,
-  getProfileSummary
+  getProfileSummary,
 } from './profileRequest';
 
 export const apiGetProfilePosts = getProfilePosts;
@@ -105,13 +94,7 @@ export const apiPostWorkExperienceSummary = postWorkExperienceSummary;
 export const apiPostEducationSummary = postEducationSummary;
 // Friend
 
-import {
-  postFriendRequest,
-  removeFriendRequest,
-  getFriendList,
-  rejectFriendRequest
-} from './friendRequest';
-export const apiPostFriendRequest = postFriendRequest;
+import { removeFriendRequest, getFriendList, rejectFriendRequest } from './friendRequest';
 export const apiRemoveFriendRequest = removeFriendRequest;
 export const apiGetFriendList = getFriendList;
 export const apiRejectFriendRequest = rejectFriendRequest;
@@ -127,11 +110,7 @@ export const apiGetStories = getStories;
 
 // Saved
 
-import {
-  postNewSavedPost,
-  getSavedPosts,
-  deleteSavedPost
-} from './savedRequest';
+import { postNewSavedPost, getSavedPosts, deleteSavedPost } from './savedRequest';
 export const apiPostNewSavedPost = postNewSavedPost;
 export const apiGetSavedPosts = getSavedPosts;
 export const apiDeleteSavedPost = deleteSavedPost;

@@ -4,12 +4,13 @@ import Image from 'next/image';
 import router from 'next/router';
 import { CheckIcon } from '@heroicons/react/solid';
 import { apiPostFriendRequest } from '@/Axios/index';
+import { postFriendRequestAPI } from '@/Axios/friendRequest';
 const FriendCard = ({ user, removeRecommendation, idx }) => {
   const [added, setAdded] = useState(false);
   const handleAddFriend = async () => {
     try {
       setAdded(true);
-      const { data } = await apiPostFriendRequest(user.username);
+      const { data } = await postFriendRequestAPI(user.username);
       removeRecommendation(user._id);
       console.log(data);
     } catch (error) {

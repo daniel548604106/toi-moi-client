@@ -8,6 +8,7 @@ import {
   UserGroupIcon,
   PlusIcon,
 } from '@heroicons/react/solid';
+
 import useClickOutside from '@/Hooks/useClickOutside';
 import HeaderIcon from './HeaderIcon';
 import genderAvatar from '@/Utils/genderAvatar';
@@ -22,6 +23,7 @@ import NotificationDropDown from './HeaderDropDown/NotificationDropDown';
 import useTranslation from 'next-translate/useTranslation';
 import Sidebar from '../Home/Sidebar/Sidebar';
 import { setUnreadNotification } from '@/Redux/slices/userSlice';
+import { AnimateSharedLayout } from 'framer-motion';
 const menuTabs = [
   {
     title: 'home',
@@ -53,15 +55,14 @@ const Header = () => {
   const router = useRouter();
   const elRef = useRef();
   const dispatch = useDispatch();
-  const [isSideMenuShow, setSideMenuShow] = useState(false);
 
-  useEffect(() => {
-    console.log(router.pathname);
-  }, [router.pathname]);
+  const { t } = useTranslation('header');
   useClickOutside(elRef, () => setSideMenuShow(false));
   const { userInfo } = useSelector((state) => state.user);
 
-  const { t } = useTranslation('header');
+  const [isSideMenuShow, setSideMenuShow] = useState(false);
+  const [activeTab, setActiveTab] = useState(router.pathname);
+
   const handleSideMenuShow = (e) => {
     e.stopPropagation();
     setSideMenuShow(!isSideMenuShow);
@@ -79,15 +80,24 @@ const Header = () => {
           <Search t={t} />
         </div>
       </div>
-      <div
-        className={`${
-          router.pathname.includes('messages') && 'hidden'
-        } fixed max-w-[750px] flex items-center top-[50px] bg-secondary text-secondary left-0    w-full md:static  flex-grow sm:px-5 sm:mx-0 xl:px-10`}
-      >
-        {menuTabs.map((tab, idx) => (
-          <HeaderIcon key={tab.title} {...tab} />
-        ))}
-      </div>
+      <AnimateSharedLayout>
+        <div
+          className={`${
+            router.pathname.includes('messages') && 'hidden'
+          } fixed max-w-[750px] flex items-center top-[50px] bg-secondary text-secondary left-0    w-full md:static  flex-grow sm:px-5 sm:mx-0 xl:px-10`}
+        >
+          {menuTabs.map(({ title, href, Icon }) => (
+            <HeaderIcon
+              key={title}
+              href={href}
+              Icon={Icon}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
+          ))}
+        </div>
+      </AnimateSharedLayout>
+
       <div className="w-1/2  relative flex justify-end items-center space-x-1 sm:space-x-2 ">
         <div
           onClick={() => router.push(`/${userInfo.username}`)}

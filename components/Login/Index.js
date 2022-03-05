@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { apiPostLogin } from '@/Axios/index';
 import { useDispatch } from 'react-redux';
 import { setUserLogin } from '@/Redux/slices/userSlice';
 import { useRouter } from 'next/router';
@@ -10,6 +9,7 @@ import { XIcon, ClipboardIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import ForgotPassword from '../ForgotPassword/Index';
 import Loader from '../Global/Loader';
+import { postLoginAPI } from '@/Axios/authRequest';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,7 @@ const Login = () => {
       return setError('Email and password required!');
     try {
       setLoading(true);
-      const { data } = await apiPostLogin(loginInput);
+      const { data } = await postLoginAPI(loginInput);
       Cookie.set('token', data.token);
       dispatch(setUserLogin(data.user));
       setLoading(false);

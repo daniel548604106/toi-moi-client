@@ -1,6 +1,6 @@
 import request from '@/Lib/axiosConfig';
 
-export const postFriendRequest = (username) => {
+export const postFriendRequestAPI = (username) => {
   return request.post(`/profile/friend/${username}`);
 };
 

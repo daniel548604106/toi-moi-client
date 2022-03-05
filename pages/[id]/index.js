@@ -52,7 +52,7 @@ const Index = ({ profileData }) => {
     if (!socket.current) {
       // connect to socket
 
-      socket.current = io(process.env.API_BASE_URL);
+      socket.current = io(process.env.API_BASE_URL, { transports: ['websocket'] });
     }
   }, []);
   useEffect(() => {
