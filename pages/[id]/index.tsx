@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import axios from 'axios';
+import dynamic from 'next/dynamic';
+import router, { useRouter } from 'next/router';
+import React, { useEffect, useRef, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import io, { Socket } from 'socket.io-client';
+
+import { apiGetProfileFriends, apiGetProfilePosts, apiGetProfileSummary } from '@/Axios/index';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import ProfileCover from '@/Components/Profile/ProfileCover';
 import TabsList from '@/Components/Profile/TabsList';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import router from 'next/router';
-import io from 'socket.io-client';
-
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { ClientToServerEvents, ServerToClientEvents } from '@/Interfaces/I_socket';
 import { setProfileData, setSummaryData } from '@/Redux/slices/profileSlice';
-import { apiGetProfilePosts, apiGetProfileFriends, apiGetProfileSummary } from '@/Axios/index';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
+
 // Dynamic Imports
 const Friends = dynamic(() => import('@/Components/Profile/Friends'), {
   loading: () => <LoaderSpinner />,
@@ -33,9 +34,11 @@ const EndMessage = dynamic(() => import('@/Components/Home/Feed/EndMessage'), {
 });
 
 const Index = ({ profileData }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const router = useRouter();
-  const summaryData = useSelector((state) => state?.profile?.summaryData);
+  const summaryData = useAppSelector((state) => state?.profile?.summaryData);
+  const socket = useRef<Socket<ServerToClientEvents, ClientToServerEvents>>();
+
   const [friends, setFriends] = useState(null);
   const [profile, setProfile] = useState(profileData?.profile);
   const [user, setUser] = useState(profileData?.profile?.user);
@@ -43,27 +46,10 @@ const Index = ({ profileData }) => {
   const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(2);
-  const socket = useRef();
 
-  console.log(profile, 'profile', profileData);
-  useEffect(() => {
-    console.log('bas URL', process.env.BASE_URL);
-
-    if (!socket.current) {
-      // connect to socket
-
-      socket.current = io(process.env.API_BASE_URL, { transports: ['websocket'] });
-    }
-  }, []);
-  useEffect(() => {
-    if (profileData) {
-      dispatch(setProfileData(profileData));
-    }
-  }, [profileData]);
-  const getMorePosts = async () => {
+  const handleGetMorePosts = async () => {
     try {
       const { data } = await apiGetProfilePosts(profile?.user?.username, currentPage);
-      console.log(data, 'posts');
       setPosts((prev) => [...prev, ...data]);
       if (data.length === 0) setHasMore(false);
       setCurrentPage((currentPage) => currentPage + 1);
@@ -72,9 +58,10 @@ const Index = ({ profileData }) => {
     }
   };
 
-  const deletePost = (postId) => {
+  const handleDeletePost = (postId: string) => {
     setPosts(posts.filter((post) => post._id !== postId));
   };
+
   const getProfileFriends = async () => {
     try {
       const { data } = await apiGetProfileFriends(router?.query?.id);
@@ -91,11 +78,23 @@ const Index = ({ profileData }) => {
       console.log(error);
     }
   };
+
   useEffect(() => {
+    if (!socket.current) {
+      // connect to socket
+      socket.current = io(process.env.API_BASE_URL, { transports: ['websocket'] });
+    }
     getProfileSummary();
     getProfileFriends();
-    getMorePosts();
+    handleGetMorePosts();
   }, []);
+
+  useEffect(() => {
+    if (profileData) {
+      dispatch(setProfileData(profileData));
+    }
+  }, [profileData]);
+
   useEffect(() => {
     setSummary(summaryData);
   }, [summaryData]);
@@ -128,7 +127,7 @@ const Index = ({ profileData }) => {
           </div>
           <InfiniteScroll
             dataLength={posts.length} //This is important field to render the next data, only when the length is changed then will trigger next function
-            next={getMorePosts}
+            next={handleGetMorePosts}
             hasMore={hasMore}
             loader={<LoaderSpinner />}
             endMessage={<EndMessage />}
@@ -136,7 +135,7 @@ const Index = ({ profileData }) => {
           >
             {posts.map((post) => (
               <div key={post._id} className="mb-[15px]">
-                <Post socket={socket} deletePost={deletePost} post={post} />
+                <Post socket={socket} deletePost={handleDeletePost} post={post} />
               </div>
             ))}
           </InfiniteScroll>

@@ -1,9 +1,11 @@
-import React from 'react';
-import SidebarList from '@/Components/Search/SidebarList';
 import router from 'next/router';
-import SectionCard from '@/Components/Search/SectionCard';
+import React from 'react';
+
 import FilterListRow from '@/Components/Search/FilterListRow';
-import { UsersIcon, ChartSquareBarIcon, PhotographIcon } from '@heroicons/react/outline';
+import SectionCard from '@/Components/Search/SectionCard';
+import SidebarList from '@/Components/Search/SidebarList';
+import { ChartSquareBarIcon, PhotographIcon, UsersIcon } from '@heroicons/react/outline';
+
 const SearchType = () => {
   const filterList = [
     {

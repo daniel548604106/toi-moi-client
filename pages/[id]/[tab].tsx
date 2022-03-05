@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+
 import ProfileCover from '@/Components/Profile/ProfileCover';
 import TabsList from '@/Components/Profile/TabsList';
+
 const Index = ({ data }) => {
   const router = useRouter();
-  useEffect(() => {
-    console.log(data, router, router.query.tab);
-  }, []);
   const [profile, setProfile] = useState(data.profile);
   const [user, setUser] = useState(data.profile.user);
+
   return (
     <div>
       <ProfileCover profile={profile} user={user} />
       <div className="bg-secondary text-secondary sticky top-[60px] border-b">
         <div className="max-w-7xl mx-auto ">
-          <TabsList />
+          <TabsList friend_status={''} friends_total={0} user={{ name: '' }} />
         </div>
       </div>
     </div>

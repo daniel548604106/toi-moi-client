@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import Sidebar from '@/Components/Friends/Sidebar';
-import useAxios from '@/Hooks/useAxios';
-import { SearchIcon } from '@heroicons/react/outline';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import EmptyFriendList from '@/Components/Friends/EmptyFriendList';
-import router from 'next/router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import router from 'next/router';
+import React, { useEffect, useState } from 'react';
+
+import EmptyFriendList from '@/Components/Friends/EmptyFriendList';
+import Sidebar from '@/Components/Friends/Sidebar';
 import Avatar from '@/Components/Global/Avatar';
-const lists = () => {
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import useAxios from '@/Hooks/useAxios';
+import { SearchIcon } from '@heroicons/react/outline';
+
+const Lists = () => {
   const [friendsList, setFriendsList] = useState(null);
-  const [searchedResult, setSearchedResult] = useState(null);
   const [searchedName, setSearchedName] = useState('');
+
   const {
     response: friends,
     isLoading: isFriendListLoading,
@@ -36,15 +38,15 @@ const lists = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getSearchedName();
-    console.log(searchedName);
   }, [searchedName]);
+
   useEffect(() => {
     if (friends !== null) {
       setFriendsList(friends);
     }
-    console.log(friends);
   }, [friends]);
   return (
     <div className="flex flex-col lg:flex-row">
@@ -77,8 +79,8 @@ const lists = () => {
                 className="p-3 cursor-pointer text-secondary hover:shadow-lg bg-secondary rounded-lg shadow-md flex items-center"
               >
                 <Avatar
-                  width="50"
-                  height="50"
+                  width={50}
+                  height={50}
                   username={user.username}
                   profileImage={user.profileImage}
                   gender={user.gender}
@@ -95,4 +97,4 @@ const lists = () => {
   );
 };
 
-export default lists;
+export default Lists;

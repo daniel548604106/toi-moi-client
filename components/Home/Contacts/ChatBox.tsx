@@ -1,21 +1,35 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+import { apiGetChat } from '@/Axios/index';
+import Avatar from '@/Components/Global/Avatar';
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { UserInfo } from '@/Interfaces/I_common';
+import { Message, User } from '@/Interfaces/I_socket';
+import { removeFromChatBoxList } from '@/Redux/slices/messageSlice';
 import { XIcon } from '@heroicons/react/outline';
 import { ThumbUpIcon } from '@heroicons/react/solid';
-import { apiGetChat } from '@/Axios/index';
-import { useSelector, useDispatch } from 'react-redux';
-import Avatar from '../../Global/Avatar';
-import { removeFromChatBoxList } from '@/Redux/slices/messageSlice';
-const ChatBox = ({ handleSubmitMessage, newMessageReceived, connectedUsers, user }) => {
-  const dispatch = useDispatch();
+
+interface ChatBoxProps {
+  handleSubmitMessage: (sender: string, msg: string) => void;
+  newMessageReceived: Message;
+  connectedUsers: User[];
+  user: UserInfo;
+}
+
+const ChatBox = (props: ChatBoxProps) => {
+  const { handleSubmitMessage, newMessageReceived, connectedUsers, user } = props;
+  const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelector((state) => state.user);
+
+  const scrollToRef = useRef<HTMLParagraphElement>();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [isChatBoxOpen, setChatBoxOpen] = useState(true);
-  const { userInfo } = useSelector((state) => state.user);
-  const scrollToRef = useRef();
 
   const scrollToBottom = () => {
-    scrollToRef.current !== null && scrollToRef.current.scrollIntoView({ behavior: 'smooth' });
+    scrollToRef.current !== null && scrollToRef?.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
   const handleRemoveChatBox = () => {
     dispatch(removeFromChatBoxList(user));
   };
@@ -44,7 +58,7 @@ const ChatBox = ({ handleSubmitMessage, newMessageReceived, connectedUsers, user
     }
   };
   useEffect(() => {
-    messages.length > 0 && scrollToBottom(scrollToRef);
+    messages.length > 0 && scrollToBottom();
   }, [messages]);
 
   useEffect(() => {

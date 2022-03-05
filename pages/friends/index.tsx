@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-// import FriendCard from '@/Components/Friends/FriendCard';
-import RequestCard from '@/Components/Friends/Requests/RequestCard';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import Sidebar from '@/Components/Friends/Sidebar';
 import axios from 'axios';
 import useTranslation from 'next-translate/useTranslation';
+import dynamic from 'next/dynamic';
+import React, { useState } from 'react';
+
+import RequestCard from '@/Components/Friends/Requests/RequestCard';
+import Sidebar from '@/Components/Friends/Sidebar';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 
 const FriendCard = dynamic(() => import('@/Components/Friends/FriendCard'), {
   loading: () => <LoaderSpinner />,
@@ -15,13 +15,12 @@ const Index = ({ recommendations, requestsReceived }) => {
   const { t } = useTranslation('header');
   const [currentRecommendations, setCurrentRecommendations] = useState(recommendations);
   const [requests, setRequests] = useState(requestsReceived);
-  useEffect(() => {
-    console.log(recommendations, requests, 'recommendations');
-  }, [recommendations]);
-  const removeRecommendation = (id) => {
+
+  const removeRecommendation = (id: string) => {
     let update = currentRecommendations.filter((recommendation) => recommendation._id !== id);
     setCurrentRecommendations(update);
   };
+
   return (
     <div className="flex flex-col  lg:flex-row">
       <div className="">

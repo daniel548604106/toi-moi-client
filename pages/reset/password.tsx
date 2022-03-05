@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import router from 'next/router';
 import Image from 'next/image';
-import catchError from '@/Lib/catchError';
+import router from 'next/router';
+import React, { useEffect, useState } from 'react';
+
 import { apiPostPasswordReset } from '@/Axios/index';
+import catchError from '@/Lib/catchError';
+
 const password = () => {
   const token = router.query.token;
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [newPasswordSuccess, setNewPasswordSuccess] = useState(false);
+
   const handleResetPassword = async () => {
     if (!password || !passwordConfirm) return setError('Missing required field');
     if (password !== passwordConfirm)
       return setError("Password and password confirm doesn't match");
     try {
-      const res = await apiPostPasswordReset(token, password);
-      console.log(res);
+      await apiPostPasswordReset(token, password);
       setNewPasswordSuccess(true);
     } catch (error) {
       console.log(error);
@@ -64,7 +66,7 @@ const password = () => {
                   placeholder="Confirm Password"
                   className="focus:outline-none w-full"
                 />
-              </div>{' '}
+              </div>
             </>
           )}
           {error && <p className="text-red-600 text-sm">{error}</p>}
@@ -73,7 +75,7 @@ const password = () => {
               onClick={() => router.push('/')}
               className="bg-green-500 focus:outline-none text-secondary p-3 py-2 mt-[10px] rounded-lg"
             >
-              Login{' '}
+              Login
             </button>
           ) : (
             <button

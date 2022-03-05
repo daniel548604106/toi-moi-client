@@ -1,21 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import axios from 'axios';
-import io from 'socket.io-client';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import messageNotificationSound from '@/Utils/messageNotificationSound';
-import Sidebar from '@/Components/Home/Sidebar/Sidebar';
-import Contacts from '@/Components/Home/Contacts/Index';
+import { useEffect, useRef, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useDispatch } from 'react-redux';
+import io, { Socket } from 'socket.io-client';
+
+import { apiGetAllPosts, apiGetChatUserInfo } from '@/Axios/index';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import Contacts from '@/Components/Home/Contacts/Index';
 import InputBox from '@/Components/Home/Feed/InputBox';
 import Post from '@/Components/Home/Feed/Post/Post';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Room from '@/Components/Home/Feed/Room/Index';
 import Stories from '@/Components/Home/Feed/Story/Stories';
-import { setUnreadNotification } from '@/Redux/slices/userSlice';
-import { apiGetChatUserInfo, apiGetAllPosts } from '@/Axios/index';
-import { useSelector, useDispatch } from 'react-redux';
+import Sidebar from '@/Components/Home/Sidebar/Sidebar';
+import { useAppSelector } from '@/Hooks/useAppRedux';
+import { ClientToServerEvents, Message, ServerToClientEvents } from '@/Interfaces/I_socket';
 import { addToChatBoxList } from '@/Redux/slices/messageSlice';
+import { setUnreadNotification } from '@/Redux/slices/userSlice';
+import messageNotificationSound from '@/Utils/messageNotificationSound';
 
 // Dynamic Import
 const EndMessage = dynamic(() => import('@/Components/Home/Feed/EndMessage'), {
@@ -30,20 +33,25 @@ const ChatBox = dynamic(() => import('@/Components/Home/Contacts/ChatBox'));
 const PostNotification = dynamic(() => import('@/Components/Home/PostNotification'));
 export default function Home({ posts, friends, stories, notFound }) {
   const dispatch = useDispatch();
-  const [hasMore, setHasMore] = useState(true);
-  const { userInfo } = useSelector((state) => state.user);
-  const socket = useRef();
+  const { userInfo } = useAppSelector((state) => state.user);
+  const { openChatBoxList } = useAppSelector((state) => state.message);
+  const socket = useRef<Socket<ServerToClientEvents, ClientToServerEvents>>();
 
-  const { openChatBoxList } = useSelector((state) => state.message);
   // const [currentStories, setCurrentStories] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
   const [newNotification, setNewNotification] = useState(null);
   const [connectedUsers, setConnectedUsers] = useState([]);
   const [currentPosts, setCurrentPosts] = useState(posts || []);
   const [currentPage, setCurrentPage] = useState(2);
-  const [newMessageReceived, setNewMessageReceived] = useState({});
+  const [newMessageReceived, setNewMessageReceived] = useState<Message>({
+    sender: '',
+    receiver: '',
+    msg: '',
+    date: '',
+  });
   const [roomList, setRoomList] = useState(friends);
 
-  const getMorePosts = async () => {
+  const handleGetMorePosts = async () => {
     try {
       const posts = await apiGetAllPosts(currentPage);
       setCurrentPosts((prev) => [...prev, ...posts.data]);
@@ -54,31 +62,9 @@ export default function Home({ posts, friends, stories, notFound }) {
     }
   };
 
-  const deletePost = (postId) => {
+  const handleDeletePost = (postId) => {
     setCurrentPosts(currentPosts.filter((post) => post._id !== postId));
   };
-
-  // useEffect(() => {
-  //   setCurrentStories(stories);
-  // }, [stories]);
-  useEffect(() => {
-    setCurrentPosts(posts);
-    // Stop loading for more if there's no data at first
-    if (posts && posts.length < 1) {
-      setHasMore(false);
-    }
-  }, [posts]);
-
-  useEffect(() => {
-    console.log(posts, friends, stories);
-  }, [posts, friends, stories]);
-
-  useEffect(() => {
-    console.log(newMessageReceived);
-  }, [newMessageReceived]);
-  useEffect(() => {
-    setRoomList(friends);
-  }, [friends]);
 
   const handleSubmitMessage = (sender, msg) => {
     if (socket.current) {
@@ -89,6 +75,18 @@ export default function Home({ posts, friends, stories, notFound }) {
       });
     }
   };
+
+  useEffect(() => {
+    setCurrentPosts(posts);
+    // Stop loading for more if there's no data at first
+    if (posts && posts.length < 1) {
+      setHasMore(false);
+    }
+  }, [posts]);
+
+  useEffect(() => {
+    setRoomList(friends);
+  }, [friends]);
 
   useEffect(() => {
     console.log('base URL ', process.env.BASE_URL);
@@ -164,7 +162,7 @@ export default function Home({ posts, friends, stories, notFound }) {
               {currentPosts?.length && (
                 <InfiniteScroll
                   dataLength={currentPosts.length} //This is important field to render the next data, only when the length is changed then will trigger next function
-                  next={getMorePosts}
+                  next={handleGetMorePosts}
                   hasMore={hasMore}
                   loader={<LoaderSpinner />}
                   endMessage={<EndMessage />}
@@ -172,7 +170,7 @@ export default function Home({ posts, friends, stories, notFound }) {
                 >
                   {currentPosts?.map((post) => (
                     <div key={post._id} className="mb-[15px] ">
-                      <Post deletePost={deletePost} post={post} socket={socket} />
+                      <Post deletePost={handleDeletePost} post={post} socket={socket} />
                     </div>
                   ))}
                 </InfiniteScroll>
@@ -190,14 +188,13 @@ export default function Home({ posts, friends, stories, notFound }) {
         </div>
         <div className="fixed bottom-0 right-0  flex  w-full flex-row-reverse items-end">
           {openChatBoxList.length > 0 &&
-            openChatBoxList.map((user, idx) => (
+            openChatBoxList.map((user) => (
               <div className="mr-3">
                 <ChatBox
                   connectedUsers={connectedUsers}
                   user={user}
                   newMessageReceived={newMessageReceived}
                   handleSubmitMessage={handleSubmitMessage}
-                  idx={idx}
                 />
               </div>
             ))}

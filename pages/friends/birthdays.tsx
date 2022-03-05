@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Sidebar from '@/Components/Friends/Sidebar';
-import RecentBirthdays from '@/Components/Friends/Birthdays/RecentBirthdays';
-import MonthlyBirthdays from '@/Components/Friends/Birthdays/MonthlyBirthdays';
-import EmptyBirthday from '@/Components/Friends/Birthdays/EmptyBirthday';
 import dayjs from 'dayjs';
-const birthdays = ({ friends }) => {
+import React, { useEffect, useState } from 'react';
+
+import EmptyBirthday from '@/Components/Friends/Birthdays/EmptyBirthday';
+import MonthlyBirthdays from '@/Components/Friends/Birthdays/MonthlyBirthdays';
+import RecentBirthdays from '@/Components/Friends/Birthdays/RecentBirthdays';
+import Sidebar from '@/Components/Friends/Sidebar';
+
+const Birthdays = ({ friends }) => {
+  const now = dayjs();
+
   const [recentBirthdays, setRecentBirthdays] = useState([]);
   const [monthlyBirthdays, setMonthlyBirthdays] = useState([]);
-  const now = dayjs();
 
   const getRecentBirthdays = () => {
     const recent = friends.filter(
@@ -70,7 +73,7 @@ const birthdays = ({ friends }) => {
   );
 };
 
-export default birthdays;
+export default Birthdays;
 
 export async function getServerSideProps({ req }) {
   try {

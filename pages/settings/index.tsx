@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Index = () => {
+const Settings = () => {
   return <div>Settings</div>;
 };
 
-export default Index;
+export default Settings;
