@@ -1,5 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { apiGetMyInfo, apiGetFriendList } from '@/Axios/index';
+import { apiGetFriendList, apiGetMyInfo } from '@/Axios/index';
+import { UserInfo } from '@/Interfaces/I_common';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
 export const getMyInfo = createAsyncThunk('get/getMyInfo', async (id, thunkAPI) => {
   const response = await apiGetMyInfo();
   console.log(response);
@@ -11,6 +13,15 @@ export const getFriendList = createAsyncThunk('get/getFriendList', async (id, th
   return response.data;
 });
 
+interface UserState {
+  isUserLoggedIn: boolean;
+  userInfo: UserInfo | {};
+  notifications: any;
+  friendsList: any;
+  isEditProfileImageOpen: boolean;
+  profileImageToUpdate: string;
+}
+
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -20,8 +31,7 @@ export const userSlice = createSlice({
     friendsList: [],
     isEditProfileImageOpen: false,
     profileImageToUpdate: '',
-  },
-
+  } as UserState,
   reducers: {
     // Redux Toolkit allows us to write "mutating" logic in reducers. It
     // doesn't actually mutate the state because it uses the Immer library,
@@ -46,17 +56,17 @@ export const userSlice = createSlice({
       state.profileImageToUpdate = payload;
     },
   },
-  extraReducers: {
+  extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
-    [getMyInfo.fulfilled]: (state, action) => {
+    builder.addCase(getMyInfo.fulfilled, (state, action) => {
       // Add likes to the state array
       state.userInfo = action.payload;
-    },
-    [getFriendList.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getFriendList.fulfilled, (state, action) => {
       console.log(action.payload, 'extra');
       // Add likes to the state array
       state.friendsList = action.payload.map((item) => item.user);
-    },
+    });
   },
 });
 

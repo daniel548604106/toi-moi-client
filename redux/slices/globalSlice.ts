@@ -1,13 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+interface GlobalState {
+  isSearchBarOpen: boolean;
+  isLanguageOpen: boolean;
+  isCreateRoomOpen: boolean;
+  notification: '';
+}
+
 export const globalSlice = createSlice({
   name: 'global',
   initialState: {
     isSearchBarOpen: false,
     isLanguageOpen: false,
     isCreateRoomOpen: false,
-    notification: ''
-  },
+    notification: '',
+  } as GlobalState,
   reducers: {
     // Redux Toolkit allows us to write "mutating" logic in reducers. It
     // doesn't actually mutate the state because it uses the Immer library,
@@ -24,17 +31,13 @@ export const globalSlice = createSlice({
     },
     setNotification: (state, { payload }) => {
       state.notification = payload;
-    }
-  }
+    },
+  },
 });
 
 // Action creators are generated for each case reducer function
-export const {
-  toggleSearchBar,
-  toggleCreateRoomOpen,
-  setLikesListOpen,
-  toggleLanguageOpen,
-  setNotification
-} = globalSlice.actions;
+export const { toggleSearchBar, toggleCreateRoomOpen, toggleLanguageOpen, setNotification } =
+  globalSlice.actions;
 
 export default globalSlice.reducer;
+export type { GlobalState };

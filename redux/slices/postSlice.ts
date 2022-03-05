@@ -1,22 +1,39 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import request from '@/Lib/axiosConfig';
 import { apiGetSavedPosts } from '@/Axios/index';
-export const apiGetLikesList = createAsyncThunk('post/getLikesList', async (id, thunkAPI) => {
+import request from '@/Lib/axiosConfig';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+// `createAsyncThunk` is a generic function.
+// We can use the first type-parameter to tell what type will be returned as a result.
+// The second type-parameter in `createAsyncThunk` tells what argument takes the function inside:
+export const apiGetLikesList = createAsyncThunk<any, string>('post/getLikesList', async (id) => {
   const response = await request.get(`/posts/like/${id}`);
   console.log(response.data);
   return response.data;
 });
 
-export const apiGetCurrentPost = createAsyncThunk('post/getCurrentPost', async (id, thunkAPI) => {
-  const response = await request.get(`/posts/${id}`);
-  console.log(response);
-  return response.data;
-});
-export const getSavedPosts = createAsyncThunk('post/getSavedPost', async (id, thunkAPI) => {
+export const apiGetCurrentPost = createAsyncThunk<any, string>(
+  'post/getCurrentPost',
+  async (id) => {
+    const response = await request.get(`/posts/${id}`);
+    console.log(response);
+    return response.data;
+  },
+);
+export const getSavedPosts = createAsyncThunk<any, string>('post/getSavedPost', async (id) => {
   const response = await apiGetSavedPosts();
   console.log(response, 'saved');
   return response.data.posts;
 });
+
+interface PostState {
+  isLikesListOpen: boolean;
+  likesList: any;
+  savedPosts: any;
+  currentPost: null;
+  isPostInputBoxOpen: boolean;
+  isViewPostModalOpen: boolean;
+  imageToPost: string;
+}
 
 export const postSlice = createSlice({
   name: 'post',
@@ -28,7 +45,7 @@ export const postSlice = createSlice({
     isPostInputBoxOpen: false,
     isViewPostModalOpen: false,
     imageToPost: '',
-  },
+  } as PostState,
   reducers: {
     setLikesListOpen: (state, { payload }) => {
       if (payload === false) {
@@ -49,19 +66,19 @@ export const postSlice = createSlice({
       state.isViewPostModalOpen = payload;
     },
   },
-  extraReducers: {
+  extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
-    [apiGetLikesList.fulfilled]: (state, action) => {
+    builder.addCase(apiGetLikesList.fulfilled, (state, action) => {
       // Add likes to the state array
       console.log('extra', action.payload);
       state.likesList = action.payload;
-    },
-    [apiGetCurrentPost.fulfilled]: (state, action) => {
-      state.currentPost = action.payload;
-    },
-    [getSavedPosts.fulfilled]: (state, action) => {
-      state.savedPosts = action.payload;
-    },
+    }),
+      builder.addCase(apiGetCurrentPost.fulfilled, (state, action) => {
+        state.currentPost = action.payload;
+      }),
+      builder.addCase(getSavedPosts.fulfilled, (state, action) => {
+        state.savedPosts = action.payload;
+      });
   },
 });
 

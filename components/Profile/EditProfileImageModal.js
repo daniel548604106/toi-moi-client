@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline';
 import { setEditProfileImageOpen, getMyInfo } from '@/Redux/slices/userSlice';
 import Loader from '../Global/Loader';
 import Image from 'next/dist/client/image';
-import { getProfileData } from '@/Redux/slices/profileSlice.js';
+import { getProfileData } from '@/Redux/slices/profileSlice';
 import { useRouter } from 'next/router';
 import { apiPatchProfileImage, apiPostNewPost } from '@/Axios/index';
 const EditProfileImageModal = () => {
