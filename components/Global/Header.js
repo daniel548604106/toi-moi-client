@@ -23,6 +23,7 @@ import NotificationDropDown from './HeaderDropDown/NotificationDropDown';
 import useTranslation from 'next-translate/useTranslation';
 import Sidebar from '../Home/Sidebar/Sidebar';
 import { setUnreadNotification } from '@/Redux/slices/userSlice';
+import { AnimateSharedLayout } from 'framer-motion';
 const menuTabs = [
   {
     title: 'home',
@@ -79,21 +80,24 @@ const Header = () => {
           <Search t={t} />
         </div>
       </div>
-      <div
-        className={`${
-          router.pathname.includes('messages') && 'hidden'
-        } fixed max-w-[750px] flex items-center top-[50px] bg-secondary text-secondary left-0    w-full md:static  flex-grow sm:px-5 sm:mx-0 xl:px-10`}
-      >
-        {menuTabs.map(({ title, href, Icon }) => (
-          <HeaderIcon
-            key={title}
-            href={href}
-            Icon={Icon}
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-          />
-        ))}
-      </div>
+      <AnimateSharedLayout>
+        <div
+          className={`${
+            router.pathname.includes('messages') && 'hidden'
+          } fixed max-w-[750px] flex items-center top-[50px] bg-secondary text-secondary left-0    w-full md:static  flex-grow sm:px-5 sm:mx-0 xl:px-10`}
+        >
+          {menuTabs.map(({ title, href, Icon }) => (
+            <HeaderIcon
+              key={title}
+              href={href}
+              Icon={Icon}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
+          ))}
+        </div>
+      </AnimateSharedLayout>
+
       <div className="w-1/2  relative flex justify-end items-center space-x-1 sm:space-x-2 ">
         <div
           onClick={() => router.push(`/${userInfo.username}`)}
