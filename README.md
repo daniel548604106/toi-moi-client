@@ -32,7 +32,7 @@ Toi&Moi is a fullstack social platform designated to connect people from distanc
 
 **Client**
 
-✨ Next.js, Redux-toolkit, Typescript, TailwindCSS , Socket.io-client , MJML(Customized EDM) 
+✨ Next.js, Redux-toolkit, Typescript, TailwindCSS , Socket.io-client , MJML(Customized EDM) , Emoji-Picker-React
 
 **Server**
 
