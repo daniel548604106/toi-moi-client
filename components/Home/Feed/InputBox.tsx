@@ -1,9 +1,9 @@
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
+import React, { ChangeEvent, useRef } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { setImageToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
+import { setImagesToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
 import genderAvatar from '@/Utils/genderAvatar';
 import { EmojiHappyIcon } from '@heroicons/react/outline';
 import { CameraIcon, VideoCameraIcon } from '@heroicons/react/solid';
@@ -15,17 +15,14 @@ const InputBox = () => {
   const userInfo = useAppSelector((state) => state.user.userInfo);
   const filePickerRef = useRef(null);
 
-  const handleUploadImage = (e) => {
-    const reader = new FileReader();
-    if (e.target.files[0]) {
-      // Asynchronous function , read the file as an URL
-      reader.readAsDataURL(e.target.files[0]);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const images = Array.from(e.target.files as FileList).map((file) => ({
+        file,
+      }));
+      dispatch(setImagesToPost(images));
+      dispatch(setPostInputBoxOpen(true));
     }
-    // When it comes back , it comes back as a result
-    reader.onload = (readerEvent) => {
-      dispatch(setImageToPost(readerEvent.target.result));
-    };
-    dispatch(setPostInputBoxOpen(true));
   };
 
   return (
@@ -52,7 +49,14 @@ const InputBox = () => {
         <div onClick={() => filePickerRef.current.click()} className="inputIcon">
           <CameraIcon className="h-5 mb-2 sm:mb-0 sm:h-6 text-green-300 " />
           <p className="text-xs sm:text-sm xl:text-md">{t('post.photo/video')}</p>
-          <input ref={filePickerRef} hidden type="file" onChange={(e) => handleUploadImage(e)} />
+          <input
+            ref={filePickerRef}
+            multiple
+            accept="image/png,image/jpg,image/jpeg"
+            hidden
+            type="file"
+            onChange={(e) => handleChange(e)}
+          />
         </div>
         <div className="inputIcon">
           <EmojiHappyIcon className="h-5 mb-2 sm:mb-0 sm:h-6 text-yellow-300" />

@@ -11,6 +11,7 @@ module.exports = withBundleAnalyzer(
         'images.unsplash.com',
         'ik.imagekit.io',
         'image.flaticon.com',
+        '',
       ],
     },
     async headers() {
