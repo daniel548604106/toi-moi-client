@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { postNewPostAPI } from '@/Axios/postRequest';
 import Avatar from '@/Components/Global/Avatar';
 import Loader from '@/Components/Global/Loader';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import useClickOutside from '@/Hooks/useClickOutside';
 import useNotify from '@/Hooks/useNotify';
@@ -12,7 +13,11 @@ import { setNotification } from '@/Redux/slices/globalSlice';
 import { setImageToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
 import { EmojiHappyIcon, PhotographIcon, XIcon } from '@heroicons/react/outline';
 
-const Picker = dynamic(import('emoji-picker-react'), { ssr: false });
+const Picker = dynamic(import('emoji-picker-react'), {
+  ssr: false,
+  loading: () => <LoaderSpinner />,
+});
+
 const InputBoxModal = () => {
   const dispatch = useAppDispatch();
   const userInfo = useAppSelector((state) => state.user.userInfo);
@@ -75,7 +80,7 @@ const InputBoxModal = () => {
   }, [imageToPost]);
 
   return (
-    <div className="h-screen overflow-y-auto sm:h-auto pb-10 sm:pb-4 rounded-md bg-secondary text-secondary w-full max-w-[600px]  relative">
+    <div className="h-screen overflow-y-auto sm:h-[70vh] pb-10 sm:pb-4 rounded-md bg-secondary text-secondary w-full max-w-[600px]  relative">
       <div className="p-3 bg-white z-40 sticky top-0  text-center text-lg font-semibold border-b">
         Create Post
         <XIcon
@@ -110,7 +115,7 @@ const InputBoxModal = () => {
               />
             </div>
           )}
-          <div className="rounded-lg cursor-pointer border p-3">
+          <div className="rounded-lg relative cursor-pointer border p-3">
             <div className="flex items-center justify-between">
               <span className="text-sm sm:text-md">Add to post</span>
               <div className="flex items-center space-x-1">
@@ -118,17 +123,10 @@ const InputBoxModal = () => {
                   onClick={() => fileUploadRef.current.click()}
                   className="text-green-500 cursor-pointer h-6"
                 />
-                <div className="relative">
-                  <EmojiHappyIcon
-                    onClick={() => setIsEmojiPickerVisible(!isEmojiPickerVisible)}
-                    className="text-yellow-400 cursor-pointer h-6"
-                  />
-                  {isEmojiPickerVisible && (
-                    <div ref={emojiPickerRef} className="absolute right-0 bottom-0">
-                      <Picker onEmojiClick={onEmojiClick} />
-                    </div>
-                  )}
-                </div>
+                <EmojiHappyIcon
+                  onClick={() => setIsEmojiPickerVisible(!isEmojiPickerVisible)}
+                  className="text-yellow-400 cursor-pointer h-6"
+                />
               </div>
               <input
                 onChange={(e) => handleUploadImage(e)}
@@ -136,6 +134,11 @@ const InputBoxModal = () => {
                 type="file"
                 hidden
               />
+              {isEmojiPickerVisible && (
+                <div ref={emojiPickerRef} className="absolute right-0 top-0">
+                  <Picker onEmojiClick={onEmojiClick} />
+                </div>
+              )}
             </div>
           </div>
         </div>
