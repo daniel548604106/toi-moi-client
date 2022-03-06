@@ -6,9 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import useCopyToClipboard from '@/Hooks/useCopytoClipboard';
 import { setNotification } from '@/Redux/slices/globalSlice';
 import {
-  AnnotationIcon,
-  ShareIcon,
-  ThumbUpIcon as OutlineThumbUpIcon,
+    AnnotationIcon, ShareIcon, ThumbUpIcon as OutlineThumbUpIcon
 } from '@heroicons/react/outline';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
 
