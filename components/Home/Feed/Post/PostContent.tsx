@@ -96,7 +96,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
           )}
         </div>
       )}
-      {images.length > 1
+      {images?.length > 1
         ? !isViewPostModalOpen && (
             <div className="grid grid-cols-2 gap-2">
               {images.map((image) => (
@@ -115,7 +115,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
             </div>
           )
         : !isViewPostModalOpen &&
-          post.picUrl && (
+          post?.picUrl && (
             <div onClick={() => handleViewPost(post._id)} className="imageContainer cursor-pointer">
               <Image src={post.picUrl} layout="fill" className="image rounded-lg " />
             </div>
