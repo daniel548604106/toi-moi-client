@@ -9,6 +9,25 @@ import * as ga from '@/Lib/gtag';
 import { setNotification } from '@/Redux/slices/globalSlice';
 import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
 
+const renderImageLayout = (length, index) => {
+  switch (length) {
+    case 2:
+      return 'col-span-6 pb-[50%]';
+      break;
+    case 3:
+      if (index === 2) {
+        return 'col-span-6 pb-[50%]';
+      }
+      return 'pb-[100%] col-span-3';
+      break;
+    case 4:
+      return 'pb-[100%] col-span-3';
+      break;
+    default:
+      return 'pb-[50%] col-span-2';
+  }
+};
+
 const PostContent = ({ post, isEditable, setEditable }) => {
   const { t } = useTranslation('common');
   const dispatch = useAppDispatch();
@@ -98,11 +117,11 @@ const PostContent = ({ post, isEditable, setEditable }) => {
       )}
       {images?.length > 1
         ? !isViewPostModalOpen && (
-            <div className="grid grid-cols-2 gap-2">
-              {images.map((image) => (
+            <div className="grid grid-cols-6 gap-2">
+              {images.map((image, index) => (
                 <div
                   onClick={() => handleViewPost(post._id)}
-                  className="relative h-0 pb-[100%] cursor-pointer"
+                  className={`${renderImageLayout(images?.length, index)} relative cursor-pointer`}
                 >
                   <Image
                     src={image}

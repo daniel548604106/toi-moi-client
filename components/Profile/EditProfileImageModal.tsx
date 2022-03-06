@@ -22,7 +22,7 @@ const EditProfileImageModal = () => {
   const sendUpdates = async (profileImageToUpdate) => {
     try {
       const { data } = await postNewPostAPI({
-        image: profileImageToUpdate,
+        images: [profileImageToUpdate],
         text,
         location: '',
         type: 'profileImage',

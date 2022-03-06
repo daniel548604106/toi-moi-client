@@ -32,6 +32,8 @@ const InputBoxModal = () => {
   const [location, setLocation] = useState('');
   const [isEmojiPickerVisible, setIsEmojiPickerVisible] = useState(false);
 
+  const isPostAvailable = text || images?.length;
+
   useClickOutside(emojiPickerRef, () => isEmojiPickerVisible && setIsEmojiPickerVisible(false));
   const { isShow } = useNotify('');
 
@@ -49,6 +51,7 @@ const InputBoxModal = () => {
         [
           ...images,
           ...Array.from(e.target.files as FileList).map((file) => ({
+            preview: URL.createObjectURL(file),
             file,
           })),
         ].splice(0, 10),
@@ -56,14 +59,12 @@ const InputBoxModal = () => {
     }
   };
 
-  console.log(images);
-
   const sendPost = async (e) => {
     try {
       e.preventDefault();
-      if (text === '') return;
+      if (!isPostAvailable) return;
       setLoading(true);
-      // await postNewPostAPI({ image, text, location, type: 'post' });
+      await postNewPostAPI({ images, text, location, type: 'post' });
       setText('');
       setLoading(false);
       setImages(null);
@@ -110,15 +111,9 @@ const InputBoxModal = () => {
           />
           {images && (
             <div className="flex flex-nowrap whitespace-nowrap gap-3 overflow-x-auto w-full">
-              {images.map(({ file }) => (
+              {images.map(({ preview, file }) => (
                 <div className="relative min-w-full h-56 md:h-96 border rounded-md mb-[10px]">
-                  <Image
-                    layout="fill"
-                    unoptimized
-                    objectFit="cover"
-                    src={URL.createObjectURL(file)}
-                    alt="image"
-                  />
+                  <Image layout="fill" unoptimized objectFit="cover" src={preview} alt="image" />
                   <XIcon
                     onClick={() => handleRemoveImage(file)}
                     className="h-6 cursor-pointer rounded-full border bg-secondary text-secondary absolute top-[10px] right-[10px]"
@@ -144,7 +139,7 @@ const InputBoxModal = () => {
                 onChange={(e) => handleChange(e)}
                 ref={fileUploadRef}
                 type="file"
-                accept="image/png,image/jpg,image/jpeg"
+                accept="image/png,image/jpg,image/jpeg,image/avif"
                 hidden
               />
               {isEmojiPickerVisible && (
@@ -158,7 +153,7 @@ const InputBoxModal = () => {
         <button
           onClick={(e) => sendPost(e)}
           className={`mt-[10px]  mb-10 flex items-center justify-center  text-sm  cursor-default rounded-lg w-full py-3  ${
-            text ? 'bg-main text-white  cursor-pointer' : 'bg-gray-100'
+            isPostAvailable ? 'bg-main text-white  cursor-pointer' : 'bg-gray-100'
           } `}
         >
           {isLoading ? <Loader /> : 'Post'}
