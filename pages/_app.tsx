@@ -2,6 +2,7 @@ import '@/Styles/globals.css';
 import '@/Styles/LoaderSpinner.css';
 import '@/Styles/LoaderBounce.css';
 
+import { AnimatePresence, motion } from 'framer-motion';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -231,7 +232,9 @@ const App = ({ Component, pageProps }) => {
         </Overlay>
       )}
       {!allowedRoutes && <Header />}
-      {notification && <Notification notification={notification} />}
+      <AnimatePresence>
+        {notification && <Notification notification={notification} />}
+      </AnimatePresence>
       {isCommonLoading && <GlobalLoader />}
       <main
         className={`${
