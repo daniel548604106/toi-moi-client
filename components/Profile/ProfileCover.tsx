@@ -70,7 +70,7 @@ const ProfileCover = (props: ProfileCoverProps) => {
     setLoading(true);
     try {
       const { data } = await postNewPostAPI({
-        image: profileCoverImage,
+        images: [profileCoverImage],
         text: profileCoverDescription,
         location: '',
         type: 'profileCover',
