@@ -2,9 +2,13 @@ import useTranslation from 'next-translate/useTranslation';
 import React, { useState } from 'react';
 
 import { likePostAPI, unlikePostAPI } from '@/Axios/postRequest';
-import { useAppSelector } from '@/Hooks/useAppRedux';
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import useCopyToClipboard from '@/Hooks/useCopytoClipboard';
+import { setNotification } from '@/Redux/slices/globalSlice';
 import {
-    AnnotationIcon, ShareIcon, ThumbUpIcon as OutlineThumbUpIcon
+  AnnotationIcon,
+  ShareIcon,
+  ThumbUpIcon as OutlineThumbUpIcon,
 } from '@heroicons/react/outline';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
 
@@ -19,7 +23,11 @@ interface PostActionsProps {
 const PostActions = (props: PostActionsProps) => {
   const { socket, likes, setCommentShow, post, setLikes } = props;
   const { t } = useTranslation('common');
+  const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
+
+  const [value, copy] = useCopyToClipboard();
+
   const [isLiked, setLiked] = useState(
     likes.length > 0 && likes.filter((like) => like.user === userInfo._id).length > 0,
   );
@@ -44,18 +52,28 @@ const PostActions = (props: PostActionsProps) => {
   };
 
   const handleSharePost = async () => {
-    try {
-      const { text, picUrl } = post;
-      const data = {
-        title: text,
-        url: 'https://developer.mozilla.org',
-        text,
-      };
+    const { text, picUrl, _id, user } = post;
+    const { username } = user;
+    const hostname = window.location.hostname; // Localhost or Production URL
+    const url = `${hostname}//${username}/posts/${_id}`;
 
-      // navigator.share will only work on websites with https and not HTTP
-      await navigator.share(data);
-    } catch (error) {
-      console.log(error);
+    if (navigator.share) {
+      try {
+        const shareData = {
+          title: text,
+          url,
+          text,
+        };
+        // navigator.share will only work on websites with https and not HTTP
+        await navigator.share(shareData);
+      } catch (error) {
+        console.log(error);
+        copy(url);
+        dispatch(setNotification('URL Copied'));
+      }
+    } else {
+      copy(url);
+      dispatch(setNotification('URL Copied!'));
     }
   };
 
