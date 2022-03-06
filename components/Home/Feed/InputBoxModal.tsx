@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -5,23 +6,33 @@ import { postNewPostAPI } from '@/Axios/postRequest';
 import Avatar from '@/Components/Global/Avatar';
 import Loader from '@/Components/Global/Loader';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import useClickOutside from '@/Hooks/useClickOutside';
 import useNotify from '@/Hooks/useNotify';
 import { setNotification } from '@/Redux/slices/globalSlice';
 import { setImageToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
 import { EmojiHappyIcon, PhotographIcon, XIcon } from '@heroicons/react/outline';
 
+const Picker = dynamic(import('emoji-picker-react'), { ssr: false });
 const InputBoxModal = () => {
   const dispatch = useAppDispatch();
   const userInfo = useAppSelector((state) => state.user.userInfo);
   const imageToPost = useAppSelector((state) => state.post.imageToPost);
 
+  const fileUploadRef = useRef(null);
+  const emojiPickerRef = useRef(null);
+
   const [text, setText] = useState('');
-  const { isShow } = useNotify('');
   const [isLoading, setLoading] = useState(false);
   const [image, setImage] = useState<string | any>(imageToPost || '');
   const [location, setLocation] = useState('');
+  const [isEmojiPickerVisible, setIsEmojiPickerVisible] = useState(false);
 
-  const fileUploadRef = useRef(null);
+  useClickOutside(emojiPickerRef, () => isEmojiPickerVisible && setIsEmojiPickerVisible(false));
+  const { isShow } = useNotify('');
+
+  const onEmojiClick = (event, emojiObject) => {
+    setText((prev) => `${prev}${emojiObject.emoji}`);
+  };
   const handleUploadImage = (e) => {
     const reader = new FileReader();
     if (e.target.files[0]) {
@@ -107,7 +118,17 @@ const InputBoxModal = () => {
                   onClick={() => fileUploadRef.current.click()}
                   className="text-green-500 cursor-pointer h-6"
                 />
-                <EmojiHappyIcon className="text-yellow-400 cursor-pointer h-6" />
+                <div className="relative">
+                  <EmojiHappyIcon
+                    onClick={() => setIsEmojiPickerVisible(!isEmojiPickerVisible)}
+                    className="text-yellow-400 cursor-pointer h-6"
+                  />
+                  {isEmojiPickerVisible && (
+                    <div ref={emojiPickerRef} className="absolute right-0 bottom-0">
+                      <Picker onEmojiClick={onEmojiClick} />
+                    </div>
+                  )}
+                </div>
               </div>
               <input
                 onChange={(e) => handleUploadImage(e)}

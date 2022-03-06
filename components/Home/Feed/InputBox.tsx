@@ -1,6 +1,6 @@
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { setImageToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
