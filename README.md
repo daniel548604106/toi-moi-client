@@ -32,7 +32,7 @@ Toi&Moi is a fullstack social platform designated to connect people from distanc
 
 **Client**
 
-✨ Next.js, Redux, TailwindCSS , Socket.io-client , MJML(Customized EDM)
+✨ Next.js, Redux-toolkit, Typescript, TailwindCSS , Socket.io-client , MJML(Customized EDM) , Emoji-Picker-React
 
 **Server**
 
@@ -53,7 +53,7 @@ Live Demo
 https://toi-moi.herokuapp.com/
 https://master.d1qbxrer92lk46.amplifyapp.com
 
-## Problems Ecountered
+## Problems Encountered
 
 - Problem: tailwindcss group-focus not working on mobile
 - Fix: change it to useClickAway custom hook

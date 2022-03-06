@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dynamic from 'next/dynamic';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import io, { Socket } from 'socket.io-client';
@@ -41,9 +41,10 @@ const Index = ({ profileData }) => {
   const summaryData = useAppSelector((state) => state?.profile?.summaryData);
   const socket = useRef<Socket<ServerToClientEvents, ClientToServerEvents>>();
 
+  const { profile } = profileData;
+  const { user } = profile;
+
   const [friends, setFriends] = useState(null);
-  const [profile, setProfile] = useState(profileData?.profile);
-  const [user, setUser] = useState(profileData?.profile?.user);
   const [summary, setSummary] = useState(summaryData);
   const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
@@ -53,6 +54,17 @@ const Index = ({ profileData }) => {
     try {
       const { data } = await getProfilePostsAPI(profile?.user?.username, currentPage);
       setPosts((prev) => [...prev, ...data]);
+      if (data.length === 0) setHasMore(false);
+      setCurrentPage((currentPage) => currentPage + 1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleGetInitialPosts = async () => {
+    try {
+      const { data } = await getProfilePostsAPI(profile?.user?.username, 2);
+      setPosts(data);
       if (data.length === 0) setHasMore(false);
       setCurrentPage((currentPage) => currentPage + 1);
     } catch (error) {
@@ -88,8 +100,8 @@ const Index = ({ profileData }) => {
     }
     getProfileSummary();
     getProfileFriends();
-    handleGetMorePosts();
-  }, []);
+    handleGetInitialPosts();
+  }, [router.query.id]);
 
   useEffect(() => {
     if (profileData) {
