@@ -67,6 +67,10 @@ https://master.d1qbxrer92lk46.amplifyapp.com
 - Problem: react-konva outputs Must use import to load ES Module [error]
 - Fix: The problem lies in SSR, as react-konva doesn't support SSR , so instead of importing react-konva in a page component, wrap it inside a regular component, and use dynamic import with SSR:false .
 - Unlimited Rerender when trying to destructure redux state
+- Blob File is not received from Server as BodyParser doesn't include file uploads. Need Extra package to parse formData
+- Install express-formidable , then the data will be visible .
+  需要只針對使用 formData 的路徑使用 formidable()，parse 出來的資料會在 req.files 和 req.fields 裡面
+  Reference: https://www.npmjs.com/package/express-formidable
 
 ## CI/CD
 

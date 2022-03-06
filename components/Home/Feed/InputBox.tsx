@@ -52,7 +52,7 @@ const InputBox = () => {
           <input
             ref={filePickerRef}
             multiple
-            accept="image/png,image/jpg,image/jpeg"
+            accept="image/png,image/jpg,image/jpeg,image/avif"
             hidden
             type="file"
             onChange={(e) => handleChange(e)}
