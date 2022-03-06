@@ -232,7 +232,7 @@ export async function getServerSideProps({ req, res }) {
           Authorization: `Bearer ${token}`,
         },
       });
-      posts = await axios.get(`${process.env.API_BASE_URL}/api/posts?page=1&size=1`, {
+      posts = await axios.get(`${process.env.API_BASE_URL}/api/posts?page=1`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
