@@ -8,6 +8,7 @@ import io, { Socket } from 'socket.io-client';
 
 import { getChatUserInfoAPI } from '@/Axios/chatRequest';
 import { getAllPostsAPI } from '@/Axios/postRequest';
+import { getStoriesAPI } from '@/Axios/storyRequest';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Contacts from '@/Components/Home/Contacts/Index';
 import InputBox from '@/Components/Home/Feed/InputBox';
@@ -33,7 +34,7 @@ const NoPost = dynamic(() => import('@/Components/Home/Feed/NoPost'), {
 const ChatBox = dynamic(() => import('@/Components/Home/Contacts/ChatBox'));
 const PostNotification = dynamic(() => import('@/Components/Home/PostNotification'));
 
-export default function Home({ posts, friends, stories, notFound }) {
+export default function Home({ posts, friends, notFound }) {
   const dispatch = useDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
   const { openChatBoxList } = useAppSelector((state) => state.message);
@@ -41,6 +42,7 @@ export default function Home({ posts, friends, stories, notFound }) {
 
   // const [currentStories, setCurrentStories] = useState(null);
   const [hasMore, setHasMore] = useState(true);
+  const [stories, setStories] = useState([]);
   const [newNotification, setNewNotification] = useState(null);
   const [connectedUsers, setConnectedUsers] = useState([]);
   const [currentPosts, setCurrentPosts] = useState(posts || []);
@@ -89,6 +91,18 @@ export default function Home({ posts, friends, stories, notFound }) {
   useEffect(() => {
     setRoomList(friends);
   }, [friends]);
+
+  useEffect(() => {
+    const handleGetStories = async () => {
+      try {
+        const { data } = await getStoriesAPI();
+        setStories(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleGetStories();
+  }, []);
 
   useEffect(() => {
     console.log('base URL ', process.env.BASE_URL);
@@ -210,19 +224,15 @@ export async function getServerSideProps({ req, res }) {
   try {
     // get server side cookies
     const token = req.cookies.token;
-    let posts, friends, stories;
+    let posts, friends;
+
     if (token) {
       friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      posts = await axios.get(`${process.env.API_BASE_URL}/api/posts?page=1`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      stories = await axios.get(`${process.env.API_BASE_URL}/api/stories`, {
+      posts = await axios.get(`${process.env.API_BASE_URL}/api/posts?page=1&size=1`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -238,7 +248,6 @@ export async function getServerSideProps({ req, res }) {
       props: {
         posts: posts.data,
         friends: friends.data,
-        stories: stories.data,
       },
     };
   } catch (error) {
