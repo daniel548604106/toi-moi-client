@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { postNewPostAPI } from '@/Axios/postRequest';
 import Avatar from '@/Components/Global/Avatar';
@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import useClickOutside from '@/Hooks/useClickOutside';
 import useNotify from '@/Hooks/useNotify';
 import { setNotification } from '@/Redux/slices/globalSlice';
-import { setImageToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
+import { setImagesToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
 import { EmojiHappyIcon, PhotographIcon, XIcon } from '@heroicons/react/outline';
 
 const Picker = dynamic(import('emoji-picker-react'), {
@@ -28,7 +28,7 @@ const InputBoxModal = () => {
 
   const [text, setText] = useState('');
   const [isLoading, setLoading] = useState(false);
-  const [image, setImage] = useState<string | any>(imageToPost || '');
+  const [images, setImages] = useState<string | any>(imageToPost || []);
   const [location, setLocation] = useState('');
   const [isEmojiPickerVisible, setIsEmojiPickerVisible] = useState(false);
 
@@ -38,32 +38,37 @@ const InputBoxModal = () => {
   const onEmojiClick = (event, emojiObject) => {
     setText((prev) => `${prev}${emojiObject.emoji}`);
   };
-  const handleUploadImage = (e) => {
-    const reader = new FileReader();
-    if (e.target.files[0]) {
-      // Asynchronous function , read the file as an URL
-      reader.readAsDataURL(e.target.files[0]);
-    }
-    // When it comes back , it comes back as a result
-    reader.onload = (readerEvent) => {
-      setImage(readerEvent?.target?.result);
-    };
+
+  const handleRemoveImage = (currentFile) => {
+    setImages((prev) => prev.filter(({ file }) => file !== currentFile));
   };
 
-  const handleRemoveImage = () => {
-    dispatch(setImageToPost(''));
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setImages(
+        [
+          ...images,
+          ...Array.from(e.target.files as FileList).map((file) => ({
+            file,
+          })),
+        ].splice(0, 10),
+      );
+    }
   };
+
+  console.log(images);
 
   const sendPost = async (e) => {
     try {
       e.preventDefault();
       if (text === '') return;
       setLoading(true);
-      await postNewPostAPI({ image, text, location, type: 'post' });
+      // await postNewPostAPI({ image, text, location, type: 'post' });
       setText('');
       setLoading(false);
-      setImage(null);
+      setImages(null);
       dispatch(setPostInputBoxOpen(false));
+      dispatch(setImagesToPost([]));
       dispatch(setNotification('Post sent!'));
     } catch (error) {
       console.log(error);
@@ -73,11 +78,8 @@ const InputBoxModal = () => {
   };
 
   useEffect(() => {
-    setImage(imageToPost);
-    return () => {
-      setImage(imageToPost);
-    };
-  }, [imageToPost]);
+    dispatch(setImagesToPost(images));
+  }, [images]);
 
   return (
     <div className="h-screen overflow-y-auto sm:h-[70vh] pb-10 sm:pb-4 rounded-md bg-secondary text-secondary w-full max-w-[600px]  relative">
@@ -106,13 +108,23 @@ const InputBoxModal = () => {
             className={`min-h-[100px] sm:min-h-[200px] bg-secondary rounded-md p-2 text-md sm:text-xl  w-full focus:outline-none`}
             placeholder={`${userInfo.name}, what's on your mind?`}
           />
-          {image && (
-            <div className="relative h-56 md:h-96 border rounded-md mb-[10px]">
-              <Image layout="fill" objectFit="cover" src={URL.createObjectURL(image)} alt="image" />
-              <XIcon
-                onClick={() => handleRemoveImage()}
-                className="h-6 cursor-pointer rounded-full border bg-secondary text-secondary absolute top-[10px] right-[10px]"
-              />
+          {images && (
+            <div className="flex flex-nowrap whitespace-nowrap gap-3 overflow-x-auto w-full">
+              {images.map(({ file }) => (
+                <div className="relative min-w-full h-56 md:h-96 border rounded-md mb-[10px]">
+                  <Image
+                    layout="fill"
+                    unoptimized
+                    objectFit="cover"
+                    src={URL.createObjectURL(file)}
+                    alt="image"
+                  />
+                  <XIcon
+                    onClick={() => handleRemoveImage(file)}
+                    className="h-6 cursor-pointer rounded-full border bg-secondary text-secondary absolute top-[10px] right-[10px]"
+                  />
+                </div>
+              ))}
             </div>
           )}
           <div className="rounded-lg relative cursor-pointer border p-3">
@@ -129,9 +141,10 @@ const InputBoxModal = () => {
                 />
               </div>
               <input
-                onChange={(e) => handleUploadImage(e)}
+                onChange={(e) => handleChange(e)}
                 ref={fileUploadRef}
                 type="file"
+                accept="image/png,image/jpg,image/jpeg"
                 hidden
               />
               {isEmojiPickerVisible && (

@@ -32,7 +32,7 @@ Toi&Moi is a fullstack social platform designated to connect people from distanc
 
 **Client**
 
-✨ Next.js, Redux-toolkit, Typescript, TailwindCSS , Socket.io-client , MJML(Customized EDM) , Emoji-Picker-React
+✨ Next.js, Redux-toolkit, Typescript, TailwindCSS , Socket.io-client , MJML(Customized EDM) , Emoji-Picker-React , Framer-motion
 
 **Server**
 
@@ -44,8 +44,10 @@ Toi&Moi is a fullstack social platform designated to connect people from distanc
 
 ## Deployment
 
-🌟 **Heroku**
-－ Easy to maintain and operate. Suitable for traffical level of a non-product website.
+🌟 **Server - Heroku**
+－ Easy to maintain and operate. Suitable for traffical level of a non-product website , and supports WebSocket as well!
+🌟 **Client - Vercel**
+－ Fast deploy and works best with Next.js, awesome!
 
 ## Demo
 
@@ -57,15 +59,14 @@ https://master.d1qbxrer92lk46.amplifyapp.com
 
 - Problem: tailwindcss group-focus not working on mobile
 - Fix: change it to useClickAway custom hook
+- Problem: Nextjs Image by default does not support Blob File extension
+- Fix: Add an "unoptimized" props on the Image Component
+  Reference: https://github.com/vercel/next.js/discussions/19732
 - Problem: Next/Image responsive not available without setting a width or height
 - Fix: CSS Fix
 - Problem: react-konva outputs Must use import to load ES Module [error]
 - Fix: The problem lies in SSR, as react-konva doesn't support SSR , so instead of importing react-konva in a page component, wrap it inside a regular component, and use dynamic import with SSR:false .
 - Unlimited Rerender when trying to destructure redux state
-
-## Deployment
-
-- AWS Amplify
 
 ## CI/CD
 

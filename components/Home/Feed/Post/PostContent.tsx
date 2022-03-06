@@ -14,9 +14,10 @@ const PostContent = ({ post, isEditable, setEditable }) => {
   const dispatch = useAppDispatch();
   const isViewPostModalOpen = useAppSelector((state) => state.post.isViewPostModalOpen);
 
-  const [showMore, setShowMore] = useState(post.text?.length > 150);
-  const [latestText, setLatestText] = useState(post.text || '');
-  const [editedText, setEditedText] = useState(post.text || '');
+  const { images, text } = post;
+  const [showMore, setShowMore] = useState(text?.length > 150);
+  const [latestText, setLatestText] = useState(text || '');
+  const [editedText, setEditedText] = useState(text || '');
   const [isLoading, setLoading] = useState(false);
   const [isEdited, setEdited] = useState(false);
 
@@ -95,11 +96,30 @@ const PostContent = ({ post, isEditable, setEditable }) => {
           )}
         </div>
       )}
-      {!isViewPostModalOpen && post.picUrl && (
-        <div onClick={() => handleViewPost(post._id)} className="imageContainer cursor-pointer">
-          <Image src={post.picUrl} layout="fill" className="image rounded-lg " />
-        </div>
-      )}
+      {images.length > 1
+        ? !isViewPostModalOpen && (
+            <div className="grid grid-cols-2 gap-2">
+              {images.map((image) => (
+                <div
+                  onClick={() => handleViewPost(post._id)}
+                  className="relative h-0 pb-[100%] cursor-pointer"
+                >
+                  <Image
+                    src={image}
+                    layout="fill"
+                    objectFit="cover"
+                    className="image rounded-lg "
+                  />
+                </div>
+              ))}
+            </div>
+          )
+        : !isViewPostModalOpen &&
+          post.picUrl && (
+            <div onClick={() => handleViewPost(post._id)} className="imageContainer cursor-pointer">
+              <Image src={post.picUrl} layout="fill" className="image rounded-lg " />
+            </div>
+          )}
     </div>
   );
 };

@@ -56,12 +56,12 @@ export const postSlice = createSlice({
     setPostInputBoxOpen: (state, { payload }) => {
       state.isPostInputBoxOpen = payload;
     },
-    setImageToPost: (state, { payload }) => {
+    setImagesToPost: (state, { payload }) => {
       state.imageToPost = payload;
     },
     setViewPostModalOpen: (state, { payload }) => {
       if (payload === false) {
-        setImageToPost('');
+        setImagesToPost('');
       }
       state.isViewPostModalOpen = payload;
     },
@@ -83,7 +83,7 @@ export const postSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setLikesListOpen, setPostInputBoxOpen, setViewPostModalOpen, setImageToPost } =
+export const { setLikesListOpen, setPostInputBoxOpen, setViewPostModalOpen, setImagesToPost } =
   postSlice.actions;
 
 export default postSlice.reducer;

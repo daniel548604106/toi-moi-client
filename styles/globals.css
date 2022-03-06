@@ -7,7 +7,7 @@
     @apply inline-flex hover:bg-white  p-2 cursor-pointer bg-secondary text-secondary w-10 h-10 rounded-full items-center justify-center;
   }
   .inputIcon {
-    @apply flex-col text-center  flex sm:flex-row items-center space-x-1 hover:bg-white w-full  justify-center p-2 sm:p-3 sm:px-4 rounded-md cursor-pointer;
+    @apply flex-col text-center  flex sm:flex-row items-center hover:bg-white w-full  justify-center p-2 sm:p-3 sm:px-4 rounded-md cursor-pointer;
   }
   .fullBodyHeight {
     min-height: calc(100vh - 70px);
@@ -151,12 +151,7 @@ body {
   animation-name: placeHoldShimmer;
   animation-timing-function: linear;
   background: #f6f7f8;
-  background: -webkit-linear-gradient(
-    left,
-    #eeeeee 8%,
-    #dddddd 18%,
-    #eeeeee 33%
-  );
+  background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   height: 96px;
   position: relative;
   background-size: 800px 104px;
