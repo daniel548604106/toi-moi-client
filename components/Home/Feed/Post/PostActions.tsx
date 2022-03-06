@@ -53,7 +53,7 @@ const PostActions = (props: PostActionsProps) => {
     const { text, picUrl, _id, user } = post;
     const { username } = user;
     const hostname = window.location.hostname; // Localhost or Production URL
-    const url = `${hostname}//${username}/posts/${_id}`;
+    const url = `${hostname}/${username}/posts/${_id}`;
 
     if (navigator.share) {
       try {
