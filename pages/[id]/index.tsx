@@ -158,19 +158,9 @@ export async function getServerSideProps({ req, params, res }) {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    const friends = await axios.get(
-      `${process.env.API_BASE_URL}/api/profile/friends_preview/${username}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
     return {
       props: {
         profileData: profile?.data,
-        friends: friends?.data,
       },
     };
   } catch (error) {
