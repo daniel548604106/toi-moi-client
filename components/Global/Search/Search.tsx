@@ -2,6 +2,7 @@ import router from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { getRecentSearchAPI, postKeywordSearchAPI, searchRequestAPI } from '@/Axios/searchRequest';
+import useDebounce from '@/Hooks/useDebounce';
 import * as ga from '@/Lib/gtag';
 import { ChevronLeftIcon, SearchIcon } from '@heroicons/react/outline';
 
@@ -19,13 +20,15 @@ const Search = ({ t }: SearchProps) => {
   const [isSearchResultShow, setSearchResultShow] = useState(false);
   const searchInputRef = useRef(null);
 
+  const debouncedSearchText = useDebounce(searchText);
+
   const handleInputFocus = () => {
     setSearchResultShow(true);
   };
 
   const search = async () => {
     try {
-      const res = await searchRequestAPI(searchText);
+      const res = await searchRequestAPI(debouncedSearchText);
       setSearchResult(res.data);
     } catch (error) {
       console.log(error);
@@ -71,12 +74,12 @@ const Search = ({ t }: SearchProps) => {
   }, [isSearchResultShow]);
 
   useEffect(() => {
-    if (searchText === '') {
+    if (debouncedSearchText === '') {
       setSearchResult(null);
     } else {
       search();
     }
-  }, [searchText]);
+  }, [debouncedSearchText]);
   return (
     <div className="group ">
       <div className="flex items-center rounded-full bg-button text-primary ">

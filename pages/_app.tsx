@@ -1,6 +1,6 @@
 import '@/Styles/globals.css';
-import '@/Styles/LoaderSpinner.css';
 import '@/Styles/LoaderBounce.css';
+import '@/Styles/LoaderSpinner.css';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 
