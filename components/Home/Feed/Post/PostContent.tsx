@@ -7,7 +7,9 @@ import Loader from '@/Components/Global/Loader';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import * as ga from '@/Lib/gtag';
 import { setNotification } from '@/Redux/slices/globalSlice';
-import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
+import {
+    apiGetCurrentPost, setActiveViewPostIndex, setViewPostModalOpen
+} from '@/Redux/slices/postSlice';
 
 const renderImageLayout = (length, index) => {
   switch (length) {
@@ -40,7 +42,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
   const [isLoading, setLoading] = useState(false);
   const [isEdited, setEdited] = useState(false);
 
-  const handleViewPost = async (postId) => {
+  const handleViewPost = async (postId, index) => {
     ga.event({
       action: 'click',
       category: 'post',
@@ -49,6 +51,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
     });
     await dispatch(apiGetCurrentPost(postId));
     dispatch(setViewPostModalOpen(true));
+    dispatch(setActiveViewPostIndex(index));
   };
 
   const handleCancelEdit = () => {
@@ -72,6 +75,8 @@ const PostContent = ({ post, isEditable, setEditable }) => {
     }
   };
 
+
+  
   useEffect(() => {
     editedText === post.text ? setEdited(false) : setEdited(true);
   }, [editedText]);
@@ -120,7 +125,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
             <div className="grid grid-cols-6 gap-2">
               {images.map((image, index) => (
                 <div
-                  onClick={() => handleViewPost(post._id)}
+                  onClick={() => handleViewPost(post._id, index)}
                   className={`${renderImageLayout(images?.length, index)} relative cursor-pointer`}
                 >
                   <Image
