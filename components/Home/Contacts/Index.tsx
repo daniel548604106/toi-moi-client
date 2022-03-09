@@ -54,8 +54,8 @@ const Contacts = ({ friends, connectedUsers }: ContactsProps) => {
         </div>
       </div>
       {isSearchOpen && <SearchBox setSearchOpen={setSearchOpen} />}
-      {sortedContacts &&
-        sortedContacts.map(({ user }) => (
+      {friends.length &&
+        friends.map(({ user }) => (
           <Contact connectedUsers={connectedUsers} key={user._id} user={user} />
         ))}
     </div>
