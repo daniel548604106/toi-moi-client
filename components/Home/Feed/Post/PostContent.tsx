@@ -42,7 +42,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
   const [isLoading, setLoading] = useState(false);
   const [isEdited, setEdited] = useState(false);
 
-  const handleViewPost = async (postId, index) => {
+  const handleViewPost = async (postId, index = 0) => {
     ga.event({
       action: 'click',
       category: 'post',
