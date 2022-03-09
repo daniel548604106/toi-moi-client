@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getSearchedChatsAPI } from '@/Axios/chatRequest';
 import Avatar from '@/Components/Global/Avatar';
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import useDebounce from '@/Hooks/useDebounce';
 import { addToChatBoxList } from '@/Redux/slices/messageSlice';
 import { SearchIcon, XIcon } from '@heroicons/react/outline';
 
@@ -16,6 +17,7 @@ const SearchBox = ({ setSearchOpen }: SearchBoxProps) => {
   const [searchText, setSearchText] = useState('');
   const [searchResult, setSearchResult] = useState([]);
 
+  const debouncedSearchText = useDebounce(searchText);
   const handleAddToChatBox = (user) => {
     dispatch(addToChatBoxList(user));
     setSearchOpen(false);
@@ -24,14 +26,14 @@ const SearchBox = ({ setSearchOpen }: SearchBoxProps) => {
   useEffect(() => {
     const getSearchedContact = async () => {
       try {
-        const { data } = await getSearchedChatsAPI(searchText);
+        const { data } = await getSearchedChatsAPI(debouncedSearchText);
         setSearchResult(data);
       } catch (error) {
         console.log(error);
       }
     };
     getSearchedContact();
-  }, [searchText]);
+  }, [debouncedSearchText]);
   return (
     <div className=" py-3 border rounded-lg relative p-2 bg-secondary mb-3">
       <span

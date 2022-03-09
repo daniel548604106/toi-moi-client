@@ -73,33 +73,6 @@ const Login = () => {
           <ForgotPassword />
         </div>
       )}
-      {/* <div className="fixed z-50 bottom-3 right-2  border p-3 pr-5 rounded-lg bg-white">
-        <XIcon className="absolute top-2 right-2 h-6" />
-        <p className="text-sm sm:text-md font-semibold">
-          💫 If you're an interviewer, please use the following credentials for
-          login.
-        </p>
-        <Image
-          className="absolute right-0 bottom-2"
-          src="/logo.svg"
-          width={60}
-          height={60}
-        />
-        <div className="mt-2 ">
-          <p className="text-sm sm:text-md">Account :</p>
-          <p className="flex items-center text-gray-600 text-sm sm:text-md">
-            <ClipboardIcon className="h-4 mr-2" />
-            <span>interviewer@gmail.com</span>{' '}
-          </p>
-        </div>
-        <div className="mt-2 ">
-          <p className="text-sm sm:text-md">Password :</p>{' '}
-          <p className="flex items-center text-gray-600 text-sm sm:text-md">
-            <ClipboardIcon className="h-4 mr-2" /> <span> dearinterviewer</span>
-          </p>
-        </div>
-      </div> */}
-
       <div className="w-full max-w-md mb-[20px] md:mb-0">
         <img
           className="w-[300px] mx-auto sm:mx-0 h-[100px] sm:w-[400px] sm:h-[200px]"
