@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { deletePostAPI } from '@/Axios/postRequest';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
@@ -12,8 +13,15 @@ import Post from '../Home/Feed/Post/Post';
 const ViewPostModal = () => {
   const dispatch = useAppDispatch();
   const socket = useRef(null);
-  const post = useAppSelector((state) => state.post.currentPost);
+  const { currentPost: post, activeViewPostIndex } = useAppSelector((state) => state.post);
 
+  const [activeIndex, setActiveIndex] = useState(activeViewPostIndex);
+
+  const swiper = React.useRef(null);
+
+  const setSwiper = (newSwiper) => {
+    swiper.current = newSwiper;
+  };
   const handleDeletePost = async () => {
     try {
       const { data } = await deletePostAPI(post?._id);
@@ -24,6 +32,15 @@ const ViewPostModal = () => {
       console.log(error);
     }
   };
+
+
+
+  React.useEffect(()=>{
+    if(swiper.current) {
+      swiper.current.slideTo(activeViewPostIndex)
+    }
+  }, [activeViewPostIndex]);
+
   return (
     <div className="flex flex-col lg:flex-row  fixed top-0 left-0 w-screen h-screen z-50">
       <div
@@ -32,9 +49,19 @@ const ViewPostModal = () => {
       >
         <XIcon className="cursor-pointer h-6" />
       </div>
-      <div className="w-full h-[500px] lg:h-auto relative  bg-black">
-        <Image className="object-scale-down" src={post?.picUrl} layout="fill" />
-      </div>
+      <Swiper
+        className="w-full h-[500px] lg:h-auto relative  bg-black"
+        spaceBetween={50}
+        initialSlide={activeIndex}
+        // onSlideChange={({activeIndex}) => onSlideChange(activeIndex)}
+        onSwiper={setSwiper}
+      >
+        {post.images.map((image) => (
+          <SwiperSlide>
+            <Image className="object-scale-down" src={image} layout="fill" />
+          </SwiperSlide>
+        ))}
+      </Swiper>
       <div className="w-full h-full overflow-y-scroll lg:w-[600px] bg-secondary text-secondary">
         {<Post post={post} socket={socket} deletePost={handleDeletePost} />}
       </div>

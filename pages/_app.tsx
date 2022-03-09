@@ -1,6 +1,8 @@
 import '@/Styles/globals.css';
 import '@/Styles/LoaderSpinner.css';
 import '@/Styles/LoaderBounce.css';
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import Cookies from 'js-cookie';

@@ -33,6 +33,7 @@ interface PostState {
   isPostInputBoxOpen: boolean;
   isViewPostModalOpen: boolean;
   imageToPost: string;
+  activeViewPostIndex: number;
 }
 
 export const postSlice = createSlice({
@@ -44,6 +45,7 @@ export const postSlice = createSlice({
     currentPost: null,
     isPostInputBoxOpen: false,
     isViewPostModalOpen: false,
+    activeViewPostIndex: 0,
     imageToPost: '',
   } as PostState,
   reducers: {
@@ -65,6 +67,9 @@ export const postSlice = createSlice({
       }
       state.isViewPostModalOpen = payload;
     },
+    setActiveViewPostIndex: (state, { payload }) => {
+      state.activeViewPostIndex = payload;
+    },
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -83,7 +88,12 @@ export const postSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setLikesListOpen, setPostInputBoxOpen, setViewPostModalOpen, setImagesToPost } =
-  postSlice.actions;
+export const {
+  setLikesListOpen,
+  setActiveViewPostIndex,
+  setPostInputBoxOpen,
+  setViewPostModalOpen,
+  setImagesToPost,
+} = postSlice.actions;
 
 export default postSlice.reducer;
