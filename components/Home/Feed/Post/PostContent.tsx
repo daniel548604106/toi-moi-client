@@ -140,7 +140,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
           )
         : !isViewPostModalOpen &&
           post?.picUrl && (
-            <div onClick={() => handleViewPost(post._id)} className="imageContainer cursor-pointer">
+            <div onClick={() => handleViewPost(post._id,0)} className="imageContainer cursor-pointer">
               <Image src={post.picUrl} layout="fill" className="image rounded-lg " />
             </div>
           )}
