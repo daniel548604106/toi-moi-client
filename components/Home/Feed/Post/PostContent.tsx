@@ -50,8 +50,8 @@ const PostContent = ({ post, isEditable, setEditable }) => {
       value: postId,
     });
     await dispatch(apiGetCurrentPost(postId));
-    dispatch(setViewPostModalOpen(true));
     dispatch(setActiveViewPostIndex(index));
+    dispatch(setViewPostModalOpen(true));
   };
 
   const handleCancelEdit = () => {
@@ -62,7 +62,6 @@ const PostContent = ({ post, isEditable, setEditable }) => {
   const handleUpdateEditedPost = async () => {
     if (!isEdited) return;
     setLoading(true);
-    console.log('co');
     try {
       const { data } = await updatePostAPI(post._id, editedText);
       console.log(data);
@@ -75,8 +74,6 @@ const PostContent = ({ post, isEditable, setEditable }) => {
     }
   };
 
-
-  
   useEffect(() => {
     editedText === post.text ? setEdited(false) : setEdited(true);
   }, [editedText]);

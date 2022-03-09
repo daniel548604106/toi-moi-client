@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { deletePostAPI } from '@/Axios/postRequest';
@@ -17,7 +17,7 @@ const ViewPostModal = () => {
 
   const [activeIndex, setActiveIndex] = useState(activeViewPostIndex);
 
-  const swiper = React.useRef(null);
+  const swiper = useRef(null);
 
   const setSwiper = (newSwiper) => {
     swiper.current = newSwiper;
@@ -33,12 +33,8 @@ const ViewPostModal = () => {
     }
   };
 
-
-
-  React.useEffect(()=>{
-    if(swiper.current) {
-      swiper.current.slideTo(activeViewPostIndex)
-    }
+  useEffect(() => {
+    setActiveIndex(activeViewPostIndex);
   }, [activeViewPostIndex]);
 
   return (
@@ -53,7 +49,6 @@ const ViewPostModal = () => {
         className="w-full h-[500px] lg:h-auto relative  bg-black"
         spaceBetween={50}
         initialSlide={activeIndex}
-        // onSlideChange={({activeIndex}) => onSlideChange(activeIndex)}
         onSwiper={setSwiper}
       >
         {post.images.map((image) => (
