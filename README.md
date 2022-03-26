@@ -49,11 +49,6 @@ Toi&Moi is a fullstack social platform designated to connect people from distanc
 🌟 **Client - Vercel**
 － Fast deploy and works best with Next.js, awesome!
 
-## Demo
-
-Live Demo
-https://toi-moi.herokuapp.com/
-https://master.d1qbxrer92lk46.amplifyapp.com
 
 ## Problems Encountered
 
