@@ -3,11 +3,11 @@ import React, { useRef, useState } from 'react';
 import { DotsHorizontalIcon, TrashIcon } from '@heroicons/react/outline';
 import router from 'next/router';
 
-import useClickOutside from '@/Hooks/useClickOutside';
+import useClickOutside from '@/hooks/useClickOutside';
 
-import { deleteSavedPostAPI } from '@/Axios/savedRequest';
+import { deleteSavedPostAPI } from '@/axios/savedRequest';
 
-import genderAvatar from '@/Utils/genderAvatar';
+import genderAvatar from '@/utils/genderAvatar';
 
 interface SavedCardProps {
   post: any;

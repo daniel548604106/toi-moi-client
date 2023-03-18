@@ -1,7 +1,8 @@
-import router from 'next/router';
 import React from 'react';
 
-import { UserInfo } from '@/Interfaces/I_common';
+import router from 'next/router';
+
+import { UserInfo } from '@/interfaces/I_common';
 
 import Avatar from '../../Global/Avatar';
 

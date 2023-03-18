@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 
-import { deletePostAPI } from '@/Axios/postRequest';
-import { deleteSavedPostAPI, postNewSavedPostAPI } from '@/Axios/savedRequest';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { UserInfo } from '@/Interfaces/I_common';
-import { setNotification } from '@/Redux/slices/globalSlice';
-import { getSavedPosts } from '@/Redux/slices/postSlice';
 import { BookmarkIcon, PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
 import { BookmarkIcon as SolidBookmarkIcon } from '@heroicons/react/solid';
+
+import { UserInfo } from '@/interfaces/I_common';
+
+import { deletePostAPI } from '@/axios/postRequest';
+import { deleteSavedPostAPI, postNewSavedPostAPI } from '@/axios/savedRequest';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import { setNotification } from '@/redux/slices/globalSlice';
+import { getSavedPosts } from '@/redux/slices/postSlice';
 
 interface PopupProps {
   setPopupShow: (boolean) => void;

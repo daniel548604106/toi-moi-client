@@ -5,13 +5,13 @@ import Image from 'next/dist/client/image';
 import dynamic from 'next/dynamic';
 import router from 'next/router';
 
-import { useAppSelector } from '@/Hooks/useAppRedux';
+import { useAppSelector } from '@/hooks/useAppRedux';
 
-import { uploadStoryImageAPI } from '@/Axios/storyRequest';
+import { uploadStoryImageAPI } from '@/axios/storyRequest';
 
-import Avatar from '@/Components/Global/Avatar';
+import Avatar from '@/components/Global/Avatar';
 
-import { backgroundSelections } from '@/Utils/storyOptions';
+import { backgroundSelections } from '@/utils/storyOptions';
 
 const Create = () => {
   const stageRef = useRef(null);

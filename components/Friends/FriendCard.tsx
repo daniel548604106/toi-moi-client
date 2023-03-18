@@ -4,11 +4,11 @@ import { CheckIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import router from 'next/router';
 
-import { UserInfo } from '@/Interfaces/I_common';
+import { postFriendRequestAPI } from '@/axios/friendRequest';
 
-import { postFriendRequestAPI } from '@/Axios/friendRequest';
+import { UserInfo } from '@/interfaces/I_common';
 
-import genderAvatar from '@/Utils/genderAvatar';
+import genderAvatar from '@/utils/genderAvatar';
 
 interface FriendCardProps {
   user: UserInfo;

@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { UserInfo } from '@/Interfaces/I_common';
-import { User } from '@/Interfaces/I_socket';
-import { addToChatBoxList } from '@/Redux/slices/messageSlice';
-import genderAvatar from '@/Utils/genderAvatar';
+import { UserInfo } from '@/interfaces/I_common';
+import { User } from '@/interfaces/I_socket';
+import { addToChatBoxList } from '@/redux/slices/messageSlice';
+
+import genderAvatar from '@/utils/genderAvatar';
 
 interface ContactProps {
   user: UserInfo;

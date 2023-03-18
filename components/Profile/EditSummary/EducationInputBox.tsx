@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { postEducationSummaryAPI } from '@/Axios/profileRequest';
-import { useAppSelector } from '@/Hooks/useAppRedux';
+import { postEducationSummaryAPI } from '@/axios/profileRequest';
+import { useAppSelector } from '@/hooks/useAppRedux';
 
 import PeriodSelector from './PreriodSelector';
 

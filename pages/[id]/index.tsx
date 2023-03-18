@@ -1,37 +1,40 @@
+import React, { useEffect, useRef, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
+import {} from '';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import io, { Socket } from 'socket.io-client';
 
 import {
-    getProfileFriendsAPI, getProfilePostsAPI, getProfileSummaryAPI
+  getProfileFriendsAPI,
+  getProfilePostsAPI,
+  getProfileSummaryAPI,
 } from '@/Axios/profileRequest';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import ProfileCover from '@/Components/Profile/ProfileCover';
-import TabsList from '@/Components/Profile/TabsList';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { ClientToServerEvents, ServerToClientEvents } from '@/Interfaces/I_socket';
-import { setProfileData, setSummaryData } from '@/Redux/slices/profileSlice';
+import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import ProfileCover from '@/components/Profile/ProfileCover';
+import TabsList from '@/components/Profile/TabsList';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import { setProfileData, setSummaryData } from '@/redux/slices/profileSlice';
 
 // Dynamic Imports
-const Friends = dynamic(() => import('@/Components/Profile/Friends'), {
+const Friends = dynamic(() => import('@/components/Profile/Friends'), {
   loading: () => <LoaderSpinner />,
 });
-const Summary = dynamic(() => import('@/Components/Profile/Summary'), {
+const Summary = dynamic(() => import('@/components/Profile/Summary'), {
   loading: () => <LoaderSpinner />,
 });
-const Post = dynamic(() => import('@/Components/Home/Feed/Post/Post'), {
+const Post = dynamic(() => import('@/components/Home/Feed/Post/Post'), {
   loading: () => <LoaderSpinner />,
 });
-const Photos = dynamic(() => import('@/Components/Profile/Photos'), {
+const Photos = dynamic(() => import('@/components/Profile/Photos'), {
   loading: () => <LoaderSpinner />,
 });
-const InputBox = dynamic(() => import('@/Components/Home/Feed/InputBox'), {
+const InputBox = dynamic(() => import('@/components/Home/Feed/InputBox'), {
   loading: () => <LoaderSpinner />,
 });
-const EndMessage = dynamic(() => import('@/Components/Home/Feed/EndMessage'), {
+const EndMessage = dynamic(() => import('@/components/Home/Feed/EndMessage'), {
   loading: () => <LoaderSpinner />,
 });
 

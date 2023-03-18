@@ -1,9 +1,11 @@
-import router from 'next/router';
 import React from 'react';
 
-import Avatar from '@/Components/Global/Avatar';
-import { useAppSelector } from '@/Hooks/useAppRedux';
 import { XIcon } from '@heroicons/react/outline';
+import router from 'next/router';
+
+import { useAppSelector } from '@/hooks/useAppRedux';
+
+import Avatar from '@/components/Global/Avatar';
 
 interface PostNotificationProps {
   setNewNotification: (any) => void;

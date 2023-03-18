@@ -5,11 +5,11 @@ import { DotsHorizontalIcon } from '@heroicons/react/solid';
 import useTranslation from 'next-translate/useTranslation';
 import router from 'next/router';
 
-import useClickOutside from '@/Hooks/useClickOutside';
+import useClickOutside from '@/hooks/useClickOutside';
 
-import Avatar from '@/Components/Global/Avatar';
-import { timeDiff } from '@/Lib/dayjs';
-import { getSavedPosts } from '@/Redux/slices/postSlice';
+import Avatar from '@/components/Global/Avatar';
+import { timeDiff } from '@/lib/dayjs';
+import { getSavedPosts } from '@/redux/slices/postSlice';
 
 import Popup from './Popup';
 

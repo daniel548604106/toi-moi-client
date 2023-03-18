@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { postFriendRequestAPI, removeFriendRequestAPI } from '@/Axios/friendRequest';
-import { useAppSelector } from '@/Hooks/useAppRedux';
+import { postFriendRequestAPI, removeFriendRequestAPI } from '@/axios/friendRequest';
+import { useAppSelector } from '@/hooks/useAppRedux';
 import {
     ChatAlt2Icon, DotsHorizontalIcon, PencilAltIcon, UserAddIcon, UsersIcon
 } from '@heroicons/react/outline';

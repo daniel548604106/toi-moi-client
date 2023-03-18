@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import router from 'next/router';
 
-import { postWorkExperienceSummaryAPI } from '@/Axios/profileRequest';
+import { postWorkExperienceSummaryAPI } from '@/axios/profileRequest';
 
-import Loader from '@/Components/Global/Loader';
+import Loader from '@/components/Global/Loader';
 
 import PeriodSelector from './PreriodSelector';
 

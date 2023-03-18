@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { InboxIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 
-import { postForgotPasswordAPI } from '@/Axios/resetRequest';
+import { postForgotPasswordAPI } from '@/axios/resetRequest';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');

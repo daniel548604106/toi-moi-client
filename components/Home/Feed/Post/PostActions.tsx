@@ -1,14 +1,19 @@
-import useTranslation from 'next-translate/useTranslation';
 import React, { useState } from 'react';
 
-import { likePostAPI, unlikePostAPI } from '@/Axios/postRequest';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import useCopyToClipboard from '@/Hooks/useCopytoClipboard';
-import { setNotification } from '@/Redux/slices/globalSlice';
 import {
-    AnnotationIcon, ShareIcon, ThumbUpIcon as OutlineThumbUpIcon
+  AnnotationIcon,
+  ShareIcon,
+  ThumbUpIcon as OutlineThumbUpIcon
 } from '@heroicons/react/outline';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
+import useTranslation from 'next-translate/useTranslation';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import useCopyToClipboard from '@/hooks/useCopytoClipboard';
+
+import { likePostAPI, unlikePostAPI } from '@/axios/postRequest';
+
+import { setNotification } from '@/redux/slices/globalSlice';
 
 interface PostActionsProps {
   socket: any;

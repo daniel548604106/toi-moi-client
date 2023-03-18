@@ -8,11 +8,11 @@ import range from 'lodash/range';
 import router from 'next/router';
 import * as Yup from 'yup';
 
-import { postSignupAPI } from '@/Axios/authRequest';
+import { postSignupAPI } from '@/axios/authRequest';
 
-import Loader from '@/Components/Global/Loader';
-import catchError from '@/Lib/catchError';
-import { setUserLogin } from '@/Redux/slices/userSlice';
+import Loader from '@/components/Global/Loader';
+import catchError from '@/lib/catchError';
+import { setUserLogin } from '@/redux/slices/userSlice';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().min(2, 'Please use your real name').max(50, 'Too Long!').required('Required'),
@@ -183,7 +183,9 @@ const Index = ({ setSignupOpen }) => {
                     name="year"
                   >
                     {yearRange.map((year) => (
-                      <option key={year} value={year}>{year}</option>
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
                     ))}
                   </Field>
                   <Field
@@ -194,7 +196,9 @@ const Index = ({ setSignupOpen }) => {
                     name="month"
                   >
                     {monthRange.map((month) => (
-                      <option key={month} value={month}>{month}</option>
+                      <option key={month} value={month}>
+                        {month}
+                      </option>
                     ))}
                   </Field>
                   <Field
@@ -205,7 +209,9 @@ const Index = ({ setSignupOpen }) => {
                     name="date"
                   >
                     {dateRange.map((date) => (
-                      <option key={date} value={date}>{date}</option>
+                      <option key={date} value={date}>
+                        {date}
+                      </option>
                     ))}
                   </Field>
                 </div>

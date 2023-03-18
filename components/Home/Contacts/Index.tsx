@@ -4,8 +4,8 @@ import { SearchIcon } from '@heroicons/react/outline';
 import { DotsHorizontalIcon, VideoCameraIcon } from '@heroicons/react/solid';
 import useTranslation from 'next-translate/useTranslation';
 
-import useClickOutside from '@/Hooks/useClickOutside';
-import { User } from '@/Interfaces/I_socket';
+import useClickOutside from '@/hooks/useClickOutside';
+import { User } from '@/interfaces/I_socket';
 
 import Contact from './Contact';
 import SearchBox from './SearchBox';

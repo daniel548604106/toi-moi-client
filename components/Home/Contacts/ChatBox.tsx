@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { getChatAPI } from '@/Axios/chatRequest';
-import Avatar from '@/Components/Global/Avatar';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { UserInfo } from '@/Interfaces/I_common';
-import { Message, User } from '@/Interfaces/I_socket';
-import { removeFromChatBoxList } from '@/Redux/slices/messageSlice';
 import { XIcon } from '@heroicons/react/outline';
 import { ThumbUpIcon } from '@heroicons/react/solid';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import { getChatAPI } from '@/axios/chatRequest';
+
+import Avatar from '@/components/Global/Avatar';
+import { UserInfo } from '@/interfaces/I_common';
+import { Message, User } from '@/interfaces/I_socket';
+import { removeFromChatBoxList } from '@/redux/slices/messageSlice';
 
 interface ChatBoxProps {
   handleSubmitMessage: (sender: string, msg: string) => void;

@@ -3,18 +3,18 @@ import React, { useEffect, useState } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
-import { updatePostAPI } from '@/Axios/postRequest';
+import { updatePostAPI } from '@/axios/postRequest';
 
-import Loader from '@/Components/Global/Loader';
-import * as ga from '@/Lib/gtag';
-import { setNotification } from '@/Redux/slices/globalSlice';
+import Loader from '@/components/Global/Loader';
+import * as ga from '@/lib/gtag';
+import { setNotification } from '@/redux/slices/globalSlice';
 import {
   apiGetCurrentPost,
   setActiveViewPostIndex,
   setViewPostModalOpen
-} from '@/Redux/slices/postSlice';
+} from '@/redux/slices/postSlice';
 
 const renderImageLayout = (length, index) => {
   switch (length) {
@@ -81,7 +81,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
 
   useEffect(() => {
     editedText === post.text ? setEdited(false) : setEdited(true);
-  }, [editedText,post.text]);
+  }, [editedText, post.text]);
   return (
     <div className="space-y-2">
       {isEditable ? (
@@ -127,7 +127,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
             <div className="grid grid-cols-6 gap-2">
               {images.map((image, index) => (
                 <div
-                key={image}
+                  key={image}
                   onClick={() => handleViewPost(post._id, index)}
                   className={`${renderImageLayout(images?.length, index)} relative cursor-pointer`}
                 >
@@ -145,7 +145,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
         : !isViewPostModalOpen &&
           post?.picUrl && (
             <div onClick={() => handleViewPost(post._id)} className="imageContainer cursor-pointer">
-              <Image src={post.picUrl} layout="fill" className="image rounded-lg "  alt="post"/>
+              <Image src={post.picUrl} layout="fill" className="image rounded-lg " alt="post" />
             </div>
           )}
     </div>

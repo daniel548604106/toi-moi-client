@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 
-import convertFileToBase64 from '@/Utils/convertFileToBase64';
+import convertFileToBase64 from '@/utils/convertFileToBase64';
 
 import request from './index';
 

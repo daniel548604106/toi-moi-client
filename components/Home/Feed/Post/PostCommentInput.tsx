@@ -1,10 +1,12 @@
-import useTranslation from 'next-translate/useTranslation';
 import React, { useState } from 'react';
 
-import { commentPostAPI } from '@/Axios/postRequest';
-import Avatar from '@/Components/Global/Avatar';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { setNotification } from '@/Redux/slices/globalSlice';
+import useTranslation from 'next-translate/useTranslation';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import { commentPostAPI } from '@/axios/postRequest';
+import Avatar from '@/components/Global/Avatar';
+import { setNotification } from '@/redux/slices/globalSlice';
 
 interface PostCommentInputProps {
   post: any;

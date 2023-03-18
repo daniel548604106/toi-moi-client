@@ -6,7 +6,7 @@ import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import router from 'next/router';
 
-import { toggleLanguageOpen } from '@/Redux/slices/globalSlice';
+import { toggleLanguageOpen } from '@/redux/slices/globalSlice';
 
 const languages = [
   {

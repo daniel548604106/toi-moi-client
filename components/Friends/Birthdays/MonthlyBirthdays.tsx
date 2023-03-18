@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import router from 'next/router';
 
-import genderAvatar from '@/Utils/genderAvatar';
+import genderAvatar from '@/utils/genderAvatar';
 
 interface MonthlyBirthdaysProps {
   birthdays: any;

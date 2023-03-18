@@ -1,11 +1,13 @@
-import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
-import Avatar from '@/Components/Global/Avatar';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { setLikesListOpen } from '@/Redux/slices/postSlice';
 import { ThumbUpIcon, UserAddIcon, UserIcon, XIcon } from '@heroicons/react/solid';
+import { useRouter } from 'next/router';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import Avatar from '@/components/Global/Avatar';
+import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import { setLikesListOpen } from '@/redux/slices/postSlice';
 
 const LikesListModal = () => {
   const router = useRouter();

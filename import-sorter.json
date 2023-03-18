@@ -22,7 +22,7 @@
       "orderLevel": 20
     },
     {
-      "regex": "^@/Constants|^@/Contexts|^@/Hooks|^@/Interface|^@/Selectors",
+      "regex": "^@/Constants|^@/Contexts|^@/hooks|^@/Interface|^@/Selectors",
       "orderLevel": 30
     },
     {
@@ -30,15 +30,15 @@
       "orderLevel": 40
     },
     {
-      "regex": "^@/Apollo|^@/Axios|^@/Elastic",
+      "regex": "^@/Apollo|^@/axios|^@/Elastic",
       "orderLevel": 50
     },
     {
-      "regex": "^@/Styles|^@/Utils",
+      "regex": "^@/styles|^@/utils",
       "orderLevel": 80
     },
     {
-      "regex": "^@/Pages",
+      "regex": "^@/pages",
       "orderLevel": 60
     },
     {

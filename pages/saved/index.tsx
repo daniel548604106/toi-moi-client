@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
-import { getSavedPostsAPI } from '@/Axios/savedRequest';
+import { getSavedPostsAPI } from '@/axios/savedRequest';
 
-import SavedCard from '@/Components/Saved/SavedCard';
+import SavedCard from '@/components/Saved/SavedCard';
 
 const Saved = () => {
   const [savedPosts, setSavedPosts] = useState(null);
@@ -18,7 +18,6 @@ const Saved = () => {
     }
   };
 
-  
   const handleRemoveSavedPost = (id: string) => {
     console.log(id, savedPosts);
     setSavedPosts(savedPosts.filter((post) => post.post._id !== id));
@@ -47,7 +46,7 @@ const Saved = () => {
         </div>
       ) : (
         <div className="mt-[60px] w-full flex  flex-col items-center justify-center">
-          <Image src="/images/empty-bookmark.svg" width="100" height="100"  alt="empty-bookmark"/>
+          <Image src="/images/empty-bookmark.svg" width="100" height="100" alt="empty-bookmark" />
           <h2 className="text-lg sm:text-2xl font-semibold mt-5"> No Saved Post</h2>
         </div>
       )}

@@ -1,11 +1,12 @@
-import axios from 'axios';
-import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 
-import EmptyBirthday from '@/Components/Friends/Birthdays/EmptyBirthday';
-import MonthlyBirthdays from '@/Components/Friends/Birthdays/MonthlyBirthdays';
-import RecentBirthdays from '@/Components/Friends/Birthdays/RecentBirthdays';
-import Sidebar from '@/Components/Friends/Sidebar';
+import axios from 'axios';
+import dayjs from 'dayjs';
+
+import EmptyBirthday from '@/components/Friends/Birthdays/EmptyBirthday';
+import MonthlyBirthdays from '@/components/Friends/Birthdays/MonthlyBirthdays';
+import RecentBirthdays from '@/components/Friends/Birthdays/RecentBirthdays';
+import Sidebar from '@/components/Friends/Sidebar';
 
 const Birthdays = ({ friends }) => {
   const now = dayjs();

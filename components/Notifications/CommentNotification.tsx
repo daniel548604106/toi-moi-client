@@ -1,12 +1,15 @@
-import useTranslation from 'next-translate/useTranslation';
-import { useRouter } from 'next/router';
 import React from 'react';
 
-import { postReadSingleNotificationAPI } from '@/Axios/notificationRequest';
-import Avatar from '@/Components/Global/Avatar';
-import { useAppSelector } from '@/Hooks/useAppRedux';
-import { timeDiff } from '@/Lib/dayjs';
 import { ChatAlt2Icon, DotsHorizontalIcon } from '@heroicons/react/outline';
+import useTranslation from 'next-translate/useTranslation';
+import { useRouter } from 'next/router';
+
+import { useAppSelector } from '@/hooks/useAppRedux';
+
+import { postReadSingleNotificationAPI } from '@/axios/notificationRequest';
+
+import Avatar from '@/components/Global/Avatar';
+import { timeDiff } from '@/lib/dayjs';
 
 interface CommentNotificationProps {
   notification: any;

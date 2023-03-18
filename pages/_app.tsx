@@ -1,6 +1,6 @@
-import '@/Styles/globals.css';
-import '@/Styles/LoaderBounce.css';
-import '@/Styles/LoaderSpinner.css';
+import '@/styles/globals.css';
+import '@/styles/LoaderBounce.css';
+import '@/styles/LoaderSpinner.css';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import { useCallback, useEffect } from 'react';
@@ -14,39 +14,39 @@ import { useRouter } from 'next/router';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
-import Header from '@/Components/Global/Header';
-import GlobalLoader from '@/Components/Global/Loader/PostSkeletonLoader';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import Notification from '@/Components/Global/Notification';
-import ViewPostModal from '@/Components/Global/ViewPostModal';
-import InputBoxModal from '@/Components/Home/Feed/InputBoxModal';
-import Login from '@/Components/Login/Index';
-import * as ga from '@/Lib/gtag';
-import { setIsCommonLoading, setNotification } from '@/Redux/slices/globalSlice';
-import { setUserLogout } from '@/Redux/slices/userSlice';
-import { store } from '@/Redux/store';
+import Header from '@/components/Global/Header';
+import GlobalLoader from '@/components/Global/Loader/PostSkeletonLoader';
+import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import Notification from '@/components/Global/Notification';
+import ViewPostModal from '@/components/Global/ViewPostModal';
+import InputBoxModal from '@/components/Home/Feed/InputBoxModal';
+import Login from '@/components/Login/Index';
+import * as ga from '@/lib/gtag';
+import { setIsCommonLoading, setNotification } from '@/redux/slices/globalSlice';
+import { setUserLogout } from '@/redux/slices/userSlice';
+import { store } from '@/redux/store';
 
-const Overlay = dynamic(() => import('@/Components/Global/Overlay'), {
+const Overlay = dynamic(() => import('@/components/Global/Overlay'), {
   loading: () => <LoaderSpinner />,
 });
 
 // Modals
 
-const EditSummaryModal = dynamic(() => import('@/Components/Profile/EditSummaryModal'), {
+const EditSummaryModal = dynamic(() => import('@/components/Profile/EditSummaryModal'), {
   loading: () => <LoaderSpinner />,
 });
-const LikesListModal = dynamic(() => import('@/Components/Home/Feed/LikesListModal'), {
+const LikesListModal = dynamic(() => import('@/components/Home/Feed/LikesListModal'), {
   loading: () => <LoaderSpinner />,
 });
-const CreateRoomModal = dynamic(() => import('@/Components/Home/Feed/Room/CreateRoomModal/Index'), {
+const CreateRoomModal = dynamic(() => import('@/components/Home/Feed/Room/CreateRoomModal/Index'), {
   loading: () => <LoaderSpinner />,
 });
-const EditProfileImageModal = dynamic(() => import('@/Components/Profile/EditProfileImageModal'), {
+const EditProfileImageModal = dynamic(() => import('@/components/Profile/EditProfileImageModal'), {
   loading: () => <LoaderSpinner />,
 });
-const LanguageSettingModal = dynamic(() => import('@/Components/Global/LanguageSettingModal'), {
+const LanguageSettingModal = dynamic(() => import('@/components/Global/LanguageSettingModal'), {
   loading: () => <LoaderSpinner />,
 });
 
@@ -132,59 +132,6 @@ const App = ({ Component, pageProps }) => {
     isCreateRoomOpen ||
     isLanguageOpen;
 
-  if (!isUserLoggedIn && !allowedRoutes)
-    return (
-      <>
-        <Head>
-          <title>Toi & Moi</title>
-          <meta
-            name="description"
-            content="Toi&Moi is a fullstack social platform designated to connect people from distances away, users are able to build their own profile and connect with people from around the world with realtime messaging and friend system. "
-          />
-
-          <meta name="keywords" content="Toi&Moi social-media friend post" />
-          <meta property="og:type" content="website" />
-          <meta
-            property="og:description"
-            content="Toi&Moi is a fullstack social platform designated to connect people from distances away, users are able to build their own profile and connect with people from around the world with realtime messaging and friend system."
-          />
-          <meta name="theme-color" content="#eb7f82" />
-          <meta property="fb:app_id" content="4937468222991458" />
-          <meta property="og:title" content="Toi & Moi | Brand New Social Media Platform" />
-          <meta property="og:url" content="https://toi-moi.herokuapp.com" />
-          <meta
-            property="og:image"
-            content="https://cdn01.pinkoi.com/product/ZD5QQsTg/0/800x0.jpg"
-          />
-
-          {/* new */}
-
-          <meta property="fb:app_id" content="4937468222991458" />
-          <meta
-            property="og:title"
-            content="O.HI.O | 亞洲領先設計購物網站 | Design the way you are"
-          />
-          <meta property="og:url" content="https://www.pinkoi.com/browse" />
-          <meta
-            property="og:image"
-            content="https://cdn01.pinkoi.com/product/ZD5QQsTg/0/800x0.jpg"
-          />
-
-          {/* <!-- iOS  --> */}
-          <link href="logo.svg" rel="apple-touch-icon" />
-          <link href="logo.svg" rel="apple-touch-icon" sizes="76x76" />
-          <link href="logo.svg" rel="apple-touch-icon" sizes="120x120" />
-          <link href="logo.svg" rel="apple-touch-icon" sizes="152x152" />
-
-          <link rel="apple-touch-icon" href="./favicon.ico" />
-          <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-          <link rel="apple-touch-icon" href="../public/favicon.ico" />
-          <link rel="icon" href="../public/favicon.ico" />
-        </Head>
-        <Login />
-      </>
-    );
-
   return (
     <>
       <Head>
@@ -207,6 +154,7 @@ const App = ({ Component, pageProps }) => {
         <meta property="og:image" content="https://cdn01.pinkoi.com/product/ZD5QQsTg/0/800x0.jpg" />
 
         {/* new */}
+
         <meta property="fb:app_id" content="4937468222991458" />
         <meta
           property="og:title"
@@ -214,42 +162,49 @@ const App = ({ Component, pageProps }) => {
         />
         <meta property="og:url" content="https://www.pinkoi.com/browse" />
         <meta property="og:image" content="https://cdn01.pinkoi.com/product/ZD5QQsTg/0/800x0.jpg" />
-        <link rel="apple-touch-icon" href="./favicon.ico" />
-        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-        <link rel="apple-touch-icon" href="../public/favicon.ico" />
-        <link rel="icon" href="../public/favicon.ico" />
 
         {/* <!-- iOS  --> */}
         <link href="logo.svg" rel="apple-touch-icon" />
         <link href="logo.svg" rel="apple-touch-icon" sizes="76x76" />
         <link href="logo.svg" rel="apple-touch-icon" sizes="120x120" />
         <link href="logo.svg" rel="apple-touch-icon" sizes="152x152" />
+
+        <link rel="apple-touch-icon" href="./favicon.ico" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <link rel="apple-touch-icon" href="../public/favicon.ico" />
+        <link rel="icon" href="../public/favicon.ico" />
       </Head>
-      {isModalOpen && (
-        <Overlay>
-          <>
-            {isLikesListOpen && <LikesListModal />}
-            {isPostInputBoxOpen && <InputBoxModal />}
-            {isViewPostModalOpen && <ViewPostModal />}
-            {isEditProfileImageOpen && <EditProfileImageModal />}
-            {isEditSummaryModalOpen && <EditSummaryModal />}
-            {isLanguageOpen && <LanguageSettingModal />}
-            {isCreateRoomOpen && <CreateRoomModal />}
-          </>
-        </Overlay>
+      {!isUserLoggedIn && !allowedRoutes ? (
+        <Login />
+      ) : (
+        <>
+          {isModalOpen && (
+            <Overlay>
+              <>
+                {isLikesListOpen && <LikesListModal />}
+                {isPostInputBoxOpen && <InputBoxModal />}
+                {isViewPostModalOpen && <ViewPostModal />}
+                {isEditProfileImageOpen && <EditProfileImageModal />}
+                {isEditSummaryModalOpen && <EditSummaryModal />}
+                {isLanguageOpen && <LanguageSettingModal />}
+                {isCreateRoomOpen && <CreateRoomModal />}
+              </>
+            </Overlay>
+          )}
+          {!allowedRoutes && <Header />}
+          {/* <AnimatePresence> */}
+          {notification && <Notification notification={notification} />}
+          {/* </AnimatePresence> */}
+          {isCommonLoading && <GlobalLoader />}
+          <main
+            className={`${
+              router.pathname.includes('messages') ? 'pt-56px' : 'pt-[110px]'
+            }  md:pt-[56px] h-screen primary dark:bg-primary`}
+          >
+            <Component {...pageProps} />
+          </main>
+        </>
       )}
-      {!allowedRoutes && <Header />}
-      {/* <AnimatePresence> */}
-      {notification && <Notification notification={notification} />}
-      {/* </AnimatePresence> */}
-      {isCommonLoading && <GlobalLoader />}
-      <main
-        className={`${
-          router.pathname.includes('messages') ? 'pt-56px' : 'pt-[110px]'
-        }  md:pt-[56px] h-screen primary dark:bg-primary`}
-      >
-        <Component {...pageProps} />
-      </main>
     </>
   );
 };

@@ -7,36 +7,36 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import io, { Socket } from 'socket.io-client';
 
-import { useAppSelector } from '@/Hooks/useAppRedux';
-import { ClientToServerEvents, Message, ServerToClientEvents } from '@/Interfaces/I_socket';
+import { useAppSelector } from '@/hooks/useAppRedux';
 
-import { getChatUserInfoAPI } from '@/Axios/chatRequest';
-import { getAllPostsAPI } from '@/Axios/postRequest';
-import { getStoriesAPI } from '@/Axios/storyRequest';
+import { getChatUserInfoAPI } from '@/axios/chatRequest';
+import { getAllPostsAPI } from '@/axios/postRequest';
+import { getStoriesAPI } from '@/axios/storyRequest';
 
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import Contacts from '@/Components/Home/Contacts/Index';
-import InputBox from '@/Components/Home/Feed/InputBox';
-import Post from '@/Components/Home/Feed/Post/Post';
-import Room from '@/Components/Home/Feed/Room/Index';
-import Stories from '@/Components/Home/Feed/Story/Stories';
-import Sidebar from '@/Components/Home/Sidebar/Sidebar';
-import { addToChatBoxList } from '@/Redux/slices/messageSlice';
-import { setUnreadNotification } from '@/Redux/slices/userSlice';
+import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import Contacts from '@/components/Home/Contacts/Index';
+import InputBox from '@/components/Home/Feed/InputBox';
+import Post from '@/components/Home/Feed/Post/Post';
+import Room from '@/components/Home/Feed/Room/Index';
+import Stories from '@/components/Home/Feed/Story/Stories';
+import Sidebar from '@/components/Home/Sidebar/Sidebar';
+import { ClientToServerEvents, Message, ServerToClientEvents } from '@/interfaces/I_socket';
+import { addToChatBoxList } from '@/redux/slices/messageSlice';
+import { setUnreadNotification } from '@/redux/slices/userSlice';
 
-import messageNotificationSound from '@/Utils/messageNotificationSound';
+import messageNotificationSound from '@/utils/messageNotificationSound';
 
 // Dynamic Import
-const EndMessage = dynamic(() => import('@/Components/Home/Feed/EndMessage'), {
+const EndMessage = dynamic(() => import('@/components/Home/Feed/EndMessage'), {
   loading: () => <LoaderSpinner />,
 });
 
-const NoPost = dynamic(() => import('@/Components/Home/Feed/NoPost'), {
+const NoPost = dynamic(() => import('@/components/Home/Feed/NoPost'), {
   loading: () => <LoaderSpinner />,
 });
 
-const ChatBox = dynamic(() => import('@/Components/Home/Contacts/ChatBox'));
-const PostNotification = dynamic(() => import('@/Components/Home/PostNotification'));
+const ChatBox = dynamic(() => import('@/components/Home/Contacts/ChatBox'));
+const PostNotification = dynamic(() => import('@/components/Home/PostNotification'));
 
 export default function Home({ posts, friends, notFound }) {
   const dispatch = useDispatch();
@@ -149,7 +149,7 @@ export default function Home({ posts, friends, notFound }) {
         socket.current.off();
       }
     };
-  }, []);
+  }, [dispatch, userInfo._id, userInfo.newMessagePopup]);
 
   return (
     <div className="bg-primary text-primary">
@@ -209,7 +209,7 @@ export default function Home({ posts, friends, notFound }) {
         <div className="fixed bottom-0 right-0  flex  w-full flex-row-reverse items-end">
           {openChatBoxList.length > 0 &&
             openChatBoxList.map((user) => (
-              <div className="mr-3" key={user._id} >
+              <div className="mr-3" key={user._id}>
                 <ChatBox
                   connectedUsers={connectedUsers}
                   user={user}
@@ -229,6 +229,7 @@ export async function getServerSideProps({ req, res }) {
     // get server side cookies
     const token = req.cookies.token;
     let posts, friends;
+    
 
     if (token) {
       friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {

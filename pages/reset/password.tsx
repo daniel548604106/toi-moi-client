@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import router from 'next/router';
 
-import { postPasswordResetAPI } from '@/Axios/resetRequest';
+import { postPasswordResetAPI } from '@/axios/resetRequest';
 
-import catchError from '@/Lib/catchError';
+import catchError from '@/lib/catchError';
 
 const Password = () => {
   const token = router.query.token;

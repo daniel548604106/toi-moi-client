@@ -1,10 +1,11 @@
-import axios from 'axios';
-import useTranslation from 'next-translate/useTranslation';
 import React, { useState } from 'react';
 
-import EmptyRequest from '@/Components/Friends/EmptyRequest';
-import RequestCard from '@/Components/Friends/Requests/RequestCard';
-import Sidebar from '@/Components/Friends/Sidebar';
+import axios from 'axios';
+import useTranslation from 'next-translate/useTranslation';
+
+import EmptyRequest from '@/components/Friends/EmptyRequest';
+import RequestCard from '@/components/Friends/Requests/RequestCard';
+import Sidebar from '@/components/Friends/Sidebar';
 
 const Requests = ({ requestsReceived }) => {
   const { t } = useTranslation('header');

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 
-import { postNewRoomAPI } from '@/Axios/roomRequest';
-import Loader from '@/Components/Global/Loader';
-import { useAppSelector } from '@/Hooks/useAppRedux';
 import { ChevronRightIcon, ClockIcon, UsersIcon, VideoCameraIcon } from '@heroicons/react/outline';
+
+import { useAppSelector } from '@/hooks/useAppRedux';
+
+import { postNewRoomAPI } from '@/axios/roomRequest';
+
+import Loader from '@/components/Global/Loader';
 
 import CreateRoomListItem from './CreateRoomListItem';
 import CreateRoomName from './CreateRoomName';

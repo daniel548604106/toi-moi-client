@@ -1,11 +1,13 @@
+import React, { useState } from 'react';
+
+import { PlusIcon } from '@heroicons/react/outline';
 import axios from 'axios';
 import Image from 'next/image';
 import router from 'next/router';
-import React, { useState } from 'react';
 
-import { useAppSelector } from '@/Hooks/useAppRedux';
-import genderAvatar from '@/Utils/genderAvatar';
-import { PlusIcon } from '@heroicons/react/outline';
+import { useAppSelector } from '@/hooks/useAppRedux';
+
+import genderAvatar from '@/utils/genderAvatar';
 
 import StoryCard from './StoryCard';
 

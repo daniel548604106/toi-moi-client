@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getSearchedChatsAPI } from '@/Axios/chatRequest';
-import Avatar from '@/Components/Global/Avatar';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import useDebounce from '@/Hooks/useDebounce';
-import { addToChatBoxList } from '@/Redux/slices/messageSlice';
 import { SearchIcon, XIcon } from '@heroicons/react/outline';
+
+import useDebounce from '@/hooks/useDebounce';
+
+import { getSearchedChatsAPI } from '@/axios/chatRequest';
+import Avatar from '@/components/Global/Avatar';
+import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import { addToChatBoxList } from '@/redux/slices/messageSlice';
 
 interface SearchBoxProps {
   setSearchOpen: (boolean) => void;
