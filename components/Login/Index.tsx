@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Cookie from 'js-cookie';
+import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { postLoginAPI } from '@/axios/authRequest';
@@ -15,6 +17,7 @@ import { setUserLogin } from '@/redux/slices/userSlice';
 const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const { t } = useTranslation('login');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [isSignupOpen, setSignupOpen] = useState(false);
@@ -56,7 +59,7 @@ const Login = () => {
       setLoginInput({ ...loginInput, email: userEmail });
     }
     setShowNotifications(true);
-  }, []);
+  }, [loginInput]);
   return (
     <div className="w-full flex-col justify-center md:flex-row max-w-5xl mx-auto h-screen flex  items-center md:justify-between px-5">
       {isSignupOpen && (
@@ -76,7 +79,9 @@ const Login = () => {
         </div>
       )}
       <div className="w-full max-w-md mb-[20px] md:mb-0">
-        <img
+        <Image
+          width="300"
+          height="200"
           className="w-[300px] mx-auto sm:mx-0 h-[100px] sm:w-[400px] sm:h-[200px]"
           src="/toi&moi-logo.svg"
           alt="logo"
@@ -132,14 +137,14 @@ const Login = () => {
           onClick={() => setForgotPasswordOpen(true)}
           className="text-sm sm:text-md inline-block text-main my-[20px] cursor-pointer text-md"
         >
-          Forgot Password?
+          {t('forget-password')}?
         </span>
         <hr />
         <button
           onClick={() => setSignupOpen(true)}
           className="text-white  text-md sm:text-lg p-3 bg-main-yellow cursor-pointer my-3 sm:my-4 text-secondary rounded-md"
         >
-          Create Account
+          {t('create-account')}
         </button>
       </div>
     </div>
