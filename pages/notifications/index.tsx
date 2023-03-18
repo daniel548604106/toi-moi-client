@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
-import axios from 'axios';@/axios
+import axios from 'axios';
 
-import { postReadNotificationsAPI } from '@/Axios/notificationRequest';
+import { postReadNotificationsAPI } from '@/axios/notificationRequest';
 
 import CommentNotification from '@/components/Notifications/CommentNotification';
 import EmptyNotification from '@/components/Notifications/EmptyNotification';

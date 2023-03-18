@@ -229,6 +229,7 @@ export async function getServerSideProps({ req, res }) {
     // get server side cookies
     const token = req.cookies.token;
     let posts, friends;
+    
 
     if (token) {
       friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {
