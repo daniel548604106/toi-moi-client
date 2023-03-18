@@ -19,11 +19,10 @@ const token = Cookie.get('token');
 export const postNewPostAPI = async ({ images, text, location, type }) => {
   const formData = new FormData();
 
-  if (images.length) {
+  if (images?.length) {
     await Promise.all(
       images.map(async ({ file }, index) => {
         const convertedFile = await convertFileToBase64(file);
-        // console.log(convertedFile, 'convertedFile');
         formData.append(`images-${index}`, convertedFile);
       }),
     );
