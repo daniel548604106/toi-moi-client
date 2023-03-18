@@ -7,7 +7,7 @@ steps:
     args: ['push', 'asia.gcr.io/subtle-odyssey-341215/toi-moi-client']
   ## Deploy to Cloud run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
+    entrypoint: 'gcloud'
     args:
       [
         'run',
