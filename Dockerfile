@@ -5,7 +5,7 @@ FROM base AS deps
 WORKDIR /app
 COPY package*.json ./
 ENV NODE_ENV production
-RUN npm ci
+RUN npm install
 
 # Stage 2: Build project
 FROM base AS builder
