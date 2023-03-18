@@ -1,0 +1,25 @@
+steps:
+  ## Build Image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'asia.gcr.io/subtle-odyssey-341215/toi-moi-client', '.']
+  ## Push Image to registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia.gcr.io/subtle-odyssey-341215/toi-moi-client']
+  ## Deploy to Cloud run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run',
+        'deploy',
+        'toi-moi-client',
+        '--image',
+        'asia.gcr.io/subtle-odyssey-341215/toi-moi-client',
+        '--region',
+        'asia-east1',
+        '--allow-unauthenticated',
+        '--max-instances',
+        '30',
+        '--port',
+        '3000',
+      ]
