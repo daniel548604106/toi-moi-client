@@ -1,14 +1,17 @@
+import React, { useState } from 'react';
+
+import { XIcon } from '@heroicons/react/outline';
 import Image from 'next/dist/client/image';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 
 import { postNewPostAPI } from '@/Axios/postRequest';
 import { patchProfileImageAPI } from '@/Axios/profileRequest';
+
 import Loader from '@/Components/Global/Loader';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { getProfileData } from '@/Redux/slices/profileSlice';
 import { getMyInfo, setEditProfileImageOpen } from '@/Redux/slices/userSlice';
-import { XIcon } from '@heroicons/react/outline';
 
 const EditProfileImageModal = () => {
   const router = useRouter();
@@ -75,7 +78,7 @@ const EditProfileImageModal = () => {
         ></textarea>
         <div className="p-3 relative   mx-auto w-[300px] min-h-[300px] sm:h-[500px] sm:w-[500px] ">
           {profileImageToUpdate && (
-            <Image layout="fill" className=" object-cover rounded-md" src={profileImageToUpdate} />
+            <Image layout="fill" className=" object-cover rounded-md" src={profileImageToUpdate} alt="profile-image" />
           )}
         </div>
       </div>

@@ -1,11 +1,12 @@
+import React from 'react';
+
 import Image from 'next/image';
 import router from 'next/router';
-import React from 'react';
 
 const EmptyFriendList = () => {
   return (
     <div className="flex h-full items-center justify-center flex-col">
-      <Image width={100} height={100} src="/images/empty-request.svg" />
+      <Image width={100} height={100} src="/images/empty-request.svg" alt="empty-request" />
       <p className="text-lg sm:text-xl font-semibold mt-3">No Friend</p>
       <button
         onClick={() => router.push(`/friends/suggestions`)}

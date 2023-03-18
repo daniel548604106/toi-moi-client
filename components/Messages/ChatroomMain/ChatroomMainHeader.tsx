@@ -1,9 +1,10 @@
-import Image from 'next/image';
-import router from 'next/router';
 import React from 'react';
 
-import { User } from '@/Interfaces/I_socket';
 import { InformationCircleIcon, PhoneIcon, VideoCameraIcon } from '@heroicons/react/solid';
+import Image from 'next/image';
+import router from 'next/router';
+
+import { User } from '@/Interfaces/I_socket';
 
 interface ChatroomMainHeaderProps {
   openChatUser: {
@@ -26,6 +27,7 @@ const ChatroomMainHeader = (props: ChatroomMainHeaderProps) => {
             src={openChatUser.profileImage}
             width="50"
             height="50"
+            alt="profile-image"
           />
         )}
         <div className="ml-3">

@@ -1,7 +1,9 @@
-import Image from 'next/image';
 import React from 'react';
 
+import Image from 'next/image';
+
 import { UserInfo } from '@/Interfaces/I_common';
+
 import genderAvatar from '@/Utils/genderAvatar';
 
 interface RoomCardProps {
@@ -15,6 +17,7 @@ const RoomCard = ({ user }: RoomCardProps) => {
         height={60}
         className="rounded-full cursor-pointer"
         src={user.profileImage || genderAvatar(user.gender)}
+        alt="profile-image"
       />
       <p className="text-center w-full overflow-hidden">
         <span className="truncate w-1/2">{user.name}</span>

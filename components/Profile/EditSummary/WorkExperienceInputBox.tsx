@@ -1,7 +1,9 @@
-import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
+import router from 'next/router';
+
 import { postWorkExperienceSummaryAPI } from '@/Axios/profileRequest';
+
 import Loader from '@/Components/Global/Loader';
 
 import PeriodSelector from './PreriodSelector';
@@ -62,7 +64,7 @@ const WorkExperienceInputBox = ({ setActiveBox }: WorkExperienceInputBoxProps) =
     if (!start_year || !start_month) return setAvailable(false);
     if (!still_working && (!end_year || !end_month)) return setAvailable(false);
     setAvailable(true);
-  }, [{ ...newExperience }]);
+  }, [newExperience]);
 
   return (
     <div className="">

@@ -118,7 +118,7 @@ const Index = ({ setSignupOpen }) => {
                 )}
               </div>
               <div className="text-red-600 text-sm">
-                {errors.name && touched.name ? <div>{errors.name}</div> : null}
+                {/* {errors.name && touched.name ? <div>{errors.name}</div> : null} */}
               </div>
               <div
                 className={`border p-3 rounded-md flex items-center w-full ${
@@ -131,7 +131,7 @@ const Index = ({ setSignupOpen }) => {
                 )}
               </div>
               <div className="text-red-600 text-sm">
-                {errors.account && touched.account ? <div>{errors.account}</div> : null}
+                {/* {errors.account && touched.account ? <div>{errors.account}</div> : null} */}
               </div>
               <div
                 className={`border p-3 rounded-md flex items-center w-full ${
@@ -149,7 +149,7 @@ const Index = ({ setSignupOpen }) => {
                 )}
               </div>
               <div className="text-red-600 text-sm">
-                {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                {/* {errors.email && touched.email ? <div>{errors.email}</div> : null} */}
               </div>
               <div
                 className={`border p-3 rounded-md flex items-center w-full ${
@@ -167,7 +167,7 @@ const Index = ({ setSignupOpen }) => {
                 )}
               </div>
               <div className="text-red-600 text-sm">
-                {errors.password && touched.password ? <div>{errors.password}</div> : null}
+                {/* {errors.password && touched.password ? <div>{errors.password}</div> : null} */}
               </div>
               <div>
                 <div className="flex items-center justify-between">

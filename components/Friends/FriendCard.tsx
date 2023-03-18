@@ -1,11 +1,14 @@
-import Image from 'next/image';
-import router from 'next/router';
 import React, { useState } from 'react';
 
-import { postFriendRequestAPI } from '@/Axios/friendRequest';
-import { UserInfo } from '@/Interfaces/I_common';
-import genderAvatar from '@/Utils/genderAvatar';
 import { CheckIcon } from '@heroicons/react/solid';
+import Image from 'next/image';
+import router from 'next/router';
+
+import { UserInfo } from '@/Interfaces/I_common';
+
+import { postFriendRequestAPI } from '@/Axios/friendRequest';
+
+import genderAvatar from '@/Utils/genderAvatar';
 
 interface FriendCardProps {
   user: UserInfo;
@@ -38,6 +41,7 @@ const FriendCard = ({ user, removeRecommendation }: FriendCardProps) => {
           className="cursor-pointer w-full h-auto object-cover rounded-lg"
           src={user.profileImage || genderAvatar(user.gender)}
           layout="fill"
+          alt="profile-image"
         />
       </div>
       <p className="text-xs sm:text-sm font-semibold mb-5 mt-3">{user.name}</p>

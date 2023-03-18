@@ -17,7 +17,6 @@ const ProfileCover = (props: ProfileCoverProps) => {
   const userInfo = useAppSelector((state) => state.user.userInfo);
   const isLoggedInUser = router.query.id === userInfo.username;
 
-
   if (!profile) return <div>Loading</div>;
   return (
     <div>
@@ -27,7 +26,7 @@ const ProfileCover = (props: ProfileCoverProps) => {
           layout="responsive"
           width={1000}
           height={450}
-          alt="profileCoveImage"
+          alt="profile-cover-image"
           className="w-full  rounded-b-lg relative object-cover h-[100px] cursor-pointer"
         />
         <div className="px-10 py-16 sm:py-20 bg-secondary text-secondary border-b">
@@ -36,7 +35,7 @@ const ProfileCover = (props: ProfileCoverProps) => {
               src={user?.profileImage}
               width={130}
               height={130}
-              alt="profileImage"
+              alt="profile-image"
               className="object-cover border-2 border-gray-700 outline-white rounded-full cursor-pointer"
             />
             <div className="ml-[20px]">

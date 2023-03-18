@@ -1,6 +1,7 @@
+import React from 'react';
+
 import Image from 'next/image';
 import router from 'next/router';
-import React from 'react';
 
 import genderAvatar from '@/Utils/genderAvatar';
 
@@ -29,6 +30,7 @@ const Friends = ({ friends }: FriendsProps) => {
                 width={150}
                 height={150}
                 src={friend.user.profileImage || genderAvatar(friend.user.gender)}
+                alt="profile-image"
               />
               <p> {friend.user.name}</p>
             </span>

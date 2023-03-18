@@ -1,13 +1,16 @@
+import React, { useRef } from 'react';
+
+import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import router from 'next/router';
-import React, { useRef } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import { UserInfo } from '@/Interfaces/I_common';
+
 import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
 import { setEditProfileImageOpen, setProfileImageToUpdate } from '@/Redux/slices/userSlice';
+
 import genderAvatar from '@/Utils/genderAvatar';
-import { CameraIcon } from '@heroicons/react/outline';
 
 interface ProfileImageProps {
   postId: string;
@@ -56,6 +59,7 @@ const ProfileImage = (props: ProfileImageProps) => {
        object-cover   sm:w-[100px] sm:h-[100px]   rounded-full`}
         src={profileImage || genderAvatar(user.gender)}
         layout="fill"
+        alt="profile-image"
       />
       {router.query.id === userInfo.username && (
         <span

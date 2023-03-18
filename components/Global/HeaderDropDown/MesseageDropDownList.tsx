@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React from 'react';
 
 import { DotsHorizontalIcon } from '@heroicons/react/solid';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 interface MessageDropDownListProps {
   message: any;
@@ -20,6 +20,7 @@ const MessageDropDownList = ({ message }: MessageDropDownListProps) => {
         width={60}
         layout="fixed"
         height={60}
+        alt="profile-image"
       />
       <div className="ml-[10px]">
         <p>{message.name}</p>

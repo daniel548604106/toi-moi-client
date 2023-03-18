@@ -3,16 +3,18 @@ import '@/Styles/LoaderBounce.css';
 import '@/Styles/LoaderSpinner.css';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
+import { useCallback, useEffect } from 'react';
+import { Provider } from 'react-redux';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 
 import Header from '@/Components/Global/Header';
 import GlobalLoader from '@/Components/Global/Loader/PostSkeletonLoader';
@@ -21,7 +23,6 @@ import Notification from '@/Components/Global/Notification';
 import ViewPostModal from '@/Components/Global/ViewPostModal';
 import InputBoxModal from '@/Components/Home/Feed/InputBoxModal';
 import Login from '@/Components/Login/Index';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import * as ga from '@/Lib/gtag';
 import { setIsCommonLoading, setNotification } from '@/Redux/slices/globalSlice';
 import { setUserLogout } from '@/Redux/slices/userSlice';
@@ -74,19 +75,23 @@ const App = ({ Component, pageProps }) => {
     dispatch(setUserLogout());
   }
 
-  const handleRouteChange = (url, { shallow }) => {
-    ga.pageView(url);
-    dispatch(setIsCommonLoading(true));
-  };
-  const handleRouteChangeComplete = () => {
+  const handleRouteChange = useCallback(
+    (url, { shallow }) => {
+      ga.pageView(url);
+      dispatch(setIsCommonLoading(true));
+    },
+    [dispatch],
+  );
+
+  const handleRouteChangeComplete = useCallback(() => {
     dispatch(setIsCommonLoading(false));
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(setNotification(''));
     }, 3000);
-  }, [notification]);
+  }, [notification, dispatch]);
 
   useEffect(() => {
     router.events.on('routeChangeStart', handleRouteChange);
@@ -97,7 +102,7 @@ const App = ({ Component, pageProps }) => {
     return () => {
       router.events.off('routeChangeStart', handleRouteChange);
     };
-  }, []);
+  }, [handleRouteChange, handleRouteChangeComplete, router.events]);
 
   // Track user geolocation
 
@@ -234,9 +239,9 @@ const App = ({ Component, pageProps }) => {
         </Overlay>
       )}
       {!allowedRoutes && <Header />}
-      <AnimatePresence>
-        {notification && <Notification notification={notification} />}
-      </AnimatePresence>
+      {/* <AnimatePresence> */}
+      {notification && <Notification notification={notification} />}
+      {/* </AnimatePresence> */}
       {isCommonLoading && <GlobalLoader />}
       <main
         className={`${

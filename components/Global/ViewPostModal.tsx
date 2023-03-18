@@ -56,7 +56,7 @@ const ViewPostModal = () => {
       >
         {post.images.map((image) => (
           <SwiperSlide key={image}>
-            <Image className="object-scale-down" src={image} layout="fill" />
+            <Image className="object-scale-down" src={image} layout="fill" alt="image" />
           </SwiperSlide>
         ))}
       </Swiper>

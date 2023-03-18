@@ -1,6 +1,7 @@
+import React from 'react';
+
 import Image from 'next/dist/client/image';
 import router from 'next/router';
-import React from 'react';
 
 import genderAvatar from '@/Utils/genderAvatar';
 
@@ -30,6 +31,7 @@ const Avatar = (props: AvatarProps) => {
       layout={layout}
       height={height}
       src={profileImage || genderAvatar(gender)}
+      alt="profile-image"
     />
   );
 };

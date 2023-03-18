@@ -1,7 +1,8 @@
+import React from 'react';
+
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import router from 'next/router';
-import React from 'react';
 
 import genderAvatar from '@/Utils/genderAvatar';
 
@@ -26,6 +27,7 @@ const MonthlyBirthdays = ({ birthdays, month }: MonthlyBirthdaysProps) => {
               width={50}
               height={50}
               src={user.profileImage || genderAvatar(user.gender)}
+              alt="profile-image"
             />
             <div className="group-hover:block hidden text-xs absolute left-1/2 transform translate-y-full -translate-x-1/2 bg-main text-white p-2 rounded-lg bottom-0 whitespace-nowrap">{`${
               user.name
