@@ -1,11 +1,13 @@
-import Image from 'next/image';
-import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
+import Image from 'next/image';
+import router from 'next/router';
+
 import { postPasswordResetAPI } from '@/Axios/resetRequest';
+
 import catchError from '@/Lib/catchError';
 
-const password = () => {
+const Password = () => {
   const token = router.query.token;
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
@@ -91,4 +93,4 @@ const password = () => {
   );
 };
 
-export default password;
+export default Password;

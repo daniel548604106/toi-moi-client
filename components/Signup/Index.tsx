@@ -1,16 +1,18 @@
+import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 import { Field, Form, Formik, FormikProps, FormikValues } from 'formik';
 import Cookie from 'js-cookie';
 import range from 'lodash/range';
 import router from 'next/router';
-import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { postSignupAPI } from '@/Axios/authRequest';
+
 import Loader from '@/Components/Global/Loader';
 import catchError from '@/Lib/catchError';
 import { setUserLogin } from '@/Redux/slices/userSlice';
-import { ExclamationCircleIcon, XIcon } from '@heroicons/react/solid';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().min(2, 'Please use your real name').max(50, 'Too Long!').required('Required'),
@@ -181,7 +183,7 @@ const Index = ({ setSignupOpen }) => {
                     name="year"
                   >
                     {yearRange.map((year) => (
-                      <option value={year}>{year}</option>
+                      <option key={year} value={year}>{year}</option>
                     ))}
                   </Field>
                   <Field
@@ -192,7 +194,7 @@ const Index = ({ setSignupOpen }) => {
                     name="month"
                   >
                     {monthRange.map((month) => (
-                      <option value={month}>{month}</option>
+                      <option key={month} value={month}>{month}</option>
                     ))}
                   </Field>
                   <Field
@@ -203,7 +205,7 @@ const Index = ({ setSignupOpen }) => {
                     name="date"
                   >
                     {dateRange.map((date) => (
-                      <option value={date}>{date}</option>
+                      <option key={date} value={date}>{date}</option>
                     ))}
                   </Field>
                 </div>
@@ -227,8 +229,8 @@ const Index = ({ setSignupOpen }) => {
               </div>
 
               <p className="my-[20px] text-xs sm:text-sm text-gray-600">
-                By clicking <span className="underline">Signup</span> means you've agreed to our{' '}
-                <span className="text-main cursor-pointer">Service policy</span> and{' '}
+                By clicking <span className="underline">Signup</span> means you&apos;'ve agreed to
+                our <span className="text-main cursor-pointer">Service policy</span> and{' '}
                 <span className="text-main cursor-pointer">Cookie policy</span>
               </p>
               <div className="flex items-center justify-center">

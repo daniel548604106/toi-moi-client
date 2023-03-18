@@ -1,11 +1,12 @@
-import useTranslation from 'next-translate/useTranslation';
-import Link from 'next/link';
-import router from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { toggleLanguageOpen } from '@/Redux/slices/globalSlice';
 import { XIcon } from '@heroicons/react/outline';
+import useTranslation from 'next-translate/useTranslation';
+import Link from 'next/link';
+import router from 'next/router';
+
+import { toggleLanguageOpen } from '@/Redux/slices/globalSlice';
 
 const languages = [
   {
@@ -14,7 +15,7 @@ const languages = [
   },
   {
     name: '繁體中文',
-    id: 'zh-tw',
+    id: 'zh-TW',
   },
 ];
 
@@ -33,16 +34,16 @@ const LanguageSettingModal = () => {
         <XIcon className="h-6" />
       </span>
       <form className="space-y-2">
-        {languages.map((language) => (
-          <div className="flex items-center justify-between text-lg">
-            <label htmlFor={language.name}>{language.name}</label>
+        {languages.map(({ id, name }) => (
+          <div key={id} className="flex items-center justify-between text-lg">
+            <label htmlFor={name}>{name}</label>
             <input
               onChange={(e) => setCurrentLanguage(e.target.value)}
               type="radio"
-              value={language.id}
+              value={id}
               name="language"
-              id={language.id}
-              checked={currentLanguage === language.id}
+              id={id}
+              checked={currentLanguage === id}
             />
           </div>
         ))}

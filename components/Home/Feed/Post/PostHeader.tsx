@@ -1,13 +1,15 @@
-import useTranslation from 'next-translate/useTranslation';
-import router from 'next/router';
 import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import Avatar from '@/Components/Global/Avatar';
+import { DotsHorizontalIcon } from '@heroicons/react/solid';
+import useTranslation from 'next-translate/useTranslation';
+import router from 'next/router';
+
 import useClickOutside from '@/Hooks/useClickOutside';
+
+import Avatar from '@/Components/Global/Avatar';
 import { timeDiff } from '@/Lib/dayjs';
 import { getSavedPosts } from '@/Redux/slices/postSlice';
-import { DotsHorizontalIcon } from '@heroicons/react/solid';
 
 import Popup from './Popup';
 
@@ -54,7 +56,7 @@ const PostHeader = (props: PostHeaderProps) => {
             </p>
             <p className="text-xs text-gray-600 hover:underline cursor-pointer">
               {timeDiff(post.createdAt)?.split(' ')[0]}
-              <span className={router.locale === 'zh-tw' ? 'mx-0' : 'mx-1'}>
+              <span className={router.locale === 'zh-TW' ? 'mx-0' : 'mx-1'}>
                 {t(timeDiff(post.createdAt)?.split(' ')[1])}
               </span>
               {t('ago')}

@@ -209,7 +209,7 @@ export default function Home({ posts, friends, notFound }) {
         <div className="fixed bottom-0 right-0  flex  w-full flex-row-reverse items-end">
           {openChatBoxList.length > 0 &&
             openChatBoxList.map((user) => (
-              <div className="mr-3">
+              <div className="mr-3" key={user._id} >
                 <ChatBox
                   connectedUsers={connectedUsers}
                   user={user}
