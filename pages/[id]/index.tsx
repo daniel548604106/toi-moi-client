@@ -1,21 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import {} from '';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import io, { Socket } from 'socket.io-client';
 
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
 import {
   getProfileFriendsAPI,
   getProfilePostsAPI,
-  getProfileSummaryAPI,
-} from '@/Axios/profileRequest';
+  getProfileSummaryAPI
+} from '@/axios/profileRequest';
+
 import LoaderSpinner from '@/components/Global/LoaderSpinner';
 import ProfileCover from '@/components/Profile/ProfileCover';
 import TabsList from '@/components/Profile/TabsList';
-import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import { ClientToServerEvents, ServerToClientEvents } from '@/interfaces/I_socket';
 import { setProfileData, setSummaryData } from '@/redux/slices/profileSlice';
 
 // Dynamic Imports
@@ -64,7 +66,7 @@ const Index = ({ profileData }) => {
     }
   };
 
-  const handleGetInitialPosts = async () => {
+  const handleGetInitialPosts = useCallback(async () => {
     try {
       const { data } = await getProfilePostsAPI(profile?.user?.username, 2);
       setPosts(data);
@@ -73,28 +75,29 @@ const Index = ({ profileData }) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [profile?.user?.username]);
 
   const handleDeletePost = (postId: string) => {
     setPosts(posts.filter((post) => post._id !== postId));
   };
 
-  const getProfileFriends = async () => {
+  const getProfileFriends = useCallback(async () => {
     try {
       const { data } = await getProfileFriendsAPI(router?.query?.id);
       setFriends(data);
     } catch (error) {
       console.log(error);
     }
-  };
-  const getProfileSummary = async () => {
+  }, [router?.query?.id]);
+
+  const getProfileSummary = useCallback(async () => {
     try {
       const { data } = await getProfileSummaryAPI(router?.query?.id);
       dispatch(setSummaryData(data));
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [dispatch, router?.query?.id]);
 
   useEffect(() => {
     if (!socket.current) {
@@ -104,13 +107,13 @@ const Index = ({ profileData }) => {
     getProfileSummary();
     getProfileFriends();
     handleGetInitialPosts();
-  }, [router.query.id]);
+  }, [getProfileFriends, getProfileSummary, handleGetInitialPosts, router.query.id]);
 
   useEffect(() => {
     if (profileData) {
       dispatch(setProfileData(profileData));
     }
-  }, [profileData]);
+  }, [dispatch, profileData]);
 
   useEffect(() => {
     setSummary(summaryData);
