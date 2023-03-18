@@ -1,14 +1,16 @@
+import React, { useEffect, useState } from 'react';
+
+import { SearchIcon } from '@heroicons/react/outline';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import router from 'next/router';
-import React, { useEffect, useState } from 'react';
 
-import EmptyFriendList from '@/Components/Friends/EmptyFriendList';
-import Sidebar from '@/Components/Friends/Sidebar';
-import Avatar from '@/Components/Global/Avatar';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import useAxios from '@/Hooks/useAxios';
-import { SearchIcon } from '@heroicons/react/outline';
+import useAxios from '@/hooks/useAxios';
+
+import EmptyFriendList from '@/components/Friends/EmptyFriendList';
+import Sidebar from '@/components/Friends/Sidebar';
+import Avatar from '@/components/Global/Avatar';
+import LoaderSpinner from '@/components/Global/LoaderSpinner';
 
 const Lists = () => {
   const [friendsList, setFriendsList] = useState(null);

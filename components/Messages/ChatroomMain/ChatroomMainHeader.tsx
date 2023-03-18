@@ -4,7 +4,7 @@ import { InformationCircleIcon, PhoneIcon, VideoCameraIcon } from '@heroicons/re
 import Image from 'next/image';
 import router from 'next/router';
 
-import { User } from '@/Interfaces/I_socket';
+import { User } from '@/interfaces/I_socket';
 
 interface ChatroomMainHeaderProps {
   openChatUser: {

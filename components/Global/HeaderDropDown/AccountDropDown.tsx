@@ -1,14 +1,16 @@
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 
-import Avatar from '@/Components/Global/Avatar';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import useDarkMode from '@/Hooks/useDarkMode';
-import { toggleLanguageOpen } from '@/Redux/slices/globalSlice';
-import { setUserLogout } from '@/Redux/slices/userSlice';
 import { GlobeIcon } from '@heroicons/react/outline';
 import { LogoutIcon, MoonIcon, SunIcon } from '@heroicons/react/solid';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import useDarkMode from '@/hooks/useDarkMode';
+
+import Avatar from '@/components/Global/Avatar';
+import { toggleLanguageOpen } from '@/redux/slices/globalSlice';
+import { setUserLogout } from '@/redux/slices/userSlice';
 
 const AccountPopup = ({ t }) => {
   const [isDark, setIsDark] = useDarkMode();

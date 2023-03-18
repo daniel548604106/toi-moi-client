@@ -1,16 +1,24 @@
+import React, { useRef, useState } from 'react';
+
+import { BookmarkAltIcon, MenuIcon, PlayIcon, ShoppingCartIcon } from '@heroicons/react/outline';
+import {
+  BellIcon,
+  ChatIcon,
+  ChevronDownIcon,
+  HomeIcon,
+  PlusIcon,
+  UserGroupIcon
+} from '@heroicons/react/solid';
 import { AnimateSharedLayout } from 'framer-motion';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import useClickOutside from '@/Hooks/useClickOutside';
-import { setUnreadNotification } from '@/Redux/slices/userSlice';
-import genderAvatar from '@/Utils/genderAvatar';
-import { BookmarkAltIcon, MenuIcon, PlayIcon, ShoppingCartIcon } from '@heroicons/react/outline';
-import {
-    BellIcon, ChatIcon, ChevronDownIcon, HomeIcon, PlusIcon, UserGroupIcon
-} from '@heroicons/react/solid';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import useClickOutside from '@/hooks/useClickOutside';
+
+import { setUnreadNotification } from '@/redux/slices/userSlice';
+
+import genderAvatar from '@/utils/genderAvatar';
 
 import Sidebar from '../Home/Sidebar/Sidebar';
 import DropDownMenuIcon from './DropDownMenuIcon';
@@ -74,6 +82,7 @@ const Header = () => {
             onClick={() => router.push('/')}
             className="w-[40px] h-[40px] cursor-pointer"
             src="/logo.svg"
+            alt="logo"
           />
           <Search t={t} />
         </div>
@@ -104,6 +113,7 @@ const Header = () => {
           <img
             className="min-w-[35px] h-[35px] cursor-pointer object-cover  rounded-full"
             src={userInfo.profileImage || genderAvatar(userInfo.gender)}
+            alt="profile-image"
           />
           <p className="pr-2 text-sm ml-2 whitespace-nowrap hidden xl:block">{userInfo.name}</p>
         </div>

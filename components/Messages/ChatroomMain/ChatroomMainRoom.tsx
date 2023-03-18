@@ -2,7 +2,7 @@ import { LegacyRef } from 'react';
 
 import Image from 'next/image';
 
-import { UserInfo } from '@/Interfaces/I_common';
+import { UserInfo } from '@/interfaces/I_common';
 
 interface ChatroomMainRoomProps {
   messages: any;

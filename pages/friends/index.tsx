@@ -1,13 +1,14 @@
+import React, { useState } from 'react';
+
 import axios from 'axios';
 import useTranslation from 'next-translate/useTranslation';
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
 
-import RequestCard from '@/Components/Friends/Requests/RequestCard';
-import Sidebar from '@/Components/Friends/Sidebar';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import RequestCard from '@/components/Friends/Requests/RequestCard';
+import Sidebar from '@/components/Friends/Sidebar';
+import LoaderSpinner from '@/components/Global/LoaderSpinner';
 
-const FriendCard = dynamic(() => import('@/Components/Friends/FriendCard'), {
+const FriendCard = dynamic(() => import('@/components/Friends/FriendCard'), {
   loading: () => <LoaderSpinner />,
 });
 

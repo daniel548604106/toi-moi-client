@@ -1,12 +1,14 @@
-import useTranslation from 'next-translate/useTranslation';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { postFriendRequestAPI, rejectFriendRequestAPI } from '@/Axios/friendRequest';
-import { postReadSingleNotificationAPI } from '@/Axios/notificationRequest';
-import Avatar from '@/Components/Global/Avatar';
-import { timeDiff } from '@/Lib/dayjs';
 import { UsersIcon } from '@heroicons/react/outline';
+import useTranslation from 'next-translate/useTranslation';
+import { useRouter } from 'next/router';
+
+import { postFriendRequestAPI, rejectFriendRequestAPI } from '@/axios/friendRequest';
+import { postReadSingleNotificationAPI } from '@/axios/notificationRequest';
+
+import Avatar from '@/components/Global/Avatar';
+import { timeDiff } from '@/lib/dayjs';
 
 interface FriendNotificationProps {
   notification: any;

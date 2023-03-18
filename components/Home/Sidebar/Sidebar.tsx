@@ -1,10 +1,12 @@
-import useTranslation from 'next-translate/useTranslation';
-import router from 'next/router';
 import React, { useState } from 'react';
 
-import { useAppSelector } from '@/Hooks/useAppRedux';
-import genderAvatar from '@/Utils/genderAvatar';
 import { ChevronDownIcon } from '@heroicons/react/outline';
+import useTranslation from 'next-translate/useTranslation';
+import router from 'next/router';
+
+import { useAppSelector } from '@/hooks/useAppRedux';
+
+import genderAvatar from '@/utils/genderAvatar';
 
 import SidebarListItem from './SidebarListItem';
 

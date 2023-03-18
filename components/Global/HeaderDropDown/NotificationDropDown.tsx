@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { getNotificationsAPI } from '@/Axios/notificationRequest';
-import CommentNotification from '@/Components/Notifications/CommentNotification';
-import EmptyNotification from '@/Components/Notifications/EmptyNotification';
-import FriendNotification from '@/Components/Notifications/FriendNotification';
-import LikeNotification from '@/Components/Notifications/LikeNotification';
+import { getNotificationsAPI } from '@/axios/notificationRequest';
+import CommentNotification from '@/components/Notifications/CommentNotification';
+import EmptyNotification from '@/components/Notifications/EmptyNotification';
+import FriendNotification from '@/components/Notifications/FriendNotification';
+import LikeNotification from '@/components/Notifications/LikeNotification';
 
 interface NotificationDropDownProps {
   t: (text: string) => string;

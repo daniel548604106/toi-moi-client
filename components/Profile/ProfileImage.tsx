@@ -4,13 +4,13 @@ import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import router from 'next/router';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { UserInfo } from '@/Interfaces/I_common';
+import { UserInfo } from '@/interfaces/I_common';
 
-import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
-import { setEditProfileImageOpen, setProfileImageToUpdate } from '@/Redux/slices/userSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import { apiGetCurrentPost, setViewPostModalOpen } from '@/redux/slices/postSlice';
+import { setEditProfileImageOpen, setProfileImageToUpdate } from '@/redux/slices/userSlice';
 
-import genderAvatar from '@/Utils/genderAvatar';
+import genderAvatar from '@/utils/genderAvatar';
 
 interface ProfileImageProps {
   postId: string;

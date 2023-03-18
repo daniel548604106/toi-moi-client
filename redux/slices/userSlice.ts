@@ -1,7 +1,9 @@
-import { getFriendsListAPI } from '@/Axios/friendRequest';
-import { getMyInfoAPI } from '@/Axios/userRequest';
-import { UserInfo } from '@/Interfaces/I_common';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+import { getFriendsListAPI } from '@/axios/friendRequest';
+import { getMyInfoAPI } from '@/axios/userRequest';
+
+import { UserInfo } from '@/interfaces/I_common';
 
 export const getMyInfo = createAsyncThunk('get/getMyInfo', async (id, thunkAPI) => {
   const response = await getMyInfoAPI();

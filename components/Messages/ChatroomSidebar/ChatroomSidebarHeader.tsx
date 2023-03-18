@@ -1,9 +1,11 @@
 import React from 'react';
 
-import Avatar from '@/Components/Global/Avatar';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { toggleListOpen } from '@/Redux/slices/messageSlice';
 import { SearchIcon, VideoCameraIcon, XIcon } from '@heroicons/react/solid';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import Avatar from '@/components/Global/Avatar';
+import { toggleListOpen } from '@/redux/slices/messageSlice';
 
 interface ChatroomSidebarHeaderProps {
   searchText: string;

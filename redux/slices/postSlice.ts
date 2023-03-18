@@ -1,6 +1,7 @@
-import request from '@/Axios/index';
-import { getSavedPostsAPI } from '@/Axios/savedRequest';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+import request from '@/axios/index';
+import { getSavedPostsAPI } from '@/axios/savedRequest';
 
 // `createAsyncThunk` is a generic function.
 // We can use the first type-parameter to tell what type will be returned as a result.

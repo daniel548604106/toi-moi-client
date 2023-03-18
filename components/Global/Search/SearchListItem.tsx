@@ -3,9 +3,9 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { postUserSearchAPI } from '@/Axios/searchRequest';
+import { postUserSearchAPI } from '@/axios/searchRequest';
 
-import genderAvatar from '@/Utils/genderAvatar';
+import genderAvatar from '@/utils/genderAvatar';
 
 interface SearchListItemProps {
   username: string;

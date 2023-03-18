@@ -1,9 +1,10 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setPostInputBoxOpen } from '@/Redux/slices/postSlice';
 import { BookOpenIcon, PencilAltIcon } from '@heroicons/react/solid';
+import { useRouter } from 'next/router';
+
+import { setPostInputBoxOpen } from '@/redux/slices/postSlice';
 
 import CreateListItem from './CreateListItem';
 

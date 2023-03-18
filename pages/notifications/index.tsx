@@ -1,12 +1,14 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-import { postReadNotificationsAPI } from '@/Axios/notificationRequest';
-import CommentNotification from '@/Components/Notifications/CommentNotification';
-import EmptyNotification from '@/Components/Notifications/EmptyNotification';
-import FriendNotification from '@/Components/Notifications/FriendNotification';
-import LikeNotification from '@/Components/Notifications/LikeNotification';
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
+import axios from 'axios';@/axios
+
+import { postReadNotificationsAPI } from '@/Axios/notificationRequest';
+
+import CommentNotification from '@/components/Notifications/CommentNotification';
+import EmptyNotification from '@/components/Notifications/EmptyNotification';
+import FriendNotification from '@/components/Notifications/FriendNotification';
+import LikeNotification from '@/components/Notifications/LikeNotification';
 
 const Index = ({ notifications }) => {
   const [currentNotifications, setCurrentNotifications] = useState(notifications);

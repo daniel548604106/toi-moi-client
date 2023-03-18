@@ -1,25 +1,29 @@
+import React, { useEffect, useRef, useState } from 'react';
+
+import { ChatAlt2Icon } from '@heroicons/react/outline';
 import axios from 'axios';
 import useTranslation from 'next-translate/useTranslation';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef, useState } from 'react';
 import io, { Socket } from 'socket.io-client';
 
-import { getChatUserInfoAPI } from '@/Axios/chatRequest';
-import { searchRequestAPI } from '@/Axios/searchRequest';
-import Avatar from '@/Components/Global/Avatar';
-import ChatroomMainHeader from '@/Components/Messages/ChatroomMain/ChatroomMainHeader';
-import ChatroomMainInputBox from '@/Components/Messages/ChatroomMain/ChatroomMainInputBox';
-import ChatroomMainRoom from '@/Components/Messages/ChatroomMain/ChatroomMainRoom';
-import ChatroomList from '@/Components/Messages/ChatroomSidebar/ChatroomList';
-import ChatroomSidebarHeader from '@/Components/Messages/ChatroomSidebar/ChatroomSidebarHeader';
-import EmptyChat from '@/Components/Messages/EmptyChat';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { ClientToServerEvents, ServerToClientEvents } from '@/Interfaces/I_socket';
-import { toggleListOpen } from '@/Redux/slices/messageSlice';
-import genderAvatar from '@/Utils/genderAvatar';
-import messageNotificationSound from '@/Utils/messageNotificationSound';
-import { ChatAlt2Icon } from '@heroicons/react/outline';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import { getChatUserInfoAPI } from '@/axios/chatRequest';
+import { searchRequestAPI } from '@/axios/searchRequest';
+
+import Avatar from '@/components/Global/Avatar';
+import ChatroomMainHeader from '@/components/Messages/ChatroomMain/ChatroomMainHeader';
+import ChatroomMainInputBox from '@/components/Messages/ChatroomMain/ChatroomMainInputBox';
+import ChatroomMainRoom from '@/components/Messages/ChatroomMain/ChatroomMainRoom';
+import ChatroomList from '@/components/Messages/ChatroomSidebar/ChatroomList';
+import ChatroomSidebarHeader from '@/components/Messages/ChatroomSidebar/ChatroomSidebarHeader';
+import EmptyChat from '@/components/Messages/EmptyChat';
+import { ClientToServerEvents, ServerToClientEvents } from '@/interfaces/I_socket';
+import { toggleListOpen } from '@/redux/slices/messageSlice';
+
+import genderAvatar from '@/utils/genderAvatar';
+import messageNotificationSound from '@/utils/messageNotificationSound';
 
 const Index = (props) => {
   const { t } = useTranslation('messages');

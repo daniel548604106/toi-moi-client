@@ -1,9 +1,10 @@
-import axios from 'axios';
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import ProfileCover from '@/Components/Profile/ProfileCover';
-import TabsList from '@/Components/Profile/TabsList';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+
+import ProfileCover from '@/components/Profile/ProfileCover';
+import TabsList from '@/components/Profile/TabsList';
 
 const Index = ({ data }) => {
   const router = useRouter();

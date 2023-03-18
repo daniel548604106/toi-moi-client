@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,45 +15,19 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/Components/*": [
-        "components/*"
-      ],
-      "@/Hooks/*": [
-        "hooks/*"
-      ],
-      "@/Interfaces/*": [
-        "interfaces/*"
-      ],
-      "@/Modules/*": [
-        "stories/modules/*"
-      ],
-      "@/Pages/*": [
-        "pages/*"
-      ],
-      "@/Redux/*": [
-        "redux/*"
-      ],
-      "@/Styles/*": [
-        "styles/*"
-      ],
-      "@/Utils/*": [
-        "utils/*"
-      ],
-      "@/Axios/*": [
-        "axios/*"
-      ],
-      "@/Lib/*": [
-        "lib/*"
-      ]
+      "@/components/*": ["components/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/interfaces/*": ["interfaces/*"],
+      "@/modules/*": ["stories/modules/*"],
+      "@/pages/*": ["pages/*"],
+      "@/redux/*": ["redux/*"],
+      "@/styles/*": ["styles/*"],
+      "@/utils/*": ["utils/*"],
+      "@/axios/*": ["axios/*"],
+      "@/lib/*": ["lib/*"]
     },
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

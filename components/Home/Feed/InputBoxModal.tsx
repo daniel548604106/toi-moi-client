@@ -4,17 +4,16 @@ import { EmojiHappyIcon, PhotographIcon, XIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import useClickOutside from '@/Hooks/useClickOutside';
-import useNotify from '@/Hooks/useNotify';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import useClickOutside from '@/hooks/useClickOutside';
+import useNotify from '@/hooks/useNotify';
 
-import { postNewPostAPI } from '@/Axios/postRequest';
-
-import Avatar from '@/Components/Global/Avatar';
-import Loader from '@/Components/Global/Loader';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import { setNotification } from '@/Redux/slices/globalSlice';
-import { setImagesToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
+import { postNewPostAPI } from '@/axios/postRequest';
+import Avatar from '@/components/Global/Avatar';
+import Loader from '@/components/Global/Loader';
+import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import { setNotification } from '@/redux/slices/globalSlice';
+import { setImagesToPost, setPostInputBoxOpen } from '@/redux/slices/postSlice';
 
 const Picker = dynamic(import('emoji-picker-react'), {
   ssr: false,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { setSummaryModalShow } from '@/Redux/slices/profileSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import { setSummaryModalShow } from '@/redux/slices/profileSlice';
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline';
 import { XIcon } from '@heroicons/react/solid';
 

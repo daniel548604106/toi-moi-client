@@ -4,14 +4,13 @@ import { XIcon } from '@heroicons/react/outline';
 import Image from 'next/dist/client/image';
 import { useRouter } from 'next/router';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
-import { postNewPostAPI } from '@/Axios/postRequest';
-import { patchProfileImageAPI } from '@/Axios/profileRequest';
-
-import Loader from '@/Components/Global/Loader';
-import { getProfileData } from '@/Redux/slices/profileSlice';
-import { getMyInfo, setEditProfileImageOpen } from '@/Redux/slices/userSlice';
+import { postNewPostAPI } from '@/axios/postRequest';
+import { patchProfileImageAPI } from '@/axios/profileRequest';
+import Loader from '@/components/Global/Loader';
+import { getProfileData } from '@/redux/slices/profileSlice';
+import { getMyInfo, setEditProfileImageOpen } from '@/redux/slices/userSlice';
 
 const EditProfileImageModal = () => {
   const router = useRouter();

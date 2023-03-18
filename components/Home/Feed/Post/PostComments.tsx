@@ -1,11 +1,14 @@
-import router from 'next/router';
 import React, { useState } from 'react';
 
-import { deleteCommentAPI, likeCommentAPI, unlikeCommentAPI } from '@/Axios/postRequest';
-import Avatar from '@/Components/Global/Avatar';
-import { useAppSelector } from '@/Hooks/useAppRedux';
-import { timeDiff } from '@/Lib/dayjs';
 import { ThumbUpIcon, TrashIcon } from '@heroicons/react/solid';
+import router from 'next/router';
+
+import { useAppSelector } from '@/hooks/useAppRedux';
+
+import { deleteCommentAPI, likeCommentAPI, unlikeCommentAPI } from '@/axios/postRequest';
+
+import Avatar from '@/components/Global/Avatar';
+import { timeDiff } from '@/lib/dayjs';
 
 interface CommentProps {
   setComments: (any) => void;

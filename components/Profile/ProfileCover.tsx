@@ -4,14 +4,14 @@ import { CameraIcon, GlobeIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { UserInfo } from '@/Interfaces/I_common';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
-import { postNewPostAPI } from '@/Axios/postRequest';
-import { patchProfileAPI } from '@/Axios/profileRequest';
+import { postNewPostAPI } from '@/axios/postRequest';
+import { patchProfileAPI } from '@/axios/profileRequest';
 
-import Loader from '@/Components/Global/Loader';
-import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
+import Loader from '@/components/Global/Loader';
+import { UserInfo } from '@/interfaces/I_common';
+import { apiGetCurrentPost, setViewPostModalOpen } from '@/redux/slices/postSlice';
 
 import BioInput from './BioInput';
 import ProfileImage from './ProfileImage';

@@ -1,10 +1,11 @@
-import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { apiGetLikesList, setLikesListOpen } from '@/Redux/slices/postSlice';
-import { getFriendList } from '@/Redux/slices/userSlice';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
+import useTranslation from 'next-translate/useTranslation';
+
+import { apiGetLikesList, setLikesListOpen } from '@/redux/slices/postSlice';
+import { getFriendList } from '@/redux/slices/userSlice';
 
 interface PostStatusProps {
   likes: any;

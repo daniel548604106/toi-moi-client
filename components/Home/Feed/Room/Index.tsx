@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
-import Avatar from '@/Components/Global/Avatar';
-import genderAvatar from '@/Utils/genderAvatar';
 import { VideoCameraIcon } from '@heroicons/react/outline';
+
+import Avatar from '@/components/Global/Avatar';
+
+import genderAvatar from '@/utils/genderAvatar';
 
 import CreateRoomCard from './CreateRoomCard';
 import RoomCard from './RoomCard';

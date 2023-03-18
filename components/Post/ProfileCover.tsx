@@ -4,8 +4,9 @@ import { DotsHorizontalIcon, PlusIcon, UserIcon } from '@heroicons/react/outline
 import Image from 'next/image';
 import router from 'next/router';
 
-import { useAppSelector } from '@/Hooks/useAppRedux';
-import { UserInfo } from '@/Interfaces/I_common';
+import { useAppSelector } from '@/hooks/useAppRedux';
+
+import { UserInfo } from '@/interfaces/I_common';
 
 interface ProfileCoverProps {
   user: UserInfo;

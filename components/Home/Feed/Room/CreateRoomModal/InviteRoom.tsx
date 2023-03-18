@@ -1,12 +1,14 @@
-import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { getFriendsListAPI } from '@/Axios/friendRequest';
-import Avatar from '@/Components/Global/Avatar';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { toggleCreateRoomOpen } from '@/Redux/slices/globalSlice';
 import { SearchIcon } from '@heroicons/react/outline';
+import router from 'next/router';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import { getFriendsListAPI } from '@/axios/friendRequest';
+import Avatar from '@/components/Global/Avatar';
+import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import { toggleCreateRoomOpen } from '@/redux/slices/globalSlice';
 
 const InviteRoom = ({ roomCode }) => {
   const dispatch = useAppDispatch();

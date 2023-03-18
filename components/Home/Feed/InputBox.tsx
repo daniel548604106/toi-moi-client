@@ -1,12 +1,15 @@
-import useTranslation from 'next-translate/useTranslation';
-import { useRouter } from 'next/router';
 import React, { ChangeEvent, useRef } from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { setImagesToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
-import genderAvatar from '@/Utils/genderAvatar';
 import { EmojiHappyIcon } from '@heroicons/react/outline';
 import { CameraIcon, VideoCameraIcon } from '@heroicons/react/solid';
+import useTranslation from 'next-translate/useTranslation';
+import { useRouter } from 'next/router';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import { setImagesToPost, setPostInputBoxOpen } from '@/redux/slices/postSlice';
+
+import genderAvatar from '@/utils/genderAvatar';
 
 const InputBox = () => {
   const { t } = useTranslation('common');

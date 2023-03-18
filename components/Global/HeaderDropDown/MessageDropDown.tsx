@@ -1,10 +1,14 @@
-import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import { getAllChatsAPI } from '@/Axios/chatRequest';
 import {
-    DotsHorizontalIcon, PencilAltIcon, SearchIcon, VideoCameraIcon
+  DotsHorizontalIcon,
+  PencilAltIcon,
+  SearchIcon,
+  VideoCameraIcon
 } from '@heroicons/react/solid';
+import { useRouter } from 'next/router';
+
+import { getAllChatsAPI } from '@/axios/chatRequest';
 
 import EmptyChat from '../../Messages/EmptyChat';
 import ToolTips from '../ToolTips';

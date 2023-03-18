@@ -4,9 +4,9 @@ import { SearchIcon, XIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { deleteHistoryAPI } from '@/Axios/searchRequest';
+import { deleteHistoryAPI } from '@/axios/searchRequest';
 
-import genderAvatar from '@/Utils/genderAvatar';
+import genderAvatar from '@/utils/genderAvatar';
 
 interface SearchHistoryItemProps {
   setSearchResultShow: (boolean) => void;

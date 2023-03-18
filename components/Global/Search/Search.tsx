@@ -1,10 +1,13 @@
-import router from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { getRecentSearchAPI, postKeywordSearchAPI, searchRequestAPI } from '@/Axios/searchRequest';
-import useDebounce from '@/Hooks/useDebounce';
-import * as ga from '@/Lib/gtag';
 import { ChevronLeftIcon, SearchIcon } from '@heroicons/react/outline';
+import router from 'next/router';
+
+import useDebounce from '@/hooks/useDebounce';
+
+import { getRecentSearchAPI, postKeywordSearchAPI, searchRequestAPI } from '@/axios/searchRequest';
+
+import * as ga from '@/lib/gtag';
 
 import SearchHistoryItem from './SearchHistoryItem';
 import SearchListItem from './SearchListItem';

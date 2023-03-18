@@ -4,12 +4,11 @@ import { XIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { deletePostAPI } from '@/axios/postRequest';
 
-import { deletePostAPI } from '@/Axios/postRequest';
-
-import { setNotification } from '@/Redux/slices/globalSlice';
-import { setViewPostModalOpen } from '@/Redux/slices/postSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import { setNotification } from '@/redux/slices/globalSlice';
+import { setViewPostModalOpen } from '@/redux/slices/postSlice';
 
 import Post from '../Home/Feed/Post/Post';
 

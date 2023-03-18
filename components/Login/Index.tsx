@@ -1,14 +1,16 @@
-import Cookie from 'js-cookie';
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { postLoginAPI } from '@/Axios/authRequest';
-import ForgotPassword from '@/Components/ForgotPassword/Index';
-import Loader from '@/Components/Global/Loader';
-import Signup from '@/Components/Signup/Index';
-import catchError from '@/Lib/catchError';
-import { setUserLogin } from '@/Redux/slices/userSlice';
+import Cookie from 'js-cookie';
+import { useRouter } from 'next/router';
+
+import { postLoginAPI } from '@/axios/authRequest';
+
+import ForgotPassword from '@/components/ForgotPassword/Index';
+import Loader from '@/components/Global/Loader';
+import Signup from '@/components/Signup/Index';
+import catchError from '@/lib/catchError';
+import { setUserLogin } from '@/redux/slices/userSlice';
 
 const Login = () => {
   const router = useRouter();

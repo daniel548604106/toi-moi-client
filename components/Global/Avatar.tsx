@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/dist/client/image';
 import router from 'next/router';
 
-import genderAvatar from '@/Utils/genderAvatar';
+import genderAvatar from '@/utils/genderAvatar';
 
 interface AvatarProps {
   width?: number;

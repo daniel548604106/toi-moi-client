@@ -1,7 +1,8 @@
-import dayjs from 'dayjs';
 import React from 'react';
 
-import Avatar from '@/Components/Global/Avatar';
+import dayjs from 'dayjs';
+
+import Avatar from '@/components/Global/Avatar';
 
 import BirthdayCardLayout from './BirthdayCardLayout';
 

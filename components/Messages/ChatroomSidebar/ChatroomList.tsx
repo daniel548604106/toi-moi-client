@@ -4,12 +4,11 @@ import { useDispatch } from 'react-redux';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { User } from '@/Interfaces/I_socket';
+import { User } from '@/interfaces/I_socket';
+import { timeDiff } from '@/lib/dayjs';
+import { toggleListOpen } from '@/redux/slices/messageSlice';
 
-import { timeDiff } from '@/Lib/dayjs';
-import { toggleListOpen } from '@/Redux/slices/messageSlice';
-
-import genderAvatar from '@/Utils/genderAvatar';
+import genderAvatar from '@/utils/genderAvatar';
 
 interface ChatroomListProps {
   chat: any;
