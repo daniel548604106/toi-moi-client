@@ -32,9 +32,7 @@ module.exports = withBundleAnalyzer(
       BASE_URL:
         process.env.NODE_ENV === 'production' ? process.env.BASE_URL : 'http://localhost:3000',
       API_BASE_URL:
-        process.env.NODE_ENV === 'production'
-          ? 'https://toi-moi-server-latest.herokuapp.com'
-          : 'http://localhost:3001',
+        process.env.NODE_ENV === 'production' ? process.env.API_BASE_URL : 'http://localhost:3001',
       VIMEO_ACCESS_TOKEN: process.env.VIMEO_ACCESS_TOKEN,
       VIMEO_CLIENT_SECRET: process.env.VIMEO_CLIENT_SECRET,
       VIMEO_CLIENT_ID: process.env.VIMEO_CLIENT_ID,
