@@ -1,10 +1,13 @@
-import router from 'next/router';
 import React, { useRef, useState } from 'react';
 
-import { deleteSavedPostAPI } from '@/Axios/savedRequest';
-import useClickOutside from '@/Hooks/useClickOutside';
-import genderAvatar from '@/Utils/genderAvatar';
 import { DotsHorizontalIcon, TrashIcon } from '@heroicons/react/outline';
+import router from 'next/router';
+
+import useClickOutside from '@/Hooks/useClickOutside';
+
+import { deleteSavedPostAPI } from '@/Axios/savedRequest';
+
+import genderAvatar from '@/Utils/genderAvatar';
 
 interface SavedCardProps {
   post: any;
@@ -39,6 +42,7 @@ const SavedCard = (props: SavedCardProps) => {
         <img
           className="w-[60px] h-[60px] sm:w-[100px] object-cover sm:h-[100px] rounded-lg"
           src={post.picUrl || publisher.profileImage || genderAvatar(publisher.gender)}
+          alt="profile-image"
         />
         <div className="flex-1 ml-[10px] truncate space-y-2">
           <p className="truncate overflow-hidden text-xs sm:text-sm w-[200px] sm:w-[300px]">

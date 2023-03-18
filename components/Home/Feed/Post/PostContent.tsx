@@ -1,14 +1,19 @@
-import useTranslation from 'next-translate/useTranslation';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-import { updatePostAPI } from '@/Axios/postRequest';
-import Loader from '@/Components/Global/Loader';
+import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
+
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+
+import { updatePostAPI } from '@/Axios/postRequest';
+
+import Loader from '@/Components/Global/Loader';
 import * as ga from '@/Lib/gtag';
 import { setNotification } from '@/Redux/slices/globalSlice';
 import {
-    apiGetCurrentPost, setActiveViewPostIndex, setViewPostModalOpen
+  apiGetCurrentPost,
+  setActiveViewPostIndex,
+  setViewPostModalOpen
 } from '@/Redux/slices/postSlice';
 
 const renderImageLayout = (length, index) => {
@@ -76,7 +81,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
 
   useEffect(() => {
     editedText === post.text ? setEdited(false) : setEdited(true);
-  }, [editedText]);
+  }, [editedText,post.text]);
   return (
     <div className="space-y-2">
       {isEditable ? (
@@ -122,6 +127,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
             <div className="grid grid-cols-6 gap-2">
               {images.map((image, index) => (
                 <div
+                key={image}
                   onClick={() => handleViewPost(post._id, index)}
                   className={`${renderImageLayout(images?.length, index)} relative cursor-pointer`}
                 >
@@ -130,6 +136,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
                     layout="fill"
                     objectFit="cover"
                     className="image rounded-lg "
+                    alt="image"
                   />
                 </div>
               ))}
@@ -138,7 +145,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
         : !isViewPostModalOpen &&
           post?.picUrl && (
             <div onClick={() => handleViewPost(post._id)} className="imageContainer cursor-pointer">
-              <Image src={post.picUrl} layout="fill" className="image rounded-lg " />
+              <Image src={post.picUrl} layout="fill" className="image rounded-lg "  alt="post"/>
             </div>
           )}
     </div>

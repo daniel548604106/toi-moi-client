@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import { newIcons, roomNames } from '@/Utils/roomEmoji';
 import { ChevronLeftIcon, PlusIcon, UserIcon, XIcon } from '@heroicons/react/outline';
+
+import { newIcons, roomNames } from '@/Utils/roomEmoji';
 
 interface CreateRoomNameProps {
   setRoomInfo: (any) => void;
@@ -71,6 +72,7 @@ const CreateRoomName = (props: CreateRoomNameProps) => {
               <div className="grid grid-cols-8">
                 {newIcons.map((icon) => (
                   <div
+                  key={icon}
                     onClick={() => handleSelectNewIcon(icon)}
                     className=" cursor-pointer p-3 rounded-full"
                   >

@@ -1,10 +1,12 @@
-import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React from 'react';
 
-import { deleteHistoryAPI } from '@/Axios/searchRequest';
-import genderAvatar from '@/Utils/genderAvatar';
 import { SearchIcon, XIcon } from '@heroicons/react/outline';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import { deleteHistoryAPI } from '@/Axios/searchRequest';
+
+import genderAvatar from '@/Utils/genderAvatar';
 
 interface SearchHistoryItemProps {
   setSearchResultShow: (boolean) => void;
@@ -50,6 +52,7 @@ const SearchHistoryItem = (props: SearchHistoryItemProps) => {
             width={40}
             height={40}
             src={history.user.profileImage || genderAvatar(history.user.gender)}
+            alt="profile-image"
           />
         ) : (
           <span className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-gray-100">

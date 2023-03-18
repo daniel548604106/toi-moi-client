@@ -1,11 +1,13 @@
-import Image from 'next/image';
-import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
+import Image from 'next/image';
+import router from 'next/router';
+
 import { postPasswordResetAPI } from '@/Axios/resetRequest';
+
 import catchError from '@/Lib/catchError';
 
-const password = () => {
+const Password = () => {
   const token = router.query.token;
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
@@ -35,18 +37,19 @@ const password = () => {
           className="max-w-[100px] sm:w-[400px]"
           width={400}
           height={120}
+          alt="toi-moi-logo"
         />
         <div className="rounded-lg bg-white text-center  space-y-3 border w-full max-w-[600px]  shadow-xl p-5 bg-secondary text-secondary">
-          {newPasswordSuccess ? (
-            <h2 className="text-lg sm:text-xl font-semibold mb-3">Changed Successfully</h2>
-          ) : (
-            <h2 className="text-xl sm:text-2xl font-semibold mb-3">Password Reset</h2>
-          )}
-          {newPasswordSuccess ? (
-            <Image src="/images/password-success.svg" width={60} height={60} />
-          ) : (
-            <Image src="/images/password-reset.svg" width={60} height={60} />
-          )}
+          <h2 className="text-lg sm:text-xl font-semibold mb-3">
+            {newPasswordSuccess ? 'Changed Successfully' : 'Password Reset'}
+          </h2>
+          <Image
+            src={`/images/password-${newPasswordSuccess ? 'success' : 'reset'}.svg`}
+            width={60}
+            height={60}
+            alt="password-success"
+          />
+
           {!newPasswordSuccess && (
             <>
               <div className={`p-3 rounded-lg border ${error && 'border-red-600'}`}>
@@ -91,4 +94,4 @@ const password = () => {
   );
 };
 
-export default password;
+export default Password;

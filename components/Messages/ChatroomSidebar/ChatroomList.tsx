@@ -1,11 +1,14 @@
-import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
 import { User } from '@/Interfaces/I_socket';
+
 import { timeDiff } from '@/Lib/dayjs';
 import { toggleListOpen } from '@/Redux/slices/messageSlice';
+
 import genderAvatar from '@/Utils/genderAvatar';
 
 interface ChatroomListProps {
@@ -44,6 +47,7 @@ const ChatroomList = (props: ChatroomListProps) => {
           height="40"
           className="rounded-full object-cover "
           src={chat.profileImage}
+          alt="profile-image"
         />
         {isOnline && (
           <div className="absolute top-[3px] right-[3px] h-[8px] w-[8px] border border-white rounded-full bg-green-400"></div>

@@ -1,8 +1,9 @@
-import Image from 'next/image';
 import React, { useState } from 'react';
 
-import { postForgotPasswordAPI } from '@/Axios/resetRequest';
 import { InboxIcon } from '@heroicons/react/outline';
+import Image from 'next/image';
+
+import { postForgotPasswordAPI } from '@/Axios/resetRequest';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -28,7 +29,7 @@ const ForgotPassword = () => {
     >
       <h1 className="text-xl mb-[10px] font-semibold"> Forgot Password</h1>
 
-      <Image src="/images/email.svg" width="60" height="60" />
+      <Image src="/images/email.svg" width="60" height="60" alt="email" />
 
       {emailSent ? (
         <div className="text-center space-y-1 mt-2">

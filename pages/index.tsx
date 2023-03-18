@@ -1,14 +1,19 @@
-import axios from 'axios';
-import dynamic from 'next/dynamic';
-import Head from 'next/head';
 import { useEffect, useRef, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch } from 'react-redux';
+
+import axios from 'axios';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import io, { Socket } from 'socket.io-client';
+
+import { useAppSelector } from '@/Hooks/useAppRedux';
+import { ClientToServerEvents, Message, ServerToClientEvents } from '@/Interfaces/I_socket';
 
 import { getChatUserInfoAPI } from '@/Axios/chatRequest';
 import { getAllPostsAPI } from '@/Axios/postRequest';
 import { getStoriesAPI } from '@/Axios/storyRequest';
+
 import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import Contacts from '@/Components/Home/Contacts/Index';
 import InputBox from '@/Components/Home/Feed/InputBox';
@@ -16,10 +21,9 @@ import Post from '@/Components/Home/Feed/Post/Post';
 import Room from '@/Components/Home/Feed/Room/Index';
 import Stories from '@/Components/Home/Feed/Story/Stories';
 import Sidebar from '@/Components/Home/Sidebar/Sidebar';
-import { useAppSelector } from '@/Hooks/useAppRedux';
-import { ClientToServerEvents, Message, ServerToClientEvents } from '@/Interfaces/I_socket';
 import { addToChatBoxList } from '@/Redux/slices/messageSlice';
 import { setUnreadNotification } from '@/Redux/slices/userSlice';
+
 import messageNotificationSound from '@/Utils/messageNotificationSound';
 
 // Dynamic Import
@@ -205,7 +209,7 @@ export default function Home({ posts, friends, notFound }) {
         <div className="fixed bottom-0 right-0  flex  w-full flex-row-reverse items-end">
           {openChatBoxList.length > 0 &&
             openChatBoxList.map((user) => (
-              <div className="mr-3">
+              <div className="mr-3" key={user._id} >
                 <ChatBox
                   connectedUsers={connectedUsers}
                   user={user}

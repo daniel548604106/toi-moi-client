@@ -1,12 +1,15 @@
-import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
+
+import { XIcon } from '@heroicons/react/outline';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { deletePostAPI } from '@/Axios/postRequest';
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+
+import { deletePostAPI } from '@/Axios/postRequest';
+
 import { setNotification } from '@/Redux/slices/globalSlice';
 import { setViewPostModalOpen } from '@/Redux/slices/postSlice';
-import { XIcon } from '@heroicons/react/outline';
 
 import Post from '../Home/Feed/Post/Post';
 
@@ -52,8 +55,8 @@ const ViewPostModal = () => {
         onSwiper={setSwiper}
       >
         {post.images.map((image) => (
-          <SwiperSlide>
-            <Image className="object-scale-down" src={image} layout="fill" />
+          <SwiperSlide key={image}>
+            <Image className="object-scale-down" src={image} layout="fill" alt="image" />
           </SwiperSlide>
         ))}
       </Swiper>

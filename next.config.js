@@ -2,9 +2,9 @@ const nextTranslate = require('next-translate');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
+
 module.exports = withBundleAnalyzer(
   nextTranslate({
-    webpack5: false,
     images: {
       domains: [
         'platform-lookaside.fbsbx.com',
@@ -39,17 +39,6 @@ module.exports = withBundleAnalyzer(
       VIMEO_CLIENT_SECRET: process.env.VIMEO_CLIENT_SECRET,
       VIMEO_CLIENT_ID: process.env.VIMEO_CLIENT_ID,
       NEXT_PUBLIC_GOOGLE_ANALYTICS: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS,
-    },
-    webpack(config) {
-      config.module.rules.push({
-        test: /\.svg$/,
-        issuer: {
-          test: /\.(js|ts)x?$/,
-        },
-        use: ['@svgr/webpack'],
-      });
-
-      return config;
     },
   }),
 );

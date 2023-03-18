@@ -1,17 +1,20 @@
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-import { postNewPostAPI } from '@/Axios/postRequest';
-import Avatar from '@/Components/Global/Avatar';
-import Loader from '@/Components/Global/Loader';
-import LoaderSpinner from '@/Components/Global/LoaderSpinner';
+import { EmojiHappyIcon, PhotographIcon, XIcon } from '@heroicons/react/outline';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+
 import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
 import useClickOutside from '@/Hooks/useClickOutside';
 import useNotify from '@/Hooks/useNotify';
+
+import { postNewPostAPI } from '@/Axios/postRequest';
+
+import Avatar from '@/Components/Global/Avatar';
+import Loader from '@/Components/Global/Loader';
+import LoaderSpinner from '@/Components/Global/LoaderSpinner';
 import { setNotification } from '@/Redux/slices/globalSlice';
 import { setImagesToPost, setPostInputBoxOpen } from '@/Redux/slices/postSlice';
-import { EmojiHappyIcon, PhotographIcon, XIcon } from '@heroicons/react/outline';
 
 const Picker = dynamic(import('emoji-picker-react'), {
   ssr: false,
@@ -80,7 +83,7 @@ const InputBoxModal = () => {
 
   useEffect(() => {
     dispatch(setImagesToPost(images));
-  }, [images]);
+  }, [images, dispatch]);
 
   return (
     <div className="h-screen overflow-y-auto sm:h-[70vh] pb-10 sm:pb-4 rounded-md bg-secondary text-secondary w-full max-w-[600px]  relative">
@@ -112,7 +115,10 @@ const InputBoxModal = () => {
           {images && (
             <div className="flex flex-nowrap whitespace-nowrap gap-3 overflow-x-auto w-full">
               {images.map(({ preview, file }) => (
-                <div className="relative min-w-full h-56 md:h-96 border rounded-md mb-[10px]">
+                <div
+                  key={preview}
+                  className="relative min-w-full h-56 md:h-96 border rounded-md mb-[10px]"
+                >
                   <Image layout="fill" unoptimized objectFit="cover" src={preview} alt="image" />
                   <XIcon
                     onClick={() => handleRemoveImage(file)}

@@ -1,7 +1,7 @@
-import range from 'lodash/range';
 import React, { useEffect, useState } from 'react';
 
 import { ChevronDownIcon } from '@heroicons/react/solid';
+import range from 'lodash/range';
 
 const yearRange = range(2021, 1960);
 const monthRange = range(1, 12);
@@ -37,7 +37,7 @@ const PeriodSelector = (props: PeriodSelectorProps) => {
         end_month: endMonth,
       },
     });
-  }, [startYear, endYear, startMonth, endMonth]);
+  }, [startYear, endYear, startMonth, endMonth, newExperience, setNewExperience]);
 
   return (
     <div>

@@ -1,5 +1,6 @@
-import Image from 'next/image';
 import { LegacyRef } from 'react';
+
+import Image from 'next/image';
 
 import { UserInfo } from '@/Interfaces/I_common';
 
@@ -21,6 +22,7 @@ const ChatroomMainRoom = (props: ChatroomMainRoomProps) => {
               height="40"
               className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] rounded-full cursor-pointer "
               src={receiverProfileImage || ''}
+              alt="profile-image"
             />
           )}
           <span

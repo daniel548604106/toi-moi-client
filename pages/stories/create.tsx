@@ -1,13 +1,17 @@
+import React, { useRef, useState } from 'react';
+
+import { PhotographIcon, TranslateIcon, XIcon } from '@heroicons/react/outline';
 import Image from 'next/dist/client/image';
 import dynamic from 'next/dynamic';
 import router from 'next/router';
-import React, { useRef, useState } from 'react';
+
+import { useAppSelector } from '@/Hooks/useAppRedux';
 
 import { uploadStoryImageAPI } from '@/Axios/storyRequest';
+
 import Avatar from '@/Components/Global/Avatar';
-import { useAppSelector } from '@/Hooks/useAppRedux';
+
 import { backgroundSelections } from '@/Utils/storyOptions';
-import { PhotographIcon, TranslateIcon, XIcon } from '@heroicons/react/outline';
 
 const Create = () => {
   const stageRef = useRef(null);
@@ -117,8 +121,15 @@ const Create = () => {
           <div className="border rounded-lg p-2 cursor-pointer">
             <h2>背景</h2>
             <div className="space-x-3 flex items-center">
-              {backgroundSelections[selectedIdx].selections.map((selection) => (
-                <Image className="rounded-full mr-2" src={selection.src} width={30} height={30} />
+              {backgroundSelections[selectedIdx]?.selections?.map(({ src }) => (
+                <Image
+                  key={src}
+                  className="rounded-full mr-2"
+                  src={src}
+                  width={30}
+                  height={30}
+                  alt="selection"
+                />
               ))}
             </div>
           </div>

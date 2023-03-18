@@ -1,10 +1,11 @@
-import useTranslation from 'next-translate/useTranslation';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+
+import { SearchIcon } from '@heroicons/react/outline';
+import { DotsHorizontalIcon, VideoCameraIcon } from '@heroicons/react/solid';
+import useTranslation from 'next-translate/useTranslation';
 
 import useClickOutside from '@/Hooks/useClickOutside';
 import { User } from '@/Interfaces/I_socket';
-import { SearchIcon } from '@heroicons/react/outline';
-import { DotsHorizontalIcon, VideoCameraIcon } from '@heroicons/react/solid';
 
 import Contact from './Contact';
 import SearchBox from './SearchBox';
@@ -54,7 +55,7 @@ const Contacts = ({ friends, connectedUsers }: ContactsProps) => {
         </div>
       </div>
       {isSearchOpen && <SearchBox setSearchOpen={setSearchOpen} />}
-      {friends.length &&
+      {friends?.length &&
         friends.map(({ user }) => (
           <Contact connectedUsers={connectedUsers} key={user._id} user={user} />
         ))}

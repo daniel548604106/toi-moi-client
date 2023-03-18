@@ -1,14 +1,17 @@
+import React, { useEffect, useRef, useState } from 'react';
+
+import { CameraIcon, GlobeIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef, useState } from 'react';
+
+import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
+import { UserInfo } from '@/Interfaces/I_common';
 
 import { postNewPostAPI } from '@/Axios/postRequest';
 import { patchProfileAPI } from '@/Axios/profileRequest';
+
 import Loader from '@/Components/Global/Loader';
-import { useAppDispatch, useAppSelector } from '@/Hooks/useAppRedux';
-import { UserInfo } from '@/Interfaces/I_common';
 import { apiGetCurrentPost, setViewPostModalOpen } from '@/Redux/slices/postSlice';
-import { CameraIcon, GlobeIcon } from '@heroicons/react/outline';
 
 import BioInput from './BioInput';
 import ProfileImage from './ProfileImage';
@@ -137,6 +140,7 @@ const ProfileCover = (props: ProfileCoverProps) => {
             className="object-cover rounded-b-2xl"
             layout="responsive"
             src={coverImage || `/images/profileCoverDefault.png`}
+            alt="cover-image"
           />
           {isEditable && (
             <span

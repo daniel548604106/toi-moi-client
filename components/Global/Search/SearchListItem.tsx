@@ -1,8 +1,10 @@
-import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React from 'react';
 
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
 import { postUserSearchAPI } from '@/Axios/searchRequest';
+
 import genderAvatar from '@/Utils/genderAvatar';
 
 interface SearchListItemProps {
@@ -40,6 +42,7 @@ const SearchListItem = (props: SearchListItemProps) => {
                 src={profileImage || genderAvatar(gender)}
                 width={40}
                 height={40}
+                alt="profile-image"
               />
               <p className="ml-[10px] font-medium">{name}</p>
             </div>
@@ -52,6 +55,7 @@ const SearchListItem = (props: SearchListItemProps) => {
               src={genderAvatar(gender)}
               width={40}
               height={40}
+              alt="gender-avatar"
             />
             <p className="ml-[10px] font-medium">{name}</p>
           </>
