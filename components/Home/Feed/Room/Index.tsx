@@ -18,22 +18,22 @@ const Room = ({ roomList }: RoomProps) => {
   return (
     <div className="w-full">
       {isRoomShow ? (
-        <div className="scrollbar-hide flex space-x-2 overflow-x-auto">
+        <div className="flex space-x-2 overflow-x-auto scrollbar-hide">
           <CreateRoomCard />
           {roomList && roomList.map(({ user }) => <RoomCard key={user._id} user={user} />)}
         </div>
       ) : (
-        <div className="scrollbar-hide flex p-3 space-x-2 w-full items-center overflow-x-auto bg-secondary text-secondary rounded-lg shadow-lg">
+        <div className="flex w-full items-center space-x-2 overflow-x-auto rounded-lg bg-secondary p-3 text-secondary shadow-lg scrollbar-hide">
           <div
             onClick={() => setRoomShow(true)}
-            className="rounded-full cursor-pointer border bg-secondary border-main text-main p-2 flex items-center"
+            className="flex cursor-pointer items-center rounded-full border border-main bg-secondary p-2 text-main"
           >
             <VideoCameraIcon className="h-6" />
-            <span className="text-xs sm:text-sm whitespace-nowrap ml-[5px]">Create Room</span>
+            <span className="ml-[5px] whitespace-nowrap text-xs sm:text-sm">Create Room</span>
           </div>
           <div
             onClick={() => setRoomShow(true)}
-            className="w-full flex items-center flex-shrink-0 whitespace-nowrap overflow-x-auto space-x-2"
+            className="flex w-full flex-shrink-0 items-center space-x-2 overflow-x-auto whitespace-nowrap"
           >
             {roomList?.map(({ user }) => (
               <span key={user._id} className="space-x-2">

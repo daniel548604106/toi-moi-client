@@ -161,19 +161,19 @@ export default function Home({ posts, friends, notFound }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className=" w-full relative flex justify-between p-3">
+      <main className=" relative flex w-full justify-between p-3">
         {newNotification && (
-          <div className="fixed z-50 bottom-4 right-4">
+          <div className="fixed bottom-4 right-4 z-50">
             <PostNotification
               setNewNotification={setNewNotification}
               newNotification={newNotification}
             />
           </div>
         )}
-        <div className="w-1/2 hidden lg:block">
+        <div className="hidden w-1/2 lg:block">
           <Sidebar />
         </div>
-        <div className="space-y-5 max-w-[750px] w-full sm:px-5 sm:mx-0  xl:mx-20">
+        <div className="w-full max-w-[750px] space-y-5 sm:mx-0 sm:px-5  xl:mx-20">
           <Stories stories={stories} />
           <InputBox />
           <Room roomList={roomList} />
@@ -203,7 +203,7 @@ export default function Home({ posts, friends, notFound }) {
             </div>
           )}
         </div>
-        <div className=" w-1/2 hidden md:block ">
+        <div className=" hidden w-1/2 md:block ">
           <Contacts connectedUsers={connectedUsers} friends={friends} />
         </div>
         <div className="fixed bottom-0 right-0  flex  w-full flex-row-reverse items-end">
@@ -229,7 +229,6 @@ export async function getServerSideProps({ req, res }) {
     // get server side cookies
     const token = req.cookies.token;
     let posts, friends;
-    
 
     if (token) {
       friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {

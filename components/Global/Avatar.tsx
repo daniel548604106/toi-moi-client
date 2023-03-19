@@ -26,7 +26,7 @@ const Avatar = (props: AvatarProps) => {
   return (
     <Image
       onClick={() => router.push(`/${username}`)}
-      className="rounded-full object-cover cursor-pointer avatarFallback "
+      className="avatarFallback cursor-pointer rounded-full object-cover "
       width={width}
       layout={layout}
       height={height}

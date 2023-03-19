@@ -105,23 +105,23 @@ const ProfileCover = (props: ProfileCoverProps) => {
 
   return (
     <div className=" bg-secondary text-secondary ">
-      <div className="max-w-7xl mx-auto relative">
+      <div className="relative mx-auto max-w-7xl">
         {isCoverImageEditable && (
-          <div className="absolute top-0 w-full left-0 z-30 flex items-center justify-between p-3 bg-black bg-opacity-10">
+          <div className="absolute top-0 left-0 z-30 flex w-full items-center justify-between bg-black bg-opacity-10 p-3">
             <div className="flex items-center text-secondary">
               <GlobeIcon className="h-6" />
-              <p className="text-sm ml-[5px]">Your Cover Photo Will Be Visible To Everyone</p>
+              <p className="ml-[5px] text-sm">Your Cover Photo Will Be Visible To Everyone</p>
             </div>
             <div>
               <button
                 onClick={() => handleCancelImageUpdate()}
-                className=" text-gray-600 hover:opacity-80 bg-gray-100 bg-opacity-20 rounded-md py-2 px-4"
+                className=" rounded-md bg-gray-100 bg-opacity-20 py-2 px-4 text-gray-600 hover:opacity-80"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleSaveImageChanges()}
-                className="ml-[10px] text-white bg-main  rounded-md py-2 px-4"
+                className="ml-[10px] rounded-md bg-main  py-2 px-4 text-white"
               >
                 {isLoading ? <Loader /> : 'Save Changes'}
               </button>
@@ -132,12 +132,12 @@ const ProfileCover = (props: ProfileCoverProps) => {
           onClick={() => handleViewCoverPost()}
           className={`${profile.profileCoverPostId && 'cursor-pointer'} ${
             isCoverImageEditable && 'cursor-move'
-          } relative  bg-gray-100 w-full  rounded-xl`}
+          } relative  w-full rounded-xl  bg-gray-100`}
         >
           <Image
             width={1000}
             height={350}
-            className="object-cover rounded-b-2xl"
+            className="rounded-b-2xl object-cover"
             layout="responsive"
             src={coverImage || `/images/profileCoverDefault.png`}
             alt="cover-image"
@@ -145,13 +145,13 @@ const ProfileCover = (props: ProfileCoverProps) => {
           {isEditable && (
             <span
               onClick={(e) => handleEditCover(e)}
-              className="px-4 py-2 absolute bottom-5 hover:shadow-xl cursor-pointer rounded-md right-5 bg-secondary text-secondary"
+              className="absolute bottom-5 right-5 cursor-pointer rounded-md bg-secondary px-4 py-2 text-secondary hover:shadow-xl"
             >
               <CameraIcon className="h-6 " />
               <input onChange={(e) => addImageToPost(e)} ref={inputRef} type="file" hidden />
             </span>
           )}
-          <div className="absolute translate-y-[10px] bottom-0 transform left-1/2 -translate-x-1/2">
+          <div className="absolute bottom-0 left-1/2 translate-y-[10px] -translate-x-1/2 transform">
             <ProfileImage
               user={profile.user}
               postId={latestProfileImage?.postId || profile.profileImage.postId || ''}
@@ -160,8 +160,8 @@ const ProfileCover = (props: ProfileCoverProps) => {
           </div>
         </div>
 
-        <div className=" p-5 space-x-2  flex flex-col items-center justify-center">
-          <h2 className="text-xl sm:text-2xl font-semibold">{user.name}</h2>
+        <div className=" flex flex-col  items-center justify-center space-x-2 p-5">
+          <h2 className="text-xl font-semibold sm:text-2xl">{user.name}</h2>
           <BioInput isEditable={isEditable} originalBio={profile.bio} bio={bio} setBio={setBio} />
           <hr className="my-2" />
         </div>

@@ -4,9 +4,11 @@
 
 Toi&Moi is a fullstack social platform designated to connect people from distances away, users are able to build their own profile and connect with people from around the world with realtime messaging and friend system. (Idea originated from starting a Facebook clone)
 
-⭐ Live Demo 
+⭐ Live Demo
+
 - GCP CloudRun : (https://toi-moi-client-76cwahsyvq-de.a.run.app/zh-TW)
 - Vercel: (https://toi-moi-client-danielyeh548604106-gmailcom.vercel.app/)
+
 ## Screenshots
 
 ![App Screenshot](https://ik.imagekit.io/4liibdxmxfn/images/users/user-peter548604106-cover-1624548236774_5Z3g7HK3Qq)
@@ -46,10 +48,12 @@ Toi&Moi is a fullstack social platform designated to connect people from distanc
 ## Deployment
 
 🌟 **Server - Cloud run**
-- 
+
+-
 
 🌟 **Client**
-- GCP Cloud Run 
+
+- GCP Cloud Run
 - Vercel
 
 ## Problems Encountered

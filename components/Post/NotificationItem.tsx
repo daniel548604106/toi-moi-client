@@ -51,7 +51,7 @@ const NotificationList = ({ notification }: NotificationListProps) => {
   return (
     <div
       onClick={() => handleDirectToNotification(notification.type)}
-      className="p-2 flex items-center hover:bg-gray-100 rounded-md cursor-pointer"
+      className="flex cursor-pointer items-center rounded-md p-2 hover:bg-gray-100"
     >
       <span className="relative">
         <Avatar
@@ -60,25 +60,25 @@ const NotificationList = ({ notification }: NotificationListProps) => {
           gender={notification.user.gender}
         />
         {notification.type === 'newLike' && (
-          <span className="absolute bottom-1 right-0 bg-main rounded-full p-1 text-white">
+          <span className="absolute bottom-1 right-0 rounded-full bg-main p-1 text-white">
             <ThumbUpIcon className="h-5" />
           </span>
         )}
         {notification.type === 'newComment' && (
-          <span className="absolute bottom-1 right-0 bg-green-400 rounded-full p-1 text-white">
+          <span className="absolute bottom-1 right-0 rounded-full bg-green-400 p-1 text-white">
             <ChatAlt2Icon className="h-5" />
           </span>
         )}
         {(notification.type === 'newFriendAccepted' ||
           notification.type === 'newFriendInvitation') && (
-          <span className="absolute bottom-1 right-0 bg-gray-600 rounded-full p-1 text-white">
+          <span className="absolute bottom-1 right-0 rounded-full bg-gray-600 p-1 text-white">
             <UsersIcon className="h-5" />
           </span>
         )}
       </span>
       <div className="ml-[10px]">
         <span className="text-sm font-semibold">{notification.user.name}</span>
-        <span className="text-xs text-gray-600 ml-[3px]">
+        <span className="ml-[3px] text-xs text-gray-600">
           {notificationMessage(notification.type)}
         </span>
       </div>

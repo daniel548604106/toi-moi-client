@@ -7,20 +7,20 @@ module.exports = {
       colors: {
         main: '#F7797D',
         'main-yellow': '#FBD786',
-        'main-green': '#C6FFDD'
+        'main-green': '#C6FFDD',
       },
       backgroundColor: {
         primary: 'var(--color-bg-primary)',
         secondary: 'var(--color-bg-secondary)',
-        button: 'var(--color-bg-button)'
+        button: 'var(--color-bg-button)',
       },
       textColor: {
         accent: 'var(--color-text-accent)',
         primary: 'var(--color-text-primary)',
         secondary: 'var(--color-text-secondary)',
-        button: 'var(--color-bg-button)'
-      }
-    }
+        button: 'var(--color-bg-button)',
+      },
+    },
   },
   variants: {
     extend: {
@@ -30,14 +30,14 @@ module.exports = {
         'group-focus',
         'group-active',
         'focus',
-        'group-focus-visible'
-      ]
-    }
+        'group-focus-visible',
+      ],
+    },
   },
   plugins: [
     require('tailwind-scrollbar-hide'),
-    require('@tailwindcss/line-clamp')
+    require('@tailwindcss/line-clamp'),
 
     // ...
-  ]
+  ],
 };

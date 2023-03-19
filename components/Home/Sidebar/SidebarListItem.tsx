@@ -13,17 +13,17 @@ const SidebarListItem = (props: SidebarListItemProps) => {
   return (
     <div>
       {Icon ? (
-        <div className="flex hover:bg-gray-200 items-center rounded-lg p-2 sm:p-4 sm:py-3 cursor-pointer ">
+        <div className="flex cursor-pointer items-center rounded-lg p-2 hover:bg-gray-200 sm:p-4 sm:py-3 ">
           <Icon className="h-8 w-8 text-main " />
-          <p className="text-sm sm:text-md sm:inline-flex font-medium ml-3">{title}</p>
+          <p className="sm:text-md ml-3 text-sm font-medium sm:inline-flex">{title}</p>
         </div>
       ) : (
         <div
           onClick={() => router.push(`/${link}`)}
-          className="flex hover:bg-gray-200 items-center rounded-lg p-2 sm:p-4 sm:py-3 cursor-pointer "
+          className="flex cursor-pointer items-center rounded-lg p-2 hover:bg-gray-200 sm:p-4 sm:py-3 "
         >
-          <img alt={title} className="w-[35px] h-[35px] rounded-full" src={src} />
-          <p className="text-sm sm:text-md sm:inline-flex font-medium ml-3">{title}</p>
+          <img alt={title} className="h-[35px] w-[35px] rounded-full" src={src} />
+          <p className="sm:text-md ml-3 text-sm font-medium sm:inline-flex">{title}</p>
         </div>
       )}
     </div>

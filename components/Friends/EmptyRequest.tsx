@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 const EmptyRequest = () => {
   return (
-    <div className="flex h-full items-center justify-center flex-col">
+    <div className="flex h-full flex-col items-center justify-center">
       <Image width={100} height={100} src="/images/empty-request.svg" alt="empty-request" />
-      <p className="text-lg sm:text-xl font-semibold mt-3">No Requests Found</p>
+      <p className="mt-3 text-lg font-semibold sm:text-xl">No Requests Found</p>
     </div>
   );
 };

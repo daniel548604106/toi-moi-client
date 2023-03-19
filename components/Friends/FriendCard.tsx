@@ -31,30 +31,30 @@ const FriendCard = ({ user, removeRecommendation }: FriendCardProps) => {
     <div
       className={`${
         added && 'opacity-20'
-      } transition-opacity duration-500  p-3 bg-secondary shadow-lg rounded-lg text-secondary`}
+      } rounded-lg bg-secondary  p-3 text-secondary shadow-lg transition-opacity duration-500`}
     >
       <div
         onClick={() => router.push(`/friends/suggestions?profile_id=${user._id}`)}
         className="relative h-[150px] sm:h-[200px]"
       >
         <Image
-          className="cursor-pointer w-full h-auto object-cover rounded-lg"
+          className="h-auto w-full cursor-pointer rounded-lg object-cover"
           src={user.profileImage || genderAvatar(user.gender)}
           layout="fill"
           alt="profile-image"
         />
       </div>
-      <p className="text-xs sm:text-sm font-semibold mb-5 mt-3">{user.name}</p>
+      <p className="mb-5 mt-3 text-xs font-semibold sm:text-sm">{user.name}</p>
       <div className="space-y-2">
         <button
           onClick={() => handleAddFriend()}
-          className="text-xs outline-none flex items-center justify-center sm:text-sm rounded-lg p-2 w-full bg-main text-white "
+          className="outline-none flex w-full items-center justify-center rounded-lg bg-main p-2 text-xs text-white sm:text-sm "
         >
           {added ? <CheckIcon className="h-4 text-white" /> : 'Add Friend'}
         </button>
         <button
           onClick={() => removeRecommendation(user._id)}
-          className="text-xs sm:text-sm rounded-lg p-2 w-full bg-button text-secondary"
+          className="w-full rounded-lg bg-button p-2 text-xs text-secondary sm:text-sm"
         >
           Remove
         </button>

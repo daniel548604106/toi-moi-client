@@ -1,72 +1,72 @@
 export const roomNames = [
   {
     name: '小聚一下',
-    icon: '😅'
+    icon: '😅',
   },
   {
     name: '一起來！',
-    icon: '😂'
+    icon: '😂',
   },
   {
     name: '快來陪我',
-    icon: '🤣'
+    icon: '🤣',
   },
   {
     name: 'TGIF',
-    icon: '😊'
+    icon: '😊',
   },
   {
     name: '畢業派對',
-    icon: '😇'
+    icon: '😇',
   },
   {
     name: '在家好無聊',
-    icon: '🙂'
+    icon: '🙂',
   },
   {
     name: '歡樂時光',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: '熱舞趴',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: '家庭時光',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: '午餐會',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: '遊戲之夜',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: '健身',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: '追劇',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: '團體聚會',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: 'KTV',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: '歡樂頌',
-    icon: '😉'
+    icon: '😉',
   },
   {
     name: '生日',
-    icon: '🎂'
-  }
+    icon: '🎂',
+  },
 ];
 
 export const newIcons = [
@@ -94,5 +94,5 @@ export const newIcons = [
   '🎬',
   '🎤',
   '🎧',
-  '🎼'
+  '🎼',
 ];

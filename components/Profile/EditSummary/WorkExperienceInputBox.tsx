@@ -70,28 +70,28 @@ const WorkExperienceInputBox = ({ setActiveBox }: WorkExperienceInputBoxProps) =
     <div className="">
       <form className="space-y-2 ">
         <input
-          className="border p-3 w-full rounded-md "
+          className="w-full rounded-md border p-3 "
           type="text"
           name="company_name"
           onChange={(e) => handleInputChange(e)}
           placeholder="* Company"
         />
         <input
-          className="border p-3 w-full rounded-md "
+          className="w-full rounded-md border p-3 "
           type="text"
           name="job_title"
           onChange={(e) => handleInputChange(e)}
           placeholder="Job Title"
         />
         <input
-          className="border p-3 w-full rounded-md "
+          className="w-full rounded-md border p-3 "
           type="text"
           name="location"
           onChange={(e) => handleInputChange(e)}
           placeholder="City"
         />
         <input
-          className="border min-h-[100px] p-3 w-full rounded-md "
+          className="min-h-[100px] w-full rounded-md border p-3 "
           type="text"
           name="description"
           onChange={(e) => handleInputChange(e)}
@@ -106,17 +106,17 @@ const WorkExperienceInputBox = ({ setActiveBox }: WorkExperienceInputBoxProps) =
       <div className="my-5 flex items-center">
         <button
           onClick={() => handleSave()}
-          className={`rounded-md   p-2 w-full flex items-center justify-center ${
+          className={`flex   w-full items-center justify-center rounded-md p-2 ${
             available
-              ? 'bg-main text-white cursor-pointer'
-              : 'bg-gray-100 text-secondary cursor-not-allowed'
+              ? 'cursor-pointer bg-main text-white'
+              : 'cursor-not-allowed bg-gray-100 text-secondary'
           }`}
         >
           {isLoading ? <Loader /> : 'Save'}
         </button>
         <button
           onClick={() => handleCancel()}
-          className="rounded-md w-[200px] p-2 ml-[10px] border flex items-center justify-center"
+          className="ml-[10px] flex w-[200px] items-center justify-center rounded-md border p-2"
         >
           Cancel
         </button>

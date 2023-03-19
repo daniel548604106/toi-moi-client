@@ -85,12 +85,12 @@ const InputBoxModal = () => {
   }, [images, dispatch]);
 
   return (
-    <div className="h-screen overflow-y-auto sm:h-[70vh] pb-10 sm:pb-4 rounded-md bg-secondary text-secondary w-full max-w-[600px]  relative">
-      <div className="p-3 bg-white z-40 sticky top-0  text-center text-lg font-semibold border-b">
+    <div className="relative h-screen w-full max-w-[600px] overflow-y-auto rounded-md bg-secondary pb-10 text-secondary sm:h-[70vh]  sm:pb-4">
+      <div className="sticky top-0 z-40 border-b bg-white  p-3 text-center text-lg font-semibold">
         Create Post
         <XIcon
           onClick={() => dispatch(setPostInputBoxOpen(false))}
-          className="h-8 cursor-pointer rounded-full p-1  absolute top-[8px] right-[10px]"
+          className="absolute top-[8px] right-[10px] h-8  cursor-pointer rounded-full p-1"
         />
       </div>
       <div className="p-3">
@@ -108,36 +108,36 @@ const InputBoxModal = () => {
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className={`min-h-[100px] sm:min-h-[200px] bg-secondary rounded-md p-2 text-md sm:text-xl  w-full focus:outline-none`}
+            className={`text-md focus:outline-none min-h-[100px] w-full rounded-md bg-secondary p-2  sm:min-h-[200px] sm:text-xl`}
             placeholder={`${userInfo.name}, what's on your mind?`}
           />
           {images && (
-            <div className="flex flex-nowrap whitespace-nowrap gap-3 overflow-x-auto w-full">
+            <div className="flex w-full flex-nowrap gap-3 overflow-x-auto whitespace-nowrap">
               {images.map(({ preview, file }) => (
                 <div
                   key={preview}
-                  className="relative min-w-full h-56 md:h-96 border rounded-md mb-[10px]"
+                  className="relative mb-[10px] h-56 min-w-full rounded-md border md:h-96"
                 >
                   <Image layout="fill" unoptimized objectFit="cover" src={preview} alt="image" />
                   <XIcon
                     onClick={() => handleRemoveImage(file)}
-                    className="h-6 cursor-pointer rounded-full border bg-secondary text-secondary absolute top-[10px] right-[10px]"
+                    className="absolute top-[10px] right-[10px] h-6 cursor-pointer rounded-full border bg-secondary text-secondary"
                   />
                 </div>
               ))}
             </div>
           )}
-          <div className="rounded-lg relative cursor-pointer border p-3">
+          <div className="relative cursor-pointer rounded-lg border p-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm sm:text-md">Add to post</span>
+              <span className="sm:text-md text-sm">Add to post</span>
               <div className="flex items-center space-x-1">
                 <PhotographIcon
                   onClick={() => fileUploadRef.current.click()}
-                  className="text-green-500 cursor-pointer h-6"
+                  className="h-6 cursor-pointer text-green-500"
                 />
                 <EmojiHappyIcon
                   onClick={() => setIsEmojiPickerVisible(!isEmojiPickerVisible)}
-                  className="text-yellow-400 cursor-pointer h-6"
+                  className="h-6 cursor-pointer text-yellow-400"
                 />
               </div>
               <input
@@ -157,8 +157,8 @@ const InputBoxModal = () => {
         </div>
         <button
           onClick={(e) => sendPost(e)}
-          className={`mt-[10px]  mb-10 flex items-center justify-center  text-sm  cursor-default rounded-lg w-full py-3  ${
-            isPostAvailable ? 'bg-main text-white  cursor-pointer' : 'bg-gray-100'
+          className={`mt-[10px]  mb-10 flex w-full cursor-default  items-center  justify-center rounded-lg py-3 text-sm  ${
+            isPostAvailable ? 'cursor-pointer bg-main  text-white' : 'bg-gray-100'
           } `}
         >
           {isLoading ? <Loader /> : 'Post'}

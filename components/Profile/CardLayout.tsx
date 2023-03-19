@@ -12,12 +12,12 @@ const CardLayout = (props: CardLayoutProps) => {
   const router = useRouter();
   const username = router.query.id;
   return (
-    <div className="sticky rounded-xl mb-[15px] bg-secondary text-secondary shadow-xl border p-4 ">
-      <div className="flex items-center justify-between mb-2">
-        <h2 className="font-semibold text-lg sm:text-xl">{title}</h2>
+    <div className="sticky mb-[15px] rounded-xl border bg-secondary p-4 text-secondary shadow-xl ">
+      <div className="mb-2 flex items-center justify-between">
+        <h2 className="text-lg font-semibold sm:text-xl">{title}</h2>
         {buttonName && (
           <span
-            className="text-main text-sm p-2 rounded-md cursor-pointer hover:bg-gray-100"
+            className="cursor-pointer rounded-md p-2 text-sm text-main hover:bg-gray-100"
             onClick={() => router.push(`/${username}/${buttonLink}`)}
           >
             {buttonName}

@@ -43,18 +43,18 @@ const Stories = ({ stories }) => {
   // };
 
   return (
-    <div className="flex w-full mt-2 space-x-1   overflow-hidden ">
+    <div className="mt-2 flex w-full space-x-1   overflow-hidden ">
       <div
         onClick={() => router.push('/stories/create')}
-        className="relative  flex-shrink-0 bg-secondary   w-1/3 sm:w-1/4 2xl:w-1/5  rounded-md transition duration-75 cursor-pointer hover:opacity-80 "
+        className="relative  w-1/3 flex-shrink-0   cursor-pointer rounded-md bg-secondary  transition duration-75 hover:opacity-80 sm:w-1/4 2xl:w-1/5 "
       >
         <img
-          className="h-30 sm:h-44 w-full bg-secondary relative object-cover rounded-3xl rounded-b-none"
+          className="h-30 relative w-full rounded-3xl rounded-b-none bg-secondary object-cover sm:h-44"
           src={userInfo.profileImage || genderAvatar(userInfo.gender)}
         />
-        <div className="relative text-sm sm:text-md px-1 py-5 rounded-b-3xl text-center bg-secondary text-secondary">
+        <div className="sm:text-md relative rounded-b-3xl bg-secondary px-1 py-5 text-center text-sm text-secondary">
           Create Story
-          <span className="rounded-full p-1 absolute z-10 -translate-y-1/2 top-0 text-white left-1/2 transform -translate-x-1/2 border-4 border-white bg-main ">
+          <span className="absolute top-0 left-1/2 z-10 -translate-y-1/2 -translate-x-1/2 transform rounded-full border-4 border-white bg-main p-1 text-white ">
             <PlusIcon className="h-6 " />
           </span>
         </div>

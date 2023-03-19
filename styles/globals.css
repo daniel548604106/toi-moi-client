@@ -4,10 +4,10 @@
 
 @layer components {
   .icon {
-    @apply inline-flex hover:bg-white  p-2 cursor-pointer bg-secondary text-secondary w-10 h-10 rounded-full items-center justify-center;
+    @apply inline-flex h-10  w-10 cursor-pointer items-center justify-center rounded-full bg-secondary p-2 text-secondary hover:bg-white;
   }
   .inputIcon {
-    @apply flex-col text-center  flex sm:flex-row items-center hover:bg-white w-full  justify-center p-2 sm:p-3 sm:px-4 rounded-md cursor-pointer;
+    @apply flex w-full  cursor-pointer flex-col items-center justify-center rounded-md  p-2 text-center hover:bg-white sm:flex-row sm:p-3 sm:px-4;
   }
   .fullBodyHeight {
     min-height: calc(100vh - 70px);

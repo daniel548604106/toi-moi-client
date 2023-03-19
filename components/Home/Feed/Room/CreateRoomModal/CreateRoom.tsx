@@ -47,10 +47,10 @@ const CreateRoom = ({ setRoomCreated, setRoomCode }) => {
       ) : (
         <div>
           <div className="flex flex-col items-center justify-center space-y-2">
-            <span className="border w-[60px] h-[60px] sm:w-[100px] sm:h-[100px] rounded-full flex items-center justify-center">
+            <span className="flex h-[60px] w-[60px] items-center justify-center rounded-full border sm:h-[100px] sm:w-[100px]">
               <VideoCameraIcon className="h-6 sm:h-10" />
             </span>
-            <h2 className="text-lg sm:text-xl font-semibold">建立你的包廂</h2>
+            <h2 className="text-lg font-semibold sm:text-xl">建立你的包廂</h2>
           </div>
           <div onClick={() => setCreateNameOpen(true)}>
             <CreateRoomListItem
@@ -75,7 +75,7 @@ const CreateRoom = ({ setRoomCreated, setRoomCode }) => {
 
           <button
             onClick={() => handleCreateRoom()}
-            className="flex outline-none items-center justify-center text-sm sm:text-md rounded-lg p-3 w-full bg-main text-white"
+            className="outline-none sm:text-md flex w-full items-center justify-center rounded-lg bg-main p-3 text-sm text-white"
           >
             {isLoading ? <Loader /> : 'Create Room'}
           </button>

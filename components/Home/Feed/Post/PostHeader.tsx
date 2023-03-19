@@ -34,7 +34,7 @@ const PostHeader = (props: PostHeaderProps) => {
 
   return (
     <div className=" sm:p-3">
-      <div className="flex justify-between  mb-[10px]">
+      <div className="mb-[10px] flex  justify-between">
         <div className="flex items-center">
           <span>
             <Avatar
@@ -47,14 +47,14 @@ const PostHeader = (props: PostHeaderProps) => {
           </span>
           <div className="ml-[10px]">
             <p onClick={() => router.push(`/${post.user.username}`)} className="flex items-center ">
-              <span className="font-semibold hover:underline cursor-pointer">{post.user.name}</span>
+              <span className="cursor-pointer font-semibold hover:underline">{post.user.name}</span>
               {post.type === 'profileCover' && (
                 <span className=" ml-[5px] text-xs text-gray-600">
                   {t('post.changedProfileCover')}
                 </span>
               )}
             </p>
-            <p className="text-xs text-gray-600 hover:underline cursor-pointer">
+            <p className="cursor-pointer text-xs text-gray-600 hover:underline">
               {timeDiff(post.createdAt)?.split(' ')[0]}
               <span className={router.locale === 'zh-TW' ? 'mx-0' : 'mx-1'}>
                 {t(timeDiff(post.createdAt)?.split(' ')[1])}
@@ -65,14 +65,14 @@ const PostHeader = (props: PostHeaderProps) => {
         </div>
         <div
           ref={elRef}
-          className="focus:outline-none p-2 relative rounded-full  hover:bg-gray-100"
+          className="focus:outline-none relative rounded-full p-2  hover:bg-gray-100"
         >
           <DotsHorizontalIcon
             onClick={() => handleTogglePopup()}
             className="h-5 cursor-pointer text-gray-700 "
           />
           {isPopupShow && (
-            <div className="z-20  absolute bottom-0 transform translate-y-full right-0 ">
+            <div className="absolute  bottom-0 right-0 z-20 translate-y-full transform ">
               <Popup
                 setPopupShow={setPopupShow}
                 setEditable={setEditable}

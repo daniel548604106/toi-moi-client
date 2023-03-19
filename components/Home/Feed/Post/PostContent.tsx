@@ -13,7 +13,7 @@ import { setNotification } from '@/redux/slices/globalSlice';
 import {
   apiGetCurrentPost,
   setActiveViewPostIndex,
-  setViewPostModalOpen
+  setViewPostModalOpen,
 } from '@/redux/slices/postSlice';
 
 const renderImageLayout = (length, index) => {
@@ -87,7 +87,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
       {isEditable ? (
         <div>
           <textarea
-            className="w-full focus:outline-none text-sm sm:text-md border rounded-lg p-2 min-h-[100px]  sm:min-h-[200px]"
+            className="focus:outline-none sm:text-md min-h-[100px] w-full rounded-lg border p-2 text-sm  sm:min-h-[200px]"
             placeholder="Write something about the post"
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}
@@ -95,14 +95,14 @@ const PostContent = ({ post, isEditable, setEditable }) => {
           <div className="flex items-center justify-end space-x-2">
             <button
               onClick={() => handleCancelEdit()}
-              className="rounded-lg p-2 text-xs  sm:text-sm border"
+              className="rounded-lg border p-2  text-xs sm:text-sm"
             >
               Cancel
             </button>
             <button
               onClick={() => handleUpdateEditedPost()}
               className={`${
-                isEdited ? 'bg-main text-white' : 'bg-button cursor-not-allowed'
+                isEdited ? 'bg-main text-white' : 'cursor-not-allowed bg-button'
               } rounded-lg p-2 text-xs  sm:text-sm  `}
             >
               {isLoading ? <Loader /> : 'Update'}
@@ -111,7 +111,7 @@ const PostContent = ({ post, isEditable, setEditable }) => {
         </div>
       ) : (
         <div>
-          <p className={`${showMore && 'line-clamp-3'} text-sm mb-2`}>{latestText}</p>
+          <p className={`${showMore && 'line-clamp-3'} mb-2 text-sm`}>{latestText}</p>
           {showMore && (
             <span
               onClick={() => setShowMore(false)}

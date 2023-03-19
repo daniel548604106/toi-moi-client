@@ -4,7 +4,7 @@ const ProfileSkeletonLoader = () => {
   return (
     <div id="card">
       <div className="card-image">
-        <div className="block pulsate"></div>
+        <div className="pulsate block"></div>
         <svg
           className="fpo "
           width="84px"

@@ -14,12 +14,12 @@ interface RequestCardProps {
 const RequestCard = ({ user, t }: RequestCardProps) => {
   return (
     <div
-      className="w-full  md:flex items-center justify-between p-2 sm:p-3 mb-3 bg-secondary rounded-lg shadow-lg  "
+      className="mb-3  w-full items-center justify-between rounded-lg bg-secondary p-2 shadow-lg sm:p-3 md:flex  "
       key={user.username}
     >
       <div
         onClick={() => router.push(`/${user.username}`)}
-        className="p-2 sm:p-3 flex items-center"
+        className="flex items-center p-2 sm:p-3"
       >
         <Avatar
           width={50}
@@ -28,15 +28,15 @@ const RequestCard = ({ user, t }: RequestCardProps) => {
           profileImage={user.profileImage}
           gender={user.gender}
         />
-        <div className=" truncate whitespace-nowrap flex-1 ml-[10px] flex items-center justify-between">
-          <p className="hover:underline cursor-pointer truncate">{user.name}</p>
+        <div className=" ml-[10px] flex flex-1 items-center justify-between truncate whitespace-nowrap">
+          <p className="cursor-pointer truncate hover:underline">{user.name}</p>
         </div>
       </div>
-      <div className="flex sm:justify-end items-center w-full">
-        <button className="text-sm sm:text-md w-full  sm:w-auto rounded-md p-1 sm:px-3 bg-main text-white">
+      <div className="flex w-full items-center sm:justify-end">
+        <button className="sm:text-md w-full rounded-md  bg-main p-1 text-sm text-white sm:w-auto sm:px-3">
           {t('confirm')}
         </button>
-        <button className="text-sm sm:text-md w-full  sm:w-auto rounded-md p-1 sm:px-3 bg-button text-secondary ml-[10px]">
+        <button className="sm:text-md ml-[10px] w-full  rounded-md bg-button p-1 text-sm text-secondary sm:w-auto sm:px-3">
           {t('cancel')}
         </button>
       </div>

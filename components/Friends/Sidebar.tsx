@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import {
-    CakeIcon, UserAddIcon, UserGroupIcon, UserIcon, UsersIcon
+  CakeIcon,
+  UserAddIcon,
+  UserGroupIcon,
+  UserIcon,
+  UsersIcon,
 } from '@heroicons/react/outline';
 
 import SidebarListItem from './SidebarListItem';
@@ -34,9 +38,9 @@ const Sidebar = () => {
   return (
     <div
       ref={scrollRef}
-      className="flex  w-screen scrollbar-hide   items-center overflow-x-auto lg:fixed lg:left-0  lg:w-[300px] lg:h-screen lg:overflow-y-auto lg:pt-[60px]  whitespace-nowrap lg:flex-col lg:items-start p-1 lg:p-3  bg-secondary"
+      className="flex  w-screen items-center   overflow-x-auto whitespace-nowrap bg-secondary p-1  scrollbar-hide lg:fixed lg:left-0 lg:h-screen  lg:w-[300px] lg:flex-col lg:items-start lg:overflow-y-auto lg:p-3  lg:pt-[60px]"
     >
-      <h2 className=" text-lg mb-3 sm:text-2xl font-semibold hidden lg:block">Friend</h2>
+      <h2 className=" mb-3 hidden text-lg font-semibold sm:text-2xl lg:block">Friend</h2>
       <div onClick={(e) => scrollOnClick(e)}>
         <SidebarListItem link="" Icon={UsersIcon} title="Home Page" />
       </div>

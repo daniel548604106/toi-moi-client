@@ -26,25 +26,25 @@ const ChatroomMainInputBox = (props: ChatroomMainInputBoxProps) => {
   };
 
   return (
-    <div className="p-2 flex items-center border-b">
+    <div className="flex items-center border-b p-2">
       <div className="flex items-center space-x-2">
         <PlusIcon className="h-5 text-main" />
         <PhotographIcon className="h-5 text-main" />
         <GiftIcon className="h-5 text-main" />
       </div>
-      <div className="rounded-xl  w-full ml-3">
+      <div className="ml-3  w-full rounded-xl">
         <form onSubmit={(e) => handleSubmitMessage(e, inputText)}>
           <input
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            className=" text-sm max-h-[100px] overflow-y-scroll sm:text-md w-full rounded-full py-2  px-5 focus:outline-none bg-gray-100 text-gray-500"
+            className=" sm:text-md focus:outline-none max-h-[100px] w-full overflow-y-scroll rounded-full bg-gray-100  py-2 px-5 text-sm text-gray-500"
             placeholder={t('sendNewMessage')}
           />
         </form>
       </div>
       <ThumbUpIcon
         onClick={(e) => handleSubmitMessage(e, inputText)}
-        className="h-6 text-main ml-2"
+        className="ml-2 h-6 text-main"
       />
     </div>
   );

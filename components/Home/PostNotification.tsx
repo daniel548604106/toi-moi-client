@@ -21,17 +21,17 @@ const PostNotification = (props: PostNotificationProps) => {
   return (
     <div
       onClick={() => router.push(`/${userInfo.username}/posts/${postId}`)}
-      className=" relative rounded-lg border bg-secondary p-2 cursor-pointer flex items-center space-x-3 "
+      className=" relative flex cursor-pointer items-center space-x-3 rounded-lg border bg-secondary p-2 "
     >
       <XIcon
         onClick={(e) => {
           e.stopPropagation();
           setNewNotification(null);
         }}
-        className="h-5 absolute top-2 right-2"
+        className="absolute top-2 right-2 h-5"
       />
       <Avatar profileImage={profileImage} username={username} />
-      <p className="text-sm sm:text-md">
+      <p className="sm:text-md text-sm">
         <span>{name}</span> liked your post
       </p>
     </div>

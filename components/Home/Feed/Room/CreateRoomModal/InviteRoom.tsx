@@ -37,7 +37,7 @@ const InviteRoom = ({ roomCode }) => {
   return (
     <div>
       <div className=" max-h-[60vh] space-y-2 overflow-y-auto">
-        <div className="flex items-center justify-center flex-col">
+        <div className="flex flex-col items-center justify-center">
           <Avatar
             width={100}
             height={100}
@@ -45,19 +45,19 @@ const InviteRoom = ({ roomCode }) => {
             profileImage={userInfo.profileImage}
             gender={userInfo.gender}
           />
-          <h2 className="mt-2 text-lg sm:text-xl font-semibold">Daniel's room</h2>
-          <div className="text-xs truncate sm:text-md rounded-full bg-button  p-1 px-5 cursor-pointer">
+          <h2 className="mt-2 text-lg font-semibold sm:text-xl">Daniel's room</h2>
+          <div className="sm:text-md cursor-pointer truncate rounded-full bg-button  p-1 px-5 text-xs">
             {roomCode}
           </div>
         </div>
-        <div className=" text-sm sm:text-md rounded-full p-1">只有獲得邀請的朋友能免申請加入。</div>
+        <div className=" sm:text-md rounded-full p-1 text-sm">只有獲得邀請的朋友能免申請加入。</div>
       </div>
       <hr className="my-2" />
       <div className="space-y-2">
-        <h2 className="text-lg sm:text-xl font-semibold">Send Invitations</h2>
-        <p className="text-sm sm:text-md">獲得邀請的朋友會看到你的包廂，並收到可加入包廂的連結。</p>
-        <div className="flex items-center p-2 rounded-lg bg-button text-secondary">
-          <SearchIcon className="h-6 mr-2" />
+        <h2 className="text-lg font-semibold sm:text-xl">Send Invitations</h2>
+        <p className="sm:text-md text-sm">獲得邀請的朋友會看到你的包廂，並收到可加入包廂的連結。</p>
+        <div className="flex items-center rounded-lg bg-button p-2 text-secondary">
+          <SearchIcon className="mr-2 h-6" />
           <input className="outline-none w-full bg-button" type="text" placeholder="Search" />
         </div>
       </div>
@@ -65,7 +65,7 @@ const InviteRoom = ({ roomCode }) => {
         <LoaderSpinner />
       ) : (
         friendList && (
-          <div className="max-h-[40vh] h-auto overflow-y-auto">
+          <div className="h-auto max-h-[40vh] overflow-y-auto">
             {friendList.map(({ user }) => (
               <div className="mt-2 flex items-center justify-between" key={user._id}>
                 <div className=" flex items-center p-2">
@@ -76,9 +76,9 @@ const InviteRoom = ({ roomCode }) => {
                     profileImage={userInfo.profileImage}
                     gender={userInfo.gender}
                   />
-                  <span className="ml-[10px] text-sm sm:text-md">{user.name}</span>
+                  <span className="sm:text-md ml-[10px] text-sm">{user.name}</span>
                 </div>
-                <button className="p-2 rounded-lg bg-main text-white text-sm sm:text-md">
+                <button className="sm:text-md rounded-lg bg-main p-2 text-sm text-white">
                   Send
                 </button>
               </div>
@@ -88,7 +88,7 @@ const InviteRoom = ({ roomCode }) => {
       )}
       <button
         onClick={() => handleJoinRoom()}
-        className="mt-2 mb-32 sm:mb-0 w-full p-2 rounded-lg bg-main text-white"
+        className="mt-2 mb-32 w-full rounded-lg bg-main p-2 text-white sm:mb-0"
       >
         Join Room
       </button>

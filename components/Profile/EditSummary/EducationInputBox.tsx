@@ -59,7 +59,7 @@ const EducationInputBox = ({ setActiveBox }: EducationInputBoxProps) => {
   return (
     <div className="my-2 space-y-2">
       <input
-        className="p-3 border rounded-lg w-full"
+        className="w-full rounded-lg border p-3"
         type="text"
         placeholder="*School"
         name="school_name"
@@ -67,7 +67,7 @@ const EducationInputBox = ({ setActiveBox }: EducationInputBoxProps) => {
         onChange={(e) => handleInputChange(e)}
       />
       <input
-        className="p-3 border rounded-lg w-full"
+        className="w-full rounded-lg border p-3"
         type="text"
         placeholder="*Major"
         name="major"
@@ -75,7 +75,7 @@ const EducationInputBox = ({ setActiveBox }: EducationInputBoxProps) => {
         onChange={(e) => handleInputChange(e)}
       />
       <input
-        className="p-3 border rounded-lg w-full"
+        className="w-full rounded-lg border p-3"
         type="text"
         placeholder="Minor"
         name="minor"
@@ -90,15 +90,15 @@ const EducationInputBox = ({ setActiveBox }: EducationInputBoxProps) => {
       <div className="flex items-center justify-end space-x-2">
         <button
           onClick={() => handleSubmit()}
-          className={`rounded-lg p-2 px-3 w-full ${
+          className={`w-full rounded-lg p-2 px-3 ${
             available
               ? 'bg-main text-white'
-              : 'bg-secondary text-secondary border cursor-not-allowed'
+              : 'cursor-not-allowed border bg-secondary text-secondary'
           }`}
         >
           Save
         </button>
-        <button onClick={() => setActiveBox(0)} className="rounded-lg p-2 px-3 border ">
+        <button onClick={() => setActiveBox(0)} className="rounded-lg border p-2 px-3 ">
           Cancel
         </button>
       </div>

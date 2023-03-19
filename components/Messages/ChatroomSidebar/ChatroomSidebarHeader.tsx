@@ -18,8 +18,8 @@ const Header = (props: ChatroomSidebarHeaderProps) => {
   const dispatch = useAppDispatch();
   const userInfo = useAppSelector((state) => state.user.userInfo);
   return (
-    <div className="text-primary bg-primary  p-3">
-      <div className="flex relative items-center justify-between mb-3">
+    <div className="bg-primary p-3  text-primary">
+      <div className="relative mb-3 flex items-center justify-between">
         <Avatar
           profileImage={userInfo.profileImage}
           gender={userInfo.gender}
@@ -27,28 +27,28 @@ const Header = (props: ChatroomSidebarHeaderProps) => {
           height={40}
           username={userInfo.username}
         />
-        <h2 className="text-lg sm:text-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold ">
+        <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-lg font-semibold sm:text-2xl ">
           Messenger
         </h2>
         <div className="flex items-center space-x-2">
-          <span className="p-2 ml-[5px] rounded-full bg-button text-secondary">
+          <span className="ml-[5px] rounded-full bg-button p-2 text-secondary">
             <VideoCameraIcon className="h-5 w-5  cursor-pointer   rounded-full" />
           </span>
           <span
             onClick={() => dispatch(toggleListOpen())}
-            className="sm:hidden p-2 rounded-full bg-button text-secondary"
+            className="rounded-full bg-button p-2 text-secondary sm:hidden"
           >
             <XIcon className="h-5 w-5  cursor-pointer  rounded-full" />
           </span>
         </div>
       </div>
-      <div className="rounded-2xl bg-gray-200 flex items-center p-2">
-        <SearchIcon className="h-5 mr-2" />
+      <div className="flex items-center rounded-2xl bg-gray-200 p-2">
+        <SearchIcon className="mr-2 h-5" />
         <input
           onChange={(e) => setSearchText(e.target.value)}
           type="text"
           value={searchText}
-          className="w-full bg-gray-200 focus:outline-none"
+          className="focus:outline-none w-full bg-gray-200"
           placeholder={t('searchMessenger')}
         />
       </div>

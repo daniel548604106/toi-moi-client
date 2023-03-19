@@ -30,8 +30,8 @@ const Password = () => {
     setError('');
   }, [password, passwordConfirm]);
   return (
-    <div className=" flex top-0 left-0 items-center flex-col bg-gray-100 justify-center p-3 w-screen h-screen fixed">
-      <div className="w-full max-w-[450px] flex items-center justify-center flex-col">
+    <div className=" fixed top-0 left-0 flex h-screen w-screen flex-col items-center justify-center bg-gray-100 p-3">
+      <div className="flex w-full max-w-[450px] flex-col items-center justify-center">
         <Image
           src="/toi&moi-logo.svg"
           className="max-w-[100px] sm:w-[400px]"
@@ -39,8 +39,8 @@ const Password = () => {
           height={120}
           alt="toi-moi-logo"
         />
-        <div className="rounded-lg bg-white text-center  space-y-3 border w-full max-w-[600px]  shadow-xl p-5 bg-secondary text-secondary">
-          <h2 className="text-lg sm:text-xl font-semibold mb-3">
+        <div className="w-full max-w-[600px] space-y-3  rounded-lg border bg-white bg-secondary  p-5 text-center text-secondary shadow-xl">
+          <h2 className="mb-3 text-lg font-semibold sm:text-xl">
             {newPasswordSuccess ? 'Changed Successfully' : 'Password Reset'}
           </h2>
           <Image
@@ -52,7 +52,7 @@ const Password = () => {
 
           {!newPasswordSuccess && (
             <>
-              <div className={`p-3 rounded-lg border ${error && 'border-red-600'}`}>
+              <div className={`rounded-lg border p-3 ${error && 'border-red-600'}`}>
                 <input
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -61,7 +61,7 @@ const Password = () => {
                   className="focus:outline-none w-full"
                 />
               </div>
-              <div className={`p-3 rounded-lg border ${error && 'border-red-600'}`}>
+              <div className={`rounded-lg border p-3 ${error && 'border-red-600'}`}>
                 <input
                   value={passwordConfirm}
                   onChange={(e) => setPasswordConfirm(e.target.value)}
@@ -72,18 +72,18 @@ const Password = () => {
               </div>
             </>
           )}
-          {error && <p className="text-red-600 text-sm">{error}</p>}
+          {error && <p className="text-sm text-red-600">{error}</p>}
           {newPasswordSuccess ? (
             <button
               onClick={() => router.push('/')}
-              className="bg-green-500 focus:outline-none text-secondary p-3 py-2 mt-[10px] rounded-lg"
+              className="focus:outline-none mt-[10px] rounded-lg bg-green-500 p-3 py-2 text-secondary"
             >
               Login
             </button>
           ) : (
             <button
               onClick={() => handleResetPassword()}
-              className="bg-main text-white text-sm sm:text-lg focus:outline-none text-secondary  p-3 rounded-lg"
+              className="focus:outline-none rounded-lg bg-main p-3 text-sm text-white  text-secondary sm:text-lg"
             >
               Reset Password
             </button>

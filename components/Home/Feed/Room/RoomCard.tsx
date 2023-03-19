@@ -11,18 +11,18 @@ interface RoomCardProps {
 }
 const RoomCard = ({ user }: RoomCardProps) => {
   return (
-    <div className="bg-secondary flex-shrink-0   space-y-1 sm:space-y-3 text-secondary flex flex-col items-center justify-center border rounded-lg p-2 sm:p-3 w-[100px]  sm:w-[150px]">
+    <div className="flex w-[100px]   flex-shrink-0 flex-col items-center justify-center space-y-1 rounded-lg border bg-secondary p-2 text-secondary sm:w-[150px] sm:space-y-3  sm:p-3">
       <Image
         width={60}
         height={60}
-        className="rounded-full cursor-pointer"
+        className="cursor-pointer rounded-full"
         src={user.profileImage || genderAvatar(user.gender)}
         alt="profile-image"
       />
-      <p className="text-center w-full overflow-hidden">
-        <span className="truncate w-1/2">{user.name}</span>
+      <p className="w-full overflow-hidden text-center">
+        <span className="w-1/2 truncate">{user.name}</span>
       </p>
-      <button className="focus:outline-none text-sm bg-main text-white sm:text-md w-full rounded-lg border p-1">
+      <button className="focus:outline-none sm:text-md w-full rounded-lg border bg-main p-1 text-sm text-white">
         Join
       </button>
     </div>

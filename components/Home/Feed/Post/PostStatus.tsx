@@ -25,24 +25,24 @@ const PostStatus = (props: PostStatusProps) => {
     dispatch(apiGetLikesList(postId));
   };
   return (
-    <div className="flex items-center justify-between  text-sm my-[10px]">
+    <div className="my-[10px] flex items-center  justify-between text-sm">
       <div>
         {likes.length > 0 && (
           <div
             onClick={() => handleLikesListOpen(post._id)}
-            className="flex items-center cursor-pointer hover:underline"
+            className="flex cursor-pointer items-center hover:underline"
           >
-            <span className="rounded-full p-1 bg-main text-white">
+            <span className="rounded-full bg-main p-1 text-white">
               <SolidThumbUpIcon className="h-3 " />
             </span>
 
-            <span className="text-gray-600 ml-[3px] ">{likes.length}</span>
+            <span className="ml-[3px] text-gray-600 ">{likes.length}</span>
           </div>
         )}
       </div>
       <div onClick={() => setCommentShow(!isCommentShow)}>
         {comments.length > 0 && (
-          <span className="text-gray-600 lowercase cursor-pointer hover:underline">
+          <span className="cursor-pointer lowercase text-gray-600 hover:underline">
             {comments.length}
             {comments.length === 1 ? t('post.commentTotal') : t('post.commentTotal')}
           </span>

@@ -49,7 +49,7 @@ const Birthdays = ({ friends }) => {
       <div>
         <Sidebar />
       </div>
-      <div className="lg:ml-[350px] flex-1 bg-primary p-5 ">
+      <div className="flex-1 bg-primary p-5 lg:ml-[350px] ">
         {friends.length > 0 ? (
           <div className="mx-auto w-full max-w-[600px] space-y-4">
             {recentBirthdays.length > 0 && <RecentBirthdays recentBirthdays={recentBirthdays} />}

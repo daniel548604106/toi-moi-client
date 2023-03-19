@@ -6,8 +6,8 @@ interface BirthdayCardLayoutProps {
 }
 const BirthdayCardLayout = ({ children, title }: BirthdayCardLayoutProps) => {
   return (
-    <div className="bg-secondary  p-3 sm:p-5 rounded-lg text-secondary">
-      <h2 className="text-lg sm:text-2xl font-semibold">{title}</h2>
+    <div className="rounded-lg  bg-secondary p-3 text-secondary sm:p-5">
+      <h2 className="text-lg font-semibold sm:text-2xl">{title}</h2>
       {children}
     </div>
   );

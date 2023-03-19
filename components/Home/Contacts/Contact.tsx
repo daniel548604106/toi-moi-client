@@ -20,15 +20,15 @@ const Contact = (props: ContactProps) => {
   return (
     <div
       onClick={() => handleOpenChatBox()}
-      className="mb-2 flex items-center space-x-3 py-1 px-3 rounded-md  hover:bg-gray-200 cursor-pointer"
+      className="mb-2 flex cursor-pointer items-center space-x-3 rounded-md py-1  px-3 hover:bg-gray-200"
     >
       <span className="relative flex items-center">
         <img
-          className="w-[40px] object-cover h-[40px] rounded-full"
+          className="h-[40px] w-[40px] rounded-full object-cover"
           src={user?.profileImage || genderAvatar(user?.gender)}
         />
         {connectedUsers.map((connectedUser) => connectedUser.userId).includes(user._id) && (
-          <div className="absolute bottom-[5px] right-0 bg-green-400 w-2 h-2 rounded-full z-40"></div>
+          <div className="absolute bottom-[5px] right-0 z-40 h-2 w-2 rounded-full bg-green-400"></div>
         )}
       </span>
       <p>{user?.name}</p>

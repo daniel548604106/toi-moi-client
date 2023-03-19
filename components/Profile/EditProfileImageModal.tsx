@@ -58,39 +58,44 @@ const EditProfileImageModal = () => {
     }
   };
   return (
-    <div className="rounded-lg relative max-w-[600px] w-full bg-secondary text-secondary shadow-xl">
+    <div className="relative w-full max-w-[600px] rounded-lg bg-secondary text-secondary shadow-xl">
       <span
         onClick={() => dispatch(setEditProfileImageOpen(false))}
-        className="absolute cursor-pointer top-[8px] right-[8px] rounded-full bg-gray-100 p-2"
+        className="absolute top-[8px] right-[8px] cursor-pointer rounded-full bg-gray-100 p-2"
       >
         <XIcon className="h-6" />
       </span>
-      <div className="py-3 border-b flex text-lg font-semibold items-center justify-center">
+      <div className="flex items-center justify-center border-b py-3 text-lg font-semibold">
         Update Profile Image
       </div>
       <div className="p-3">
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="border p-2 rounded-md focus:outline-none focus:border-main w-full"
+          className="focus:outline-none w-full rounded-md border p-2 focus:border-main"
           placeholder="Description"
         ></textarea>
-        <div className="p-3 relative   mx-auto w-[300px] min-h-[300px] sm:h-[500px] sm:w-[500px] ">
+        <div className="relative mx-auto   min-h-[300px] w-[300px] p-3 sm:h-[500px] sm:w-[500px] ">
           {profileImageToUpdate && (
-            <Image layout="fill" className=" object-cover rounded-md" src={profileImageToUpdate} alt="profile-image" />
+            <Image
+              layout="fill"
+              className=" rounded-md object-cover"
+              src={profileImageToUpdate}
+              alt="profile-image"
+            />
           )}
         </div>
       </div>
-      <div className="p-3 border-t flex items-center justify-end">
+      <div className="flex items-center justify-end border-t p-3">
         <button
           onClick={() => dispatch(setEditProfileImageOpen(false))}
-          className="rounded-md p-2 text-sm px-4 hover:shadow-lg"
+          className="rounded-md p-2 px-4 text-sm hover:shadow-lg"
         >
           Cancel
         </button>
         <button
           onClick={() => handleSubmitUpdate()}
-          className="rounded-md flex items-center justify-center p-2 text-sm px-4 bg-main text-white ml-[10px]"
+          className="ml-[10px] flex items-center justify-center rounded-md bg-main p-2 px-4 text-sm text-white"
         >
           {isLoading ? <Loader /> : 'Save'}
         </button>

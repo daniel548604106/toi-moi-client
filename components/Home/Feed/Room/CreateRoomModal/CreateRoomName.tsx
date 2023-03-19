@@ -39,21 +39,21 @@ const CreateRoomName = (props: CreateRoomNameProps) => {
     <div>
       {newNameOpen ? (
         <div>
-          <div className="relative flex items-center text-secondary bg-secondary">
+          <div className="relative flex items-center bg-secondary text-secondary">
             <span
               onClick={() => setNewNameOpen(false)}
-              className="cursor-pointer p-2 rounded-full bg-secondary shadow-lg text-secondary"
+              className="cursor-pointer rounded-full bg-secondary p-2 text-secondary shadow-lg"
             >
               <ChevronLeftIcon className="h-6" />
             </span>
-            <h2 className="text-lg sm:text-xl font-semibold absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2">
+            <h2 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-lg font-semibold sm:text-xl">
               New Room Name
             </h2>
           </div>
           <hr className="my-4" />
           <div>
-            <div className="border flex items-center rounded-lg w-full p-3">
-              <span className="bg-secondary mr-4 rounded-full w-[50px] h-[50px] flex items-center justify-center">
+            <div className="flex w-full items-center rounded-lg border p-3">
+              <span className="mr-4 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-secondary">
                 <span className="text-lg sm:text-2xl">{currentRoomInfo.icon}</span>
               </span>
               <div>
@@ -67,14 +67,14 @@ const CreateRoomName = (props: CreateRoomNameProps) => {
                 />
               </div>
             </div>
-            <div className="space-y-3 mt-4">
-              <h2 className="text-secondary text-lg sm:text-xl font-semibold">Choose Emoji</h2>
+            <div className="mt-4 space-y-3">
+              <h2 className="text-lg font-semibold text-secondary sm:text-xl">Choose Emoji</h2>
               <div className="grid grid-cols-8">
                 {newIcons.map((icon) => (
                   <div
                     key={icon}
                     onClick={() => handleSelectNewIcon(icon)}
-                    className=" cursor-pointer p-3 rounded-full"
+                    className=" cursor-pointer rounded-full p-3"
                   >
                     <span className="text-lg sm:text-2xl">{icon}</span>
                   </div>
@@ -82,7 +82,7 @@ const CreateRoomName = (props: CreateRoomNameProps) => {
               </div>
               <button
                 onClick={() => handleSaveRoomInfo()}
-                className="w-full rounded-lg p-2 bg-main text-white hover:opacity-80"
+                className="w-full rounded-lg bg-main p-2 text-white hover:opacity-80"
               >
                 Save
               </button>
@@ -91,24 +91,24 @@ const CreateRoomName = (props: CreateRoomNameProps) => {
         </div>
       ) : (
         <div>
-          <div className="relative flex items-center text-secondary bg-secondary">
+          <div className="relative flex items-center bg-secondary text-secondary">
             <span
               onClick={() => setCreateNameOpen(false)}
-              className="cursor-pointer p-2 rounded-full bg-secondary shadow-lg text-secondary"
+              className="cursor-pointer rounded-full bg-secondary p-2 text-secondary shadow-lg"
             >
               <ChevronLeftIcon className="h-6" />
             </span>
-            <h2 className="text-lg sm:text-xl font-semibold absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2">
+            <h2 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-lg font-semibold sm:text-xl">
               Room Name
             </h2>
           </div>
           <hr className="my-4" />
-          <div className="max-h-[60vh] sm:max-h-[40vh] overflow-y-auto flex items-center whitespace-nowrap flex-shrink-0 flex-wrap">
+          <div className="flex max-h-[60vh] flex-shrink-0 flex-wrap items-center overflow-y-auto whitespace-nowrap sm:max-h-[40vh]">
             <div
               onClick={() => setNewNameOpen(true)}
-              className="flex  items-center min-w-[50%] p-3 cursor-pointer rounded-lg"
+              className="flex  min-w-[50%] cursor-pointer items-center rounded-lg p-3"
             >
-              <span className="rounded-full p-2 mr-2 shadow-lg">
+              <span className="mr-2 rounded-full p-2 shadow-lg">
                 <PlusIcon className="h-6" />
               </span>
               <span>New Event</span>
@@ -117,9 +117,9 @@ const CreateRoomName = (props: CreateRoomNameProps) => {
               <div
                 key={room.name}
                 onClick={() => handleSelectName(room)}
-                className="min-w-[50%] p-3 cursor-pointer transition-all hover:brightness-110 hover:scale-120 rounded-lg"
+                className="hover:scale-120 min-w-[50%] cursor-pointer rounded-lg p-3 transition-all hover:brightness-110"
               >
-                <span className="rounded-full p-2 shadow-lg mr-2">
+                <span className="mr-2 rounded-full p-2 shadow-lg">
                   <span className="text-lg sm:text-2xl">{room.icon}</span>
                 </span>
                 <span>{room.name}</span>

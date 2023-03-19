@@ -51,22 +51,22 @@ const BioInput = (props: BioInputProps) => {
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
-            className="h-[120px] focus:outline-none p-2 bg-gray-100 rounded-xl  w-[300px] overflow-y-scroll"
+            className="focus:outline-none h-[120px] w-[300px] overflow-y-scroll rounded-xl  bg-gray-100 p-2"
           />
           <div className="flex items-center justify-between">
-            <span className="text-xs tex-gray-400">{bioLengthLeft} text left </span>
+            <span className="tex-gray-400 text-xs">{bioLengthLeft} text left </span>
             <div className="flex items-center ">
               <button
                 onClick={() => handleCancelChanges()}
-                className="px-4 py-2 rounded-md bg-secondary text-secondary border text-xs"
+                className="rounded-md border bg-secondary px-4 py-2 text-xs text-secondary"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleSendBio()}
                 className={`${
-                  disable && 'bg-gray-200 cursor-not-allowed'
-                } ml-[10px] px-4 py-2 rounded-md bg-main text-white border text-xs `}
+                  disable && 'cursor-not-allowed bg-gray-200'
+                } ml-[10px] rounded-md border bg-main px-4 py-2 text-xs text-white `}
               >
                 Save Changes
               </button>
@@ -74,10 +74,10 @@ const BioInput = (props: BioInputProps) => {
           </div>
         </div>
       ) : (
-        <div className="w-[300px] flex flex-col items-center justify-center">
+        <div className="flex w-[300px] flex-col items-center justify-center">
           <span>{bio}</span>
           {isEditable && (
-            <span onClick={() => setBioInputOpen(true)} className="text-main cursor-pointer">
+            <span onClick={() => setBioInputOpen(true)} className="cursor-pointer text-main">
               Edit
             </span>
           )}

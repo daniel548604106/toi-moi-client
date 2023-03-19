@@ -31,7 +31,7 @@ const CommentNotification = ({ notification }: CommentNotificationProps) => {
   return (
     <div
       onClick={() => handleReadNotification(notification._id)}
-      className="group  relative w-full  p-2 rounded-lg  justify-between cursor-pointer mb-2 flex items-center"
+      className="group  relative mb-2  flex w-full  cursor-pointer items-center justify-between rounded-lg p-2"
     >
       <div className="flex items-center">
         <span className="relative">
@@ -42,7 +42,7 @@ const CommentNotification = ({ notification }: CommentNotificationProps) => {
             profileImage={notification.user.profileImage}
             gender={notification.user.gender}
           />
-          <span className="absolute bottom-1 right-0 rounded-full text-white bg-green-400 text-secondary p-1">
+          <span className="absolute bottom-1 right-0 rounded-full bg-green-400 p-1 text-white text-secondary">
             <ChatAlt2Icon className="h-4" />
           </span>
         </span>
@@ -57,11 +57,11 @@ const CommentNotification = ({ notification }: CommentNotificationProps) => {
         </div>
       </div>
       <div className="flex items-center">
-        <div className="hidden group-hover:block rounded-full cursor-pointer bg-secondary text-secondary  border p-2">
+        <div className="hidden cursor-pointer rounded-full border bg-secondary p-2  text-secondary group-hover:block">
           <DotsHorizontalIcon className="h-6 " />
         </div>
         {!notification.isNotificationRead && (
-          <div className="rounded-full ml-[10px] w-[8px] h-[8px] bg-main"></div>
+          <div className="ml-[10px] h-[8px] w-[8px] rounded-full bg-main"></div>
         )}{' '}
       </div>
     </div>

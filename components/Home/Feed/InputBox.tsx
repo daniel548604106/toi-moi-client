@@ -29,16 +29,16 @@ const InputBox = () => {
   };
 
   return (
-    <div className="w-full p-3 shadow-md font-medium rounded-xl bg-secondary text-secondary">
-      <div className="flex items-center w-full space-x-2 mb-3">
+    <div className="w-full rounded-xl bg-secondary p-3 font-medium text-secondary shadow-md">
+      <div className="mb-3 flex w-full items-center space-x-2">
         <img
           onClick={() => router.push(`/${userInfo.username}`)}
-          className="w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] rounded-full object-cover cursor-pointer"
+          className="h-[40px] w-[40px] cursor-pointer rounded-full object-cover sm:h-[50px] sm:w-[50px]"
           src={userInfo.profileImage || genderAvatar(userInfo.gender)}
         />
         <div
           onClick={() => dispatch(setPostInputBoxOpen(true))}
-          className="bg-button text-primary cursor-pointer flex-1 text-left  rounded-full p-2 pl-4 hover:bg-gray-200 text-sm sm:text-md"
+          className="sm:text-md flex-1 cursor-pointer rounded-full bg-button  p-2 pl-4 text-left text-sm text-primary hover:bg-gray-200"
         >
           {`${userInfo.name} ,`} {t('post.whatAreYouThinking')}
         </div>
@@ -46,12 +46,12 @@ const InputBox = () => {
       <hr className="my-2 " />
       <div className="flex justify-evenly p-1 ">
         <div className="inputIcon">
-          <VideoCameraIcon className="h-5 mb-2 sm:mb-0  sm:h-6 text-red-500" />
-          <p className="text-xs sm:text-sm xl:text-md whitespace-nowrap">{t('post.liveStream')}</p>
+          <VideoCameraIcon className="mb-2 h-5 text-red-500  sm:mb-0 sm:h-6" />
+          <p className="xl:text-md whitespace-nowrap text-xs sm:text-sm">{t('post.liveStream')}</p>
         </div>
         <div onClick={() => filePickerRef.current.click()} className="inputIcon">
-          <CameraIcon className="h-5 mb-2 sm:mb-0 sm:h-6 text-green-300 " />
-          <p className="text-xs sm:text-sm xl:text-md">{t('post.photo/video')}</p>
+          <CameraIcon className="mb-2 h-5 text-green-300 sm:mb-0 sm:h-6 " />
+          <p className="xl:text-md text-xs sm:text-sm">{t('post.photo/video')}</p>
           <input
             ref={filePickerRef}
             multiple
@@ -62,8 +62,8 @@ const InputBox = () => {
           />
         </div>
         <div className="inputIcon">
-          <EmojiHappyIcon className="h-5 mb-2 sm:mb-0 sm:h-6 text-yellow-300" />
-          <p className="text-xs sm:text-sm xl:text-md">{t('post.feeling/activity')}</p>
+          <EmojiHappyIcon className="mb-2 h-5 text-yellow-300 sm:mb-0 sm:h-6" />
+          <p className="xl:text-md text-xs sm:text-sm">{t('post.feeling/activity')}</p>
         </div>
       </div>
     </div>

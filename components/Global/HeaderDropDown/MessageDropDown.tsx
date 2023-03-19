@@ -4,7 +4,7 @@ import {
   DotsHorizontalIcon,
   PencilAltIcon,
   SearchIcon,
-  VideoCameraIcon
+  VideoCameraIcon,
 } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 
@@ -51,10 +51,10 @@ const MessageDropDown = ({ t }: MessageDropDownProps) => {
           </span>
         </div>
       </div>
-      <div className="rounded-full w-full m-2  p-1 pl-3  bg-gray-100 flex items-center">
-        <SearchIcon className="h-5 text-gray-400 mr-[10px]" />
+      <div className="m-2 flex w-full  items-center rounded-full  bg-gray-100 p-1 pl-3">
+        <SearchIcon className="mr-[10px] h-5 text-gray-400" />
         <input
-          className="bg-gray-100 focus:outline-none"
+          className="focus:outline-none bg-gray-100"
           type="text"
           placeholder={t('searchMessenger')}
         />
@@ -71,7 +71,7 @@ const MessageDropDown = ({ t }: MessageDropDownProps) => {
 
       <div
         onClick={() => router.push('/messages')}
-        className="border-t pt-2 text-main text-center hover:underline cursor-pointer"
+        className="cursor-pointer border-t pt-2 text-center text-main hover:underline"
       >
         {t('viewAllInMessenger')}
       </div>

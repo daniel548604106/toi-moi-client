@@ -34,7 +34,7 @@ const PostCommentInput = (props: PostCommentInputProps) => {
     }
   };
   return (
-    <div className="p-1 flex items-center">
+    <div className="flex items-center p-1">
       <Avatar
         width={30}
         height={30}
@@ -48,7 +48,7 @@ const PostCommentInput = (props: PostCommentInputProps) => {
           value={text}
           type="text"
           placeholder={t('post.addComment')}
-          className="border focus:outline-none   text-sm ml-[10px] rounded-full w-full px-[10px] py-[10px]"
+          className="focus:outline-none ml-[10px]   w-full rounded-full border px-[10px] py-[10px] text-sm"
         />
       </form>
     </div>

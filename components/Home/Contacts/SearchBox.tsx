@@ -37,20 +37,20 @@ const SearchBox = ({ setSearchOpen }: SearchBoxProps) => {
     getSearchedContact();
   }, [debouncedSearchText]);
   return (
-    <div className=" py-3 border rounded-lg relative p-2 bg-secondary mb-3">
+    <div className=" relative mb-3 rounded-lg border bg-secondary p-2 py-3">
       <span
         onClick={() => setSearchOpen(false)}
-        className=" absolute top-0 right-0 p-1 transform -translate-y-1/2 translate-x-1/2 cursor-pointer rounded-full bg-black text-white"
+        className=" absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 transform cursor-pointer rounded-full bg-black p-1 text-white"
       >
         <XIcon className="h-3 " />
       </span>
-      <div className="flex  p-2 bg-secondary items-center border rounded-lg">
-        <SearchIcon className="h-5 mr-2" />
+      <div className="flex  items-center rounded-lg border bg-secondary p-2">
+        <SearchIcon className="mr-2 h-5" />
         <input
           onChange={(e) => setSearchText(e.target.value)}
           type="text"
           placeholder="Search Name"
-          className="text-xs w-full sm:text-sm bg-secondary"
+          className="w-full bg-secondary text-xs sm:text-sm"
         />
       </div>
       {searchText ? (
@@ -62,7 +62,7 @@ const SearchBox = ({ setSearchOpen }: SearchBoxProps) => {
                   <div
                     onClick={() => handleAddToChatBox(user)}
                     key={user._id}
-                    className="flex cursor-pointer p-2 items-center space-x-2"
+                    className="flex cursor-pointer items-center space-x-2 p-2"
                   >
                     <Avatar width={30} height={30} profileImage={user.profileImage} />
                     <span className="ml-3">{user.name}</span>
@@ -77,7 +77,7 @@ const SearchBox = ({ setSearchOpen }: SearchBoxProps) => {
                   <div className="text-center text-xs sm:text-sm">Try Another Name</div>
                 </div>
               ) : (
-                <div className="flex p-3 items-center justify-center">
+                <div className="flex items-center justify-center p-3">
                   <LoaderSpinner />
                 </div>
               )}

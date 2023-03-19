@@ -7,7 +7,7 @@ interface SectionCardProps {
 
 const SectionCard = ({ children, title }: SectionCardProps) => {
   return (
-    <div className="rounded-lg border p-3 bg-secondary text-secondary">
+    <div className="rounded-lg border bg-secondary p-3 text-secondary">
       <h2 className="text-2xl font-semibold">{title}</h2>
       {children}
     </div>

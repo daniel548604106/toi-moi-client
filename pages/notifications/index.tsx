@@ -29,9 +29,9 @@ const Index = ({ notifications }) => {
 
   return (
     <div className=" overflow-y-auto  sm:py-[80px] ">
-      <div className="p-3 rounded-xl w-full max-w-[600px]  mx-auto bg-secondary text-secondary shadow-lg">
-        <div className="flex items-center justify-between mb-[20px]">
-          <h2 className="font-semibold text-2xl">Notification</h2>
+      <div className="mx-auto w-full max-w-[600px] rounded-xl  bg-secondary p-3 text-secondary shadow-lg">
+        <div className="mb-[20px] flex items-center justify-between">
+          <h2 className="text-2xl font-semibold">Notification</h2>
           <DotsHorizontalIcon className="h-6 cursor-pointer" />
         </div>
         {currentNotifications.length > 0 ? (

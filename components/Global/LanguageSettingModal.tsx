@@ -25,11 +25,11 @@ const LanguageSettingModal = () => {
   const [currentLanguage, setCurrentLanguage] = useState(router.locale);
 
   return (
-    <div className="relative w-full max-w-[400px] rounded-lg p-5 bg-secondary text-secondary">
-      <h2 className="text-2xl font-semibold mb-3">{t('languageSetting')}</h2>
+    <div className="relative w-full max-w-[400px] rounded-lg bg-secondary p-5 text-secondary">
+      <h2 className="mb-3 text-2xl font-semibold">{t('languageSetting')}</h2>
       <span
         onClick={() => dispatch(toggleLanguageOpen())}
-        className="cursor-pointer absolute top-3 right-3 rounded-full p-2 bg-secondary text-secondary"
+        className="absolute top-3 right-3 cursor-pointer rounded-full bg-secondary p-2 text-secondary"
       >
         <XIcon className="h-6" />
       </span>
@@ -47,11 +47,11 @@ const LanguageSettingModal = () => {
             />
           </div>
         ))}
-        <div className="flex items-center justify-end mt-3">
+        <div className="mt-3 flex items-center justify-end">
           <Link href="/" locale={currentLanguage}>
             <button
               onClick={() => dispatch(toggleLanguageOpen())}
-              className=" rounded-lg px-4 p-2 bg-main text-white"
+              className=" rounded-lg bg-main p-2 px-4 text-white"
             >
               Save
             </button>

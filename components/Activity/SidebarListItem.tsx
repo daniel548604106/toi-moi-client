@@ -18,13 +18,13 @@ const SidebarListItem = (props: SidebarListItemProps) => {
   return (
     <div
       onClick={() => handleClick()}
-      className={`flex  items-center cursor-pointer hover:bg-gray-100 justify-between p-3 py-2 rounded-md ${
+      className={`flex  cursor-pointer items-center justify-between rounded-md p-3 py-2 hover:bg-gray-100 ${
         isActive && 'bg-blue-100'
       }`}
     >
       <div className="flex items-center">
         <span
-          className={`rounded-full p-2 bg-gray-100 mr-[20px] ${
+          className={`mr-[20px] rounded-full bg-gray-100 p-2 ${
             isActive && 'bg-main text-secondary'
           }`}
         >
@@ -33,7 +33,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
         <span>{title}</span>
       </div>
       {lists && (
-        <span className="p-1 rounded-full hover:bg-gray-100">
+        <span className="rounded-full p-1 hover:bg-gray-100">
           <ChevronDownIcon className="h-6" />
         </span>
       )}
