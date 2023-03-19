@@ -61,11 +61,11 @@ const Login = () => {
     setShowNotifications(true);
   }, [loginInput]);
   return (
-    <div className="w-full flex-col justify-center md:flex-row max-w-5xl mx-auto h-screen flex  items-center md:justify-between px-5">
+    <div className="mx-auto flex h-screen w-full max-w-5xl flex-col items-center justify-center  px-5 md:flex-row md:justify-between">
       {isSignupOpen && (
         <div
           onClick={() => setSignupOpen(false)}
-          className="fixed top-0 z-50 left-0 flex w-screen h-screen items-center justify-center bg-opacity-20 bg-black"
+          className="fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-20"
         >
           <Signup setSignupOpen={setSignupOpen} />
         </div>
@@ -73,27 +73,27 @@ const Login = () => {
       {isForgotPasswordOpen && (
         <div
           onClick={() => setForgotPasswordOpen(false)}
-          className="fixed top-0 z-50 left-0 flex w-screen h-screen items-center justify-center bg-opacity-20 bg-black"
+          className="fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-20"
         >
           <ForgotPassword />
         </div>
       )}
-      <div className="w-full max-w-md mb-[20px] md:mb-0">
+      <div className="mb-[20px] w-full max-w-md md:mb-0">
         <Image
           width="300"
           height="200"
-          className="w-[300px] mx-auto sm:mx-0 h-[100px] sm:w-[400px] sm:h-[200px]"
+          className="mx-auto h-[100px] w-[300px] sm:mx-0 sm:h-[200px] sm:w-[400px]"
           src="/toi&moi-logo.svg"
           alt="logo"
         />
-        <h2 className="text-md sm:text-2xl  font-semibold">
+        <h2 className="text-md font-semibold  sm:text-2xl">
           Connect with friends and the world around you on Toi&Moi.
         </h2>
       </div>
 
-      <div className="relative p-3 sm:p-5 bg-white rounded-md text-center bg-secondary text-black shadow-md w-full max-w-[450px]">
+      <div className="relative w-full max-w-[450px] rounded-md bg-white bg-secondary p-3 text-center text-black shadow-md sm:p-5">
         <div className={`${showNotifications && ' hiInterviewerBg'} `}>
-          <div className="dialogue absolute  bg-white border p-2 rounded-lg">
+          <div className="dialogue absolute  rounded-lg border bg-white p-2">
             <span className="ball"></span>
             <p className="whitespace-nowrap">
               <span className="shakeHand">👋</span> <span className="ml-[5px]">Hi there!</span>
@@ -105,7 +105,7 @@ const Login = () => {
             <input
               name="email"
               onChange={(e) => handleLoginInput(e)}
-              className="w-full text-md text-black  block mt-2 p-3 sm:text-lg rounded-md border"
+              className="text-md mt-2 block  w-full rounded-md border p-3 text-black sm:text-lg"
               id="account"
               value={loginInput.email}
               type="email"
@@ -116,7 +116,7 @@ const Login = () => {
             <input
               name="password"
               onChange={(e) => handleLoginInput(e)}
-              className="block  text-md w-full text-black mt-2 p-3 sm:text-lg rounded-md border"
+              className="text-md  mt-2 block w-full rounded-md border p-3 text-black sm:text-lg"
               id="password"
               type="password"
               value={loginInput.password}
@@ -124,25 +124,25 @@ const Login = () => {
             />
           </div>
           {error !== '' && (
-            <div className="text-sm sm:text-md text-red-500 my-3 relative ">{error}</div>
+            <div className="sm:text-md relative my-3 text-sm text-red-500 ">{error}</div>
           )}
           <button
             onClick={(e) => handleLogin(e)}
-            className="rounded-md focus:outline-none outline-none flex items-center justify-center w-full text-md sm:text-lg p-2 sm:p-3 text-white bg-main text-secondary"
+            className="focus:outline-none outline-none text-md flex w-full items-center justify-center rounded-md bg-main p-2 text-white text-secondary sm:p-3 sm:text-lg"
           >
             {loading ? <Loader /> : 'Login'}
           </button>
         </form>
         <span
           onClick={() => setForgotPasswordOpen(true)}
-          className="text-sm sm:text-md inline-block text-main my-[20px] cursor-pointer text-md"
+          className="sm:text-md text-md my-[20px] inline-block cursor-pointer text-sm text-main"
         >
           {t('forget-password')}?
         </span>
         <hr />
         <button
           onClick={() => setSignupOpen(true)}
-          className="text-white  text-md sm:text-lg p-3 bg-main-yellow cursor-pointer my-3 sm:my-4 text-secondary rounded-md"
+          className="text-md  my-3 cursor-pointer rounded-md bg-main-yellow p-3 text-white text-secondary sm:my-4 sm:text-lg"
         >
           {t('create-account')}
         </button>

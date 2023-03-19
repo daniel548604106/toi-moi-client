@@ -25,14 +25,14 @@ const ForgotPassword = () => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="  bg-white w-full max-w-[400px]  rounded-lg text-center shadow-xl p-5 bg-secondary text-secondary  flex flex-col items-center justify-center "
+      className="  flex w-full max-w-[400px]  flex-col items-center justify-center rounded-lg bg-white bg-secondary  p-5 text-center text-secondary shadow-xl "
     >
-      <h1 className="text-xl mb-[10px] font-semibold"> Forgot Password</h1>
+      <h1 className="mb-[10px] text-xl font-semibold"> Forgot Password</h1>
 
       <Image src="/images/email.svg" width="60" height="60" alt="email" />
 
       {emailSent ? (
-        <div className="text-center space-y-1 mt-2">
+        <div className="mt-2 space-y-1 text-center">
           <span className="text-sm text-gray-400">
             {loading ? (
               'Sending...'
@@ -48,25 +48,25 @@ const ForgotPassword = () => {
           <div className="flex items-center justify-center">
             <span
               onClick={() => handleSendEmail()}
-              className="text-xs text-gray-300 cursor-pointer underline"
+              className="cursor-pointer text-xs text-gray-300 underline"
             >
               Not received? Send again
             </span>
           </div>
         </div>
       ) : (
-        <div className="rounded-lg w-full flex items-center  mt-5 p-2 border">
+        <div className="mt-5 flex w-full items-center  rounded-lg border p-2">
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Email"
-            className="w-full focus:outline-none"
+            className="focus:outline-none w-full"
           />
           <span
             onClick={() => handleSendEmail()}
-            className={`p-1 rounded-full ml-[5px] border text-gray-400  ${
-              email && 'text-secondary bg-gray-600 cursor-pointer'
+            className={`ml-[5px] rounded-full border p-1 text-gray-400  ${
+              email && 'cursor-pointer bg-gray-600 text-secondary'
             }`}
           >
             <InboxIcon className="h-6" />

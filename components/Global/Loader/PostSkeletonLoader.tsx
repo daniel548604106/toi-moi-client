@@ -25,10 +25,10 @@ const PostSkeletonLoader = () => {
 };
 
 const GlobalLoader = () => (
-  <div className="fixed z-50 inset-0 bg-gray-700 bg-opacity-30 flex items-center justify-center">
-    <div className=" flex-1 text-gray-600 text-center">
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-700 bg-opacity-30">
+    <div className=" flex-1 text-center text-gray-600">
       <PostSkeletonLoader />
-      <span className="bg-white py-2 px-4 text-xs rounded-full">載入中...</span>
+      <span className="rounded-full bg-white py-2 px-4 text-xs">載入中...</span>
     </div>
   </div>
 );

@@ -31,8 +31,8 @@ const Contacts = ({ friends, connectedUsers }: ContactsProps) => {
   }, [connectedUsers]);
 
   return (
-    <div className=" p-2 sticky top-[80px] ">
-      <div className="flex justify-between items-center mb-5 text-gray-500">
+    <div className=" sticky top-[80px] p-2 ">
+      <div className="mb-5 flex items-center justify-between text-gray-500">
         <h2>{t('contact.contact')}</h2>
         <div className="flex items-center space-x-2">
           <SearchIcon
@@ -47,7 +47,7 @@ const Contacts = ({ friends, connectedUsers }: ContactsProps) => {
               className="h-6 cursor-pointer"
             />
             {isPopupOpen && (
-              <div className="right-0 top-0 transform  z-50 translate-y-5  absolute">
+              <div className="absolute right-0 top-0  z-50 translate-y-5  transform">
                 <SettingsPopup />
               </div>
             )}

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {
   AnnotationIcon,
   ShareIcon,
-  ThumbUpIcon as OutlineThumbUpIcon
+  ThumbUpIcon as OutlineThumbUpIcon,
 } from '@heroicons/react/outline';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
 import useTranslation from 'next-translate/useTranslation';
@@ -105,33 +105,33 @@ const PostActions = (props: PostActionsProps) => {
       {isLiked ? (
         <div
           onClick={() => handleUnlikePost(post._id)}
-          className="rounded-md  flex items-center justify-center p-2 hover:bg-gray-100 flex-1  cursor-pointer text-main"
+          className="flex  flex-1 cursor-pointer items-center justify-center rounded-md p-2  text-main hover:bg-gray-100"
         >
           <SolidThumbUpIcon className="h-4 " />
-          <span className="text-sm sm:text-md ml-[10px]">{t('post.like')}</span>
+          <span className="sm:text-md ml-[10px] text-sm">{t('post.like')}</span>
         </div>
       ) : (
         <div
           onClick={() => handleLikePost(post._id)}
-          className="rounded-md flex items-center justify-center  p-2 hover:bg-gray-100 flex-1  cursor-pointer text-gray-400"
+          className="flex flex-1 cursor-pointer items-center  justify-center rounded-md p-2  text-gray-400 hover:bg-gray-100"
         >
           <OutlineThumbUpIcon className="h-4  " />
-          <span className="text-sm sm:text-md ml-[10px]">{t('post.like')}</span>
+          <span className="sm:text-md ml-[10px] text-sm">{t('post.like')}</span>
         </div>
       )}
       <div
         onClick={() => setCommentShow(true)}
-        className="rounded-md  flex items-center justify-center p-2  hover:bg-gray-100 flex-1  cursor-pointer text-gray-400"
+        className="flex  flex-1 cursor-pointer items-center justify-center  rounded-md p-2  text-gray-400 hover:bg-gray-100"
       >
         <AnnotationIcon className="h-4  " />
-        <span className="text-sm sm:text-md ml-[10px]">{t('post.comment')}</span>
+        <span className="sm:text-md ml-[10px] text-sm">{t('post.comment')}</span>
       </div>
       <div
         onClick={() => handleSharePost()}
-        className="rounded-md flex items-center justify-center  p-2 hover:bg-gray-100 flex-1  cursor-pointer text-gray-400"
+        className="flex flex-1 cursor-pointer items-center  justify-center rounded-md p-2  text-gray-400 hover:bg-gray-100"
       >
         <ShareIcon className="h-4 " />
-        <span className="text-sm sm:text-md ml-[10px]">{t('post.share')}</span>
+        <span className="sm:text-md ml-[10px] text-sm">{t('post.share')}</span>
       </div>
     </div>
   );

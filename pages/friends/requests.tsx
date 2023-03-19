@@ -16,9 +16,9 @@ const Requests = ({ requestsReceived }) => {
       <div className="">
         <Sidebar />
       </div>
-      <div className="lg:ml-[350px] flex-1 p-3 space-y-3">
+      <div className="flex-1 space-y-3 p-3 lg:ml-[350px]">
         {received.length > 0 ? (
-          <div className="max-w-[600px] mx-auto">
+          <div className="mx-auto max-w-[600px]">
             {received.map(({ user }) => (
               <RequestCard key={user._id} t={t} user={user} />
             ))}

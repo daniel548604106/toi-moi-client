@@ -76,15 +76,15 @@ const ChatBox = (props: ChatBoxProps) => {
   }, [newMessageReceived]);
 
   return (
-    <div className="w-[300px] border rounded-t-lg bg-secondary">
+    <div className="w-[300px] rounded-t-lg border bg-secondary">
       <div
         onClick={() => setChatBoxOpen(!isChatBoxOpen)}
-        className="flex items-center cursor-pointer justify-between p-2 rounded-t-lg bg-main text-white"
+        className="flex cursor-pointer items-center justify-between rounded-t-lg bg-main p-2 text-white"
       >
         <div className="flex items-center space-x-2">
           <span>{user.name}</span>
           {connectedUsers.map((users) => users.userId).includes(user._id) && (
-            <div className="w-[5px] h-[5px] rounded-full bg-green-300"></div>
+            <div className="h-[5px] w-[5px] rounded-full bg-green-300"></div>
           )}
         </div>
         <XIcon onClick={() => handleRemoveChatBox()} className="h-6" />
@@ -96,20 +96,20 @@ const ChatBox = (props: ChatBoxProps) => {
               messages.map((message) => (
                 <div key={message.date}>
                   {userInfo._id !== message.sender ? (
-                    <div className="flex items-center flex-wrap mb-2 ">
+                    <div className="mb-2 flex flex-wrap items-center ">
                       <Avatar profileImage={user.profileImage} width={30} height={30} />
                       <p
                         ref={scrollToRef}
-                        className="ml-2 max-w-[200px] text-sm sm:text-md p-2 border rounded-lg"
+                        className="sm:text-md ml-2 max-w-[200px] rounded-lg border p-2 text-sm"
                       >
                         {message.msg}
                       </p>
                     </div>
                   ) : (
-                    <div className="flex items-center flex-wrap mb-2 justify-end ">
+                    <div className="mb-2 flex flex-wrap items-center justify-end ">
                       <p
                         ref={scrollToRef}
-                        className="max-w-[200px]  bg-main text-white text-sm sm:text-md p-2 border rounded-lg"
+                        className="sm:text-md  max-w-[200px] rounded-lg border bg-main p-2 text-sm text-white"
                       >
                         {message.msg}
                       </p>
@@ -118,13 +118,13 @@ const ChatBox = (props: ChatBoxProps) => {
                 </div>
               ))}
           </div>
-          <div className="p-2 flex items-center ">
+          <div className="flex items-center p-2 ">
             <form
               onSubmit={(e) => handleSendMsg(e)}
-              className=" w-full mr-2 flex items-center rounded-full border p-1 bg-secondary"
+              className=" mr-2 flex w-full items-center rounded-full border bg-secondary p-1"
             >
               <input
-                className="text-xs sm:text-sm px-1 rounded-lg w-full bg-secondary"
+                className="w-full rounded-lg bg-secondary px-1 text-xs sm:text-sm"
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}

@@ -24,7 +24,7 @@ const Post = (props: PostsProps) => {
   const [commentLength, setCommentLength] = useState(2);
 
   return (
-    <div className="rounded-xl shadow-md text-primary p-3 bg-secondary">
+    <div className="rounded-xl bg-secondary p-3 text-primary shadow-md">
       <PostHeader setEditable={setEditable} post={post} deletePost={deletePost} />
       <PostContent setEditable={setEditable} isEditable={isEditable} post={post} />
       <PostStatus
@@ -47,7 +47,7 @@ const Post = (props: PostsProps) => {
           <PostCommentInput post={post} setComments={setComments} />
           {comments.length > 0 &&
             comments.slice(0, commentLength).map((comment) => (
-              <div key={comment._id} className=" p-1 w-full">
+              <div key={comment._id} className=" w-full p-1">
                 <PostComments
                   t={t}
                   comments={comments}
@@ -60,7 +60,7 @@ const Post = (props: PostsProps) => {
           {comments.length > 2 && commentLength < comments.length && (
             <span
               onClick={() => setCommentLength(commentLength + 5)}
-              className="inline-block text-xs cursor-pointer"
+              className="inline-block cursor-pointer text-xs"
             >
               {t('seeMore')}
             </span>

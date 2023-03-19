@@ -12,10 +12,10 @@ const MessageDropDownList = ({ message }: MessageDropDownListProps) => {
   return (
     <div
       onClick={() => router.push(`/messages?message=${message?.messagesWith}`)}
-      className="relative group cursor-pointer  flex items-center p-2 mb-3 rounded-lg hover:bg-gray-100"
+      className="group relative mb-3  flex cursor-pointer items-center rounded-lg p-2 hover:bg-gray-100"
     >
       <Image
-        className="rounded-full cursor-pointer"
+        className="cursor-pointer rounded-full"
         src={message?.profileImage}
         width={60}
         layout="fixed"
@@ -24,9 +24,9 @@ const MessageDropDownList = ({ message }: MessageDropDownListProps) => {
       />
       <div className="ml-[10px]">
         <p>{message.name}</p>
-        <p className="text-gray-500 overflow-hidden truncate">{message.lastMessage}</p>
+        <p className="overflow-hidden truncate text-gray-500">{message.lastMessage}</p>
       </div>
-      <span className="hidden group-hover:block  absolute top-1/2 transform -translate-y-1/2 right-4 p-2 rounded-full  bg-secondary text-secondary shadow-lg cursor-pointer">
+      <span className="absolute top-1/2  right-4 hidden -translate-y-1/2 transform cursor-pointer rounded-full bg-secondary  p-2 text-secondary shadow-lg group-hover:block">
         <DotsHorizontalIcon className="h-6" />
       </span>
     </div>

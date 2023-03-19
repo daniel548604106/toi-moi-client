@@ -27,7 +27,7 @@ const Index = ({ recommendations, requestsReceived }) => {
       <div className="">
         <Sidebar />
       </div>
-      <div className="lg:ml-[350px] flex-1 p-3 space-y-3">
+      <div className="flex-1 space-y-3 p-3 lg:ml-[350px]">
         {requests.length > 0 && (
           <div className="space-y-3">
             <h2 className="text-lg font-semibold sm:text-2xl">Requests Received</h2>
@@ -37,7 +37,7 @@ const Index = ({ recommendations, requestsReceived }) => {
           </div>
         )}
         <h2 className="text-lg font-semibold sm:text-2xl">Friend Recommendation</h2>
-        <div className="transition-all grid gap-2 sm:gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid grid-cols-2 gap-2 transition-all sm:grid-cols-3 sm:gap-3 lg:grid-cols-4 xl:grid-cols-5">
           {currentRecommendations.map((recommendation) => (
             <FriendCard
               removeRecommendation={removeRecommendation}

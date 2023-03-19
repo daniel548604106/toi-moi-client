@@ -27,19 +27,19 @@ const PostLayout = ({ post, profile, notifications }) => {
     <div className=" sm:mt-0  ">
       <div className="lg:mr-[400px]">
         <ProfileCover profile={profile.profile} user={profile.profile.user} />
-        <div className="py-[30px] mx-auto px-3  max-w-[700px]">
+        <div className="mx-auto max-w-[700px] py-[30px]  px-3">
           <h2 className="mb-[10px] text-sm text-gray-400">From notification</h2>
           <Post post={post} />
         </div>
       </div>
-      <div className="fixed right-0 h-screen lg:flex flex-col top-[64px]  border  hidden    p-3 py-5 bg-secondary text-secondary w-[400px]">
+      <div className="fixed right-0 top-[64px] hidden h-screen w-[400px]  flex-col  border    bg-secondary p-3 py-5 text-secondary lg:flex">
         <div className=" flex items-center justify-between px-2">
           <h2 className="text-2xl font-semibold">Notifications</h2>
-          <span className="cursor-pointer rounded-full p-2 bg-secondary text-secondary hover:shadow-lg">
+          <span className="cursor-pointer rounded-full bg-secondary p-2 text-secondary hover:shadow-lg">
             <DotsHorizontalIcon className="h-6" />
           </span>
         </div>
-        <div className="overflow-y-auto flex-1">
+        <div className="flex-1 overflow-y-auto">
           {notifications.map((notification) => (
             <NotificationItem key={notification._id} notification={notification} />
           ))}

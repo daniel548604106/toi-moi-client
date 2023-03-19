@@ -48,22 +48,22 @@ const PeriodSelector = (props: PeriodSelectorProps) => {
             type="checkbox"
             onChange={() => setChecked(!checked)}
             checked={checked}
-            className="w-[20px] h-[20px]"
+            className="h-[20px] w-[20px]"
           />
-          <p className="ml-[10px] font-semibold text-sm">Currently {status} here</p>
+          <p className="ml-[10px] text-sm font-semibold">Currently {status} here</p>
         </div>
       </div>
       <div className="flex items-center justify-between">
         <span>From</span>
         <div className="flex items-center">
-          <button className="group w-[100px] relative flex text-sm justify-center items-center p-2 px-4 rounded-md border text-gray-600 ">
+          <button className="group relative flex w-[100px] items-center justify-center rounded-md border p-2 px-4 text-sm text-gray-600 ">
             {startYear ? startYear : 'Year'}
             <ChevronDownIcon className="h-6" />
-            <div className="group-focus:block focus:hidden hidden  right-0 bg-secondary text-secondary transform translate-y-full bottom-0 w-[100px] border rounded-md absolute h-[150px] overflow-y-auto">
+            <div className="absolute right-0 bottom-0  hidden h-[150px] w-[100px] translate-y-full transform overflow-y-auto rounded-md border bg-secondary text-secondary focus:hidden group-focus:block">
               {yearRange.map((year) => (
                 <p
                   onClick={() => setStartYear(year)}
-                  className="hover:bg-gray-100 py-1 text-md"
+                  className="text-md py-1 hover:bg-gray-100"
                   key={year}
                 >
                   {year}
@@ -71,14 +71,14 @@ const PeriodSelector = (props: PeriodSelectorProps) => {
               ))}
             </div>
           </button>
-          <button className="group ml-[10px] justify-center  w-[100px] relative flex text-sm items-center p-2 px-4 rounded-md border text-gray-600 ">
+          <button className="group relative ml-[10px]  flex w-[100px] items-center justify-center rounded-md border p-2 px-4 text-sm text-gray-600 ">
             {startMonth ? startMonth : 'Month'}
             <ChevronDownIcon className="h-6" />
-            <div className="group-focus:block hidden right-0 bg-secondary text-secondary transform translate-y-full bottom-0 w-[100px] border rounded-md absolute h-[150px] overflow-y-auto">
+            <div className="absolute right-0 bottom-0 hidden h-[150px] w-[100px] translate-y-full transform overflow-y-auto rounded-md border bg-secondary text-secondary group-focus:block">
               {monthRange.map((month) => (
                 <p
                   onClick={() => setStartMonth(month)}
-                  className="hover:bg-gray-100 py-1 text-md"
+                  className="text-md py-1 hover:bg-gray-100"
                   key={month}
                 >
                   {month}
@@ -91,14 +91,14 @@ const PeriodSelector = (props: PeriodSelectorProps) => {
           <>
             <span>Until</span>
             <div className="flex items-center">
-              <button className="group  focus:outline-none w-[100px] relative flex text-sm justify-center items-center p-2 px-4 rounded-md border text-gray-600 ">
+              <button className="focus:outline-none  group relative flex w-[100px] items-center justify-center rounded-md border p-2 px-4 text-sm text-gray-600 ">
                 {endYear ? endYear : 'Year'}
                 <ChevronDownIcon className="h-6" />
-                <div className="hidden  group-focus:block right-0 bg-secondary text-secondary transform translate-y-full bottom-0 w-[100px] border rounded-md absolute h-[150px] overflow-y-auto">
+                <div className="absolute  right-0 bottom-0 hidden h-[150px] w-[100px] translate-y-full transform overflow-y-auto rounded-md border bg-secondary text-secondary group-focus:block">
                   {yearRange.map((year) => (
                     <p
                       onClick={() => setEndYear(year)}
-                      className="hover:bg-gray-100 py-1 text-md"
+                      className="text-md py-1 hover:bg-gray-100"
                       key={year}
                     >
                       {year}
@@ -106,14 +106,14 @@ const PeriodSelector = (props: PeriodSelectorProps) => {
                   ))}
                 </div>
               </button>
-              <button className="group focus:outline-none ml-[10px] justify-center  w-[100px] relative flex text-sm items-center p-2 px-4 rounded-md border text-gray-600 ">
+              <button className="focus:outline-none group relative ml-[10px]  flex w-[100px] items-center justify-center rounded-md border p-2 px-4 text-sm text-gray-600 ">
                 {endMonth ? endMonth : 'Month'}
                 <ChevronDownIcon className="h-6" />
-                <div className="hidden group-focus:block right-0 bg-secondary text-secondary transform translate-y-full bottom-0 w-[100px] border rounded-md absolute h-[150px] overflow-y-auto">
+                <div className="absolute right-0 bottom-0 hidden h-[150px] w-[100px] translate-y-full transform overflow-y-auto rounded-md border bg-secondary text-secondary group-focus:block">
                   {monthRange.map((month) => (
                     <p
                       onClick={() => setEndMonth(month)}
-                      className="hover:bg-gray-100 py-1 text-md"
+                      className="text-md py-1 hover:bg-gray-100"
                       key={month}
                     >
                       {month}

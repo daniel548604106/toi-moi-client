@@ -43,19 +43,19 @@ const SearchHistoryItem = (props: SearchHistoryItemProps) => {
   return (
     <div
       onClick={() => handleDirectToHistory()}
-      className="flex justify-between items-center rounded-md hover:bg-gray-100 cursor-pointer p-2 py-1"
+      className="flex cursor-pointer items-center justify-between rounded-md p-2 py-1 hover:bg-gray-100"
     >
       <div className="flex items-center">
         {history.type === 'user' ? (
           <Image
-            className="rounded-full object-cover cursor-pointer"
+            className="cursor-pointer rounded-full object-cover"
             width={40}
             height={40}
             src={history.user.profileImage || genderAvatar(history.user.gender)}
             alt="profile-image"
           />
         ) : (
-          <span className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-gray-100">
+          <span className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-gray-100">
             {history.type === 'keyword' && <SearchIcon className="h-6" />}
           </span>
         )}
@@ -64,7 +64,7 @@ const SearchHistoryItem = (props: SearchHistoryItemProps) => {
           {history.type === 'user' ? history.user.name : history.keyword}
         </span>
       </div>
-      <span onClick={(e) => handleDelete(e)} className="p-2 rounded-full hover:bg-gray-200">
+      <span onClick={(e) => handleDelete(e)} className="rounded-full p-2 hover:bg-gray-200">
         <XIcon className="h-6" />
       </span>
     </div>

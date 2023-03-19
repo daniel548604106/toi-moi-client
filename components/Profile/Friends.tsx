@@ -15,7 +15,7 @@ const Friends = ({ friends }: FriendsProps) => {
   return (
     <CardLayout title="Friends" buttonName="See All Friends" buttonLink="friends">
       <>
-        <h2 className="text-lg mb-3 text-gray-400">{`${friends.friends_total} ${
+        <h2 className="mb-3 text-lg text-gray-400">{`${friends.friends_total} ${
           friends.friends_total > 1 ? 'friends' : 'friend'
         }`}</h2>
         <div className="grid grid-cols-3 gap-2">
@@ -26,7 +26,7 @@ const Friends = ({ friends }: FriendsProps) => {
               className=""
             >
               <Image
-                className="rounded-md object-cover cursor-pointer "
+                className="cursor-pointer rounded-md object-cover "
                 width={150}
                 height={150}
                 src={friend.user.profileImage || genderAvatar(friend.user.gender)}

@@ -55,9 +55,9 @@ const FriendNotification = (props: FriendNotificationProps) => {
       onClick={() => handleReadNotification(notification._id)}
       className={`${
         isAccepted ? 'cursor-pointer' : 'cursor-none'
-      } group relative w-full  p-2 rounded-lg hover:bg-gray-100   mb-2 flex items-center`}
+      } group relative mb-2  flex w-full items-center   rounded-lg p-2 hover:bg-gray-100`}
     >
-      <div className=" flex items-center flex-1">
+      <div className=" flex flex-1 items-center">
         <span className="relative">
           <Avatar
             width={60}
@@ -66,14 +66,14 @@ const FriendNotification = (props: FriendNotificationProps) => {
             gender={notification.user.gender}
             profileImage={notification.user.profileImage}
           />
-          <span className="absolute bottom-1 right-0 bg-gray-800  rounded-full p-1">
+          <span className="absolute bottom-1 right-0 rounded-full  bg-gray-800 p-1">
             <UsersIcon className="h-4 text-white" />
           </span>
         </span>
 
         <div className=" ml-[10px]">
           <p className="text-sm text-primary">
-            <span className="text-primary cursor-pointer hover:underline font-semibold">
+            <span className="cursor-pointer font-semibold text-primary hover:underline">
               {notification.user.name}
             </span>{' '}
             {notification.type === ('newFriendInvitation' && isAccepted) ||
@@ -89,16 +89,16 @@ const FriendNotification = (props: FriendNotificationProps) => {
             {timeDiff(notification.date)}
           </p>{' '}
           {notification.type === 'newFriendInvitation' && !isAccepted && (
-            <div className="mt-[5px] w-full flex flex-1 items-center">
+            <div className="mt-[5px] flex w-full flex-1 items-center">
               <div
                 onClick={(e) => handleAcceptFriendRequest(e, notification.user.username)}
-                className={`flex items-center justify-center w-full text-xs cursor-pointer   rounded-md p-2 px-4 bg-main text-white `}
+                className={`flex w-full cursor-pointer items-center justify-center rounded-md   bg-main p-2 px-4 text-xs text-white `}
               >
                 {t('confirm')}
               </div>
               <div
                 onClick={(e) => handleRejectRequest(e, notification.user.username)}
-                className=" flex items-center justify-center w-full text-xs ml-[10px] cursor-pointer rounded-md p-2 px-4 border"
+                className=" ml-[10px] flex w-full cursor-pointer items-center justify-center rounded-md border p-2 px-4 text-xs"
               >
                 {t('cancel')}
               </div>
@@ -108,7 +108,7 @@ const FriendNotification = (props: FriendNotificationProps) => {
       </div>
       <div className="flex items-center">
         {!notification.isNotificationRead && (
-          <div className="rounded-full ml-[10px] w-[8px] h-[8px] bg-main"></div>
+          <div className="ml-[10px] h-[8px] w-[8px] rounded-full bg-main"></div>
         )}
       </div>
     </div>

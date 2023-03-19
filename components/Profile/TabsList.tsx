@@ -4,7 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { postFriendRequestAPI, removeFriendRequestAPI } from '@/axios/friendRequest';
 import { useAppSelector } from '@/hooks/useAppRedux';
 import {
-    ChatAlt2Icon, DotsHorizontalIcon, PencilAltIcon, UserAddIcon, UsersIcon
+  ChatAlt2Icon,
+  DotsHorizontalIcon,
+  PencilAltIcon,
+  UserAddIcon,
+  UsersIcon,
 } from '@heroicons/react/outline';
 import { CheckIcon, ChevronDownIcon, PlusCircleIcon } from '@heroicons/react/solid';
 
@@ -82,24 +86,24 @@ const TabsList = ({ user, friends_total, friend_status }) => {
   }, [router.query.tab]);
 
   return (
-    <div className="p-3  border-t bg-secondary text-secondary  flex items-center justify-between">
-      <div className="flex items-center font-semibold text-gray-600 capitalize">
+    <div className="flex  items-center justify-between border-t  bg-secondary p-3 text-secondary">
+      <div className="flex items-center font-semibold capitalize text-gray-600">
         {visibleTabs.slice(0, 0).map((tab) => (
           <span
             key={tab.title}
-            className={`p-3 text-xs sm:text-sm   cursor-pointer  rounded-lg hover:bg-gray-100 ${
+            className={`cursor-pointer rounded-lg p-3   text-xs  hover:bg-gray-100 sm:text-sm ${
               (activeTab === tab.title || (tab.title === 'posts' && !router.query.tab)) &&
-              'text-main border-b hover:bg-opacity-0 rounded-none border-main'
+              'rounded-none border-b border-main text-main hover:bg-opacity-0'
             }`}
             onClick={() => router.push(`/${router.query.id}/${tab.link}`)}
           >
             {tab.title} {tab.title === 'friends' && friends_total}
           </span>
         ))}
-        <span className="hidden text-xs sm:text-sm relative sm:flex cursor-pointer items-center p-3  rounded-lg hover:bg-gray-100">
+        <span className="relative hidden cursor-pointer items-center rounded-lg p-3 text-xs hover:bg-gray-100  sm:flex sm:text-sm">
           More
           <ChevronDownIcon className="h-4" />
-          <div className="hidden absolute bottom-0 left-0 transform translate-y-full rounded-lg shadow-xl border p-2 bg-secondary text-secondary w-[300px]">
+          <div className="absolute bottom-0 left-0 hidden w-[300px] translate-y-full transform rounded-lg border bg-secondary p-2 text-secondary shadow-xl">
             {moreTabs.map((tab) => (
               <div key={tab.title}>{tab.title}</div>
             ))}
@@ -110,16 +114,16 @@ const TabsList = ({ user, friends_total, friend_status }) => {
         <div className="flex items-center  space-x-3">
           <button
             onClick={() => router.push('/stories/create')}
-            className="flex items-center  bg-main text-white rounded-md px-3 py-2"
+            className="flex items-center  rounded-md bg-main px-3 py-2 text-white"
           >
-            <PlusCircleIcon className="h-6 mr-2" />
+            <PlusCircleIcon className="mr-2 h-6" />
             <span className="text-xs sm:text-sm"> Add New Stories</span>
           </button>
-          <button className="flex items-center  bg-button  rounded-md py-2 px-3">
-            <PencilAltIcon className="h-6 mr-2" />
+          <button className="flex items-center  rounded-md  bg-button py-2 px-3">
+            <PencilAltIcon className="mr-2 h-6" />
             <span className="text-xs sm:text-sm"> Edit Profile</span>
           </button>
-          <button className="py-2 px-3  rounded-md  bg-button">
+          <button className="rounded-md bg-button  py-2  px-3">
             <DotsHorizontalIcon className="h-6" />
           </button>
         </div>
@@ -128,47 +132,47 @@ const TabsList = ({ user, friends_total, friend_status }) => {
           {friendStatus === 'unfriend' && (
             <button
               onClick={() => handleSendFriendRequest()}
-              className="text-xs text-black sm:text-sm flex items-center  bg-gray-100 rounded-md py-2 px-3"
+              className="flex items-center rounded-md bg-gray-100 py-2  px-3 text-xs text-black sm:text-sm"
             >
-              <UserAddIcon className="h-6 mr-2" />
+              <UserAddIcon className="mr-2 h-6" />
               Add Friend
             </button>
           )}
           {friendStatus === 'friendRequested' && (
             <button
               onClick={() => handleRemoveRequest()}
-              className="text-xs sm:text-sm flex items-center  bg-gray-100 rounded-md py-2 px-3"
+              className="flex items-center rounded-md bg-gray-100  py-2 px-3 text-xs sm:text-sm"
             >
-              <CheckIcon className="h-6 mr-2" />
+              <CheckIcon className="mr-2 h-6" />
               Request Sent
             </button>
           )}
           {friendStatus === 'friendInvited' && (
             <button
               onClick={() => handleAcceptInvitation()}
-              className="text-xs sm:text-sm flex items-center  border-main border text-main  rounded-md py-2 px-3"
+              className="flex items-center rounded-md border  border-main py-2 px-3  text-xs text-main sm:text-sm"
             >
-              <CheckIcon className="h-6 mr-2" />
+              <CheckIcon className="mr-2 h-6" />
               Accept Invitation
             </button>
           )}
           {friendStatus === 'friend' && (
             <button
               onClick={() => handleRemoveRequest()}
-              className="text-xs sm:text-sm flex items-center  border-main border text-main  rounded-md py-2 px-3"
+              className="flex items-center rounded-md border  border-main py-2 px-3  text-xs text-main sm:text-sm"
             >
-              <UsersIcon className="h-6 mr-2" />
+              <UsersIcon className="mr-2 h-6" />
               Friend
             </button>
           )}
           <button
             onClick={() => router.push(`/messages?messageWith=${user._id}`)}
-            className="text-xs sm:text-sm flex items-center  bg-main text-white rounded-md px-3 py-2"
+            className="flex items-center rounded-md bg-main  px-3 py-2 text-xs text-white sm:text-sm"
           >
-            <ChatAlt2Icon className="h-6 mr-2" />
+            <ChatAlt2Icon className="mr-2 h-6" />
             Message
           </button>
-          <button className="py-2 px-3 rounded-md  text-black bg-gray-100">
+          <button className="rounded-md bg-gray-100 py-2  px-3 text-black">
             <DotsHorizontalIcon className="h-6" />
           </button>
         </div>

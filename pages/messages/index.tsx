@@ -246,14 +246,14 @@ const Index = (props) => {
       </Head>
       <span
         onClick={() => dispatch(toggleListOpen())}
-        className="z-40 fixed top-[110px] left-0   p-2 rounded-r-full sm:hidden bg-main text-white"
+        className="fixed top-[110px] left-0 z-40   rounded-r-full bg-main p-2 text-white sm:hidden"
       >
         <ChatAlt2Icon className="h-6" />
       </span>
       <div
         className={`${
           isListOpen ? 'translate-x-0 ' : ' -translate-x-full transform sm:transform-none'
-        } transform transition-transform duration-100 ease-in-out w-full bg-secondary fixed z-40 h-screen overflow-y-scroll sm:flex  sm:max-w-[300px] lg:max-w-[500px] border-r-2  flex-col `}
+        } fixed z-40 h-screen w-full transform flex-col overflow-y-scroll border-r-2 bg-secondary transition-transform duration-100  ease-in-out sm:flex sm:max-w-[300px]  lg:max-w-[500px] `}
       >
         <ChatroomSidebarHeader t={t} setSearchText={setSearchText} searchText={searchText} />
         <div className="flex-1 overflow-y-auto ">
@@ -262,7 +262,7 @@ const Index = (props) => {
                 <div
                   key={result._id}
                   onClick={(e) => addChat(e, result)}
-                  className="flex p-2 rounded-lg hover:bg-gray-100 cursor-pointer items-center"
+                  className="flex cursor-pointer items-center rounded-lg p-2 hover:bg-gray-100"
                 >
                   <Avatar
                     width={30}
@@ -286,7 +286,7 @@ const Index = (props) => {
         </div>
       </div>
       {chats.length > 0 ? (
-        <div className="pt-[53px] sm:pt-[0px] flex flex-col flex-1 sm:ml-[300px] lg:ml-[500px] top-0 fixed right-0 left-0 sm:top-[60px] bottom-0  ">
+        <div className="fixed top-0 right-0 left-0 bottom-0 flex flex-1 flex-col pt-[53px] sm:top-[60px] sm:ml-[300px] sm:pt-[0px] lg:ml-[500px]  ">
           <ChatroomMainHeader connectedUsers={connectedUsers} openChatUser={openChatUser} />
           <ChatroomMainRoom
             divRef={divRef}

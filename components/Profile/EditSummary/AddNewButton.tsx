@@ -8,7 +8,7 @@ interface AddNewButtonProps {
 
 const AddNewButton = ({ title }: AddNewButtonProps) => {
   return (
-    <div className="w-full flex items-center justify-center text-main cursor-pointer  p-3 rounded-lg border">
+    <div className="flex w-full cursor-pointer items-center justify-center rounded-lg  border p-3 text-main">
       <PlusCircleIcon className="h-6" />
       <span className="ml-[10px] text-sm">{title}</span>
     </div>

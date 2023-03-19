@@ -30,10 +30,10 @@ const DropDownMenuIcon = ({ Icon, children, title }) => {
     setUnreadNotification(userInfo.unreadNotification);
   }, [userInfo]);
   return (
-    <button className="cursor-none cursor-default group focus:outline-none">
+    <button className="cursor-none focus:outline-none group cursor-default">
       {title === 'Notification' && unreadNotification && (
         <div className="relative">
-          <p className="z-50 absolute text-white flex items-center justify-center top-0 transform -translate-y-1/2 right-0 w-[20px] h-[20px] text-xs rounded-full bg-red-400">
+          <p className="absolute top-0 right-0 z-50 flex h-[20px] w-[20px] -translate-y-1/2 transform items-center justify-center rounded-full bg-red-400 text-xs text-white">
             <span>1</span>
           </p>
         </div>
@@ -42,8 +42,8 @@ const DropDownMenuIcon = ({ Icon, children, title }) => {
         onClick={() => handleReadNotification()}
         className="icon group-hover:text-main group-focus:text-main"
       />
-      <div className="group-focus:block cursor-none hidden">
-        <div className="z-50 text-left max-h-[90vh] overflow-y-auto bg-secondary text-primary w-[360px] transform translate-y-full absolute bottom-1 right-0  md:right-3 shadow-lg p-3 rounded-lg">
+      <div className="cursor-none hidden group-focus:block">
+        <div className="absolute bottom-1 right-0 z-50 max-h-[90vh] w-[360px] translate-y-full transform overflow-y-auto rounded-lg bg-secondary p-3  text-left text-primary shadow-lg md:right-3">
           {children}
         </div>
       </div>

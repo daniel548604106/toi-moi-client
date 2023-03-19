@@ -36,19 +36,19 @@ const SavedCard = (props: SavedCardProps) => {
   return (
     <div
       onClick={() => router.push(`/${publisher.username}/posts/${post._id}`)}
-      className="flex relative items-center w-full justify-between p-2 rounded-lg shadow-lg cursor-pointer"
+      className="relative flex w-full cursor-pointer items-center justify-between rounded-lg p-2 shadow-lg"
     >
       <div className="flex items-center">
         <img
-          className="w-[60px] h-[60px] sm:w-[100px] object-cover sm:h-[100px] rounded-lg"
+          className="h-[60px] w-[60px] rounded-lg object-cover sm:h-[100px] sm:w-[100px]"
           src={post.picUrl || publisher.profileImage || genderAvatar(publisher.gender)}
           alt="profile-image"
         />
-        <div className="flex-1 ml-[10px] truncate space-y-2">
-          <p className="truncate overflow-hidden text-xs sm:text-sm w-[200px] sm:w-[300px]">
+        <div className="ml-[10px] flex-1 space-y-2 truncate">
+          <p className="w-[200px] overflow-hidden truncate text-xs sm:w-[300px] sm:text-sm">
             {post.text}
           </p>
-          <span className="inline-block text-xs sm:text-sm p-1 sm:p-2 rounded-lg bg-main text-white">
+          <span className="inline-block rounded-lg bg-main p-1 text-xs text-white sm:p-2 sm:text-sm">
             {type}
           </span>
         </div>
@@ -56,15 +56,15 @@ const SavedCard = (props: SavedCardProps) => {
       <span
         ref={elRef}
         onClick={(e) => handleToggleDropdown(e)}
-        className="top-1/2 right-2 transform -translate-y-1/2   absolute rounded-full p-2 border"
+        className="absolute top-1/2 right-2 -translate-y-1/2   transform rounded-full border p-2"
       >
-        <DotsHorizontalIcon className="w-4 h-4 sm:w-6" />
+        <DotsHorizontalIcon className="h-4 w-4 sm:w-6" />
         {isDropdownShow && (
           <div
             onClick={() => handleDeletePost(post._id)}
-            className="absolute flex items-center justify-center transform rounded-lg translate-y-full right-0 bottom-0 p-2 border"
+            className="absolute right-0 bottom-0 flex translate-y-full transform items-center justify-center rounded-lg border p-2"
           >
-            <TrashIcon className="h-4 sm:h-6 mr-2 " />{' '}
+            <TrashIcon className="mr-2 h-4 sm:h-6 " />{' '}
             <span className="text-xs sm:text-sm">Delete</span>
           </div>
         )}

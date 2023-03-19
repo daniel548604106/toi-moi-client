@@ -12,10 +12,10 @@ const CreateRoomModal = () => {
   const [roomCode, setRoomCode] = useState('');
   const [roomCreated, setRoomCreated] = useState(false);
   return (
-    <div className="h-screen sm:max-h-[70vh] sm:h-auto overflow-y-auto relative w-full sm:max-w-[600px] rounded-lg p-3 sm:p-5 bg-secondary text-secondary">
+    <div className="relative h-screen w-full overflow-y-auto rounded-lg bg-secondary p-3 text-secondary sm:h-auto sm:max-h-[70vh] sm:max-w-[600px] sm:p-5">
       <span
         onClick={() => dispatch(toggleCreateRoomOpen())}
-        className="z-50 absolute cursor-pointer top-4 right-2 rounded-full p-2 bg-button text-secondary"
+        className="absolute top-4 right-2 z-50 cursor-pointer rounded-full bg-button p-2 text-secondary"
       >
         <XIcon className="h-6" />
       </span>

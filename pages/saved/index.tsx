@@ -28,10 +28,10 @@ const Saved = () => {
   }, []);
 
   return (
-    <div className="w-full p-2 max-w-[600px] mx-auto py-3 sm:py-10 ">
+    <div className="mx-auto w-full max-w-[600px] p-2 py-3 sm:py-10 ">
       {savedPosts?.length > 0 ? (
         <div>
-          <h2 className="text-lg sm:text-2xl font-semibold">Saved Posts</h2>
+          <h2 className="text-lg font-semibold sm:text-2xl">Saved Posts</h2>
           <div>
             {savedPosts?.map((post) => (
               <SavedCard
@@ -45,9 +45,9 @@ const Saved = () => {
           </div>
         </div>
       ) : (
-        <div className="mt-[60px] w-full flex  flex-col items-center justify-center">
+        <div className="mt-[60px] flex w-full  flex-col items-center justify-center">
           <Image src="/images/empty-bookmark.svg" width="100" height="100" alt="empty-bookmark" />
-          <h2 className="text-lg sm:text-2xl font-semibold mt-5"> No Saved Post</h2>
+          <h2 className="mt-5 text-lg font-semibold sm:text-2xl"> No Saved Post</h2>
         </div>
       )}
     </div>

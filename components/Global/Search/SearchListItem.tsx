@@ -29,12 +29,12 @@ const SearchListItem = (props: SearchListItemProps) => {
   };
   return (
     <div
-      className="flex items-center p-[10px] cursor-pointer rounded-md hover:bg-gray-200 "
+      className="flex cursor-pointer items-center rounded-md p-[10px] hover:bg-gray-200 "
       onClick={() => handleDirectToProfile()}
     >
       {name &&
         (profileImage ? (
-          <div className="flex items-center justify-between flex-1">
+          <div className="flex flex-1 items-center justify-between">
             <div className="flex items-center">
               <Image
                 className="rounded-full object-cover"

@@ -73,16 +73,16 @@ const Index = ({ setSignupOpen }) => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="h-screen overflow-y-auto sm:h-auto bg-white relative shadow-lg rounded-lg  w-screen  sm:w-full sm:max-w-[500px]"
+      className="relative h-screen w-screen overflow-y-auto rounded-lg bg-white shadow-lg  sm:h-auto  sm:w-full sm:max-w-[500px]"
     >
       <span
         onClick={() => setSignupOpen(false)}
-        className="absolute rounded-full border border-gray-600 text-gray-600 top-5 right-5 p-2 cursor-pointer "
+        className="absolute top-5 right-5 cursor-pointer rounded-full border border-gray-600 p-2 text-gray-600 "
       >
         <XIcon className="h-4  sm:h-6" />
       </span>
-      <div className="p-3  sm:p-5 border-b">
-        <h1 className="text-xl sm:text-3xl font-semibold">Signup</h1>
+      <div className="border-b  p-3 sm:p-5">
+        <h1 className="text-xl font-semibold sm:text-3xl">Signup</h1>
         <p className="text-sm text-gray-400">Fast and simple</p>
       </div>
 
@@ -105,42 +105,42 @@ const Index = ({ setSignupOpen }) => {
           {({ errors, touched, isValid, dirty }) => (
             <Form className="space-y-3">
               {errorMsg && (
-                <div className="w-full p-3 rounded-md bg-red-600 text-white">{errorMsg}</div>
+                <div className="w-full rounded-md bg-red-600 p-3 text-white">{errorMsg}</div>
               )}
               <div
-                className={`border p-3 rounded-md flex items-center w-full ${
+                className={`flex w-full items-center rounded-md border p-3 ${
                   errors.name && touched.name && 'border-red-600'
                 }`}
               >
-                <Field placeholder="Name" className="w-full outline-none" name="name" />
+                <Field placeholder="Name" className="outline-none w-full" name="name" />
                 {errors.name && touched.name && (
                   <ExclamationCircleIcon className="h-6 text-red-600" />
                 )}
               </div>
-              <div className="text-red-600 text-sm">
+              <div className="text-sm text-red-600">
                 {/* {errors.name && touched.name ? <div>{errors.name}</div> : null} */}
               </div>
               <div
-                className={`border p-3 rounded-md flex items-center w-full ${
+                className={`flex w-full items-center rounded-md border p-3 ${
                   errors.account && touched.account && 'border-red-600'
                 }`}
               >
-                <Field placeholder="Account" className="w-full outline-none" name="account" />
+                <Field placeholder="Account" className="outline-none w-full" name="account" />
                 {errors.account && touched.account && (
                   <ExclamationCircleIcon className="h-6 text-red-600" />
                 )}
               </div>
-              <div className="text-red-600 text-sm">
+              <div className="text-sm text-red-600">
                 {/* {errors.account && touched.account ? <div>{errors.account}</div> : null} */}
               </div>
               <div
-                className={`border p-3 rounded-md flex items-center w-full ${
+                className={`flex w-full items-center rounded-md border p-3 ${
                   errors.email && touched.email && 'border-red-600'
                 }`}
               >
                 <Field
                   placeholder="Email"
-                  className="w-full outline-none"
+                  className="outline-none w-full"
                   name="email"
                   type="email"
                 />
@@ -148,17 +148,17 @@ const Index = ({ setSignupOpen }) => {
                   <ExclamationCircleIcon className="h-6 text-red-600" />
                 )}
               </div>
-              <div className="text-red-600 text-sm">
+              <div className="text-sm text-red-600">
                 {/* {errors.email && touched.email ? <div>{errors.email}</div> : null} */}
               </div>
               <div
-                className={`border p-3 rounded-md flex items-center w-full ${
+                className={`flex w-full items-center rounded-md border p-3 ${
                   errors.password && touched.password && 'border-red-600'
                 }`}
               >
                 <Field
                   placeholder="Password"
-                  className="w-full outline-none"
+                  className="outline-none w-full"
                   name="password"
                   type="password"
                 />
@@ -166,17 +166,17 @@ const Index = ({ setSignupOpen }) => {
                   <ExclamationCircleIcon className="h-6 text-red-600" />
                 )}
               </div>
-              <div className="text-red-600 text-sm">
+              <div className="text-sm text-red-600">
                 {/* {errors.password && touched.password ? <div>{errors.password}</div> : null} */}
               </div>
               <div>
                 <div className="flex items-center justify-between">
                   <div id="Birthday">Birthday</div>
-                  {birthdayError && <div className="text-red-600 text-xs">{birthdayError}</div>}
+                  {birthdayError && <div className="text-xs text-red-600">{birthdayError}</div>}
                 </div>
-                <div className="flex items-center mt-1">
+                <div className="mt-1 flex items-center">
                   <Field
-                    className={`w-full bg-white p-2 outline-none border rounded-md ${
+                    className={`outline-none w-full rounded-md border bg-white p-2 ${
                       birthdayError ? 'border-red-600' : ''
                     }`}
                     as="select"
@@ -189,7 +189,7 @@ const Index = ({ setSignupOpen }) => {
                     ))}
                   </Field>
                   <Field
-                    className={`w-full bg-white p-2 ml-[10px] outline-none border rounded-md ${
+                    className={`outline-none ml-[10px] w-full rounded-md border bg-white p-2 ${
                       birthdayError ? 'border-red-600' : ''
                     }`}
                     as="select"
@@ -202,7 +202,7 @@ const Index = ({ setSignupOpen }) => {
                     ))}
                   </Field>
                   <Field
-                    className={`w-full bg-white p-2 ml-[10px] outline-none border rounded-md ${
+                    className={`outline-none ml-[10px] w-full rounded-md border bg-white p-2 ${
                       birthdayError ? 'border-red-600' : ''
                     }`}
                     as="select"
@@ -218,34 +218,34 @@ const Index = ({ setSignupOpen }) => {
               </div>
               <div>
                 <div id="gender-group">Gender</div>
-                <div className="flex items-center mt-1" role="group" aria-labelledby="gender-group">
-                  <div className="flex border p-2 rounded-md w-full items-center justify-between">
+                <div className="mt-1 flex items-center" role="group" aria-labelledby="gender-group">
+                  <div className="flex w-full items-center justify-between rounded-md border p-2">
                     <label> Male</label>
                     <Field type="radio" name="gender" value="male" />
                   </div>
-                  <div className="flex border p-2 rounded-md w-full ml-2 items-center justify-between">
+                  <div className="ml-2 flex w-full items-center justify-between rounded-md border p-2">
                     <label>Female</label>
                     <Field type="radio" name="gender" value="female" />
                   </div>
-                  <div className="flex border p-2 rounded-md w-full ml-2 items-center justify-between">
+                  <div className="ml-2 flex w-full items-center justify-between rounded-md border p-2">
                     <label>Other</label>
                     <Field type="radio" name="gender" value="other" />
                   </div>
                 </div>
               </div>
 
-              <p className="my-[20px] text-xs sm:text-sm text-gray-600">
+              <p className="my-[20px] text-xs text-gray-600 sm:text-sm">
                 By clicking <span className="underline">Signup</span> means you&apos;'ve agreed to
-                our <span className="text-main cursor-pointer">Service policy</span> and{' '}
-                <span className="text-main cursor-pointer">Cookie policy</span>
+                our <span className="cursor-pointer text-main">Service policy</span> and{' '}
+                <span className="cursor-pointer text-main">Cookie policy</span>
               </p>
               <div className="flex items-center justify-center">
                 <button
                   type="submit"
                   disabled={!(isValid && dirty)}
-                  className={`text-md mb-20 flex items-center justify-center sm:text-lg font-semibold  text-white text-secondary rounded-md w-[200px] p-2 mx-auto ${
+                  className={`text-md mx-auto mb-20 flex w-[200px] items-center justify-center  rounded-md p-2 font-semibold text-white text-secondary sm:text-lg ${
                     !(isValid && dirty)
-                      ? 'bg-gray-100 text-black cursor-not-allowed'
+                      ? 'cursor-not-allowed bg-gray-100 text-black'
                       : 'bg-main-yellow'
                   }`}
                 >

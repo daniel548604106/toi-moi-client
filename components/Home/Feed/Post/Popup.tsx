@@ -65,33 +65,33 @@ const Popup = (props: PopupProps) => {
     }
   };
   return (
-    <ul className="shadow-lg p-2 text-xs sm:text-sm  rounded-md  bg-secondary text-secondary">
+    <ul className="rounded-md bg-secondary p-2 text-xs  text-secondary  shadow-lg sm:text-sm">
       {user.username === userInfo.username && (
         <>
           <li
             onClick={() => handleEditPost()}
-            className="cursor-pointer rounded-md flex items-center hover:bg-gray-100 py-2 px-3"
+            className="flex cursor-pointer items-center rounded-md py-2 px-3 hover:bg-gray-100"
           >
             <PencilAltIcon className="h-5" />
-            <span className="ml-[10px] text-sm whitespace-nowrap">Edit Post</span>
+            <span className="ml-[10px] whitespace-nowrap text-sm">Edit Post</span>
           </li>
           <li
             onClick={() => handleDeletePost()}
-            className="cursor-pointer rounded-md flex items-center hover:bg-gray-100 py-2 px-3"
+            className="flex cursor-pointer items-center rounded-md py-2 px-3 hover:bg-gray-100"
           >
             <TrashIcon className="h-5" />
-            <span className="ml-[10px] text-sm whitespace-nowrap">Move to trash can</span>
+            <span className="ml-[10px] whitespace-nowrap text-sm">Move to trash can</span>
           </li>
         </>
       )}
       <li
         onClick={() => handleSavePost()}
-        className={`cursor-pointer rounded-md flex items-center hover:bg-gray-100 py-2 px-3  ${
+        className={`flex cursor-pointer items-center rounded-md py-2 px-3 hover:bg-gray-100  ${
           isSaved && 'text-main'
         }`}
       >
         {isSaved ? <SolidBookmarkIcon className="h-5" /> : <BookmarkIcon className="h-5" />}
-        <span className={`ml-[10px] text-sm whitespace-nowrap`}>
+        <span className={`ml-[10px] whitespace-nowrap text-sm`}>
           {isSaved ? 'Saved' : 'Save post'}
         </span>
       </li>

@@ -36,11 +36,11 @@ const ChatroomList = (props: ChatroomListProps) => {
   return (
     <div
       onClick={() => startChat()}
-      className={`flex items-center p-2  hover:bg-gray-100 cursor-pointer ${
+      className={`flex cursor-pointer items-center  p-2 hover:bg-gray-100 ${
         router.query.message === chat.messagesWith ? 'bg-blue-100 hover:bg-blue-100' : ''
       }`}
     >
-      <div className="relative h-[40px] w-[40px] flex items-center ">
+      <div className="relative flex h-[40px] w-[40px] items-center ">
         <Image
           width="40"
           height="40"
@@ -49,11 +49,11 @@ const ChatroomList = (props: ChatroomListProps) => {
           alt="profile-image"
         />
         {isOnline && (
-          <div className="absolute top-[3px] right-[3px] h-[8px] w-[8px] border border-white rounded-full bg-green-400"></div>
+          <div className="absolute top-[3px] right-[3px] h-[8px] w-[8px] rounded-full border border-white bg-green-400"></div>
         )}
       </div>
-      <div className="ml-3 flex-1 truncate overflow-hidden">
-        <div className="flex items-center justify-between w-full">
+      <div className="ml-3 flex-1 overflow-hidden truncate">
+        <div className="flex w-full items-center justify-between">
           <p className="mr-2">{chat.name}</p>
           <p className="text-xs text-gray-600">{timeDiff(chat.date)}</p>
         </div>

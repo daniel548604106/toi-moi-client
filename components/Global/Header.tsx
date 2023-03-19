@@ -7,7 +7,7 @@ import {
   ChevronDownIcon,
   HomeIcon,
   PlusIcon,
-  UserGroupIcon
+  UserGroupIcon,
 } from '@heroicons/react/solid';
 import { AnimateSharedLayout } from 'framer-motion';
 import useTranslation from 'next-translate/useTranslation';
@@ -75,12 +75,12 @@ const Header = () => {
   };
 
   return (
-    <div className="flex items-center fixed left-0 right-0 top-0 bg-secondary text-secondary z-40 shadow-md px-3 py-1 md:py-0  sm:px-5 ">
+    <div className="fixed left-0 right-0 top-0 z-40 flex items-center bg-secondary px-3 py-1 text-secondary shadow-md sm:px-5  md:py-0 ">
       <div className="w-1/2">
-        <div className="flex space-x-2 items-center ">
+        <div className="flex items-center space-x-2 ">
           <img
             onClick={() => router.push('/')}
-            className="w-[40px] h-[40px] cursor-pointer"
+            className="h-[40px] w-[40px] cursor-pointer"
             src="/logo.svg"
             alt="logo"
           />
@@ -91,7 +91,7 @@ const Header = () => {
         <div
           className={`${
             router.pathname.includes('messages') && 'hidden'
-          } fixed max-w-[750px] flex items-center top-[50px] bg-secondary text-secondary left-0    w-full md:static  flex-grow sm:px-5 sm:mx-0 xl:px-10`}
+          } fixed top-[50px] left-0 flex w-full max-w-[750px] flex-grow items-center    bg-secondary text-secondary  sm:mx-0 sm:px-5 md:static xl:px-10`}
         >
           {menuTabs.map(({ title, href, Icon }) => (
             <HeaderIcon
@@ -105,19 +105,19 @@ const Header = () => {
         </div>
       </AnimateSharedLayout>
 
-      <div className="w-1/2  relative flex justify-end items-center space-x-1 sm:space-x-2 ">
+      <div className="relative  flex w-1/2 items-center justify-end space-x-1 sm:space-x-2 ">
         <div
           onClick={() => router.push(`/${userInfo.username}`)}
-          className="flex border items-center rounded-full space-x-2 hover:border-main  p-1 cursor-pointer "
+          className="flex cursor-pointer items-center space-x-2 rounded-full border  p-1 hover:border-main "
         >
           <img
-            className="min-w-[35px] h-[35px] cursor-pointer object-cover  rounded-full"
+            className="h-[35px] min-w-[35px] cursor-pointer rounded-full  object-cover"
             src={userInfo.profileImage || genderAvatar(userInfo.gender)}
             alt="profile-image"
           />
-          <p className="pr-2 text-sm ml-2 whitespace-nowrap hidden xl:block">{userInfo.name}</p>
+          <p className="ml-2 hidden whitespace-nowrap pr-2 text-sm xl:block">{userInfo.name}</p>
         </div>
-        <div className="hidden md:flex items-center">
+        <div className="hidden items-center md:flex">
           <DropDownMenuIcon title="Create" Icon={PlusIcon}>
             <CreateDropDown t={t} />
           </DropDownMenuIcon>
@@ -137,7 +137,7 @@ const Header = () => {
             {userInfo.unreadNotification && (
               <div
                 onClick={() => dispatch(setUnreadNotification(false))}
-                className="w-[5px] h-[5px] absolute top-[3px] right-1 rounded-full bg-main"
+                className="absolute top-[3px] right-1 h-[5px] w-[5px] rounded-full bg-main"
               ></div>
             )}
           </span>
@@ -152,7 +152,7 @@ const Header = () => {
             ref={elRef}
             className={`${
               isSideMenuShow && '-translate-x-full'
-            } transform ease-in-out overflow-y-auto transition-transform  delay-500  fixed left-full w-full bg-secondary text-button h-full z-40 top-[50px]`}
+            } fixed left-full top-[50px] z-40  h-full  w-full transform overflow-y-auto bg-secondary text-button transition-transform delay-500 ease-in-out`}
           >
             <div onClick={(e) => handleSideMenuShow(e)}>
               <Sidebar />

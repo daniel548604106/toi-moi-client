@@ -13,7 +13,7 @@ const Notification = ({ notification }: NotificationProps) => {
       initial={{ opacity: 0, y: 300 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 300 }}
-      className={`fixed flex items-center space-x-2 bottom-20 z-50 left-1/2 transform -translate-x-1/2 rounded-lg p-2 text-white bg-main`}
+      className={`fixed bottom-20 left-1/2 z-50 flex -translate-x-1/2 transform items-center space-x-2 rounded-lg bg-main p-2 text-white`}
     >
       <CheckIcon className="h-5" />
       <span>{notification}</span>

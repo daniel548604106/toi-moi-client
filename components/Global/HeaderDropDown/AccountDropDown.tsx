@@ -30,10 +30,10 @@ const AccountPopup = ({ t }) => {
   };
 
   return (
-    <div className="text-primary ml-0">
+    <div className="ml-0 text-primary">
       <div
         onClick={() => router.push(`/${userInfo.username}`)}
-        className="hidden sm:flex cursor-pointer items-center rounded-md hover:bg-gray-100 p-3 "
+        className="hidden cursor-pointer items-center rounded-md p-3 hover:bg-gray-100 sm:flex "
       >
         <Avatar
           width={60}
@@ -51,10 +51,10 @@ const AccountPopup = ({ t }) => {
 
       <div
         onClick={() => dispatch(toggleLanguageOpen())}
-        className="cursor-pointer flex justify-between items-center hover:bg-gray-100 rounded-md p-2"
+        className="flex cursor-pointer items-center justify-between rounded-md p-2 hover:bg-gray-100"
       >
         <div className="flex items-center">
-          <span className="p-2 rounded-full bg-gray-100">
+          <span className="rounded-full bg-gray-100 p-2">
             <GlobeIcon className="h-6 text-black" />
           </span>
           <span className="ml-[10px]">{t('language')}</span>
@@ -63,28 +63,28 @@ const AccountPopup = ({ t }) => {
       <div className="flex items-center justify-between  p-2">
         <div className="flex items-center ">
           {darkModeChecked ? (
-            <span className="p-2 rounded-full bg-gray-100">
+            <span className="rounded-full bg-gray-100 p-2">
               <MoonIcon className="h-6 text-black" />
             </span>
           ) : (
-            <span className="p-2 rounded-full bg-gray-100">
+            <span className="rounded-full bg-gray-100 p-2">
               <SunIcon className="h-6 text-black" />
             </span>
           )}
-          <span className="text-sm sm:text-md ml-[10px]">
+          <span className="sm:text-md ml-[10px] text-sm">
             {isDark ? t('darkMode') : t('lightMode')}
           </span>
         </div>
         <div>
           <span
             onClick={() => inputRef.current.click()}
-            className={`rounded-full w-[70px] h-[40px]  p-2  flex items-center ${
-              darkModeChecked ? 'bg-gray-700' : 'bg-white border'
+            className={`flex h-[40px] w-[70px]  items-center  rounded-full p-2 ${
+              darkModeChecked ? 'bg-gray-700' : 'border bg-white'
             }`}
           >
             <span
-              className={` rounded-full transition-all transform duration-200 ease-in-out bg-white w-[25px] h-[25px]
-             ${darkModeChecked ? ' bg-white translate-x-full' : 'bg-gray-700'}
+              className={` h-[25px] w-[25px] transform rounded-full bg-white transition-all duration-200 ease-in-out
+             ${darkModeChecked ? ' translate-x-full bg-white' : 'bg-gray-700'}
           `}
             ></span>
           </span>
@@ -102,12 +102,12 @@ const AccountPopup = ({ t }) => {
       </div>
       <div
         onClick={() => handleUserLogout(email)}
-        className="mb-32 sm:mb-0 cursor-pointer flex items-center hover:bg-gray-100 rounded-md p-2"
+        className="mb-32 flex cursor-pointer items-center rounded-md p-2 hover:bg-gray-100 sm:mb-0"
       >
-        <span className="p-2 rounded-full bg-gray-100">
+        <span className="rounded-full bg-gray-100 p-2">
           <LogoutIcon className="h-6 text-black" />
         </span>
-        <span className="text-sm sm:text-md ml-[10px]">{t('logOut')}</span>
+        <span className="sm:text-md ml-[10px] text-sm">{t('logOut')}</span>
       </div>
     </div>
   );

@@ -24,19 +24,19 @@ const EditSummaryModal = () => {
   };
 
   return (
-    <div className=" relative bg-secondary text-secondary rounded-md flex flex-col  w-full max-w-[600px] max-h-screen  sm:max-h-[70vh] h-full">
-      <div className="flex p-3 border-b items-center justify-center">
+    <div className=" relative flex h-full max-h-screen w-full max-w-[600px]  flex-col rounded-md bg-secondary  text-secondary sm:max-h-[70vh]">
+      <div className="flex items-center justify-center border-b p-3">
         <h2 className="text-xl font-semibold">Edit Summary</h2>
       </div>
       <span
         onClick={() => dispatch(setSummaryModalShow(false))}
-        className="absolute cursor-pointer top-[8px] right-[8px] p-2 rounded-full bg-gray-100"
+        className="absolute top-[8px] right-[8px] cursor-pointer rounded-full bg-gray-100 p-2"
       >
         <XIcon className="h-4" />
       </span>
-      <div className="p-5 flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto p-5">
         <div>
-          <p className="text-gray-600 text-sm">
+          <p className="text-sm text-gray-600">
             Your info will be set public, and will not be sent to your feed.
           </p>
         </div>
@@ -112,7 +112,7 @@ const EditSummaryModal = () => {
           )}
         </div>
       </div>
-      <div className="flex border-t p-3 items-center justify-end">
+      <div className="flex items-center justify-end border-t p-3">
         <div>
           <button
             onClick={() => dispatch(setSummaryModalShow(false))}
@@ -120,7 +120,7 @@ const EditSummaryModal = () => {
           >
             Cancel
           </button>
-          <button className="rounded-md p-2 text-sm ml-[10px] w-[100px] bg-main text-secondary">
+          <button className="ml-[10px] w-[100px] rounded-md bg-main p-2 text-sm text-secondary">
             Save
           </button>
         </div>

@@ -12,7 +12,7 @@ const UserCard = () => {
           <h2 className="text-md font-semibold"></h2>
           <span></span>
         </div>
-        <span className="rounded-full p-2 bg-gray-100">
+        <span className="rounded-full bg-gray-100 p-2">
           <UserIcon className="h-6" />
         </span>
       </div>

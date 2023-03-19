@@ -74,16 +74,16 @@ const Create = () => {
   };
 
   return (
-    <div className="flex h-screen fixed top-0 left-0 w-full">
-      <div className="relative p-2 space-y-3 sm:p-3 w-[400px] bg-secondary shadow-lg">
+    <div className="fixed top-0 left-0 flex h-screen w-full">
+      <div className="relative w-[400px] space-y-3 bg-secondary p-2 shadow-lg sm:p-3">
         <div onClick={() => router.push('/')} className="flex items-center">
-          <span className="p-2 cursor-pointer rounded-full bg-button mr-[10px]">
+          <span className="mr-[10px] cursor-pointer rounded-full bg-button p-2">
             <XIcon className="h-6" />
           </span>
         </div>
         <hr />
         <div>
-          <h2 className="text-lg sm:text-2xl font-semibold">你的限時動態</h2>
+          <h2 className="text-lg font-semibold sm:text-2xl">你的限時動態</h2>
         </div>
         <div className="flex items-center space-x-3">
           <Avatar
@@ -96,8 +96,8 @@ const Create = () => {
           <p className="font-semibold">{userInfo.name}</p>
         </div>
         <hr />
-        <div className="flex items-center space-x-3 cursor-pointer">
-          <span className="border rounded-full p-2">
+        <div className="flex cursor-pointer items-center space-x-3">
+          <span className="rounded-full border p-2">
             <TranslateIcon className="h-6" />
           </span>
           <p>新增文字</p>
@@ -106,11 +106,11 @@ const Create = () => {
           <textarea
             placeholder="type"
             onChange={(e) => setText(e.target.value)}
-            className="border w-full rounded-lg p-2 min-h-[200px]"
+            className="min-h-[200px] w-full rounded-lg border p-2"
           />
-          <button className="mb-3 group text-left  focus:outline-none w-full relative border rounded-lg p-2 cursor-pointer">
+          <button className="focus:outline-none group relative  mb-3 w-full cursor-pointer rounded-lg border p-2 text-left">
             <p className="p-2">{backgroundSelections[selectedIdx].title}</p>
-            <div className="hidden z-40 text-left bg-secondary  left-0  rounded-lg group-focus:block absolute bottom-0 transform translate-y-full w-full border p-2">
+            <div className="absolute left-0 bottom-0 z-40  hidden  w-full translate-y-full transform rounded-lg border bg-secondary p-2 text-left group-focus:block">
               {backgroundSelections.map((selection, idx) => (
                 <p onClick={() => setSelectedIdx(idx)} className="p-2" key={selection.id}>
                   {selection.title}
@@ -118,13 +118,13 @@ const Create = () => {
               ))}
             </div>
           </button>
-          <div className="border rounded-lg p-2 cursor-pointer">
+          <div className="cursor-pointer rounded-lg border p-2">
             <h2>背景</h2>
-            <div className="space-x-3 flex items-center">
+            <div className="flex items-center space-x-3">
               {backgroundSelections[selectedIdx]?.selections?.map(({ src }) => (
                 <Image
                   key={src}
-                  className="rounded-full mr-2"
+                  className="mr-2 rounded-full"
                   src={src}
                   width={30}
                   height={30}
@@ -134,16 +134,16 @@ const Create = () => {
             </div>
           </div>
         </div>
-        <div className="flex items-center absolute bottom-0 left-0 w-full border p-3">
+        <div className="absolute bottom-0 left-0 flex w-full items-center border p-3">
           <button
             onClick={() => handleReset()}
-            className="rounded-lg shadow-lg mr-[10px] p-3 px-5 text-sm sm:text-md"
+            className="sm:text-md mr-[10px] rounded-lg p-3 px-5 text-sm shadow-lg"
           >
             捨棄
           </button>
           <button
             onClick={() => handleUploadStory()}
-            className="flex-1 rounded-lg shadow-lg p-3 text-sm sm:text-md bg-main text-white"
+            className="sm:text-md flex-1 rounded-lg bg-main p-3 text-sm text-white shadow-lg"
           >
             分享到限時動態
           </button>

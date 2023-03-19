@@ -40,15 +40,15 @@ const ViewPostModal = () => {
   }, [activeViewPostIndex]);
 
   return (
-    <div className="flex flex-col lg:flex-row  fixed top-0 left-0 w-screen h-screen z-50">
+    <div className="fixed top-0 left-0  z-50 flex h-screen w-screen flex-col lg:flex-row">
       <div
         onClick={() => dispatch(setViewPostModalOpen(false))}
-        className="absolute z-50 top-3 left-3 p-2 rounded-full bg-gray-200"
+        className="absolute top-3 left-3 z-50 rounded-full bg-gray-200 p-2"
       >
-        <XIcon className="cursor-pointer h-6" />
+        <XIcon className="h-6 cursor-pointer" />
       </div>
       <Swiper
-        className="w-full h-[500px] lg:h-auto relative  bg-black"
+        className="relative h-[500px] w-full bg-black  lg:h-auto"
         spaceBetween={50}
         initialSlide={activeIndex}
         onSwiper={setSwiper}
@@ -59,7 +59,7 @@ const ViewPostModal = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="w-full h-full overflow-y-scroll lg:w-[600px] bg-secondary text-secondary">
+      <div className="h-full w-full overflow-y-scroll bg-secondary text-secondary lg:w-[600px]">
         {<Post post={post} socket={socket} deletePost={handleDeletePost} />}
       </div>
     </div>

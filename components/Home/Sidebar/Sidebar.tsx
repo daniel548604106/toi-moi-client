@@ -19,17 +19,17 @@ const Sidebar = () => {
     setSeeMoreOpen(true);
   };
   return (
-    <div className="max-w-[400px] text-secondary sm:sticky top-[80px] ">
+    <div className="top-[80px] max-w-[400px] text-secondary sm:sticky ">
       <div
-        className="flex hover:bg-gray-200 items-center rounded-lg  p-4 py-3 cursor-pointer "
+        className="flex cursor-pointer items-center rounded-lg  p-4 py-3 hover:bg-gray-200 "
         onClick={() => router.push(`/${userInfo.username}`)}
       >
         <img
           alt="user profile image"
-          className="w-[30px] h-[30px] sm:w-[60px] sm:h-[60px] rounded-full object-cover"
+          className="h-[30px] w-[30px] rounded-full object-cover sm:h-[60px] sm:w-[60px]"
           src={userInfo.profileImage || genderAvatar(userInfo.gender)}
         />
-        <p className=" sm:inline-flex font-medium ml-3">{userInfo.name}</p>
+        <p className=" ml-3 font-medium sm:inline-flex">{userInfo.name}</p>
       </div>
       <hr className="sm:hidden" />
       <SidebarListItem link="friends" src="/icons/friend.png" title={t('sidebar.friends')} />

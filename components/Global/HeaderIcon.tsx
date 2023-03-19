@@ -22,12 +22,12 @@ const HeaderIcon = (props: HeaderIconProps) => {
   return (
     <div
       onClick={() => handleClick()}
-      className={`relative cursor-pointer w-full text-gray-600  p-[10px]  h-14 flex items-center justify-center active:border-b-2 group rounded-md`}
+      className={`group relative flex h-14  w-full  cursor-pointer items-center justify-center rounded-md p-[10px] text-gray-600 active:border-b-2`}
     >
-      <Icon className={`h-5 md:h-7 group-hover:text-main ${active && 'text-main'}`} />
+      <Icon className={`h-5 group-hover:text-main md:h-7 ${active && 'text-main'}`} />
       {active ? (
         <motion.div
-          className="text-main absolute h-[2px] bg-main bottom-0 left-0 right-0 rounded-none border-main"
+          className="absolute bottom-0 left-0 right-0 h-[2px] rounded-none border-main bg-main text-main"
           layoutId="underline"
         />
       ) : null}

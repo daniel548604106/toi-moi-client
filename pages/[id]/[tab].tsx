@@ -14,8 +14,8 @@ const Index = ({ data }) => {
   return (
     <div>
       <ProfileCover profile={profile} user={user} />
-      <div className="bg-secondary text-secondary sticky top-[60px] border-b">
-        <div className="max-w-7xl mx-auto ">
+      <div className="sticky top-[60px] border-b bg-secondary text-secondary">
+        <div className="mx-auto max-w-7xl ">
           <TabsList friend_status={''} friends_total={0} user={{ name: '' }} />
         </div>
       </div>

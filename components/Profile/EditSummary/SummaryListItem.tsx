@@ -10,7 +10,7 @@ interface SummaryListItemProp {
 const SummaryListItem = (props: SummaryListItemProp) => {
   const { company_name, school_name, major, job_title, Icon } = props;
   return (
-    <div className="flex items-center my-2 space-x-2">
+    <div className="my-2 flex items-center space-x-2">
       <Icon className="h-6" />
       <span>在</span>
       <span>{company_name || school_name}</span>

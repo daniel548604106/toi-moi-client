@@ -11,16 +11,16 @@ interface StoryCardProps {
 const StoryCard = (props: StoryCardProps) => {
   const { name, profile, src } = props;
   return (
-    <div className="group flex-shrink-0 w-1/4 sm:w-1/5 relative h-44 overflow-hidden flex flex-col rounded-xl transition duration-75 cursor-pointer hover:opacity-80  ">
+    <div className="group relative flex h-44 w-1/4 flex-shrink-0 cursor-pointer flex-col overflow-hidden rounded-xl transition duration-75 hover:opacity-80 sm:w-1/5  ">
       <Image
-        className="object-cover h-full filter group-hover:transform group-hover:scale-110  transition-all duration-150"
+        className="h-full object-cover filter transition-all duration-150  group-hover:scale-110 group-hover:transform"
         layout="fill"
         src={src}
         alt="story"
       />
-      <div className="absolute rounded-full top-2 border-white border-4  z-10 left-[8px] top-[20px]">
+      <div className="absolute top-2 left-[8px] top-[20px] z-10  rounded-full border-4 border-white">
         <Image
-          className=" object-cover rounded-full"
+          className=" rounded-full object-cover"
           src={profile}
           width={40}
           height={40}
@@ -28,7 +28,7 @@ const StoryCard = (props: StoryCardProps) => {
           alt="profile-image"
         />
       </div>
-      <span className="text-secondary bottom-3 left-3 absolute max-w-[50px] truncate">{name}</span>
+      <span className="absolute bottom-3 left-3 max-w-[50px] truncate text-secondary">{name}</span>
     </div>
   );
 };

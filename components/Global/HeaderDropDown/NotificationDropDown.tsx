@@ -36,7 +36,7 @@ const NotificationDropDown = (props: NotificationDropDownProps) => {
         <h2 className="text-2xl font-semibold">{t('notification')}</h2>
         <span
           onClick={() => router.push('/notifications')}
-          className="text-main cursor-pointer text-sm"
+          className="cursor-pointer text-sm text-main"
         >
           {t('seeAll')}
         </span>

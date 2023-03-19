@@ -23,7 +23,7 @@ const CurrentCityInputBox = ({ setActiveBox }: CurrentCityInputBoxProps) => {
   return (
     <div className="space-y-3">
       <input
-        className="border rounded-lg p-3 w-full"
+        className="w-full rounded-lg border p-3"
         placeholder="Current City"
         type="text"
         onChange={(e) => setCurrentCity(e.target.value)}
@@ -31,15 +31,15 @@ const CurrentCityInputBox = ({ setActiveBox }: CurrentCityInputBoxProps) => {
       <div className="flex items-center justify-end space-x-2">
         <button
           onClick={() => handleSubmit()}
-          className={`rounded-lg p-2 px-3 w-full ${
+          className={`w-full rounded-lg p-2 px-3 ${
             available
               ? 'bg-main text-white'
-              : 'bg-secondary text-secondary border cursor-not-allowed'
+              : 'cursor-not-allowed border bg-secondary text-secondary'
           }`}
         >
           Save
         </button>
-        <button onClick={() => setActiveBox(0)} className="rounded-lg p-2 px-3 border ">
+        <button onClick={() => setActiveBox(0)} className="rounded-lg border p-2 px-3 ">
           Cancel
         </button>
       </div>
