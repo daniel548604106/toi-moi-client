@@ -6,8 +6,6 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import Header from '@/components/Global/Header';
 
-import Head from './Head';
-
 const Layout = ({ children }) => {
   const router = useRouter();
 
@@ -15,7 +13,6 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Head />
       {/* {router.pathname !== '/login' && isUserLoggedIn && <Header />} */}
       <main
         className={`${
