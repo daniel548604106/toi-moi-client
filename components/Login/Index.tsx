@@ -53,13 +53,14 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    const userEmail = Cookie.get('userEmail');
-    if (userEmail) {
-      setLoginInput({ ...loginInput, email: userEmail });
-    }
-    setShowNotifications(true);
-  }, [loginInput]);
+  // useEffect(() => {
+  //   const userEmail = Cookie.get('userEmail');
+  //   if (userEmail) {
+  //     setLoginInput({ ...loginInput, email: userEmail });
+  //   }
+  //   setShowNotifications(true);
+  // }, [loginInput]);
+
   return (
     <div className="mx-auto flex h-screen w-full max-w-5xl flex-col items-center justify-center  px-5 md:flex-row md:justify-between">
       {isSignupOpen && (

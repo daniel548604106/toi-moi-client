@@ -25,26 +25,26 @@ const Index = ({ data }) => {
 
 export default Index;
 
-export async function getServerSideProps({ req, params, res }) {
-  try {
-    const username = params.id;
-    const token = req.cookies.token;
-    const res = await axios.get(`${process.env.API_BASE_URL}/api/profile/${username}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return {
-      props: {
-        data: res.data,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      props: {
-        error: 'Error',
-      },
-    };
-  }
-}
+// export async function getServerSideProps({ req, params, res }) {
+//   try {
+//     const username = params.id;
+//     const token = req.cookies.token;
+//     const res = await axios.get(`${process.env.API_BASE_URL}/api/profile/${username}`, {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+//     return {
+//       props: {
+//         data: res.data,
+//       },
+//     };
+//   } catch (error) {
+//     console.log(error);
+//     return {
+//       props: {
+//         error: 'Error',
+//       },
+//     };
+//   }
+// }
