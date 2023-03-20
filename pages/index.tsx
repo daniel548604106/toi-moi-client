@@ -228,34 +228,50 @@ export async function getServerSideProps({ req, res }) {
   try {
     // get server side cookies
     const token = req.cookies.token;
-    let posts, friends;
 
-    if (token) {
-      friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      posts = await axios.get(`${process.env.API_BASE_URL}/api/posts?page=1`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    }
+    const getFriendsListAPI = async () => {
+      try {
+        const friends = await axios.get(`${process.env.API_BASE_URL}/api/friends`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-    if (!posts.data) {
+        return friends;
+      } catch (error) {
+        console.log(error, 'error');
+      }
+    };
+
+    const getPostsAPI = async () => {
+      try {
+        const data = await axios.get(`${process.env.API_BASE_URL}/api/posts?page=1`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        return data;
+      } catch (error) {
+        console.log(error, 'error');
+      }
+    };
+
+    const [posts, friends] = await Promise.all([getPostsAPI(), getFriendsListAPI()]);
+
+    if (!posts?.data) {
       return {
         notFound: true,
       };
     }
     return {
       props: {
-        posts: posts.data,
-        friends: friends.data,
+        posts: posts?.data || [],
+        friends: friends?.data || [],
       },
     };
   } catch (error) {
-    console.log(error);
+    console.log(error, 'error index');
     return {
       props: {
         ok: false,

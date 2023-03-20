@@ -1,7 +1,10 @@
 import axios from 'axios';
 import Cookie from 'js-cookie';
+import router from 'next/router';
 
-const request = axios.create({
+const token = Cookie.get('token');
+
+const axiosInstance = axios.create({
   baseURL:
     process.env.NODE_ENV === 'development'
       ? `http://localhost:3001/api`
@@ -9,11 +12,23 @@ const request = axios.create({
 });
 
 // Add a request interceptor
-request.interceptors.request.use(function (config) {
+axiosInstance.interceptors.request.use(function (config) {
   const token = Cookie.get('token');
   config.headers.Authorization = `Bearer ${token}`;
 
   return config;
 });
 
-export default request;
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (['401', '403'].includes(error.response.status)) {
+      Cookie.remove('token');
+      router.push('/login');
+    }
+
+    console.log(error, 'axios error');
+  },
+);
+
+export default axiosInstance;

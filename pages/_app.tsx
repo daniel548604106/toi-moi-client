@@ -16,12 +16,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
+import ErrorBoundary from '@/components/ErrorBoundary';
 import Header from '@/components/Global/Header';
 import GlobalLoader from '@/components/Global/Loader/PostSkeletonLoader';
 import LoaderSpinner from '@/components/Global/LoaderSpinner';
 import Notification from '@/components/Global/Notification';
 import ViewPostModal from '@/components/Global/ViewPostModal';
 import InputBoxModal from '@/components/Home/Feed/InputBoxModal';
+import Layout from '@/components/Layout';
 import Login from '@/components/Login/Index';
 import * as ga from '@/lib/gtag';
 import { setIsCommonLoading, setNotification } from '@/redux/slices/globalSlice';
@@ -136,75 +138,37 @@ const App = ({ Component, pageProps }) => {
     <>
       <Head>
         <title>Toi & Moi</title>
-        <meta
-          name="description"
-          content="Toi&Moi is a fullstack social platform designated to connect people from distances away, users are able to build their own profile and connect with people from around the world with realtime messaging and friend system. "
-        />
-
-        <meta name="keywords" content="Toi&Moi social-media friend post" />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:description"
-          content="Toi&Moi is a fullstack social platform designated to connect people from distances away, users are able to build their own profile and connect with people from around the world with realtime messaging and friend system."
-        />
-        <meta name="theme-color" content="#eb7f82" />
-        <meta property="fb:app_id" content="4937468222991458" />
-        <meta property="og:title" content="Toi & Moi | Brand New Social Media Platform" />
-        <meta property="og:url" content="https://toi-moi.herokuapp.com" />
-        <meta property="og:image" content="https://cdn01.pinkoi.com/product/ZD5QQsTg/0/800x0.jpg" />
-
-        {/* new */}
-
-        <meta property="fb:app_id" content="4937468222991458" />
-        <meta
-          property="og:title"
-          content="O.HI.O | 亞洲領先設計購物網站 | Design the way you are"
-        />
-        <meta property="og:url" content="https://www.pinkoi.com/browse" />
-        <meta property="og:image" content="https://cdn01.pinkoi.com/product/ZD5QQsTg/0/800x0.jpg" />
-
-        {/* <!-- iOS  --> */}
-        <link href="logo.svg" rel="apple-touch-icon" />
-        <link href="logo.svg" rel="apple-touch-icon" sizes="76x76" />
-        <link href="logo.svg" rel="apple-touch-icon" sizes="120x120" />
-        <link href="logo.svg" rel="apple-touch-icon" sizes="152x152" />
-
-        <link rel="apple-touch-icon" href="./favicon.ico" />
-        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-        <link rel="apple-touch-icon" href="../public/favicon.ico" />
-        <link rel="icon" href="../public/favicon.ico" />
       </Head>
-      {!isUserLoggedIn && !allowedRoutes ? (
-        <Login />
-      ) : (
-        <>
-          {isModalOpen && (
-            <Overlay>
-              <>
-                {isLikesListOpen && <LikesListModal />}
-                {isPostInputBoxOpen && <InputBoxModal />}
-                {isViewPostModalOpen && <ViewPostModal />}
-                {isEditProfileImageOpen && <EditProfileImageModal />}
-                {isEditSummaryModalOpen && <EditSummaryModal />}
-                {isLanguageOpen && <LanguageSettingModal />}
-                {isCreateRoomOpen && <CreateRoomModal />}
-              </>
-            </Overlay>
+      <ErrorBoundary>
+        <Layout>
+          {!isUserLoggedIn && !allowedRoutes ? (
+            <Login />
+          ) : (
+            <>
+              {isModalOpen && (
+                <Overlay>
+                  <>
+                    {isLikesListOpen && <LikesListModal />}
+                    {isPostInputBoxOpen && <InputBoxModal />}
+                    {isViewPostModalOpen && <ViewPostModal />}
+                    {isEditProfileImageOpen && <EditProfileImageModal />}
+                    {isEditSummaryModalOpen && <EditSummaryModal />}
+                    {isLanguageOpen && <LanguageSettingModal />}
+                    {isCreateRoomOpen && <CreateRoomModal />}
+                  </>
+                </Overlay>
+              )}
+              {!allowedRoutes && <Header />}
+              {/* <AnimatePresence> */}
+              {notification && <Notification notification={notification} />}
+              {/* </AnimatePresence> */}
+              {isCommonLoading && <GlobalLoader />}
+
+              <Component {...pageProps} />
+            </>
           )}
-          {!allowedRoutes && <Header />}
-          {/* <AnimatePresence> */}
-          {notification && <Notification notification={notification} />}
-          {/* </AnimatePresence> */}
-          {isCommonLoading && <GlobalLoader />}
-          <main
-            className={`${
-              router.pathname.includes('messages') ? 'pt-56px' : 'pt-[110px]'
-            }  primary h-screen dark:bg-primary md:pt-[56px]`}
-          >
-            <Component {...pageProps} />
-          </main>
-        </>
-      )}
+        </Layout>
+      </ErrorBoundary>
     </>
   );
 };

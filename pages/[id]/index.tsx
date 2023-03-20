@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import {
   getProfileFriendsAPI,
   getProfilePostsAPI,
-  getProfileSummaryAPI,
+  getProfileSummaryAPI
 } from '@/axios/profileRequest';
 
 import LoaderSpinner from '@/components/Global/LoaderSpinner';
