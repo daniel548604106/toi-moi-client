@@ -4,6 +4,8 @@ interface BirthdayCardLayoutProps {
   children: React.ReactChild;
   title: string;
 }
+
+
 const BirthdayCardLayout = ({ children, title }: BirthdayCardLayoutProps) => {
   return (
     <div className="rounded-lg  bg-secondary p-3 text-secondary sm:p-5">

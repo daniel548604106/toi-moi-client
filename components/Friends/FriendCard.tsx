@@ -40,7 +40,7 @@ const FriendCard = ({ user, removeRecommendation }: FriendCardProps) => {
         <Image
           className="h-auto w-full cursor-pointer rounded-lg object-cover"
           src={user.profileImage || genderAvatar(user.gender)}
-          layout="fill"
+          fill={true}
           alt="profile-image"
         />
       </div>
