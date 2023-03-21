@@ -3,16 +3,16 @@ import dynamic from 'next/dynamic';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import LoaderSpinner from '@/components/global/LoaderSpinner';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 import Loader from '@/components/global/Loader';
-import ProfileCover from '@/components/post/ProfileCover';
+import ProfileCover from '@/components/posts/ProfileCover';
 
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
 // Dynamic import
 const Post = dynamic(() => import('@/components/Home/Feed/Post/Post'), {
   loading: () => <LoaderSpinner />,
 });
-const NotificationItem = dynamic(() => import('@/components/post/NotificationItem'), {
+const NotificationItem = dynamic(() => import('@/components/posts/NotificationItem'), {
   loading: () => <Loader />,
 });
 const PostLayout = ({ post, profile, notifications }) => {
