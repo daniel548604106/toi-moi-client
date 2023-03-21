@@ -8,9 +8,9 @@ import { useRouter } from 'next/router';
 
 import { postLoginAPI } from '@/axios/authRequest';
 
-import ForgotPassword from '@/components/ForgotPassword/Index';
-import Loader from '@/components/Global/Loader';
-import Signup from '@/components/Signup/Index';
+import Loader from '@/components/Global/loader/LoaderBounce';
+import ForgotPassword from '@/components/login/ForgotPassword';
+import Signup from '@/components/login/Signup';
 import catchError from '@/lib/catchError';
 import { setUserLogin } from '@/redux/slices/userSlice';
 

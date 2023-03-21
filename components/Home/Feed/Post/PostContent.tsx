@@ -7,13 +7,13 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { updatePostAPI } from '@/axios/postRequest';
 
-import Loader from '@/components/Global/Loader';
+import Loader from '@/components/Global/loader/LoaderBounce';
 import * as ga from '@/lib/gtag';
 import { setNotification } from '@/redux/slices/globalSlice';
 import {
   apiGetCurrentPost,
   setActiveViewPostIndex,
-  setViewPostModalOpen,
+  setViewPostModalOpen
 } from '@/redux/slices/postSlice';
 
 const renderImageLayout = (length, index) => {

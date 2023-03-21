@@ -13,7 +13,8 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {/* {router.pathname !== '/login' && isUserLoggedIn && <Header />} */}
+      {router.pathname !== '/login' && isUserLoggedIn && <Header />}
+
       <main
         className={`${
           router.pathname.includes('messages') ? 'pt-56px' : 'pt-[110px]'

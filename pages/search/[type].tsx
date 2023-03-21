@@ -3,9 +3,9 @@ import React from 'react';
 import { ChartSquareBarIcon, PhotographIcon, UsersIcon } from '@heroicons/react/outline';
 import router from 'next/router';
 
-import FilterListRow from '@/components/Search/FilterListRow';
-import SectionCard from '@/components/Search/SectionCard';
-import SidebarList from '@/components/Search/SidebarList';
+import FilterListRow from '@/components/search/FilterListRow';
+import SectionCard from '@/components/search/SectionCard';
+import SidebarList from '@/components/search/SidebarList';
 
 const SearchType = () => {
   const filterList = [

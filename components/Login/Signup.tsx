@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 
 import { postSignupAPI } from '@/axios/authRequest';
 
-import Loader from '@/components/Global/Loader';
+import Loader from '@/components/Global/loader/LoaderBounce';
 import catchError from '@/lib/catchError';
 import { setUserLogin } from '@/redux/slices/userSlice';
 

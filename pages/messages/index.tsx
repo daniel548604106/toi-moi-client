@@ -13,12 +13,12 @@ import { getChatUserInfoAPI } from '@/axios/chatRequest';
 import { searchRequestAPI } from '@/axios/searchRequest';
 
 import Avatar from '@/components/Global/Avatar';
-import ChatroomMainHeader from '@/components/Messages/ChatroomMain/ChatroomMainHeader';
-import ChatroomMainInputBox from '@/components/Messages/ChatroomMain/ChatroomMainInputBox';
-import ChatroomMainRoom from '@/components/Messages/ChatroomMain/ChatroomMainRoom';
-import ChatroomList from '@/components/Messages/ChatroomSidebar/ChatroomList';
-import ChatroomSidebarHeader from '@/components/Messages/ChatroomSidebar/ChatroomSidebarHeader';
-import EmptyChat from '@/components/Messages/EmptyChat';
+import ChatroomMainHeader from '@/components/messages/ChatroomMain/ChatroomMainHeader';
+import ChatroomMainInputBox from '@/components/messages/ChatroomMain/ChatroomMainInputBox';
+import ChatroomMainRoom from '@/components/messages/ChatroomMain/ChatroomMainRoom';
+import ChatroomList from '@/components/messages/ChatroomSidebar/ChatroomList';
+import ChatroomSidebarHeader from '@/components/messages/ChatroomSidebar/ChatroomSidebarHeader';
+import EmptyChat from '@/components/messages/EmptyChat';
 import { ClientToServerEvents, ServerToClientEvents } from '@/interfaces/I_socket';
 import { toggleListOpen } from '@/redux/slices/messageSlice';
 

@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-import ProfileCover from '@/components/Profile/ProfileCover';
-import TabsList from '@/components/Profile/TabsList';
+import ProfileCover from '@/components/profile/ProfileCover';
+import TabsList from '@/components/profile/TabsList';
 
 const Index = ({ data }) => {
   const router = useRouter();

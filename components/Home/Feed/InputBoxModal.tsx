@@ -9,8 +9,9 @@ import useClickOutside from '@/hooks/useClickOutside';
 import useNotify from '@/hooks/useNotify';
 
 import { postNewPostAPI } from '@/axios/postRequest';
+
 import Avatar from '@/components/Global/Avatar';
-import Loader from '@/components/Global/Loader';
+import Loader from '@/components/Global/loader/LoaderBounce';
 import LoaderSpinner from '@/components/Global/LoaderSpinner';
 import { setNotification } from '@/redux/slices/globalSlice';
 import { setImagesToPost, setPostInputBoxOpen } from '@/redux/slices/postSlice';
@@ -85,7 +86,7 @@ const InputBoxModal = () => {
   }, [images, dispatch]);
 
   return (
-    <div className="relative h-screen w-full max-w-[600px] overflow-y-auto rounded-md bg-secondary pb-10 text-secondary sm:h-[70vh]  sm:pb-4">
+    <div className="relative h-screen w-full max-w-[600px] overflow-y-auto rounded-md bg-secondary pb-10 text-secondary sm:h-auto sm:max-h-[70vh]  sm:pb-4">
       <div className="sticky top-0 z-40 border-b bg-white  p-3 text-center text-lg font-semibold">
         Create Post
         <XIcon
@@ -157,7 +158,7 @@ const InputBoxModal = () => {
         </div>
         <button
           onClick={(e) => sendPost(e)}
-          className={`mt-[10px]  mb-10 flex w-full cursor-default  items-center  justify-center rounded-lg py-3 text-sm  ${
+          className={`mt-[10px]  mb-10 flex w-full cursor-default items-center  justify-center  rounded-lg py-3 text-sm sm:mb-0  ${
             isPostAvailable ? 'cursor-pointer bg-main  text-white' : 'bg-gray-100'
           } `}
         >

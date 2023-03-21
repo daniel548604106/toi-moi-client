@@ -9,26 +9,21 @@ interface AvatarProps {
   width?: number;
   height?: number;
   profileImage: string;
-  layout?: 'intrinsic' | 'fixed' | 'responsive';
   username?: string;
   gender?: 'male' | 'female' | 'other';
 }
-const Avatar = (props: AvatarProps) => {
-  const {
-    width = 60,
-    height = 60,
-    profileImage,
-    layout = 'intrinsic',
-    username = '',
-    gender = 'other',
-  } = props;
-
+const Avatar = ({
+  width = 60,
+  height = 60,
+  profileImage,
+  username = '',
+  gender = 'other',
+}: AvatarProps) => {
   return (
     <Image
       onClick={() => router.push(`/${username}`)}
       className="avatarFallback cursor-pointer rounded-full object-cover "
       width={width}
-      layout={layout}
       height={height}
       src={profileImage || genderAvatar(gender)}
       alt="profile-image"

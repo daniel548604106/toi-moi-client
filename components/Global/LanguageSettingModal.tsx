@@ -17,6 +17,10 @@ const languages = [
     name: '繁體中文',
     id: 'zh-TW',
   },
+  {
+    name: '日本語',
+    id: 'ja-JP',
+  },
 ];
 
 const LanguageSettingModal = () => {

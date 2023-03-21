@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { getSavedPostsAPI } from '@/axios/savedRequest';
 
-import SavedCard from '@/components/Saved/SavedCard';
+import SavedCard from '@/components/saved/SavedCard';
 
 const Saved = () => {
   const [savedPosts, setSavedPosts] = useState(null);

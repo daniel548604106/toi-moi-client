@@ -1,5 +1,7 @@
 import React from 'react';
 
+import useTranslation from 'next-translate/useTranslation';
+
 const PostSkeletonLoader = () => {
   return (
     <div className="timeline-wrapper">
@@ -24,13 +26,17 @@ const PostSkeletonLoader = () => {
   );
 };
 
-const GlobalLoader = () => (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-700 bg-opacity-30">
-    <div className=" flex-1 text-center text-gray-600">
-      <PostSkeletonLoader />
-      <span className="rounded-full bg-white py-2 px-4 text-xs">載入中...</span>
+const GlobalLoader = () => {
+  const { t } = useTranslation('common');
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-700 bg-opacity-30">
+      <div className=" flex-1 text-center text-gray-600">
+        <PostSkeletonLoader />
+        <span className="rounded-full bg-white py-2 px-4 text-xs">{t('loading')}...</span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default GlobalLoader;

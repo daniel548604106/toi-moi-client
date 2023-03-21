@@ -4,9 +4,9 @@ import { CameraIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import router from 'next/router';
 
-import { UserInfo } from '@/interfaces/I_common';
-
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import { UserInfo } from '@/interfaces/I_common';
 import { apiGetCurrentPost, setViewPostModalOpen } from '@/redux/slices/postSlice';
 import { setEditProfileImageOpen, setProfileImageToUpdate } from '@/redux/slices/userSlice';
 
@@ -51,20 +51,19 @@ const ProfileImage = (props: ProfileImageProps) => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="relative  h-[100px] w-[100px] rounded-full border border-white sm:h-[160px] sm:w-[160px] "
+      className="relative  border h-[100px] w-[100px] sm:w-[160px] sm:h-[160px] rounded-full border-white "
     >
       <Image
         onClick={(e) => handleViewCurrentProfile(e)}
         className={`${profileImage ? 'cursor-pointer' : 'cursor-default'} 
-       rounded-full   object-cover sm:h-[100px]   sm:w-[100px]`}
+       object-cover   sm:w-[100px] sm:h-[100px]   rounded-full`}
         src={profileImage || genderAvatar(user.gender)}
-        layout="fill"
         alt="profile-image"
       />
       {router.query.id === userInfo.username && (
         <span
           onClick={(e) => handleNewProfileImagePreview(e)}
-          className="absolute bottom-0 right-0 cursor-pointer rounded-full border-2 bg-secondary p-2 text-secondary shadow-md hover:shadow-xl"
+          className="cursor-pointer absolute bottom-0 border-2 right-0 p-2 rounded-full bg-secondary text-secondary shadow-md hover:shadow-xl"
         >
           <CameraIcon className="h-6 " />
           <input

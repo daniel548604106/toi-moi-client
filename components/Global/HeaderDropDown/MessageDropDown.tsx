@@ -4,13 +4,13 @@ import {
   DotsHorizontalIcon,
   PencilAltIcon,
   SearchIcon,
-  VideoCameraIcon,
+  VideoCameraIcon
 } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 
 import { getAllChatsAPI } from '@/axios/chatRequest';
 
-import EmptyChat from '../../Messages/EmptyChat';
+import EmptyChat from '../../messages/EmptyChat';
 import ToolTips from '../ToolTips';
 import MessageDropDownList from './MesseageDropDownList';
 

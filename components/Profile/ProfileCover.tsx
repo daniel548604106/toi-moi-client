@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import { postNewPostAPI } from '@/axios/postRequest';
 import { patchProfileAPI } from '@/axios/profileRequest';
 
-import Loader from '@/components/Global/Loader';
+import Loader from '@/components/Global/loader/LoaderBounce';
 import { UserInfo } from '@/interfaces/I_common';
 import { apiGetCurrentPost, setViewPostModalOpen } from '@/redux/slices/postSlice';
 
@@ -138,7 +138,6 @@ const ProfileCover = (props: ProfileCoverProps) => {
             width={1000}
             height={350}
             className="rounded-b-2xl object-cover"
-            layout="responsive"
             src={coverImage || `/images/profileCoverDefault.png`}
             alt="cover-image"
           />

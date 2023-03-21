@@ -7,8 +7,8 @@ import router from 'next/router';
 
 import useAxios from '@/hooks/useAxios';
 
-import EmptyFriendList from '@/components/Friends/EmptyFriendList';
-import Sidebar from '@/components/Friends/Sidebar';
+import EmptyFriendList from '@/components/friends/EmptyFriendList';
+import Sidebar from '@/components/friends/Sidebar';
 import Avatar from '@/components/Global/Avatar';
 import LoaderSpinner from '@/components/Global/LoaderSpinner';
 

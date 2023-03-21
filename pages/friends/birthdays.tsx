@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-import EmptyBirthday from '@/components/Friends/Birthdays/EmptyBirthday';
-import MonthlyBirthdays from '@/components/Friends/Birthdays/MonthlyBirthdays';
-import RecentBirthdays from '@/components/Friends/Birthdays/RecentBirthdays';
-import Sidebar from '@/components/Friends/Sidebar';
+import EmptyBirthday from '@/components/friends/Birthdays/EmptyBirthday';
+import MonthlyBirthdays from '@/components/friends/Birthdays/MonthlyBirthdays';
+import RecentBirthdays from '@/components/friends/Birthdays/RecentBirthdays';
+import Sidebar from '@/components/friends/Sidebar';
 
 const Birthdays = ({ friends }) => {
   const now = dayjs();

@@ -8,7 +8,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { postNewPostAPI } from '@/axios/postRequest';
 import { patchProfileImageAPI } from '@/axios/profileRequest';
-import Loader from '@/components/Global/Loader';
+
+import Loader from '@/components/Global/loader/LoaderBounce';
 import { getProfileData } from '@/redux/slices/profileSlice';
 import { getMyInfo, setEditProfileImageOpen } from '@/redux/slices/userSlice';
 
@@ -78,7 +79,6 @@ const EditProfileImageModal = () => {
         <div className="relative mx-auto   min-h-[300px] w-[300px] p-3 sm:h-[500px] sm:w-[500px] ">
           {profileImageToUpdate && (
             <Image
-              layout="fill"
               className=" rounded-md object-cover"
               src={profileImageToUpdate}
               alt="profile-image"

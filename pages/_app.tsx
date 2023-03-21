@@ -18,13 +18,13 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import ErrorBoundary from '@/components/ErrorBoundary';
 import Header from '@/components/Global/Header';
-import GlobalLoader from '@/components/Global/Loader/PostSkeletonLoader';
+import GlobalLoader from '@/components/Global/loader/PostSkeletonLoader';
 import LoaderSpinner from '@/components/Global/LoaderSpinner';
 import Notification from '@/components/Global/Notification';
 import ViewPostModal from '@/components/Global/ViewPostModal';
 import InputBoxModal from '@/components/Home/Feed/InputBoxModal';
 import Layout from '@/components/Layout';
-import Login from '@/components/Login/Index';
+import Login from '@/components/login/Index';
 import * as ga from '@/lib/gtag';
 import { setIsCommonLoading, setNotification } from '@/redux/slices/globalSlice';
 import { setUserLogout } from '@/redux/slices/userSlice';
@@ -36,7 +36,7 @@ const Overlay = dynamic(() => import('@/components/Global/Overlay'), {
 
 // Modals
 
-const EditSummaryModal = dynamic(() => import('@/components/Profile/EditSummaryModal'), {
+const EditSummaryModal = dynamic(() => import('@/components/profile/EditSummaryModal'), {
   loading: () => <LoaderSpinner />,
 });
 const LikesListModal = dynamic(() => import('@/components/Home/Feed/LikesListModal'), {
@@ -45,7 +45,7 @@ const LikesListModal = dynamic(() => import('@/components/Home/Feed/LikesListMod
 const CreateRoomModal = dynamic(() => import('@/components/Home/Feed/Room/CreateRoomModal/Index'), {
   loading: () => <LoaderSpinner />,
 });
-const EditProfileImageModal = dynamic(() => import('@/components/Profile/EditProfileImageModal'), {
+const EditProfileImageModal = dynamic(() => import('@/components/profile/EditProfileImageModal'), {
   loading: () => <LoaderSpinner />,
 });
 const LanguageSettingModal = dynamic(() => import('@/components/Global/LanguageSettingModal'), {
@@ -127,7 +127,6 @@ const App = ({ Component, pageProps }) => {
   const allowedRoutes = router.pathname === '/reset/password';
   const isModalOpen =
     isLikesListOpen ||
-    isPostInputBoxOpen ||
     isViewPostModalOpen ||
     isEditProfileImageOpen ||
     isEditSummaryModalOpen ||
@@ -149,7 +148,6 @@ const App = ({ Component, pageProps }) => {
                 <Overlay>
                   <>
                     {isLikesListOpen && <LikesListModal />}
-                    {isPostInputBoxOpen && <InputBoxModal />}
                     {isViewPostModalOpen && <ViewPostModal />}
                     {isEditProfileImageOpen && <EditProfileImageModal />}
                     {isEditSummaryModalOpen && <EditSummaryModal />}
@@ -158,7 +156,6 @@ const App = ({ Component, pageProps }) => {
                   </>
                 </Overlay>
               )}
-              {!allowedRoutes && <Header />}
               {/* <AnimatePresence> */}
               {notification && <Notification notification={notification} />}
               {/* </AnimatePresence> */}
