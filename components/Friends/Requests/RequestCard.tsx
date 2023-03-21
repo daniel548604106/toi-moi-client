@@ -2,9 +2,8 @@ import React from 'react';
 
 import router from 'next/router';
 
+import Avatar from '@/components/global/Avatar';
 import { UserInfo } from '@/interfaces/I_common';
-
-import Avatar from '../../global/Avatar';
 
 interface RequestCardProps {
   user: UserInfo;
