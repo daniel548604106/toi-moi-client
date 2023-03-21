@@ -1,7 +1,7 @@
-import router from 'next/router';
 import React from 'react';
 
 import { ChevronDownIcon } from '@heroicons/react/outline';
+import router from 'next/router';
 
 interface SidebarListItemProps {
   Icon?: any;
@@ -9,6 +9,7 @@ interface SidebarListItemProps {
   lists?: string[];
   param?: string;
 }
+
 const SidebarListItem = (props: SidebarListItemProps) => {
   const { Icon, title, lists, param } = props;
   const handleClick = () => {

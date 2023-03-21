@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface MenuIconAnimatedProps {
   onClick: () => void;
@@ -6,10 +6,15 @@ interface MenuIconAnimatedProps {
 }
 
 const MenuIconAnimated = ({ onClick, isOpen }: MenuIconAnimatedProps) => {
+  const [open, setOpen] = useState(isOpen || false);
+
+  useEffect(() => {
+    setOpen(isOpen);
+  }, [isOpen]);
   return (
     <button
       className={`focus:outline-none relative h-6 w-6 rounded-sm ${
-        isOpen ? 'fixed z-menu text-main' : 'text-primary'
+        open ? 'fixed z-menu text-main' : 'text-primary'
       }`}
       onClick={() => {
         onClick();
@@ -19,19 +24,19 @@ const MenuIconAnimated = ({ onClick, isOpen }: MenuIconAnimatedProps) => {
         <span
           aria-hidden="true"
           className={`absolute block h-0.5 w-5 transform bg-current transition duration-500 ease-in-out ${
-            isOpen ? 'rotate-45' : '-translate-y-1.5'
+            open ? 'rotate-45' : '-translate-y-1.5'
           }`}
         ></span>
         <span
           aria-hidden="true"
           className={`absolute block  h-0.5 w-5 transform  bg-current transition duration-500 ease-in-out ${
-            isOpen && 'opacity-0'
+            open && 'opacity-0'
           }`}
         ></span>
         <span
           aria-hidden="true"
           className={`absolute block  h-0.5 w-5 transform bg-current transition duration-500 ease-in-out ${
-            isOpen ? '-rotate-45' : 'translate-y-1.5'
+            open ? '-rotate-45' : 'translate-y-1.5'
           }`}
         ></span>
       </div>

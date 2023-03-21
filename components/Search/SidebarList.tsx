@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useRouter } from 'next/router';
 
-import SidebarListItem from '../Activity/SidebarListItem';
+import SidebarListItem from '@/components/activity/SidebarListItem';
 
 interface SidebarListProps {
   filterList: any;

@@ -62,7 +62,6 @@ const FriendNotification = (props: FriendNotificationProps) => {
           <Avatar
             width={60}
             height={60}
-            layout="fixed"
             gender={notification.user.gender}
             profileImage={notification.user.profileImage}
           />
