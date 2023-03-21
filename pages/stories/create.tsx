@@ -9,7 +9,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { uploadStoryImageAPI } from '@/axios/storyRequest';
 
-import Avatar from '@/components/Global/Avatar';
+import Avatar from '@/components/global/Avatar';
 
 import { backgroundSelections } from '@/utils/storyOptions';
 

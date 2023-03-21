@@ -10,16 +10,19 @@ const Overlay = ({ children }: OverlayProps) => {
 
   useEffect(() => {
     setShowOverlay(true);
+    // Disable scroll
+    document.body.style.overflow = 'hidden';
 
     return () => {
       setShowOverlay(false);
+      document.body.style.overflow = 'auto';
     };
   }, []);
 
   return ReactDOM.createPortal(
     <div
-      className={`fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-black transition ease-in-out ${
-        showOverlay ? 'bg-opacity-10' : 'bg-opacity-0'
+      className={`fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-black transition duration-200 ease-in-out ${
+        showOverlay ? 'bg-opacity-20' : 'bg-opacity-0'
       } `}
     >
       {showOverlay && children}

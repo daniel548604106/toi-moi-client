@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { updatePostAPI } from '@/axios/postRequest';
 
-import Loader from '@/components/Global/loader/LoaderBounce';
+import Loader from '@/components/global/loader/LoaderBounce';
 import * as ga from '@/lib/gtag';
 import { setNotification } from '@/redux/slices/globalSlice';
 import {
@@ -69,7 +69,6 @@ const PostContent = ({ post, isEditable, setEditable }) => {
     setLoading(true);
     try {
       const { data } = await updatePostAPI(post._id, editedText);
-      console.log(data);
       setLatestText(editedText);
       setLoading(false);
       setEditable(false);

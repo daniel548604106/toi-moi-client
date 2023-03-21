@@ -6,7 +6,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { postNewRoomAPI } from '@/axios/roomRequest';
 
-import Loader from '@/components/Global/loader/LoaderBounce';
+import Loader from '@/components/global/loader/LoaderBounce';
 
 import CreateRoomListItem from './CreateRoomListItem';
 import CreateRoomName from './CreateRoomName';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { VideoCameraIcon } from '@heroicons/react/outline';
 
-import Avatar from '@/components/Global/Avatar';
+import Avatar from '@/components/global/Avatar';
 
 import genderAvatar from '@/utils/genderAvatar';
 

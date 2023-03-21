@@ -7,10 +7,11 @@ import {
   ChevronDownIcon,
   HomeIcon,
   PlusIcon,
-  UserGroupIcon,
+  UserGroupIcon
 } from '@heroicons/react/solid';
 import { AnimateSharedLayout } from 'framer-motion';
 import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
@@ -20,14 +21,15 @@ import { setUnreadNotification } from '@/redux/slices/userSlice';
 
 import genderAvatar from '@/utils/genderAvatar';
 
-import Sidebar from '../Home/Sidebar/Sidebar';
-import DropDownMenuIcon from './DropDownMenuIcon';
+import Sidebar from '../../Home/Sidebar/Sidebar';
+import DropDownMenuIcon from '../DropDownMenuIcon';
+import HeaderIcon from '../HeaderIcon';
+import MenuIconAnimated from '../MenuIconAnimated';
+import Search from '../Search/Search';
 import AccountDropDown from './HeaderDropDown/AccountDropDown';
 import CreateDropDown from './HeaderDropDown/CreateDropDown';
 import MessageDropDown from './HeaderDropDown/MessageDropDown';
 import NotificationDropDown from './HeaderDropDown/NotificationDropDown';
-import HeaderIcon from './HeaderIcon';
-import Search from './Search/Search';
 
 const menuTabs = [
   {
@@ -60,25 +62,22 @@ const menuTabs = [
 const Header = () => {
   const { t } = useTranslation('header');
   const router = useRouter();
-  const elRef = useRef();
+  const elementRef = useRef();
   const dispatch = useAppDispatch();
-  useClickOutside(elRef, () => setSideMenuShow(false));
+  useClickOutside(elementRef, () => setSideMenuShow(false));
 
   const { userInfo } = useAppSelector((state) => state.user);
 
   const [isSideMenuShow, setSideMenuShow] = useState(false);
   const [activeTab, setActiveTab] = useState(router.pathname);
 
-  const handleSideMenuShow = (e) => {
-    e.stopPropagation();
-    setSideMenuShow(!isSideMenuShow);
-  };
-
   return (
     <div className="fixed left-0 right-0 top-0 z-40 flex items-center bg-secondary px-3 py-1 text-secondary shadow-md sm:px-5  md:py-0 ">
       <div className="w-1/2">
         <div className="flex items-center space-x-2 ">
-          <img
+          <Image
+            width={40}
+            height={40}
             onClick={() => router.push('/')}
             className="h-[40px] w-[40px] cursor-pointer"
             src="/logo.svg"
@@ -110,7 +109,9 @@ const Header = () => {
           onClick={() => router.push(`/${userInfo.username}`)}
           className="flex cursor-pointer items-center space-x-2 rounded-full border  p-1 hover:border-main "
         >
-          <img
+          <Image
+            width={35}
+            height={35}
             className="h-[35px] min-w-[35px] cursor-pointer rounded-full  object-cover"
             src={userInfo.profileImage || genderAvatar(userInfo.gender)}
             alt="profile-image"
@@ -142,24 +143,22 @@ const Header = () => {
             )}
           </span>
           <ChatIcon onClick={() => router.push('/messages')} className="h-6" />
-          <MenuIcon
-            onClick={(e) => handleSideMenuShow(e)}
-            className={`h-6 ${isSideMenuShow ? 'text-main' : ''}`}
+          <MenuIconAnimated
+            onClick={() => {
+              setSideMenuShow(!isSideMenuShow);
+            }}
+            isOpen={isSideMenuShow}
           />
         </div>
-        {isSideMenuShow && (
-          <div
-            ref={elRef}
-            className={`${
-              isSideMenuShow && '-translate-x-full'
-            } fixed left-full top-[50px] z-40  h-full  w-full transform overflow-y-auto bg-secondary text-button transition-transform delay-500 ease-in-out`}
-          >
-            <div onClick={(e) => handleSideMenuShow(e)}>
-              <Sidebar />
-            </div>
-            <AccountDropDown t={t} />
-          </div>
-        )}
+      </div>
+      <div
+        onClick={() => setSideMenuShow(!isSideMenuShow)}
+        className={`${
+          isSideMenuShow ? 'opacity-1' : 'opacity-0'
+        } fixed left-0 right-0 top-[50px]  z-menu h-full w-full overflow-y-auto bg-secondary transition-opacity duration-150 ease-in-out`}
+      >
+        <Sidebar />
+        <AccountDropDown t={t} />
       </div>
     </div>
   );

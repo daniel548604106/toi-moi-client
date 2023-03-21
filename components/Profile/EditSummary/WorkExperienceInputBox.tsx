@@ -4,7 +4,7 @@ import router from 'next/router';
 
 import { postWorkExperienceSummaryAPI } from '@/axios/profileRequest';
 
-import Loader from '@/components/Global/loader/LoaderBounce';
+import Loader from '@/components/global/loader/LoaderBounce';
 
 import PeriodSelector from './PreriodSelector';
 

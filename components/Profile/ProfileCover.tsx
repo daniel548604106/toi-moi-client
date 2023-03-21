@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import { postNewPostAPI } from '@/axios/postRequest';
 import { patchProfileAPI } from '@/axios/profileRequest';
 
-import Loader from '@/components/Global/loader/LoaderBounce';
+import Loader from '@/components/global/loader/LoaderBounce';
 import { UserInfo } from '@/interfaces/I_common';
 import { apiGetCurrentPost, setViewPostModalOpen } from '@/redux/slices/postSlice';
 
@@ -132,12 +132,12 @@ const ProfileCover = (props: ProfileCoverProps) => {
           onClick={() => handleViewCoverPost()}
           className={`${profile.profileCoverPostId && 'cursor-pointer'} ${
             isCoverImageEditable && 'cursor-move'
-          } relative  w-full rounded-xl  bg-gray-100`}
+          }  relative w-full rounded-xl  bg-gray-100`}
         >
           <Image
             width={1000}
-            height={350}
-            className="rounded-b-2xl object-cover"
+            height={250}
+            className=" w-full h-[150px] sm:h-[350px] rounded-b-2xl object-cover"
             src={coverImage || `/images/profileCoverDefault.png`}
             alt="cover-image"
           />

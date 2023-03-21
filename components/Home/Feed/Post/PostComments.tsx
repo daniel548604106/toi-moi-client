@@ -7,7 +7,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { deleteCommentAPI, likeCommentAPI, unlikeCommentAPI } from '@/axios/postRequest';
 
-import Avatar from '@/components/Global/Avatar';
+import Avatar from '@/components/global/Avatar';
 import { timeDiff } from '@/lib/dayjs';
 
 interface CommentProps {
@@ -29,7 +29,6 @@ const Comment = (props: CommentProps) => {
     setCommentLiked(true);
     try {
       const { data } = await likeCommentAPI(postId, commentId);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +37,6 @@ const Comment = (props: CommentProps) => {
     setCommentLiked(false);
     try {
       const { data } = await unlikeCommentAPI(postId, commentId);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -49,16 +47,15 @@ const Comment = (props: CommentProps) => {
       const { data } = await deleteCommentAPI(postId, commentId);
       let remainedComments = comments.filter((comment) => comment._id !== commentId);
       setComments(remainedComments);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="flex  items-center">
+    <div className="flex items-center">
       <Avatar
-        width={30}
-        height={30}
+        width={24}
+        height={24}
         username={comment.user.username}
         profileImage={comment.user.profileImage}
         gender={comment.user.gender}

@@ -14,7 +14,7 @@ import {
   getProfileSummaryAPI
 } from '@/axios/profileRequest';
 
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 import ProfileCover from '@/components/profile/ProfileCover';
 import TabsList from '@/components/profile/TabsList';
 import { ClientToServerEvents, ServerToClientEvents } from '@/interfaces/I_socket';

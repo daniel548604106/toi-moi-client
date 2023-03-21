@@ -6,8 +6,9 @@ import { SearchIcon, XIcon } from '@heroicons/react/outline';
 import useDebounce from '@/hooks/useDebounce';
 
 import { getSearchedChatsAPI } from '@/axios/chatRequest';
-import Avatar from '@/components/Global/Avatar';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+
+import Avatar from '@/components/global/Avatar';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 import { addToChatBoxList } from '@/redux/slices/messageSlice';
 
 interface SearchBoxProps {

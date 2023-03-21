@@ -10,9 +10,9 @@ import useNotify from '@/hooks/useNotify';
 
 import { postNewPostAPI } from '@/axios/postRequest';
 
-import Avatar from '@/components/Global/Avatar';
-import Loader from '@/components/Global/loader/LoaderBounce';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import Avatar from '@/components/global/Avatar';
+import Loader from '@/components/global/loader/LoaderBounce';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 import { setNotification } from '@/redux/slices/globalSlice';
 import { setImagesToPost, setPostInputBoxOpen } from '@/redux/slices/postSlice';
 

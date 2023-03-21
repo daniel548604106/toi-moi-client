@@ -22,7 +22,9 @@ const Avatar = ({
   return (
     <Image
       onClick={() => router.push(`/${username}`)}
-      className="avatarFallback cursor-pointer rounded-full object-cover "
+      className={`w-[${width}px] h-[${height}px] ${
+        !profileImage ? 'avatarFallback' : ''
+      } ] cursor-pointer rounded-full object-cover `}
       width={width}
       height={height}
       src={profileImage || genderAvatar(gender)}

@@ -10,8 +10,8 @@ import { useRouter } from 'next/router';
 
 import { getAllChatsAPI } from '@/axios/chatRequest';
 
-import EmptyChat from '../../messages/EmptyChat';
-import ToolTips from '../ToolTips';
+import EmptyChat from '../../../messages/EmptyChat';
+import ToolTips from '../../ToolTips';
 import MessageDropDownList from './MesseageDropDownList';
 
 interface MessageDropDownProps {

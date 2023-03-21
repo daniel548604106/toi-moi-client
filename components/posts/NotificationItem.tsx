@@ -5,7 +5,7 @@ import router from 'next/router';
 
 import { useAppSelector } from '@/hooks/useAppRedux';
 
-import Avatar from '@/components/Global/Avatar';
+import Avatar from '@/components/global/Avatar';
 
 interface NotificationListProps {
   notification: any;

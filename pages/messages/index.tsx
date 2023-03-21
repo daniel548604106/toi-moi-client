@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import { getChatUserInfoAPI } from '@/axios/chatRequest';
 import { searchRequestAPI } from '@/axios/searchRequest';
 
-import Avatar from '@/components/Global/Avatar';
+import Avatar from '@/components/global/Avatar';
 import ChatroomMainHeader from '@/components/messages/ChatroomMain/ChatroomMainHeader';
 import ChatroomMainInputBox from '@/components/messages/ChatroomMain/ChatroomMainInputBox';
 import ChatroomMainRoom from '@/components/messages/ChatroomMain/ChatroomMainRoom';

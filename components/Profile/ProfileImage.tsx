@@ -39,7 +39,6 @@ const ProfileImage = (props: ProfileImageProps) => {
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
     }
-    console.log('triggered');
 
     reader.onload = (readerEvent) => {
       console.log('reader', readerEvent);
@@ -51,19 +50,20 @@ const ProfileImage = (props: ProfileImageProps) => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="relative  border h-[100px] w-[100px] sm:w-[160px] sm:h-[160px] rounded-full border-white "
+      className="relative  h-[100px] w-[100px] rounded-full border border-white sm:h-[160px] sm:w-[160px] "
     >
       <Image
+        fill={true}
         onClick={(e) => handleViewCurrentProfile(e)}
         className={`${profileImage ? 'cursor-pointer' : 'cursor-default'} 
-       object-cover   sm:w-[100px] sm:h-[100px]   rounded-full`}
+       rounded-full   object-cover sm:h-[100px]   sm:w-[100px]`}
         src={profileImage || genderAvatar(user.gender)}
         alt="profile-image"
       />
       {router.query.id === userInfo.username && (
         <span
           onClick={(e) => handleNewProfileImagePreview(e)}
-          className="cursor-pointer absolute bottom-0 border-2 right-0 p-2 rounded-full bg-secondary text-secondary shadow-md hover:shadow-xl"
+          className="absolute bottom-0 right-0 cursor-pointer rounded-full border-2 bg-secondary p-2 text-secondary shadow-md hover:shadow-xl"
         >
           <CameraIcon className="h-6 " />
           <input

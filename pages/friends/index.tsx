@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 import RequestCard from '@/components/friends/Requests/RequestCard';
 import Sidebar from '@/components/friends/Sidebar';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 
 const FriendCard = dynamic(() => import('@/components/friends/FriendCard'), {
   loading: () => <LoaderSpinner />,

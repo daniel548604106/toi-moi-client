@@ -13,7 +13,7 @@ import { getChatUserInfoAPI } from '@/axios/chatRequest';
 import { getAllPostsAPI } from '@/axios/postRequest';
 import { getStoriesAPI } from '@/axios/storyRequest';
 
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 import Contacts from '@/components/Home/Contacts/Index';
 import InputBox from '@/components/Home/Feed/InputBox';
 import Post from '@/components/Home/Feed/Post/Post';
@@ -162,14 +162,14 @@ export default function Home({ posts, friends, notFound }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className=" relative flex w-full justify-between p-3">
-        {newNotification && (
+        {newNotification ? (
           <div className="fixed bottom-4 right-4 z-50">
             <PostNotification
               setNewNotification={setNewNotification}
               newNotification={newNotification}
             />
           </div>
-        )}
+        ): null}
         <div className="hidden w-1/2 lg:block">
           <Sidebar />
         </div>

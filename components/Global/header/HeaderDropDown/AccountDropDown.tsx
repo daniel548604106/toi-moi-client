@@ -8,15 +8,17 @@ import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import useDarkMode from '@/hooks/useDarkMode';
 
-import Avatar from '@/components/Global/Avatar';
+import Avatar from '@/components/global/Avatar';
+import LanguageSettingModal from '@/components/global/LanguageSettingModal';
 import { toggleLanguageOpen } from '@/redux/slices/globalSlice';
 import { setUserLogout } from '@/redux/slices/userSlice';
 
 const AccountPopup = ({ t }) => {
   const [isDark, setIsDark] = useDarkMode();
   const dispatch = useAppDispatch();
-  const userInfo = useAppSelector((state) => state.user.userInfo);
-  const email = useAppSelector((state) => state.user.userInfo.email);
+  const { isLanguageOpen } = useAppSelector((state) => state.global);
+  const { userInfo } = useAppSelector((state) => state.user);
+  const { email } = userInfo;
   const [darkModeChecked, setDarkModeChecked] = useState(false);
   const inputRef = useRef(null);
   const router = useRouter();
@@ -60,6 +62,8 @@ const AccountPopup = ({ t }) => {
           <span className="ml-[10px]">{t('language')}</span>
         </div>
       </div>
+      {isLanguageOpen && <LanguageSettingModal />}
+
       <div className="flex items-center justify-between  p-2">
         <div className="flex items-center ">
           {darkModeChecked ? (

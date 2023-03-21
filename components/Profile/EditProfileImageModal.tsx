@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import { postNewPostAPI } from '@/axios/postRequest';
 import { patchProfileImageAPI } from '@/axios/profileRequest';
 
-import Loader from '@/components/Global/loader/LoaderBounce';
+import Loader from '@/components/global/loader/LoaderBounce';
 import { getProfileData } from '@/redux/slices/profileSlice';
 import { getMyInfo, setEditProfileImageOpen } from '@/redux/slices/userSlice';
 

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { useAppSelector } from '@/hooks/useAppRedux';
 
-import Header from '@/components/Global/Header';
+import Header from '@/components/global/header/index';
 
 const Layout = ({ children }) => {
   const router = useRouter();

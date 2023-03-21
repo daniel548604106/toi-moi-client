@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 import { postLoginAPI } from '@/axios/authRequest';
 
-import Loader from '@/components/Global/loader/LoaderBounce';
+import Loader from '@/components/global/loader/LoaderBounce';
 import ForgotPassword from '@/components/login/ForgotPassword';
 import Signup from '@/components/login/Signup';
 import catchError from '@/lib/catchError';

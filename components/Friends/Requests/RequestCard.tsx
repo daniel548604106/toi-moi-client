@@ -4,7 +4,7 @@ import router from 'next/router';
 
 import { UserInfo } from '@/interfaces/I_common';
 
-import Avatar from '../../Global/Avatar';
+import Avatar from '../../global/Avatar';
 
 interface RequestCardProps {
   user: UserInfo;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import dayjs from 'dayjs';
 
-import Avatar from '@/components/Global/Avatar';
+import Avatar from '@/components/global/Avatar';
 
 import BirthdayCardLayout from './BirthdayCardLayout';
 

@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import {
   AnnotationIcon,
   ShareIcon,
-  ThumbUpIcon as OutlineThumbUpIcon,
+  ThumbUpIcon as OutlineThumbUpIcon
 } from '@heroicons/react/outline';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
 import useTranslation from 'next-translate/useTranslation';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
-import useCopyToClipboard from '@/hooks/useCopytoClipboard';
+import useShare from '@/hooks/useShare';
 
 import { likePostAPI, unlikePostAPI } from '@/axios/postRequest';
 
@@ -29,7 +29,7 @@ const PostActions = (props: PostActionsProps) => {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
 
-  const [value, copy] = useCopyToClipboard();
+  const handleShare = useShare();
 
   const [isLiked, setLiked] = useState(
     likes.length > 0 && likes.filter((like) => like.user === userInfo._id).length > 0,
@@ -55,36 +55,16 @@ const PostActions = (props: PostActionsProps) => {
   };
 
   const handleSharePost = async () => {
-    const { text, picUrl, _id, user } = post;
+    const { text, _id, user } = post;
     const { username } = user;
-    const hostname = window.location.hostname; // Localhost or Production URL
-    const url = `${hostname}/${username}/posts/${_id}`;
-
-    if (navigator.share) {
-      try {
-        const shareData = {
-          title: text,
-          url,
-          text,
-        };
-        // navigator.share will only work on websites with https and not HTTP
-        await navigator.share(shareData);
-      } catch (error) {
-        console.log(error);
-        copy(url);
-        dispatch(setNotification('URL Copied'));
-      }
-    } else {
-      copy(url);
-      dispatch(setNotification('URL Copied!'));
-    }
+    const url = new URL(`/${username}/posts/${_id}`, window.location.href).toString();
+    handleShare(text, url, () => dispatch(setNotification('URL Copied')));
   };
 
   const handleUnlikePost = async (id) => {
     if (socket.current) {
       socket.current.emit('unlikePost', { postId: id, userId: userInfo._id });
       socket.current.on('postUnliked', () => {
-        console.log('unliked');
         setLikes(likes.filter((like) => like.user !== userInfo._id));
         setLiked(false);
       });
@@ -113,7 +93,7 @@ const PostActions = (props: PostActionsProps) => {
       ) : (
         <div
           onClick={() => handleLikePost(post._id)}
-          className="flex flex-1 cursor-pointer items-center  justify-center rounded-md p-2  text-gray-400 hover:bg-gray-100"
+          className="flex flex-1 cursor-pointer items-center  justify-center rounded-md p-2  text-gray-400 hover:bg-gray-100 hover:font-bold"
         >
           <OutlineThumbUpIcon className="h-4  " />
           <span className="sm:text-md ml-[10px] text-sm">{t('post.like')}</span>
@@ -121,14 +101,14 @@ const PostActions = (props: PostActionsProps) => {
       )}
       <div
         onClick={() => setCommentShow(true)}
-        className="flex  flex-1 cursor-pointer items-center justify-center  rounded-md p-2  text-gray-400 hover:bg-gray-100"
+        className="flex  flex-1 cursor-pointer items-center justify-center  rounded-md p-2  text-gray-400 hover:bg-gray-100 hover:font-bold"
       >
         <AnnotationIcon className="h-4  " />
         <span className="sm:text-md ml-[10px] text-sm">{t('post.comment')}</span>
       </div>
       <div
         onClick={() => handleSharePost()}
-        className="flex flex-1 cursor-pointer items-center  justify-center rounded-md p-2  text-gray-400 hover:bg-gray-100"
+        className="flex flex-1 cursor-pointer items-center  justify-center rounded-md p-2  text-gray-400 hover:bg-gray-100 hover:font-bold"
       >
         <ShareIcon className="h-4 " />
         <span className="sm:text-md ml-[10px] text-sm">{t('post.share')}</span>

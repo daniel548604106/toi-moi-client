@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { getChatAPI } from '@/axios/chatRequest';
 
-import Avatar from '@/components/Global/Avatar';
+import Avatar from '@/components/global/Avatar';
 import { UserInfo } from '@/interfaces/I_common';
 import { Message, User } from '@/interfaces/I_socket';
 import { removeFromChatBoxList } from '@/redux/slices/messageSlice';

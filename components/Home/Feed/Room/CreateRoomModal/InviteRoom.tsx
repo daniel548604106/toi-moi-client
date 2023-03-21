@@ -6,8 +6,9 @@ import router from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { getFriendsListAPI } from '@/axios/friendRequest';
-import Avatar from '@/components/Global/Avatar';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+
+import Avatar from '@/components/global/Avatar';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 import { toggleCreateRoomOpen } from '@/redux/slices/globalSlice';
 
 const InviteRoom = ({ roomCode }) => {
@@ -27,6 +28,7 @@ const InviteRoom = ({ roomCode }) => {
       setLoading(false);
     }
   };
+
   const handleJoinRoom = () => {
     dispatch(toggleCreateRoomOpen());
     router.push(`/groupcall/${roomCode}`);
