@@ -17,11 +17,11 @@ const NotificationItem = dynamic(() => import('@/components/posts/NotificationIt
 });
 const PostLayout = ({ post, profile, notifications }) => {
   const router = useRouter();
-  useEffect(() => {
-    console.log(post, 'post', profile, notifications);
-  }, []);
   const userInfo = useSelector((state) => state.user.userInfo);
   const isViewPostModalOpen = useSelector((state) => state.post.isViewPostModalOpen);
+  useEffect(() => {
+    console.log(post, 'post', profile, notifications);
+  }, [notifications]);
 
   return (
     <div className=" sm:mt-0  ">
@@ -82,8 +82,8 @@ export async function getServerSideProps({ req, params, res }) {
     return {
       props: {
         post: data,
-        notifications: notifications.data,
-        profile: profile.data,
+        notifications: notifications?.data,
+        profile: profile?.data,
       },
     };
   } catch (error) {
