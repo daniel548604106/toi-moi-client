@@ -177,49 +177,46 @@ export default function Home({ posts, friends, notFound }) {
           <Stories stories={stories} />
           <InputBox />
           <Room roomList={roomList} />
-          {!notFound && (
-            <div>
-              {currentPosts?.length && (
-                <InfiniteScroll
-                  dataLength={currentPosts.length} //This is important field to render the next data, only when the length is changed then will trigger next function
-                  next={handleGetMorePosts}
-                  hasMore={hasMore}
-                  loader={<LoaderSpinner />}
-                  endMessage={<EndMessage />}
-                  className="scrollbar-hide"
-                >
-                  {currentPosts?.map((post) => (
-                    <div key={post._id} className="mb-[15px] ">
-                      <Post deletePost={handleDeletePost} post={post} socket={socket} />
-                    </div>
-                  ))}
-                </InfiniteScroll>
-              )}
-              {isLoading ? (
-                <LoaderSpinner />
-              ) : currentPosts?.length < 10 ? (
-                <div className="mt-5">
-                  <NoPost />
-                </div>
-              ) : null}
-            </div>
-          )}
+          <div>
+            {currentPosts?.length ? (
+              <InfiniteScroll
+                dataLength={currentPosts.length} //This is important field to render the next data, only when the length is changed then will trigger next function
+                next={handleGetMorePosts}
+                hasMore={hasMore}
+                loader={<LoaderSpinner />}
+                endMessage={<EndMessage />}
+                className="scrollbar-hide"
+              >
+                {currentPosts?.map((post) => (
+                  <div key={post._id} className="mb-[15px] ">
+                    <Post deletePost={handleDeletePost} post={post} socket={socket} />
+                  </div>
+                ))}
+              </InfiniteScroll>
+            ) : null}
+            {isLoading ? (
+              <LoaderSpinner />
+            ) : currentPosts?.length < 10 ? (
+              <div className="mt-5">
+                <NoPost />
+              </div>
+            ) : null}
+          </div>
         </div>
-        <div className=" hidden w-1/2 md:block ">
+        <div className="hidden w-1/2 md:block ">
           <Contacts connectedUsers={connectedUsers} friends={friends} />
         </div>
         <div className="fixed bottom-0 right-0  flex  w-full flex-row-reverse items-end">
-          {openChatBoxList.length > 0 &&
-            openChatBoxList.map((user) => (
-              <div className="mr-3" key={user._id}>
-                <ChatBox
-                  connectedUsers={connectedUsers}
-                  user={user}
-                  newMessageReceived={newMessageReceived}
-                  handleSubmitMessage={handleSubmitMessage}
-                />
-              </div>
-            ))}
+          {openChatBoxList?.map((user) => (
+            <div className="mr-3" key={user._id}>
+              <ChatBox
+                connectedUsers={connectedUsers}
+                user={user}
+                newMessageReceived={newMessageReceived}
+                handleSubmitMessage={handleSubmitMessage}
+              />
+            </div>
+          ))}
         </div>
       </main>
     </div>
