@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { BookmarkIcon, PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
 import { BookmarkIcon as SolidBookmarkIcon } from '@heroicons/react/solid';
 
-import { UserInfo } from '@/interfaces/I_common';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { deletePostAPI } from '@/axios/postRequest';
 import { deleteSavedPostAPI, postNewSavedPostAPI } from '@/axios/savedRequest';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+import { UserInfo } from '@/interfaces/I_common';
 import { setNotification } from '@/redux/slices/globalSlice';
 import { getSavedPosts } from '@/redux/slices/postSlice';
 

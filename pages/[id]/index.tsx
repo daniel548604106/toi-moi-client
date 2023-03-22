@@ -14,23 +14,23 @@ import {
   getProfileSummaryAPI
 } from '@/axios/profileRequest';
 
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
-import ProfileCover from '@/components/Profile/ProfileCover';
-import TabsList from '@/components/Profile/TabsList';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
+import ProfileCover from '@/components/profile/ProfileCover';
+import TabsList from '@/components/profile/TabsList';
 import { ClientToServerEvents, ServerToClientEvents } from '@/interfaces/I_socket';
 import { setProfileData, setSummaryData } from '@/redux/slices/profileSlice';
 
 // Dynamic Imports
-const Friends = dynamic(() => import('@/components/Profile/Friends'), {
+const Friends = dynamic(() => import('@/components/profile/Friends'), {
   loading: () => <LoaderSpinner />,
 });
-const Summary = dynamic(() => import('@/components/Profile/Summary'), {
+const Summary = dynamic(() => import('@/components/profile/Summary'), {
   loading: () => <LoaderSpinner />,
 });
 const Post = dynamic(() => import('@/components/Home/Feed/Post/Post'), {
   loading: () => <LoaderSpinner />,
 });
-const Photos = dynamic(() => import('@/components/Profile/Photos'), {
+const Photos = dynamic(() => import('@/components/profile/Photos'), {
   loading: () => <LoaderSpinner />,
 });
 const InputBox = dynamic(() => import('@/components/Home/Feed/InputBox'), {

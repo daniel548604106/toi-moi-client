@@ -7,10 +7,10 @@ import router from 'next/router';
 
 import useAxios from '@/hooks/useAxios';
 
-import EmptyFriendList from '@/components/Friends/EmptyFriendList';
-import Sidebar from '@/components/Friends/Sidebar';
-import Avatar from '@/components/Global/Avatar';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import EmptyFriendList from '@/components/friends/EmptyFriendList';
+import Sidebar from '@/components/friends/Sidebar';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
+import ProfilePic from '@/components/ProfilePic';
 
 const Lists = () => {
   const [friendsList, setFriendsList] = useState(null);
@@ -80,7 +80,7 @@ const Lists = () => {
                 key={user._id}
                 className="flex cursor-pointer items-center rounded-lg bg-secondary p-3 text-secondary shadow-md hover:shadow-lg"
               >
-                <Avatar
+                <ProfilePic
                   width={50}
                   height={50}
                   username={user.username}

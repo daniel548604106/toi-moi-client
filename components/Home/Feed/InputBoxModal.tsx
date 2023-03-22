@@ -9,9 +9,10 @@ import useClickOutside from '@/hooks/useClickOutside';
 import useNotify from '@/hooks/useNotify';
 
 import { postNewPostAPI } from '@/axios/postRequest';
-import Avatar from '@/components/Global/Avatar';
-import Loader from '@/components/Global/Loader';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+
+import Loader from '@/components/global/loader/LoaderBounce';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
+import ProfilePic from '@/components/ProfilePic';
 import { setNotification } from '@/redux/slices/globalSlice';
 import { setImagesToPost, setPostInputBoxOpen } from '@/redux/slices/postSlice';
 
@@ -85,7 +86,7 @@ const InputBoxModal = () => {
   }, [images, dispatch]);
 
   return (
-    <div className="relative h-screen w-full max-w-[600px] overflow-y-auto rounded-md bg-secondary pb-10 text-secondary sm:h-[70vh]  sm:pb-4">
+    <div className="relative h-screen w-full max-w-[600px] overflow-y-auto rounded-md bg-secondary pb-10 text-secondary sm:h-auto sm:max-h-[70vh]  sm:pb-4">
       <div className="sticky top-0 z-40 border-b bg-white  p-3 text-center text-lg font-semibold">
         Create Post
         <XIcon
@@ -95,7 +96,7 @@ const InputBoxModal = () => {
       </div>
       <div className="p-3">
         <div className="flex items-center py-2">
-          <Avatar
+          <ProfilePic
             width={50}
             height={50}
             profileImage={userInfo.profileImage}
@@ -157,7 +158,7 @@ const InputBoxModal = () => {
         </div>
         <button
           onClick={(e) => sendPost(e)}
-          className={`mt-[10px]  mb-10 flex w-full cursor-default  items-center  justify-center rounded-lg py-3 text-sm  ${
+          className={`mt-[10px]  mb-10 flex w-full cursor-default items-center  justify-center  rounded-lg py-3 text-sm sm:mb-0  ${
             isPostAvailable ? 'cursor-pointer bg-main  text-white' : 'bg-gray-100'
           } `}
         >

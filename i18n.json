@@ -1,5 +1,5 @@
 {
-  "locales": ["en-US", "zh-TW"],
+  "locales": ["en-US", "zh-TW", "ja-JP"],
   "defaultLocale": "en-US",
   "pages": {
     "*": ["common", "header", "login"],

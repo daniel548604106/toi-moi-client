@@ -3,10 +3,13 @@ import React, { ChangeEvent, useRef } from 'react';
 import { EmojiHappyIcon } from '@heroicons/react/outline';
 import { CameraIcon, VideoCameraIcon } from '@heroicons/react/solid';
 import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
+import Overlay from '@/components/global/Overlay';
+import InputBoxModal from '@/components/Home/Feed/InputBoxModal';
 import { setImagesToPost, setPostInputBoxOpen } from '@/redux/slices/postSlice';
 
 import genderAvatar from '@/utils/genderAvatar';
@@ -18,6 +21,7 @@ const InputBox = () => {
   const userInfo = useAppSelector((state) => state.user.userInfo);
   const filePickerRef = useRef(null);
 
+  const { isPostInputBoxOpen } = useAppSelector((state) => state.post);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const images = Array.from(e.target.files as FileList).map((file) => ({
@@ -31,10 +35,13 @@ const InputBox = () => {
   return (
     <div className="w-full rounded-xl bg-secondary p-3 font-medium text-secondary shadow-md">
       <div className="mb-3 flex w-full items-center space-x-2">
-        <img
+        <Image
+          width="40"
+          height="40"
           onClick={() => router.push(`/${userInfo.username}`)}
           className="h-[40px] w-[40px] cursor-pointer rounded-full object-cover sm:h-[50px] sm:w-[50px]"
           src={userInfo.profileImage || genderAvatar(userInfo.gender)}
+          alt="profile-image"
         />
         <div
           onClick={() => dispatch(setPostInputBoxOpen(true))}
@@ -65,6 +72,11 @@ const InputBox = () => {
           <EmojiHappyIcon className="mb-2 h-5 text-yellow-300 sm:mb-0 sm:h-6" />
           <p className="xl:text-md text-xs sm:text-sm">{t('post.feeling/activity')}</p>
         </div>
+        {isPostInputBoxOpen ? (
+          <Overlay>
+            <InputBoxModal />
+          </Overlay>
+        ) : null}
       </div>
     </div>
   );

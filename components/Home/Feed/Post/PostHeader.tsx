@@ -7,7 +7,7 @@ import router from 'next/router';
 
 import useClickOutside from '@/hooks/useClickOutside';
 
-import Avatar from '@/components/Global/Avatar';
+import ProfilePic from '@/components/ProfilePic';
 import { timeDiff } from '@/lib/dayjs';
 import { getSavedPosts } from '@/redux/slices/postSlice';
 
@@ -23,9 +23,9 @@ const PostHeader = (props: PostHeaderProps) => {
   const { post, setEditable, deletePost } = props;
   const { t } = useTranslation('common');
   const dispatch = useDispatch();
-  const elRef = useRef();
+  const elementRef = useRef();
   const [isPopupShow, setPopupShow] = useState(false);
-  useClickOutside(elRef, () => setPopupShow(false));
+  useClickOutside(elementRef, () => setPopupShow(false));
 
   const handleTogglePopup = () => {
     dispatch(getSavedPosts());
@@ -33,11 +33,11 @@ const PostHeader = (props: PostHeaderProps) => {
   };
 
   return (
-    <div className=" sm:p-3">
-      <div className="mb-[10px] flex  justify-between">
+    <div className="sm:p-3">
+      <div className="mb-[10px] flex items-start justify-between">
         <div className="flex items-center">
           <span>
-            <Avatar
+            <ProfilePic
               width={40}
               height={40}
               username={post.user.username}
@@ -64,14 +64,14 @@ const PostHeader = (props: PostHeaderProps) => {
           </div>
         </div>
         <div
-          ref={elRef}
-          className="focus:outline-none relative rounded-full p-2  hover:bg-gray-100"
+          ref={elementRef}
+          className="focus:outline-none relative rounded-[50%] p-2 hover:bg-gray-100"
         >
           <DotsHorizontalIcon
             onClick={() => handleTogglePopup()}
             className="h-5 cursor-pointer text-gray-700 "
           />
-          {isPopupShow && (
+          {isPopupShow ? (
             <div className="absolute  bottom-0 right-0 z-20 translate-y-full transform ">
               <Popup
                 setPopupShow={setPopupShow}
@@ -81,7 +81,7 @@ const PostHeader = (props: PostHeaderProps) => {
                 postId={post._id}
               />
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

@@ -20,6 +20,9 @@ module.exports = {
         secondary: 'var(--color-text-secondary)',
         button: 'var(--color-bg-button)',
       },
+      zIndex: {
+        menu: 'var(--menu-z-index)',
+      },
     },
   },
   variants: {

@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import useTranslation from 'next-translate/useTranslation';
 
-import EmptyRequest from '@/components/Friends/EmptyRequest';
-import RequestCard from '@/components/Friends/Requests/RequestCard';
-import Sidebar from '@/components/Friends/Sidebar';
+import EmptyRequest from '@/components/friends/EmptyRequest';
+import RequestCard from '@/components/friends/Requests/RequestCard';
+import Sidebar from '@/components/friends/Sidebar';
 
 const Requests = ({ requestsReceived }) => {
   const { t } = useTranslation('header');

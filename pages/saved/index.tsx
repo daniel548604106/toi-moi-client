@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
+import { useAppSelector } from '@/hooks/useAppRedux';
+
 import { getSavedPostsAPI } from '@/axios/savedRequest';
 
-import SavedCard from '@/components/Saved/SavedCard';
+import { LoaderSpinner } from '@/components/global/loader';
+import SavedCard from '@/components/saved/SavedCard';
 
 const Saved = () => {
+  const { isLoading } = useAppSelector((state) => state.global);
   const [savedPosts, setSavedPosts] = useState(null);
 
   const handleGetSavedPosts = async () => {
@@ -26,6 +30,10 @@ const Saved = () => {
   useEffect(() => {
     handleGetSavedPosts();
   }, []);
+
+  if (isLoading) {
+    return <LoaderSpinner />;
+  }
 
   return (
     <div className="mx-auto w-full max-w-[600px] p-2 py-3 sm:py-10 ">

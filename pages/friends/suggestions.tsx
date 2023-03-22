@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import axios from 'axios';
 
-import FriendCard from '@/components/Friends/FriendCard';
-import Sidebar from '@/components/Friends/Sidebar';
+import FriendCard from '@/components/friends/FriendCard';
+import Sidebar from '@/components/friends/Sidebar';
 
 const Suggestions = ({ recommendations }) => {
   const [currentRecommendations, setCurrentRecommendations] = useState(recommendations);

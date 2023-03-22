@@ -6,8 +6,9 @@ import { SearchIcon, XIcon } from '@heroicons/react/outline';
 import useDebounce from '@/hooks/useDebounce';
 
 import { getSearchedChatsAPI } from '@/axios/chatRequest';
-import Avatar from '@/components/Global/Avatar';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
+import ProfilePic from '@/components/ProfilePic';
 import { addToChatBoxList } from '@/redux/slices/messageSlice';
 
 interface SearchBoxProps {
@@ -64,7 +65,7 @@ const SearchBox = ({ setSearchOpen }: SearchBoxProps) => {
                     key={user._id}
                     className="flex cursor-pointer items-center space-x-2 p-2"
                   >
-                    <Avatar width={30} height={30} profileImage={user.profileImage} />
+                    <ProfilePic width={30} height={30} profileImage={user.profileImage} />
                     <span className="ml-3">{user.name}</span>
                   </div>
                 ))}

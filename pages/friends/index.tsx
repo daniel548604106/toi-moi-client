@@ -4,11 +4,11 @@ import axios from 'axios';
 import useTranslation from 'next-translate/useTranslation';
 import dynamic from 'next/dynamic';
 
-import RequestCard from '@/components/Friends/Requests/RequestCard';
-import Sidebar from '@/components/Friends/Sidebar';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+import RequestCard from '@/components/friends/Requests/RequestCard';
+import Sidebar from '@/components/friends/Sidebar';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 
-const FriendCard = dynamic(() => import('@/components/Friends/FriendCard'), {
+const FriendCard = dynamic(() => import('@/components/friends/FriendCard'), {
   loading: () => <LoaderSpinner />,
 });
 

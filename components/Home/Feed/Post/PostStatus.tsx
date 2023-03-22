@@ -4,6 +4,9 @@ import { useDispatch } from 'react-redux';
 import { ThumbUpIcon as SolidThumbUpIcon } from '@heroicons/react/solid';
 import useTranslation from 'next-translate/useTranslation';
 
+import { useAppSelector } from '@/hooks/useAppRedux';
+
+import LikesListModal from '@/components/Home/Feed/LikesListModal';
 import { apiGetLikesList, setLikesListOpen } from '@/redux/slices/postSlice';
 import { getFriendList } from '@/redux/slices/userSlice';
 
@@ -18,6 +21,7 @@ interface PostStatusProps {
 const PostStatus = (props: PostStatusProps) => {
   const { likes, comments, post, setCommentShow, isCommentShow } = props;
   const { t } = useTranslation('common');
+  const { isLikesListOpen } = useAppSelector((state) => state.post);
   const dispatch = useDispatch();
   const handleLikesListOpen = (postId) => {
     dispatch(setLikesListOpen(true));
@@ -48,6 +52,7 @@ const PostStatus = (props: PostStatusProps) => {
           </span>
         )}
       </div>
+      {isLikesListOpen && <LikesListModal />}
     </div>
   );
 };

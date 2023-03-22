@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
-import { useAppDispatch } from '@/hooks/useAppRedux';
-import { toggleCreateRoomOpen } from '@/redux/slices/globalSlice';
 import { XIcon } from '@heroicons/react/outline';
+
+import { useAppDispatch } from '@/hooks/useAppRedux';
+
+import { toggleCreateRoomOpen } from '@/redux/slices/globalSlice';
 
 import CreateRoom from './CreateRoom';
 import InviteRoom from './InviteRoom';

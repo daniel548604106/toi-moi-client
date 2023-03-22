@@ -17,38 +17,30 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import ErrorBoundary from '@/components/ErrorBoundary';
-import Header from '@/components/Global/Header';
-import GlobalLoader from '@/components/Global/Loader/PostSkeletonLoader';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
-import Notification from '@/components/Global/Notification';
-import ViewPostModal from '@/components/Global/ViewPostModal';
-import InputBoxModal from '@/components/Home/Feed/InputBoxModal';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
+import SkeletonLoader from '@/components/global/loader/PostSkeletonLoader';
+import Notification from '@/components/global/Notification';
+import ViewPostModal from '@/components/global/ViewPostModal';
 import Layout from '@/components/Layout';
-import Login from '@/components/Login/Index';
+import Login from '@/components/login/Index';
 import * as ga from '@/lib/gtag';
-import { setIsCommonLoading, setNotification } from '@/redux/slices/globalSlice';
+import { setIsLoading, setNotification } from '@/redux/slices/globalSlice';
 import { setUserLogout } from '@/redux/slices/userSlice';
 import { store } from '@/redux/store';
 
-const Overlay = dynamic(() => import('@/components/Global/Overlay'), {
+const Overlay = dynamic(() => import('@/components/global/Overlay'), {
   loading: () => <LoaderSpinner />,
 });
 
 // Modals
 
-const EditSummaryModal = dynamic(() => import('@/components/Profile/EditSummaryModal'), {
-  loading: () => <LoaderSpinner />,
-});
-const LikesListModal = dynamic(() => import('@/components/Home/Feed/LikesListModal'), {
+const EditSummaryModal = dynamic(() => import('@/components/profile/EditSummaryModal'), {
   loading: () => <LoaderSpinner />,
 });
 const CreateRoomModal = dynamic(() => import('@/components/Home/Feed/Room/CreateRoomModal/Index'), {
   loading: () => <LoaderSpinner />,
 });
-const EditProfileImageModal = dynamic(() => import('@/components/Profile/EditProfileImageModal'), {
-  loading: () => <LoaderSpinner />,
-});
-const LanguageSettingModal = dynamic(() => import('@/components/Global/LanguageSettingModal'), {
+const EditProfileImageModal = dynamic(() => import('@/components/profile/EditProfileImageModal'), {
   loading: () => <LoaderSpinner />,
 });
 
@@ -61,12 +53,8 @@ const App = ({ Component, pageProps }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const { isLikesListOpen, isPostInputBoxOpen, isViewPostModalOpen } = useAppSelector(
-    (state) => state.post,
-  );
-  const { isLanguageOpen, notification, isCreateRoomOpen, isCommonLoading } = useAppSelector(
-    (state) => state.global,
-  );
+  const { isViewPostModalOpen } = useAppSelector((state) => state.post);
+  const { notification, isCreateRoomOpen, isLoading } = useAppSelector((state) => state.global);
   const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedIn);
   const isEditProfileImageOpen = useAppSelector((state) => state.user.isEditProfileImageOpen);
   const isEditSummaryModalOpen = useAppSelector((state) => state.profile.isEditSummaryModalOpen);
@@ -80,13 +68,13 @@ const App = ({ Component, pageProps }) => {
   const handleRouteChange = useCallback(
     (url, { shallow }) => {
       ga.pageView(url);
-      dispatch(setIsCommonLoading(true));
+      dispatch(setIsLoading(true));
     },
     [dispatch],
   );
 
   const handleRouteChangeComplete = useCallback(() => {
-    dispatch(setIsCommonLoading(false));
+    dispatch(setIsLoading(false));
   }, [dispatch]);
 
   useEffect(() => {
@@ -106,34 +94,27 @@ const App = ({ Component, pageProps }) => {
     };
   }, [handleRouteChange, handleRouteChangeComplete, router.events]);
 
-  // Track user geolocation
+  // // Track user geolocation
 
-  useEffect(() => {
-    const successfulLookup = (position) => {
-      const { latitude, longitude } = position.coords;
-      ga.event({
-        action: 'send',
-        category: 'geolocation',
-        label: 'geolocation',
-        value: [latitude, longitude],
-      });
-    };
+  // useEffect(() => {
+  //   const successfulLookup = (position) => {
+  //     const { latitude, longitude } = position.coords;
+  //     ga.event({
+  //       action: 'send',
+  //       category: 'geolocation',
+  //       label: 'geolocation',
+  //       value: [latitude, longitude],
+  //     });
+  //   };
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(successfulLookup, console.log);
-    }
-  }, []);
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(successfulLookup, console.log);
+  //   }
+  // }, []);
 
   const allowedRoutes = router.pathname === '/reset/password';
   const isModalOpen =
-    isLikesListOpen ||
-    isPostInputBoxOpen ||
-    isViewPostModalOpen ||
-    isEditProfileImageOpen ||
-    isEditSummaryModalOpen ||
-    isCreateRoomOpen ||
-    isLanguageOpen;
-
+    isViewPostModalOpen || isEditProfileImageOpen || isEditSummaryModalOpen || isCreateRoomOpen;
   return (
     <>
       <Head>
@@ -148,21 +129,17 @@ const App = ({ Component, pageProps }) => {
               {isModalOpen && (
                 <Overlay>
                   <>
-                    {isLikesListOpen && <LikesListModal />}
-                    {isPostInputBoxOpen && <InputBoxModal />}
                     {isViewPostModalOpen && <ViewPostModal />}
                     {isEditProfileImageOpen && <EditProfileImageModal />}
                     {isEditSummaryModalOpen && <EditSummaryModal />}
-                    {isLanguageOpen && <LanguageSettingModal />}
-                    {isCreateRoomOpen && <CreateRoomModal />}
+                    {/* {isCreateRoomOpen && <CreateRoomModal />} */}
                   </>
                 </Overlay>
               )}
-              {!allowedRoutes && <Header />}
               {/* <AnimatePresence> */}
               {notification && <Notification notification={notification} />}
               {/* </AnimatePresence> */}
-              {isCommonLoading && <GlobalLoader />}
+              {isLoading && <SkeletonLoader />}
 
               <Component {...pageProps} />
             </>

@@ -5,7 +5,8 @@ import useTranslation from 'next-translate/useTranslation';
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { commentPostAPI } from '@/axios/postRequest';
-import Avatar from '@/components/Global/Avatar';
+
+import ProfilePic from '@/components/ProfilePic';
 import { setNotification } from '@/redux/slices/globalSlice';
 
 interface PostCommentInputProps {
@@ -22,7 +23,7 @@ const PostCommentInput = (props: PostCommentInputProps) => {
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
-    if (text === '') return;
+    if (!text) return;
     try {
       const { data } = await commentPostAPI(post?._id, text);
       const newComment = data;
@@ -35,20 +36,20 @@ const PostCommentInput = (props: PostCommentInputProps) => {
   };
   return (
     <div className="flex items-center p-1">
-      <Avatar
+      <ProfilePic
         width={30}
         height={30}
         username={userInfo.username}
         profileImage={userInfo.profileImage}
         gender={userInfo.gender}
       />
-      <form className="w-full" onSubmit={(e) => handleSubmitComment(e)}>
+      <form className="flex-1" onSubmit={(e) => handleSubmitComment(e)}>
         <input
           onChange={(e) => setText(e.target.value)}
           value={text}
           type="text"
           placeholder={t('post.addComment')}
-          className="focus:outline-none ml-[10px]   w-full rounded-full border px-[10px] py-[10px] text-sm"
+          className="focus:outline-2 ml-[10px]   w-full rounded-full border px-[10px] py-[10px] text-sm"
         />
       </form>
     </div>

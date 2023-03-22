@@ -1,25 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
-import Loader from '@/components/Global/Loader';
-import ProfileCover from '@/components/Post/ProfileCover';
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
+import Loader from '@/components/global/loader';
+import ProfileCover from '@/components/posts/ProfileCover';
 
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
 // Dynamic import
 const Post = dynamic(() => import('@/components/Home/Feed/Post/Post'), {
   loading: () => <LoaderSpinner />,
 });
-const NotificationItem = dynamic(() => import('@/components/Post/NotificationItem'), {
+const NotificationItem = dynamic(() => import('@/components/posts/NotificationItem'), {
   loading: () => <Loader />,
 });
 const PostLayout = ({ post, profile, notifications }) => {
   const router = useRouter();
-  useEffect(() => {
-    console.log(post, 'post', profile, notifications);
-  }, []);
   const userInfo = useSelector((state) => state.user.userInfo);
   const isViewPostModalOpen = useSelector((state) => state.post.isViewPostModalOpen);
 
@@ -82,8 +79,8 @@ export async function getServerSideProps({ req, params, res }) {
     return {
       props: {
         post: data,
-        notifications: notifications.data,
-        profile: profile.data,
+        notifications: notifications?.data,
+        profile: profile?.data,
       },
     };
   } catch (error) {

@@ -6,8 +6,9 @@ import router from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { getFriendsListAPI } from '@/axios/friendRequest';
-import Avatar from '@/components/Global/Avatar';
-import LoaderSpinner from '@/components/Global/LoaderSpinner';
+
+import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
+import ProfilePic from '@/components/ProfilePic';
 import { toggleCreateRoomOpen } from '@/redux/slices/globalSlice';
 
 const InviteRoom = ({ roomCode }) => {
@@ -27,6 +28,7 @@ const InviteRoom = ({ roomCode }) => {
       setLoading(false);
     }
   };
+
   const handleJoinRoom = () => {
     dispatch(toggleCreateRoomOpen());
     router.push(`/groupcall/${roomCode}`);
@@ -38,7 +40,7 @@ const InviteRoom = ({ roomCode }) => {
     <div>
       <div className=" max-h-[60vh] space-y-2 overflow-y-auto">
         <div className="flex flex-col items-center justify-center">
-          <Avatar
+          <ProfilePic
             width={100}
             height={100}
             username={userInfo.username}
@@ -69,7 +71,7 @@ const InviteRoom = ({ roomCode }) => {
             {friendList.map(({ user }) => (
               <div className="mt-2 flex items-center justify-between" key={user._id}>
                 <div className=" flex items-center p-2">
-                  <Avatar
+                  <ProfilePic
                     width={40}
                     height={40}
                     username={userInfo.username}
