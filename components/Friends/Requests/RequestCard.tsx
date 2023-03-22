@@ -2,7 +2,7 @@ import React from 'react';
 
 import router from 'next/router';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 import { UserInfo } from '@/interfaces/I_common';
 
 interface RequestCardProps {
@@ -20,7 +20,7 @@ const RequestCard = ({ user, t }: RequestCardProps) => {
         onClick={() => router.push(`/${user.username}`)}
         className="flex items-center p-2 sm:p-3"
       >
-        <Avatar
+        <ProfilePic
           width={50}
           height={50}
           username={user.username}

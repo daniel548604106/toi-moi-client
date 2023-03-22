@@ -4,7 +4,7 @@ import { SearchIcon, VideoCameraIcon, XIcon } from '@heroicons/react/solid';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
-import Avatar from '@/components/global/Avatar';
+import Avatar from '@/components/global/ProfilePic';
 import { toggleListOpen } from '@/redux/slices/messageSlice';
 
 interface ChatroomSidebarHeaderProps {

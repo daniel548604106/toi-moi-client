@@ -7,7 +7,7 @@ import router from 'next/router';
 
 import useClickOutside from '@/hooks/useClickOutside';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 import { timeDiff } from '@/lib/dayjs';
 import { getSavedPosts } from '@/redux/slices/postSlice';
 
@@ -34,10 +34,10 @@ const PostHeader = (props: PostHeaderProps) => {
 
   return (
     <div className="sm:p-3">
-      <div className="mb-[10px] flex justify-between items-start">
+      <div className="mb-[10px] flex items-start justify-between">
         <div className="flex items-center">
           <span>
-            <Avatar
+            <ProfilePic
               width={40}
               height={40}
               username={post.user.username}
@@ -81,7 +81,7 @@ const PostHeader = (props: PostHeaderProps) => {
                 postId={post._id}
               />
             </div>
-          ): null}
+          ) : null}
         </div>
       </div>
     </div>

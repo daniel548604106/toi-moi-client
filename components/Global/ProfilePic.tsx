@@ -12,7 +12,7 @@ interface AvatarProps {
   username?: string;
   gender?: 'male' | 'female' | 'other';
 }
-const Avatar = ({
+const ProfilePic = ({
   width = 60,
   height = 60,
   profileImage,
@@ -37,4 +37,4 @@ const Avatar = ({
   );
 };
 
-export default Avatar;
+export default ProfilePic;

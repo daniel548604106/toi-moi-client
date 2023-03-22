@@ -8,7 +8,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { postReadSingleNotificationAPI } from '@/axios/notificationRequest';
 
-import Avatar from '@/components/global/Avatar';
+import Avatar from '@/components/global/ProfilePic';
 import { timeDiff } from '@/lib/dayjs';
 
 interface LikeNotificationProps {

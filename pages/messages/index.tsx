@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import { getChatUserInfoAPI } from '@/axios/chatRequest';
 import { searchRequestAPI } from '@/axios/searchRequest';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 import ChatroomMainHeader from '@/components/messages/ChatroomMain/ChatroomMainHeader';
 import ChatroomMainInputBox from '@/components/messages/ChatroomMain/ChatroomMainInputBox';
 import ChatroomMainRoom from '@/components/messages/ChatroomMain/ChatroomMainRoom';
@@ -264,7 +264,7 @@ const Index = (props) => {
                   onClick={(e) => addChat(e, result)}
                   className="flex cursor-pointer items-center rounded-lg p-2 hover:bg-gray-100"
                 >
-                  <Avatar
+                  <ProfilePic
                     width={30}
                     height={30}
                     profileImage={result.profileImage}

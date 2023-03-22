@@ -5,9 +5,9 @@ import { useRouter } from 'next/router';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
-import Avatar from '@/components/global/Avatar';
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 import Overlay from '@/components/global/Overlay';
+import ProfilePic from '@/components/global/ProfilePic';
 import { setLikesListOpen } from '@/redux/slices/postSlice';
 
 const LikesListModal = () => {
@@ -44,7 +44,7 @@ const LikesListModal = () => {
               <div key={like._id} className="flex items-center justify-between p-2">
                 <div onClick={() => handleDirectToProfile(like)} className="flex items-center">
                   <span className="relative">
-                    <Avatar
+                    <ProfilePic
                       profileImage={like.user.profileImage}
                       gender={like.user.gender}
                       username={like.user.username}

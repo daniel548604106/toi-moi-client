@@ -7,8 +7,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { getFriendsListAPI } from '@/axios/friendRequest';
 
-import Avatar from '@/components/global/Avatar';
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
+import ProfilePic from '@/components/global/ProfilePic';
 import { toggleCreateRoomOpen } from '@/redux/slices/globalSlice';
 
 const InviteRoom = ({ roomCode }) => {
@@ -40,7 +40,7 @@ const InviteRoom = ({ roomCode }) => {
     <div>
       <div className=" max-h-[60vh] space-y-2 overflow-y-auto">
         <div className="flex flex-col items-center justify-center">
-          <Avatar
+          <ProfilePic
             width={100}
             height={100}
             username={userInfo.username}
@@ -71,7 +71,7 @@ const InviteRoom = ({ roomCode }) => {
             {friendList.map(({ user }) => (
               <div className="mt-2 flex items-center justify-between" key={user._id}>
                 <div className=" flex items-center p-2">
-                  <Avatar
+                  <ProfilePic
                     width={40}
                     height={40}
                     username={userInfo.username}

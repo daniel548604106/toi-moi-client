@@ -5,7 +5,7 @@ import router from 'next/router';
 
 import { useAppSelector } from '@/hooks/useAppRedux';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 
 interface PostNotificationProps {
   setNewNotification: (any) => void;
@@ -30,7 +30,7 @@ const PostNotification = (props: PostNotificationProps) => {
         }}
         className="absolute top-2 right-2 h-5"
       />
-      <Avatar profileImage={profileImage} username={username} />
+      <ProfilePic profileImage={profileImage} username={username} />
       <p className="sm:text-md text-sm">
         <span>{name}</span> liked your post
       </p>

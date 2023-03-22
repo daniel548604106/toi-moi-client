@@ -9,8 +9,8 @@ import useAxios from '@/hooks/useAxios';
 
 import EmptyFriendList from '@/components/friends/EmptyFriendList';
 import Sidebar from '@/components/friends/Sidebar';
-import Avatar from '@/components/global/Avatar';
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
+import ProfilePic from '@/components/global/ProfilePic';
 
 const Lists = () => {
   const [friendsList, setFriendsList] = useState(null);
@@ -80,7 +80,7 @@ const Lists = () => {
                 key={user._id}
                 className="flex cursor-pointer items-center rounded-lg bg-secondary p-3 text-secondary shadow-md hover:shadow-lg"
               >
-                <Avatar
+                <ProfilePic
                   width={50}
                   height={50}
                   username={user.username}

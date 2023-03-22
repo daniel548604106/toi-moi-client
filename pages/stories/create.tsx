@@ -9,7 +9,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { uploadStoryImageAPI } from '@/axios/storyRequest';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 
 import { backgroundSelections } from '@/utils/storyOptions';
 
@@ -86,7 +86,7 @@ const Create = () => {
           <h2 className="text-lg font-semibold sm:text-2xl">你的限時動態</h2>
         </div>
         <div className="flex items-center space-x-3">
-          <Avatar
+          <ProfilePic
             width={60}
             height={60}
             profileImage={userInfo.profileImage}

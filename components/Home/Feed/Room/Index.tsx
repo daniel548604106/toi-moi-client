@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { VideoCameraIcon } from '@heroicons/react/outline';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 
 import genderAvatar from '@/utils/genderAvatar';
 
@@ -37,7 +37,7 @@ const Room = ({ roomList }: RoomProps) => {
           >
             {roomList?.map(({ user }) => (
               <span key={user._id} className="space-x-2">
-                <Avatar
+                <ProfilePic
                   key={user._id}
                   width={40}
                   height={40}

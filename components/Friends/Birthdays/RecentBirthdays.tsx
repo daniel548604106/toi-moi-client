@@ -2,7 +2,7 @@ import React from 'react';
 
 import dayjs from 'dayjs';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 
 import BirthdayCardLayout from './BirthdayCardLayout';
 
@@ -15,7 +15,7 @@ const RecentBirthdays = ({ recentBirthdays }: RecentBirthdaysProps) => {
     <BirthdayCardLayout title="Recent Birthdays">
       {recentBirthdays.map((recentBirthday) => (
         <div className="flex items-center border-b p-5 py-5" key={recentBirthday._id}>
-          <Avatar
+          <ProfilePic
             width={60}
             height={60}
             username={recentBirthday.username}

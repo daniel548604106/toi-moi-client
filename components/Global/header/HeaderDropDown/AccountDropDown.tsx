@@ -8,8 +8,8 @@ import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import useDarkMode from '@/hooks/useDarkMode';
 
-import Avatar from '@/components/global/Avatar';
 import LanguageSettingModal from '@/components/global/LanguageSettingModal';
+import ProfilePic from '@/components/global/ProfilePic';
 import { toggleLanguageOpen } from '@/redux/slices/globalSlice';
 import { setUserLogout } from '@/redux/slices/userSlice';
 
@@ -37,7 +37,7 @@ const AccountPopup = ({ t }) => {
         onClick={() => router.push(`/${userInfo.username}`)}
         className="hidden cursor-pointer items-center rounded-md p-3 hover:bg-gray-100 sm:flex "
       >
-        <Avatar
+        <ProfilePic
           width={60}
           height={60}
           username={userInfo.username}

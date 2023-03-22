@@ -5,7 +5,7 @@ import router from 'next/router';
 
 import { useAppSelector } from '@/hooks/useAppRedux';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 
 interface NotificationListProps {
   notification: any;
@@ -54,7 +54,7 @@ const NotificationList = ({ notification }: NotificationListProps) => {
       className="flex cursor-pointer items-center rounded-md p-2 hover:bg-gray-100"
     >
       <span className="relative">
-        <Avatar
+        <ProfilePic
           username={notification.user.username}
           profileImage={notification.user.profileImage}
           gender={notification.user.gender}

@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { getChatAPI } from '@/axios/chatRequest';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 import { UserInfo } from '@/interfaces/I_common';
 import { Message, User } from '@/interfaces/I_socket';
 import { removeFromChatBoxList } from '@/redux/slices/messageSlice';
@@ -97,7 +97,7 @@ const ChatBox = (props: ChatBoxProps) => {
                 <div key={message.date}>
                   {userInfo._id !== message.sender ? (
                     <div className="mb-2 flex flex-wrap items-center ">
-                      <Avatar profileImage={user.profileImage} width={30} height={30} />
+                      <ProfilePic profileImage={user.profileImage} width={30} height={30} />
                       <p
                         ref={scrollToRef}
                         className="sm:text-md ml-2 max-w-[200px] rounded-lg border p-2 text-sm"

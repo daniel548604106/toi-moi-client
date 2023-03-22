@@ -7,7 +7,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { deleteCommentAPI, likeCommentAPI, unlikeCommentAPI } from '@/axios/postRequest';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 import { timeDiff } from '@/lib/dayjs';
 
 interface CommentProps {
@@ -53,7 +53,7 @@ const Comment = (props: CommentProps) => {
   };
   return (
     <div className="flex items-center">
-      <Avatar
+      <ProfilePic
         width={24}
         height={24}
         username={comment.user.username}

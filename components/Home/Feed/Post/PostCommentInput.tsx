@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { commentPostAPI } from '@/axios/postRequest';
 
-import Avatar from '@/components/global/Avatar';
+import ProfilePic from '@/components/global/ProfilePic';
 import { setNotification } from '@/redux/slices/globalSlice';
 
 interface PostCommentInputProps {
@@ -36,7 +36,7 @@ const PostCommentInput = (props: PostCommentInputProps) => {
   };
   return (
     <div className="flex items-center p-1">
-      <Avatar
+      <ProfilePic
         width={30}
         height={30}
         username={userInfo.username}
