@@ -21,8 +21,12 @@ const Avatar = ({
 }: AvatarProps) => {
   return (
     <Image
+      style={{
+        width,
+        height,
+      }}
       onClick={() => router.push(`/${username}`)}
-      className={`w-[${width}px] h-[${height}px] ${
+      className={`${
         !profileImage ? 'avatarFallback' : ''
       } ] cursor-pointer rounded-full object-cover `}
       width={width}
