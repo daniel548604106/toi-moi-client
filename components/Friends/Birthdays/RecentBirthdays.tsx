@@ -2,7 +2,7 @@ import React from 'react';
 
 import dayjs from 'dayjs';
 
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 
 import BirthdayCardLayout from './BirthdayCardLayout';
 

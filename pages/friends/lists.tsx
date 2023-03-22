@@ -10,7 +10,7 @@ import useAxios from '@/hooks/useAxios';
 import EmptyFriendList from '@/components/friends/EmptyFriendList';
 import Sidebar from '@/components/friends/Sidebar';
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 
 const Lists = () => {
   const [friendsList, setFriendsList] = useState(null);

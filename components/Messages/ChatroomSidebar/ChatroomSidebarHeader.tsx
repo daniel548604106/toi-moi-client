@@ -4,7 +4,7 @@ import { SearchIcon, VideoCameraIcon, XIcon } from '@heroicons/react/solid';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
-import Avatar from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { toggleListOpen } from '@/redux/slices/messageSlice';
 
 interface ChatroomSidebarHeaderProps {
@@ -20,7 +20,7 @@ const Header = (props: ChatroomSidebarHeaderProps) => {
   return (
     <div className="bg-primary p-3  text-primary">
       <div className="relative mb-3 flex items-center justify-between">
-        <Avatar
+        <ProfilePic
           profileImage={userInfo.profileImage}
           gender={userInfo.gender}
           width={40}

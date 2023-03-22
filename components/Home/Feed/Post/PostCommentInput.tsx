@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import { commentPostAPI } from '@/axios/postRequest';
 
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { setNotification } from '@/redux/slices/globalSlice';
 
 interface PostCommentInputProps {

@@ -8,7 +8,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { postReadSingleNotificationAPI } from '@/axios/notificationRequest';
 
-import Avatar from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { timeDiff } from '@/lib/dayjs';
 
 interface LikeNotificationProps {
@@ -34,7 +34,7 @@ const LikeNotification = ({ notification }: LikeNotificationProps) => {
     >
       <div className="flex items-center">
         <span className="relative">
-          <Avatar
+          <ProfilePic
             username={notification.user.username}
             profileImage={notification.user.profileImage}
             gender={notification.user.gender}

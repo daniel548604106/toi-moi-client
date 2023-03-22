@@ -5,7 +5,7 @@ import router from 'next/router';
 
 import { useAppSelector } from '@/hooks/useAppRedux';
 
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 
 interface PostNotificationProps {
   setNewNotification: (any) => void;

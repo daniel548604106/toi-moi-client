@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import useDarkMode from '@/hooks/useDarkMode';
 
 import LanguageSettingModal from '@/components/global/LanguageSettingModal';
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { toggleLanguageOpen } from '@/redux/slices/globalSlice';
 import { setUserLogout } from '@/redux/slices/userSlice';
 

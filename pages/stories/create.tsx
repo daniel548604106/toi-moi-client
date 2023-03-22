@@ -9,7 +9,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { uploadStoryImageAPI } from '@/axios/storyRequest';
 
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 
 import { backgroundSelections } from '@/utils/storyOptions';
 

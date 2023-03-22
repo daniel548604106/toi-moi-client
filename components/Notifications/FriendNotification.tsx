@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { postFriendRequestAPI, rejectFriendRequestAPI } from '@/axios/friendRequest';
 import { postReadSingleNotificationAPI } from '@/axios/notificationRequest';
 
-import Avatar from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { timeDiff } from '@/lib/dayjs';
 
 interface FriendNotificationProps {
@@ -59,7 +59,7 @@ const FriendNotification = (props: FriendNotificationProps) => {
     >
       <div className=" flex flex-1 items-center">
         <span className="relative">
-          <Avatar
+          <ProfilePic
             width={60}
             height={60}
             gender={notification.user.gender}

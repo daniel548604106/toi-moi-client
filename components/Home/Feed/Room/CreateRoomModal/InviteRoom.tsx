@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import { getFriendsListAPI } from '@/axios/friendRequest';
 
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { toggleCreateRoomOpen } from '@/redux/slices/globalSlice';
 
 const InviteRoom = ({ roomCode }) => {

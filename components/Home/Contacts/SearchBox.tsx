@@ -8,7 +8,7 @@ import useDebounce from '@/hooks/useDebounce';
 import { getSearchedChatsAPI } from '@/axios/chatRequest';
 
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { addToChatBoxList } from '@/redux/slices/messageSlice';
 
 interface SearchBoxProps {

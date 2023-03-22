@@ -7,7 +7,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { deleteCommentAPI, likeCommentAPI, unlikeCommentAPI } from '@/axios/postRequest';
 
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { timeDiff } from '@/lib/dayjs';
 
 interface CommentProps {

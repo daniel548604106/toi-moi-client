@@ -12,13 +12,13 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import { getChatUserInfoAPI } from '@/axios/chatRequest';
 import { searchRequestAPI } from '@/axios/searchRequest';
 
-import ProfilePic from '@/components/global/ProfilePic';
 import ChatroomMainHeader from '@/components/messages/ChatroomMain/ChatroomMainHeader';
 import ChatroomMainInputBox from '@/components/messages/ChatroomMain/ChatroomMainInputBox';
 import ChatroomMainRoom from '@/components/messages/ChatroomMain/ChatroomMainRoom';
 import ChatroomList from '@/components/messages/ChatroomSidebar/ChatroomList';
 import ChatroomSidebarHeader from '@/components/messages/ChatroomSidebar/ChatroomSidebarHeader';
 import EmptyChat from '@/components/messages/EmptyChat';
+import ProfilePic from '@/components/ProfilePic';
 import { ClientToServerEvents, ServerToClientEvents } from '@/interfaces/I_socket';
 import { toggleListOpen } from '@/redux/slices/messageSlice';
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 import router from 'next/router';
 
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { UserInfo } from '@/interfaces/I_common';
 
 interface RequestCardProps {

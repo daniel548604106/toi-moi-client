@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
 import Overlay from '@/components/global/Overlay';
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { setLikesListOpen } from '@/redux/slices/postSlice';
 
 const LikesListModal = () => {

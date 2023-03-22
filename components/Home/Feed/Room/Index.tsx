@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { VideoCameraIcon } from '@heroicons/react/outline';
 
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 
 import genderAvatar from '@/utils/genderAvatar';
 

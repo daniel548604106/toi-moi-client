@@ -7,7 +7,7 @@ import router from 'next/router';
 
 import useClickOutside from '@/hooks/useClickOutside';
 
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { timeDiff } from '@/lib/dayjs';
 import { getSavedPosts } from '@/redux/slices/postSlice';
 

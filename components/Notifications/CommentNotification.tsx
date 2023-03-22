@@ -8,7 +8,7 @@ import { useAppSelector } from '@/hooks/useAppRedux';
 
 import { postReadSingleNotificationAPI } from '@/axios/notificationRequest';
 
-import Avatar from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { timeDiff } from '@/lib/dayjs';
 
 interface CommentNotificationProps {
@@ -35,7 +35,7 @@ const CommentNotification = ({ notification }: CommentNotificationProps) => {
     >
       <div className="flex items-center">
         <span className="relative">
-          <Avatar
+          <ProfilePic
             width={60}
             height={60}
             username={notification.user.username}

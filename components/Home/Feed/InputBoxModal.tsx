@@ -12,7 +12,7 @@ import { postNewPostAPI } from '@/axios/postRequest';
 
 import Loader from '@/components/global/loader/LoaderBounce';
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
-import ProfilePic from '@/components/global/ProfilePic';
+import ProfilePic from '@/components/ProfilePic';
 import { setNotification } from '@/redux/slices/globalSlice';
 import { setImagesToPost, setPostInputBoxOpen } from '@/redux/slices/postSlice';
 
