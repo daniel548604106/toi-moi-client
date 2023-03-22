@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
-import Loader from '@/components/global/Loader';
+import Loader from '@/components/global/loader';
 import ProfileCover from '@/components/posts/ProfileCover';
 
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
@@ -19,9 +19,6 @@ const PostLayout = ({ post, profile, notifications }) => {
   const router = useRouter();
   const userInfo = useSelector((state) => state.user.userInfo);
   const isViewPostModalOpen = useSelector((state) => state.post.isViewPostModalOpen);
-  useEffect(() => {
-    console.log(post, 'post', profile, notifications);
-  }, [notifications]);
 
   return (
     <div className=" sm:mt-0  ">
