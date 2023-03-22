@@ -4,14 +4,14 @@ interface GlobalState {
   isSearchBarOpen: boolean;
   isLanguageOpen: boolean;
   isCreateRoomOpen: boolean;
-  isCommonLoading: boolean;
+  isLoading: boolean;
   notification: '';
 }
 
 export const globalSlice = createSlice({
   name: 'global',
   initialState: {
-    isCommonLoading: false,
+    isLoading: false,
     isSearchBarOpen: false,
     isLanguageOpen: false,
     isCreateRoomOpen: false,
@@ -31,9 +31,9 @@ export const globalSlice = createSlice({
     toggleCreateRoomOpen: (state) => {
       state.isCreateRoomOpen = !state.isCreateRoomOpen;
     },
-    setIsCommonLoading: (state, action: PayloadAction<boolean>) => {
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
       const isLoading = action.payload;
-      state.isCommonLoading = isLoading;
+      state.isLoading = isLoading;
     },
     setNotification: (state, { payload }) => {
       state.notification = payload;
@@ -45,7 +45,7 @@ export const globalSlice = createSlice({
 export const {
   toggleSearchBar,
   toggleCreateRoomOpen,
-  setIsCommonLoading,
+  setIsLoading,
   toggleLanguageOpen,
   setNotification,
 } = globalSlice.actions;

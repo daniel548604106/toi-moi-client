@@ -7,7 +7,7 @@ import {
   ChevronDownIcon,
   HomeIcon,
   PlusIcon,
-  UserGroupIcon
+  UserGroupIcon,
 } from '@heroicons/react/solid';
 import { AnimateSharedLayout } from 'framer-motion';
 import useTranslation from 'next-translate/useTranslation';
@@ -151,15 +151,17 @@ const Header = () => {
           />
         </div>
       </div>
-      <div
-        onClick={() => setSideMenuShow(!isSideMenuShow)}
-        className={`${
-          isSideMenuShow ? 'opacity-1' : 'opacity-0'
-        } fixed left-0 right-0 top-[50px]  z-menu h-full w-full overflow-y-auto bg-secondary transition-opacity duration-150 ease-in-out`}
-      >
-        <Sidebar />
-        <AccountDropDown t={t} />
-      </div>
+      {isSideMenuShow ? (
+        <div
+          onClick={() => setSideMenuShow(!isSideMenuShow)}
+          className={`${
+            isSideMenuShow ? 'opacity-1' : 'opacity-0'
+          } fixed left-0 right-0 top-[50px]  z-menu h-full w-full overflow-y-auto bg-secondary transition-opacity duration-150 ease-in-out`}
+        >
+          <Sidebar />
+          <AccountDropDown t={t} />
+        </div>
+      ) : null}
     </div>
   );
 };

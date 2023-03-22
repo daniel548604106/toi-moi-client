@@ -41,6 +41,7 @@ const PostNotification = dynamic(() => import('@/components/Home/PostNotificatio
 export default function Home({ posts, friends, notFound }) {
   const dispatch = useDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
+  const { isLoading } = useAppSelector((state) => state.global);
   const { openChatBoxList } = useAppSelector((state) => state.message);
   const socket = useRef<Socket<ServerToClientEvents, ClientToServerEvents>>();
 
@@ -109,7 +110,6 @@ export default function Home({ posts, friends, notFound }) {
   }, []);
 
   useEffect(() => {
-    console.log('base URL ', process.env.BASE_URL);
     if (!socket.current) {
       // connect to socket
       socket.current = io(process.env.API_BASE_URL, { transports: ['websocket'] });
@@ -169,7 +169,7 @@ export default function Home({ posts, friends, notFound }) {
               newNotification={newNotification}
             />
           </div>
-        ): null}
+        ) : null}
         <div className="hidden w-1/2 lg:block">
           <Sidebar />
         </div>
@@ -195,11 +195,13 @@ export default function Home({ posts, friends, notFound }) {
                   ))}
                 </InfiniteScroll>
               )}
-              {currentPosts && currentPosts.length < 10 && (
+              {isLoading ? (
+                <LoaderSpinner />
+              ) : currentPosts?.length < 10 ? (
                 <div className="mt-5">
                   <NoPost />
                 </div>
-              )}
+              ) : null}
             </div>
           )}
         </div>
@@ -259,11 +261,6 @@ export async function getServerSideProps({ req, res }) {
 
     const [posts, friends] = await Promise.all([getPostsAPI(), getFriendsListAPI()]);
 
-    if (!posts?.data) {
-      return {
-        notFound: true,
-      };
-    }
     return {
       props: {
         posts: posts?.data || [],

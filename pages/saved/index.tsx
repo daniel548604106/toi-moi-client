@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
+import { useAppSelector } from '@/hooks/useAppRedux';
+
 import { getSavedPostsAPI } from '@/axios/savedRequest';
 
+import { LoaderSpinner } from '@/components/global/loader';
 import SavedCard from '@/components/saved/SavedCard';
 
 const Saved = () => {
+  const { isLoading } = useAppSelector((state) => state.global);
   const [savedPosts, setSavedPosts] = useState(null);
 
   const handleGetSavedPosts = async () => {
@@ -44,6 +48,8 @@ const Saved = () => {
             ))}
           </div>
         </div>
+      ) : isLoading ? (
+        <LoaderSpinner />
       ) : (
         <div className="mt-[60px] flex w-full  flex-col items-center justify-center">
           <Image src="/images/empty-bookmark.svg" width="100" height="100" alt="empty-bookmark" />

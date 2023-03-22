@@ -18,13 +18,13 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 
 import ErrorBoundary from '@/components/ErrorBoundary';
 import LoaderSpinner from '@/components/global/loader/LoaderSpinner';
-import GlobalLoader from '@/components/global/loader/PostSkeletonLoader';
+import SkeletonLoader from '@/components/global/loader/PostSkeletonLoader';
 import Notification from '@/components/global/Notification';
 import ViewPostModal from '@/components/global/ViewPostModal';
 import Layout from '@/components/Layout';
 import Login from '@/components/login/Index';
 import * as ga from '@/lib/gtag';
-import { setIsCommonLoading, setNotification } from '@/redux/slices/globalSlice';
+import { setIsLoading, setNotification } from '@/redux/slices/globalSlice';
 import { setUserLogout } from '@/redux/slices/userSlice';
 import { store } from '@/redux/store';
 
@@ -54,9 +54,7 @@ const App = ({ Component, pageProps }) => {
   const router = useRouter();
 
   const { isViewPostModalOpen } = useAppSelector((state) => state.post);
-  const { notification, isCreateRoomOpen, isCommonLoading } = useAppSelector(
-    (state) => state.global,
-  );
+  const { notification, isCreateRoomOpen, isLoading } = useAppSelector((state) => state.global);
   const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedIn);
   const isEditProfileImageOpen = useAppSelector((state) => state.user.isEditProfileImageOpen);
   const isEditSummaryModalOpen = useAppSelector((state) => state.profile.isEditSummaryModalOpen);
@@ -70,13 +68,13 @@ const App = ({ Component, pageProps }) => {
   const handleRouteChange = useCallback(
     (url, { shallow }) => {
       ga.pageView(url);
-      dispatch(setIsCommonLoading(true));
+      dispatch(setIsLoading(true));
     },
     [dispatch],
   );
 
   const handleRouteChangeComplete = useCallback(() => {
-    dispatch(setIsCommonLoading(false));
+    dispatch(setIsLoading(false));
   }, [dispatch]);
 
   useEffect(() => {
@@ -96,23 +94,23 @@ const App = ({ Component, pageProps }) => {
     };
   }, [handleRouteChange, handleRouteChangeComplete, router.events]);
 
-  // Track user geolocation
+  // // Track user geolocation
 
-  useEffect(() => {
-    const successfulLookup = (position) => {
-      const { latitude, longitude } = position.coords;
-      ga.event({
-        action: 'send',
-        category: 'geolocation',
-        label: 'geolocation',
-        value: [latitude, longitude],
-      });
-    };
+  // useEffect(() => {
+  //   const successfulLookup = (position) => {
+  //     const { latitude, longitude } = position.coords;
+  //     ga.event({
+  //       action: 'send',
+  //       category: 'geolocation',
+  //       label: 'geolocation',
+  //       value: [latitude, longitude],
+  //     });
+  //   };
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(successfulLookup, console.log);
-    }
-  }, []);
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(successfulLookup, console.log);
+  //   }
+  // }, []);
 
   const allowedRoutes = router.pathname === '/reset/password';
   const isModalOpen =
@@ -141,7 +139,7 @@ const App = ({ Component, pageProps }) => {
               {/* <AnimatePresence> */}
               {notification && <Notification notification={notification} />}
               {/* </AnimatePresence> */}
-              {isCommonLoading && <GlobalLoader />}
+              {isLoading && <SkeletonLoader />}
 
               <Component {...pageProps} />
             </>
