@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
 import { postReadNotificationsAPI } from '@/axios/notificationRequest';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import { getMyInfo } from '@/redux/slices/userSlice';
 
 const DropDownMenuIcon = ({ Icon, children, title }) => {

@@ -4,9 +4,10 @@ import { XIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
 import { deletePostAPI } from '@/axios/postRequest';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
 import { setNotification } from '@/redux/slices/globalSlice';
 import { setViewPostModalOpen } from '@/redux/slices/postSlice';
 

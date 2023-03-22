@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
-import { toggleCreateRoomOpen } from '@/redux/slices/globalSlice';
 import { VideoCameraIcon } from '@heroicons/react/outline';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import { toggleCreateRoomOpen } from '@/redux/slices/globalSlice';
 
 const CreateRoomCard = () => {
   const dispatch = useAppDispatch();

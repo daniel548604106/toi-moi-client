@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Image from 'next/dist/client/image';
+import Image from 'next/image';
 import router from 'next/router';
 
 import genderAvatar from '@/utils/genderAvatar';

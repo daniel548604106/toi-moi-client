@@ -31,6 +31,10 @@ const Saved = () => {
     handleGetSavedPosts();
   }, []);
 
+  if (isLoading) {
+    return <LoaderSpinner />;
+  }
+
   return (
     <div className="mx-auto w-full max-w-[600px] p-2 py-3 sm:py-10 ">
       {savedPosts?.length > 0 ? (
@@ -48,8 +52,6 @@ const Saved = () => {
             ))}
           </div>
         </div>
-      ) : isLoading ? (
-        <LoaderSpinner />
       ) : (
         <div className="mt-[60px] flex w-full  flex-col items-center justify-center">
           <Image src="/images/empty-bookmark.svg" width="100" height="100" alt="empty-bookmark" />

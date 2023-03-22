@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
-import { setSummaryModalShow } from '@/redux/slices/profileSlice';
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline';
 import { XIcon } from '@heroicons/react/solid';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import { setSummaryModalShow } from '@/redux/slices/profileSlice';
 
 import AddNewButton from './EditSummary/AddNewButton';
 import CurrentCityInputBox from './EditSummary/CurrentCityInputBox';

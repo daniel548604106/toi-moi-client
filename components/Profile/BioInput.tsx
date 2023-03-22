@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { patchProfileBioAPI } from '@/axios/profileRequest';
 import { useAppSelector } from '@/hooks/useAppRedux';
+
+import { patchProfileBioAPI } from '@/axios/profileRequest';
 
 interface BioInputProps {
   isEditable: boolean;

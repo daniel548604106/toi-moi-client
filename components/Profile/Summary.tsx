@@ -1,9 +1,11 @@
-import router from 'next/router';
 import React from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
-import { setSummaryModalShow } from '@/redux/slices/profileSlice';
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/outline';
+import router from 'next/router';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppRedux';
+
+import { setSummaryModalShow } from '@/redux/slices/profileSlice';
 
 import CardLayout from './CardLayout';
 
