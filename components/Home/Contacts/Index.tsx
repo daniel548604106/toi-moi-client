@@ -5,6 +5,7 @@ import { DotsHorizontalIcon, VideoCameraIcon } from '@heroicons/react/solid';
 import useTranslation from 'next-translate/useTranslation';
 
 import useClickOutside from '@/hooks/useClickOutside';
+
 import { User } from '@/interfaces/I_socket';
 
 import Contact from './Contact';
@@ -28,7 +29,7 @@ const Contacts = ({ friends, connectedUsers }: ContactsProps) => {
     return friends?.sort((a, b) => {
       return connectedUsers.map((users) => users.userId).includes(a.user._id) ? -1 : 1;
     });
-  }, [connectedUsers]);
+  }, [connectedUsers, friends]);
 
   return (
     <div className=" sticky top-[80px] p-2 ">
@@ -55,10 +56,9 @@ const Contacts = ({ friends, connectedUsers }: ContactsProps) => {
         </div>
       </div>
       {isSearchOpen && <SearchBox setSearchOpen={setSearchOpen} />}
-      {friends?.length &&
-        friends.map(({ user }) => (
-          <Contact connectedUsers={connectedUsers} key={user._id} user={user} />
-        ))}
+      {friends?.map(({ user }) => (
+        <Contact connectedUsers={connectedUsers} key={user._id} user={user} />
+      ))}
     </div>
   );
 };
